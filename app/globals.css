@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-surface text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+}
+
+@layer components {
+  .prose-fg {
+    @apply max-w-none text-ink-soft;
+  }
+  .prose-fg h2 {
+    @apply mt-10 font-display text-2xl font-bold text-ink;
+  }
+  .prose-fg h3 {
+    @apply mt-8 font-display text-xl font-bold text-ink;
+  }
+  .prose-fg p {
+    @apply mt-4 leading-relaxed;
+  }
+  .prose-fg ul {
+    @apply mt-4 list-disc space-y-2 pl-6;
+  }
+  .prose-fg a {
+    @apply text-brand-700 underline underline-offset-2;
+  }
+  .prose-fg strong {
+    @apply text-ink;
+  }
+}
