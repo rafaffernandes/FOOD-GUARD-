@@ -112,7 +112,7 @@ export default function PlanosPage() {
             com base no seu risco real.
           </p>
           <Button href="/diagnostico" size="lg" className="mt-7">
-            Descobrir meu plano
+            Fazer diagnóstico e descobrir meu plano ideal
           </Button>
         </div>
       </Section>

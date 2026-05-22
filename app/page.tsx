@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BadgeCheck,
   CalendarClock,
-  ClipboardCheck,
   FileWarning,
   Gauge,
   MessageSquare,
@@ -91,17 +90,17 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-surface-soft">
         <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-50" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-hero-glow" />
-        <Container className="relative grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
-          <div className="animate-fade-up">
+        <Container className="relative flex flex-col items-center py-20 text-center lg:py-28">
+          <div className="animate-fade-up flex flex-col items-center">
             <Badge tone="brand">
               <ShieldCheck className="h-3.5 w-3.5" /> Conformidade como software
             </Badge>
-            <h1 className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Sua operação está{" "}
               <span className="text-brand-600">em dia</span> com a vigilância
               sanitária?
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
               Descubra em 90 segundos. O Food Guard transforma a obrigação de ter
               um RT nutricionista e documentação técnica em um serviço previsível,
               com responsabilidade técnica nominal e SLA.
@@ -115,7 +114,7 @@ export default function HomePage() {
                 Ver planos e preços
               </Button>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-muted">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-muted">
               <span className="flex items-center gap-1.5">
                 <Timer className="h-4 w-4 text-brand-600" /> Resultado em 90s
               </span>
@@ -127,56 +126,6 @@ export default function HomePage() {
                 <ShieldCheck className="h-4 w-4 text-brand-600" /> 90 dias ou
                 devolução
               </span>
-            </div>
-          </div>
-
-          {/* Cartão visual do diagnóstico */}
-          <div className="animate-scale-in lg:justify-self-end">
-            <div className="w-full max-w-md rounded-3xl border border-surface-sunken bg-white p-7 shadow-lift">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-ink-muted">
-                  Diagnóstico regulatório
-                </span>
-                <Badge tone="warn">Exemplo</Badge>
-              </div>
-              <div className="mt-6 flex items-center gap-5">
-                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-[7px] border-warn-500/30">
-                  <span className="font-display text-3xl font-bold text-warn-600">
-                    48
-                  </span>
-                </div>
-                <div>
-                  <Badge tone="warn">Risco Médio</Badge>
-                  <p className="mt-2 text-sm text-ink-soft">
-                    3 áreas precisam de adequação antes da próxima fiscalização.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 space-y-2.5">
-                {[
-                  ["RT nutricionista", false],
-                  ["Manual de Boas Práticas", false],
-                  ["Treinamento de manipuladores", true],
-                ].map(([label, ok]) => (
-                  <div
-                    key={label as string}
-                    className="flex items-center gap-2.5 text-sm"
-                  >
-                    <ClipboardCheck
-                      className={
-                        ok ? "h-4 w-4 text-brand-600" : "h-4 w-4 text-danger-500"
-                      }
-                    />
-                    <span className="text-ink-soft">{label}</span>
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/diagnostico"
-                className="mt-6 flex items-center justify-center gap-1.5 rounded-full bg-brand-600 py-3 text-sm font-semibold text-white hover:bg-brand-700"
-              >
-                Calcular o meu score <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
         </Container>
@@ -259,7 +208,7 @@ export default function HomePage() {
               ))}
             </ul>
             <Button href="/diagnostico" size="lg" className="mt-8">
-              Começar agora <ArrowRight className="h-5 w-5" />
+              Fazer diagnóstico gratuito <ArrowRight className="h-5 w-5" />
             </Button>
           </div>
           <div className="rounded-3xl bg-ink p-8 text-white shadow-lift">
@@ -376,7 +325,7 @@ export default function HomePage() {
             variant="secondary"
             className="mt-8"
           >
-            Fazer meu diagnóstico <ArrowRight className="h-5 w-5" />
+            Fazer diagnóstico gratuito <ArrowRight className="h-5 w-5" />
           </Button>
         </div>
       </Section>

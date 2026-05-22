@@ -17,12 +17,15 @@ export function PlanCard({
   return (
     <div
       className={cn(
-        "relative flex flex-col rounded-3xl border bg-white p-7 shadow-soft transition-shadow hover:shadow-lift",
+        "relative flex flex-col rounded-3xl border bg-white p-7 transition-all hover:shadow-lift",
         featured
-          ? "border-brand-300 ring-2 ring-brand-200"
-          : "border-surface-sunken",
+          ? "border-brand-400 shadow-glow ring-1 ring-brand-300 lg:-translate-y-3"
+          : "border-surface-sunken shadow-soft",
       )}
     >
+      {featured && (
+        <span className="absolute inset-x-0 top-0 h-1.5 rounded-t-3xl bg-brand-sheen" />
+      )}
       {featured && (
         <div className="absolute -top-3 left-7">
           <Badge tone="brand">{recommended ? "Recomendado p/ você" : "Mais procurado"}</Badge>

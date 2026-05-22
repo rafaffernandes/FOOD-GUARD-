@@ -96,8 +96,8 @@ export function GatingForm({
           {...register("consent")}
         />
         <span>
-          Autorizo o Food Guard a tratar meus dados para gerar o diagnóstico e
-          entrar em contato, conforme a{" "}
+          Concordo com o tratamento dos meus dados para gerar o diagnóstico,
+          conforme a{" "}
           <a href="/contato" className="text-brand-700 underline">
             Política de Privacidade (LGPD)
           </a>
@@ -114,7 +114,10 @@ export function GatingForm({
           className="mt-1 h-4 w-4 rounded border-surface-sunken text-brand-600 focus:ring-brand-400"
           {...register("whatsappOptin")}
         />
-        <span>Quero receber o relatório e novidades pelo WhatsApp (opcional).</span>
+        <span>
+          Aceito receber meu relatório e o contato do RT pelo WhatsApp
+          (opcional).
+        </span>
       </label>
 
       <button
