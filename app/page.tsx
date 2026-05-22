@@ -88,8 +88,9 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-surface-soft">
-        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-60" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-white to-surface-soft">
+        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-50" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-hero-glow" />
         <Container className="relative grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
           <div className="animate-fade-up">
             <Badge tone="brand">
