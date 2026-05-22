@@ -1,4 +1,5 @@
 import {
+  AlertTriangle,
   ArrowRight,
   BadgeCheck,
   CalendarClock,
@@ -28,7 +29,7 @@ const problems = [
   {
     icon: Gauge,
     title: "Opacidade total",
-    text: "Você não sabe o que falta, quanto custa resolver, nem em quanto tempo. O RT tradicional é informal, sem SLA e sem clareza de escopo.",
+    text: "Você não sabe o que falta, quanto custa resolver, nem em quanto tempo. O RT tradicional é informal, some quando você precisa e não dá clareza nenhuma.",
   },
   {
     icon: CalendarClock,
@@ -46,24 +47,24 @@ const solution = [
   {
     icon: ShieldCheck,
     title: "Previsibilidade contratual",
-    text: "Escopo claro, visitas/mês definidas, SLA de atendimento e garantia de adequação em 90 dias ou devolução.",
+    text: "Escopo claro, visitas por mês definidas, resposta rápida garantida e adequação em 90 dias ou seu dinheiro de volta.",
   },
   {
     icon: Sparkles,
     title: "Diagnóstico instantâneo",
-    text: "5 perguntas em até 90 segundos geram seu score de risco, o que falta, o custo do problema e o plano recomendado.",
+    text: "5 perguntas em até 90 segundos mostram seu risco, o que falta, quanto a irregularidade pode te custar e o plano recomendado.",
   },
   {
     icon: MessageSquare,
-    title: "Tecnologia de bastidor",
-    text: "Documentação e auditoria digitalizadas, painel do cliente com agenda e documentos, suporte por WhatsApp.",
+    title: "Menos papelada, mais organização",
+    text: "Toda a documentação e as auditorias digitalizadas, com painel do cliente, agenda de visitas e suporte direto no WhatsApp.",
   },
 ];
 
 const faqs = [
   {
-    q: "O Food Guard é uma assessoria nova?",
-    a: "Sim, e somos transparentes sobre isso. Temos um Responsável Técnico nutricionista com nome, registro CRN-3 ativo e disposição de atender pessoalmente os primeiros clientes. Preferimos confiança real a histórico inflado.",
+    q: "Por que o Food Guard é diferente das assessorias tradicionais?",
+    a: "Nascemos para modernizar um setor que parou no tempo: unimos um Responsável Técnico nutricionista com CRN-3 ativo a tecnologia que elimina papelada, dá respostas rápidas e transparência total. Você sabe exatamente o que tem, o que falta e quanto custa — algo que o RT informal não entrega.",
   },
   {
     q: "Por que preciso de um Responsável Técnico nutricionista?",
@@ -75,7 +76,7 @@ const faqs = [
   },
   {
     q: "O diagnóstico é confiável?",
-    a: "O diagnóstico é gerado por um motor de regras (não por IA generativa em produção), validado contra a RDC 216/2004 e a CFN nº 600/2018, sob revisão técnica do RT Renan Muniz antes de cada atualização.",
+    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na RDC 216/2004 e na CFN nº 600/2018 e atualizadas constantemente pelo nosso Responsável Técnico, Renan Muniz.",
   },
   {
     q: "Vocês atendem minha região?",
@@ -93,21 +94,21 @@ export default function HomePage() {
         <Container className="relative flex flex-col items-center py-20 text-center lg:py-28">
           <div className="animate-fade-up flex flex-col items-center">
             <Badge tone="brand">
-              <ShieldCheck className="h-3.5 w-3.5" /> Conformidade como software
+              <ShieldCheck className="h-3.5 w-3.5" /> Assessoria nutricional com
+              tecnologia
             </Badge>
             <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Sua operação está{" "}
-              <span className="text-brand-600">em dia</span> com a vigilância
-              sanitária?
+              Trabalhe <span className="text-brand-600">sem medo</span> da
+              vigilância sanitária
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Descubra em 90 segundos. O Food Guard transforma a obrigação de ter
-              um RT nutricionista e documentação técnica em um serviço previsível,
-              com responsabilidade técnica nominal e SLA.
+              Evite multas e interdições. Tenha um Responsável Técnico (RT)
+              nutricionista com CRN ativo, documentação sempre em dia e adequação
+              garantida em 90 dias — ou seu dinheiro de volta.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
-                Fazer diagnóstico gratuito
+                Descobrir meu risco de multa
                 <ArrowRight className="h-5 w-5" />
               </Button>
               <Button href="/planos" size="lg" variant="outline">
@@ -116,7 +117,8 @@ export default function HomePage() {
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-muted">
               <span className="flex items-center gap-1.5">
-                <Timer className="h-4 w-4 text-brand-600" /> Resultado em 90s
+                <Timer className="h-4 w-4 text-brand-600" /> Resultado em 90s,
+                grátis
               </span>
               <span className="flex items-center gap-1.5">
                 <BadgeCheck className="h-4 w-4 text-brand-600" /> RT com CRN-3
@@ -130,6 +132,26 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Barra de autoridade */}
+      <div className="border-y border-surface-sunken bg-white">
+        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6 text-sm font-medium text-ink-soft">
+          <span className="text-xs uppercase tracking-wide text-ink-muted">
+            Em conformidade com
+          </span>
+          {[
+            "ANVISA · RDC 216/2004",
+            "CFN nº 600/2018",
+            "RT com CRN-3 ativo",
+            "Conforme a LGPD",
+          ].map((item) => (
+            <span key={item} className="flex items-center gap-1.5">
+              <BadgeCheck className="h-4 w-4 text-brand-600" />
+              {item}
+            </span>
+          ))}
+        </Container>
+      </div>
 
       {/* Problema */}
       <Section>
@@ -208,10 +230,22 @@ export default function HomePage() {
               ))}
             </ul>
             <Button href="/diagnostico" size="lg" className="mt-8">
-              Fazer diagnóstico gratuito <ArrowRight className="h-5 w-5" />
+              Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />
             </Button>
           </div>
           <div className="rounded-3xl bg-ink p-8 text-white shadow-lift">
+            <div className="mb-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-4 ring-1 ring-danger-500/30">
+              <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-danger-400" />
+              <div>
+                <p className="font-display text-lg font-bold text-white">
+                  Multas de R$ 2 mil a R$ 1,5 milhão
+                </p>
+                <p className="text-sm text-white/60">
+                  O diagnóstico estima quanto a irregularidade pode custar à sua
+                  operação — antes da fiscalização.
+                </p>
+              </div>
+            </div>
             <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">
               Como funciona o score
             </p>
@@ -238,8 +272,8 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-6 text-sm text-white/50">
-              Motor de regras validado contra a RDC 216/2004 e a CFN nº 600/2018,
-              sob revisão do RT antes de cada release.
+              Regras baseadas na RDC 216/2004 e na CFN nº 600/2018, atualizadas
+              constantemente pelo nosso Responsável Técnico.
             </p>
           </div>
         </div>
@@ -325,7 +359,7 @@ export default function HomePage() {
             variant="secondary"
             className="mt-8"
           >
-            Fazer diagnóstico gratuito <ArrowRight className="h-5 w-5" />
+            Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />
           </Button>
         </div>
       </Section>

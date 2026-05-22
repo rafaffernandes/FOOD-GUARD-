@@ -23,8 +23,9 @@ export default function SobrePage() {
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
             Transformamos uma obrigação legal difusa — ter um RT nutricionista e
-            documentação técnica em dia — em um serviço previsível, com SLA,
-            responsabilidade técnica nominal e tecnologia de bastidor.
+            documentação técnica em dia — em um serviço previsível, com resposta
+            rápida garantida, responsabilidade técnica nominal e tecnologia que
+            elimina papelada.
           </p>
         </Container>
       </section>

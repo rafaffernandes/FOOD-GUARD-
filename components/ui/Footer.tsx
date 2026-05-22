@@ -73,7 +73,7 @@ export function Footer() {
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Food Guard. RT: Renan Muniz · CRN-3
-            ativo · DPO designado.
+            ativo · Encarregado de dados (LGPD).
           </p>
           <p>Conformidade com a RDC 216/2004 (Anvisa) e a CFN nº 600/2018 · LGPD.</p>
         </div>
