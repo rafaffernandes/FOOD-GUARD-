@@ -132,7 +132,7 @@ export function GatingForm({
         ) : (
           <Lock className="h-5 w-5" />
         )}
-        Destravar meu diagnóstico completo
+        Liberar meu relatório e ver o dinheiro em risco
       </button>
       <p className="text-center text-xs text-ink-muted">
         Resultado na tela + relatório no seu e-mail. Sem spam.

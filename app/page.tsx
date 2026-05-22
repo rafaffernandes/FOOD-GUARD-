@@ -102,9 +102,9 @@ export default function HomePage() {
               vigilância sanitária
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Evite multas e interdições. Tenha um Responsável Técnico (RT)
-              nutricionista com CRN ativo, documentação sempre em dia e adequação
-              garantida em 90 dias — ou seu dinheiro de volta.
+              Seu nutricionista particular cuidando do seu negócio. Um RT com
+              nome, rosto e CRN ativo assinando pela sua operação — com respostas
+              na hora, zero papelada e adequação garantida em 90 dias.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">

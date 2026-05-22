@@ -167,20 +167,20 @@ export function ResultDashboard({
               onClick={() => track(funnelEvents.scheduleClicked, { plan: plan.id })}
             >
               <CalendarCheck className="h-5 w-5" />
-              Agendar avaliação com o nutricionista
+              Agendar avaliação gratuita com o nutricionista
             </Button>
             <button
               type="button"
               onClick={handleCheckout}
               disabled={checkoutLoading}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 font-semibold text-white transition hover:bg-white/10 disabled:opacity-60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:opacity-60"
             >
               {checkoutLoading ? (
                 <Loader2 className="h-5 w-5 animate-spin" />
               ) : (
                 <CreditCard className="h-5 w-5" />
               )}
-              Assinar {plan.name} agora
+              Estou com urgência e quero assinar agora
             </button>
             <p className="text-center text-xs text-white/50">
               Recomendamos a avaliação gratuita com o RT antes de assinar.

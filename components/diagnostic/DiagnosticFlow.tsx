@@ -129,6 +129,14 @@ export function DiagnosticFlow() {
               Risco {result.bandLabel}
             </Badge>
           </div>
+          <p className="mt-4 max-w-md text-ink-soft">
+            Analisamos suas 5 respostas e encontramos{" "}
+            <strong className="text-ink">
+              {result.gapsCount}{" "}
+              {result.gapsCount === 1 ? "ponto" : "pontos"} de autuação
+            </strong>{" "}
+            na sua operação.
+          </p>
           <div className="mt-5 w-full max-w-md rounded-2xl border border-brand-100 bg-brand-50/60 p-4 text-left">
             <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">
               Prioridade nº 1
@@ -170,6 +178,17 @@ export function DiagnosticFlow() {
   // Fase de quiz
   return (
     <Container className="max-w-2xl py-12">
+      {step === 0 && (
+        <div className="mb-8 text-center animate-fade-up">
+          <h1 className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+            Descubra o risco financeiro da sua operação em 90 segundos
+          </h1>
+          <p className="mt-2 text-ink-soft">
+            Responda 5 perguntas simples e saiba exatamente o que falta para
+            blindar seu negócio contra a fiscalização.
+          </p>
+        </div>
+      )}
       <div className="mb-8">
         <div className="mb-2 flex items-center justify-between text-sm text-ink-muted">
           <div className="flex items-center gap-2">
@@ -198,9 +217,9 @@ export function DiagnosticFlow() {
       </div>
 
       <div key={question.id} className="animate-fade-up">
-        <h1 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+        <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
           {question.title}
-        </h1>
+        </h2>
         {question.help && <p className="mt-2 text-ink-soft">{question.help}</p>}
 
         <div className="mt-7 space-y-3">
