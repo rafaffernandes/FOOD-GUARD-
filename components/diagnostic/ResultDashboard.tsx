@@ -70,7 +70,7 @@ export function ResultDashboard({
         <div>
           <Badge tone={bandInfo.tone}>{bandInfo.label}</Badge>
           <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
-            {firstName}, sua conformidade é{" "}
+            {firstName}, seu risco é{" "}
             <span
               className={cn(
                 result.band === "critico" && "text-danger-600",
