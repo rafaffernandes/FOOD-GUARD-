@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import type { DiagnosticResult } from "@/lib/diagnostic/engine";
+import { buildReportPdf } from "./pdf";
 import { buildReportHtml, reportSubject } from "./report";
 import type { LeadPayload } from "./types";
 
@@ -21,11 +22,20 @@ export async function sendDiagnosticEmail(
 
   try {
     const resend = new Resend(apiKey);
+    let attachments: { filename: string; content: Buffer }[] | undefined;
+    try {
+      const pdf = await buildReportPdf(lead, result);
+      attachments = [{ filename: "diagnostico-food-guard.pdf", content: pdf }];
+    } catch (pdfErr) {
+      console.error("[pdf] falha ao gerar relatório, enviando só HTML:", pdfErr);
+    }
+
     const { error } = await resend.emails.send({
       from,
       to: lead.email,
       subject: reportSubject(result),
       html: buildReportHtml(lead, result),
+      attachments,
     });
     if (error) {
       console.error("[resend] erro ao enviar:", error.message);
