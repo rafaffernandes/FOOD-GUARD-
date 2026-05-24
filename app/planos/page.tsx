@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 
 const planFaqs = [
   {
-    q: "Existe fidelidade?",
-    a: "Sim. Os planos têm carência mínima de 12 meses, com multa de 40% sobre o valor restante em caso de rescisão antecipada. Isso garante a previsibilidade do serviço e a dedicação do RT à sua operação.",
+    q: "Como funciona o compromisso de 12 meses?",
+    a: "A assinatura é um ciclo anual de adequação e blindagem sanitária (12 meses) — o tempo que o RT precisa para deixar sua operação em conformidade e mantê-la assim. Esse compromisso garante a dedicação do nutricionista ao seu negócio. Em caso de saída antecipada, aplica-se a condição de rescisão prevista em contrato.",
   },
   {
     q: "Como funciona a garantia de 90 dias?",

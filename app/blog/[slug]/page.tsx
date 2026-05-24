@@ -72,10 +72,17 @@ export default async function PostPage({
             Descubra em 90 segundos com o diagnóstico gratuito.
           </p>
           <Button href="/diagnostico" variant="secondary" size="lg" className="mt-6">
-            Fazer diagnóstico
+            Descobrir meu risco de multa
           </Button>
         </div>
       </Container>
+
+      {/* CTA fixo (sticky no mobile) */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-surface-sunken bg-white/95 p-3 shadow-lift backdrop-blur sm:hidden">
+        <Button href="/diagnostico" className="w-full" size="md">
+          Descobrir meu risco em 90s
+        </Button>
+      </div>
     </article>
   );
 }

@@ -56,7 +56,7 @@ export function PlanCard({
         variant={featured ? "primary" : "outline"}
         className="mt-7 w-full"
       >
-        Começar com {plan.name}
+        Fazer diagnóstico
       </Button>
     </div>
   );

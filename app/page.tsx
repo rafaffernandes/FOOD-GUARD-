@@ -79,6 +79,14 @@ const faqs = [
     a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na RDC 216/2004 e na CFN nº 600/2018 e atualizadas constantemente pelo nosso Responsável Técnico, Renan Muniz.",
   },
   {
+    q: "Vou ter que preencher muita papelada?",
+    a: "Zero papelada da sua parte. Nós montamos, organizamos e digitalizamos toda a documentação técnica para você — Manual de Boas Práticas, POPs, fichas e registros. Você só acompanha.",
+  },
+  {
+    q: "A vigilância bateu aqui hoje. Vocês resolvem rápido?",
+    a: "Sim. O atendimento no WhatsApp é direto com o nutricionista e montamos seu plano de emergência na hora. Comece pelo diagnóstico para já chegarmos sabendo o que a sua operação precisa.",
+  },
+  {
     q: "Vocês atendem minha região?",
     a: "Neste momento atendemos São Paulo capital e Grande SP. Faça o diagnóstico mesmo assim — entramos em contato para avaliar seu caso.",
   },

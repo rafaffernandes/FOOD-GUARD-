@@ -1,3 +1,4 @@
+import { ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { site } from "@/lib/content/site";
 import { plans } from "@/lib/content/plans";
@@ -70,12 +71,30 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/10 pt-8">
+          {[
+            "Conforme a LGPD",
+            "DPO designado",
+            "Dados seguros",
+            "RDC 216/2004 (Anvisa)",
+            "CFN nº 600/2018",
+          ].map((seal) => (
+            <span
+              key={seal}
+              className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 text-xs font-medium text-white/70 ring-1 ring-inset ring-white/10"
+            >
+              <ShieldCheck className="h-3.5 w-3.5 text-brand-400" />
+              {seal}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Food Guard. RT: Renan Muniz · CRN-3
-            ativo · Encarregado de dados (LGPD).
+            ativo · Encarregado de dados (DPO).
           </p>
-          <p>Conformidade com a RDC 216/2004 (Anvisa) e a CFN nº 600/2018 · LGPD.</p>
+          <p>Assessoria de conformidade sanitária e nutricional · São Paulo · Grande SP.</p>
         </div>
       </Container>
     </footer>

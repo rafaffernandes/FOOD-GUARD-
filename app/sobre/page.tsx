@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { site } from "@/lib/content/site";
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -68,30 +67,51 @@ export default function SobrePage() {
       <section className="bg-surface-soft">
         <Container className="py-16 sm:py-24">
           <SectionHeading
-            eyebrow="Os sócios"
-            title="Quem está por trás"
-            description="Operação enxuta, dois sócios, responsabilidade clara."
+            eyebrow="Quem assina pela sua operação"
+            title="Um nutricionista de verdade cuidando do seu negócio"
+            description="Não é um software impessoal: é um Responsável Técnico com nome, rosto e CRN ativo assumindo a sua conformidade."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {site.founders.map((f) => (
-              <div
-                key={f.name}
-                className="rounded-2xl border border-surface-sunken bg-white p-8 shadow-soft"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 font-display text-xl font-bold text-white">
-                    {f.initials}
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl font-bold text-ink">
-                      {f.name}
-                    </h3>
-                    <p className="text-sm font-medium text-brand-700">{f.role}</p>
-                  </div>
+
+          {/* Renan — destaque máximo (o RT) */}
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            <div className="rounded-3xl border border-brand-200 bg-white p-8 shadow-glow lg:col-span-2">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
+                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-brand-600 font-display text-3xl font-bold text-white">
+                  RM
                 </div>
-                <p className="mt-4 text-ink-soft">{f.credentials}</p>
+                <div>
+                  <Badge tone="brand">Responsável Técnico · CRN-3 ativo</Badge>
+                  <h3 className="mt-2 font-display text-2xl font-bold text-ink">
+                    Renan Muniz
+                  </h3>
+                  <p className="mt-1 text-ink-soft">
+                    Nutricionista CRN-3 ativo, com mais de 10 anos em food service.
+                    É ele quem assina, visita a sua operação e responde no
+                    WhatsApp — pessoalmente com os primeiros clientes.
+                  </p>
+                </div>
               </div>
-            ))}
+              <p className="mt-6 border-t border-surface-sunken pt-5 font-display text-lg font-semibold text-ink">
+                “Garantia de adequação em 90 dias ou seu dinheiro de volta.”
+              </p>
+            </div>
+
+            {/* Rafael — apoio (bastidor) */}
+            <div className="rounded-2xl border border-surface-sunken bg-surface p-6">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-700 font-display text-base font-bold text-white">
+                RF
+              </div>
+              <h3 className="mt-4 font-display text-lg font-bold text-ink">
+                Rafael Fernandes
+              </h3>
+              <p className="text-sm font-medium text-ink-muted">
+                Co-fundador · operação
+              </p>
+              <p className="mt-3 text-sm text-ink-soft">
+                Cuida da tecnologia e da operação nos bastidores, para que toda a
+                papelada saia do seu caminho e você só veja o resultado.
+              </p>
+            </div>
           </div>
         </Container>
       </section>
