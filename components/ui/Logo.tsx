@@ -79,12 +79,12 @@ export function Logo({
     >
       <LogoMark
         shieldClassName={inverted ? "text-white" : "text-navy-800"}
-        className="h-9 w-9 shrink-0"
+        className="h-12 w-12 shrink-0 sm:h-14 sm:w-14"
       />
       <span className="flex flex-col leading-none">
         <span
           className={cn(
-            "font-display text-lg font-bold tracking-tight",
+            "font-display text-xl font-bold tracking-tight sm:text-2xl",
             inverted ? "text-white" : "text-navy-800",
           )}
         >
@@ -92,7 +92,7 @@ export function Logo({
         </span>
         <span
           className={cn(
-            "text-[10px] font-semibold uppercase tracking-[0.28em]",
+            "mt-0.5 text-[11px] font-semibold uppercase tracking-[0.3em]",
             inverted ? "text-brand-300" : "text-brand-600",
             !showTagline && "hidden sm:block",
           )}

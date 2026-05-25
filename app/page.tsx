@@ -22,41 +22,41 @@ import { plans } from "@/lib/content/plans";
 const problems = [
   {
     icon: FileWarning,
-    title: "Risco jurídico e financeiro",
-    text: "Fiscalização, autuação, multa e até interdição — muitas vezes sem aviso e com custo de adequação tardia muito maior que o da prevenção.",
+    title: "A conta chega sem aviso",
+    text: "A fiscalização não marca hora. Se tiver algo fora do lugar, vem multa, interdição e prejuízo — sempre muito maior do que custaria ter resolvido antes.",
   },
   {
     icon: Gauge,
-    title: "Tudo vira surpresa",
-    text: "Você só descobre o que estava errado quando a fiscalização chega — e aí o custo é muito maior do que se tivesse resolvido antes.",
+    title: "Você não sabe o que falta",
+    text: "Manual, POPs, fichas técnicas, treinamento da equipe. É exigência demais pra acompanhar sozinho, e fica impossível saber se a sua operação está mesmo em ordem.",
   },
   {
     icon: CalendarClock,
-    title: "Falta de previsibilidade",
-    text: "Contratos verbais, nutricionista que aparece esporadicamente, nenhum registro. Quando a fiscalização chega, você descobre que estava descoberto.",
+    title: "Ninguém assume por você",
+    text: "Sem um nutricionista acompanhando de perto, cada pendência vira problema seu. E, quando a vigilância aparece, é você quem responde por tudo.",
   },
 ];
 
 const solution = [
   {
     icon: BadgeCheck,
-    title: "Um nutricionista responsável de verdade",
-    text: "Nutricionista com nome, rosto e CRN ativo cuidando da segurança alimentar da sua operação. Sem promessas vazias.",
+    title: "Um nutricionista que conhece sua cozinha",
+    text: "O Renan visita sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
   },
   {
     icon: ShieldCheck,
-    title: "Previsibilidade contratual",
-    text: "Escopo claro, visitas definidas, resposta rápida e adequação em 90 dias ou seu dinheiro de volta.",
+    title: "Você sempre sabe onde está",
+    text: "Escopo claro, visitas marcadas e um plano de ação com prazo. Sem surpresa: você sabe o que falta e quando vai estar resolvido.",
   },
   {
     icon: Sparkles,
-    title: "Diagnóstico instantâneo",
-    text: "5 perguntas em até 90 segundos mostram seu risco, o que falta, quanto a irregularidade pode te custar e o plano recomendado.",
+    title: "Seu risco na tela em 90 segundos",
+    text: "Um diagnóstico gratuito mostra na hora o que pode te custar caro e por onde começar, muito antes de qualquer fiscalização.",
   },
   {
     icon: MessageSquare,
-    title: "Sem burocracia",
-    text: "Toda a documentação e as auditorias digitalizadas, com agenda de visitas e suporte direto no WhatsApp. A papelada é por nossa conta.",
+    title: "A papelada é com a gente",
+    text: "Manual, POPs, fichas técnicas e auditorias organizados e digitalizados. Você cuida do seu negócio; a documentação fica por nossa conta.",
   },
 ];
 
@@ -109,9 +109,10 @@ export default function HomePage() {
               vigilância sanitária
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              Seu nutricionista responsável cuidando da segurança alimentar da
-              sua operação. Profissional com nome, rosto e CRN ativo — com
-              resposta rápida, sem burocracia e adequação garantida em 90 dias.
+              Pare de torcer pra fiscalização não aparecer. Você cuida da comida e
+              um nutricionista de verdade cuida do resto: visita sua cozinha,
+              deixa toda a papelada em dia e responde rápido no WhatsApp. Sua
+              operação tranquila e pronta pra qualquer fiscalização.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
@@ -128,12 +129,12 @@ export default function HomePage() {
                 grátis
               </span>
               <span className="flex items-center gap-1.5">
-                <BadgeCheck className="h-4 w-4 text-brand-400" /> Nutricionista
-                com CRN ativo
+                <BadgeCheck className="h-4 w-4 text-brand-400" /> Sem cadastro pra
+                começar
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-brand-400" /> 90 dias ou
-                devolução
+                <ShieldCheck className="h-4 w-4 text-brand-400" /> A gente vai até
+                você
               </span>
             </div>
           </div>
@@ -147,10 +148,10 @@ export default function HomePage() {
             Em conformidade com
           </span>
           {[
-            "ANVISA · RDC 216/2004",
+            "ANVISA",
+            "RDC 216/2004",
             "Portaria 2.619/2011",
-            "Nutricionista responsável",
-            "Conforme a LGPD",
+            "CRN-3",
           ].map((item) => (
             <span key={item} className="flex items-center gap-1.5">
               <BadgeCheck className="h-4 w-4 text-brand-600" />
@@ -161,11 +162,11 @@ export default function HomePage() {
       </div>
 
       {/* Problema */}
-      <Section>
+      <Section className="bg-[#f4efe4]">
         <SectionHeading
           eyebrow="O problema"
-          title="Estar irregular custa caro — e quase sempre pega de surpresa"
-          description="Quem produz ou comercializa alimentos no Brasil está sujeito à RDC 216/2004 e à Portaria 2.619/2011. Na prática, isso vira três dores concretas."
+          title="Estar irregular custa caro e quase sempre pega de surpresa"
+          description="Quem trabalha com alimento no Brasil convive com a RDC 216/2004 e a Portaria 2.619/2011. Na correria do dia a dia, três coisas costumam pegar o dono desprevenido:"
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {problems.map((p) => (
@@ -186,12 +187,12 @@ export default function HomePage() {
       </Section>
 
       {/* Solução */}
-      <section className="bg-surface-soft">
+      <section className="bg-[#fbfaf6]">
         <Container className="py-16 sm:py-24">
           <SectionHeading
             eyebrow="A solução"
-            title="Segurança alimentar e tranquilidade, em uma assinatura"
-            description="Quatro atributos que o atendimento tradicional não oferece."
+            title="Segurança alimentar e tranquilidade em uma assinatura"
+            description="Tudo o que a sua operação precisa pra ficar em dia, reunido em uma assinatura mensal simples."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {solution.map((s) => (
@@ -215,20 +216,20 @@ export default function HomePage() {
       </section>
 
       {/* Como o diagnóstico funciona */}
-      <Section>
+      <Section className="bg-brand-50/40">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHeading
               eyebrow="O diagnóstico"
-              title="5 perguntas. 90 segundos. Um relatório premium."
-              description="O diagnóstico é o coração do Food Guard: mostra valor antes de pedir qualquer dado e te dá clareza imediata sobre o seu risco."
+              title="5 perguntas. 90 segundos. Seu raio-x de conformidade."
+              description="Responda 5 perguntas rápidas sobre a sua operação e descubra na hora o quanto você está exposto a uma multa e o que fazer pra resolver. É grátis e você nem precisa se cadastrar pra começar."
             />
             <ul className="mt-8 space-y-4">
               {[
-                "Score de risco de 0 a 100, com resultado imediato.",
-                "Dinheiro em risco: multa estimada e custo de adequação tardia.",
-                "Checklist do que falta na sua operação.",
-                "Plano recomendado com preço visível e a opção de agendar com o nutricionista.",
+                "Saiba na hora se a sua operação corre risco de multa.",
+                "Veja em reais quanto uma irregularidade pode tirar do seu caixa.",
+                "Receba a lista exata do que falta pra ficar em dia.",
+                "Descubra qual plano resolve o seu caso, com o preço já na tela.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
@@ -241,47 +242,24 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="rounded-3xl bg-ink p-8 text-white shadow-lift">
-            <div className="mb-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-4 ring-1 ring-danger-500/30">
-              <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-danger-400" />
-              <div>
-                <p className="font-display text-lg font-bold text-white">
-                  Multas de R$ 2 mil a R$ 30 mil
-                </p>
-                <p className="text-sm text-white/60">
-                  O diagnóstico estima quanto a irregularidade pode custar à sua
-                  operação — antes da fiscalização.
-                </p>
-              </div>
-            </div>
             <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">
-              Como funciona o score
+              O que você recebe em 90 segundos
             </p>
-            <div className="mt-6 space-y-4">
-              {[
-                ["66–100", "Risco baixo", "Básico", "text-brand-400"],
-                ["31–65", "Risco médio", "Essencial", "text-warn-500"],
-                ["0–30", "Risco crítico", "Premium", "text-danger-500"],
-              ].map(([range, risk, plan, color]) => (
-                <div
-                  key={range}
-                  className="flex items-center justify-between rounded-xl bg-white/5 px-5 py-4"
-                >
-                  <div>
-                    <span className={`font-display text-xl font-bold ${color}`}>
-                      {range}
-                    </span>
-                    <span className="ml-2 text-sm text-white/60">{risk}</span>
-                  </div>
-                  <span className="text-sm font-semibold text-white">
-                    → {plan}
-                  </span>
-                </div>
-              ))}
+            <h3 className="mt-2 font-display text-2xl font-bold text-white">
+              Seu raio-x de conformidade, na hora
+            </h3>
+            <p className="mt-3 text-white/70">
+              Em menos de 2 minutos você enxerga seu nível de risco, o tamanho do
+              prejuízo que está evitando e o passo a passo pra dormir tranquilo.
+            </p>
+            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-5 ring-1 ring-danger-500/30">
+              <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-danger-400" />
+              <p className="text-sm text-white/80">
+                Uma autuação vai de{" "}
+                <strong className="text-white">R$ 2 mil a R$ 30 mil</strong>. Seu
+                diagnóstico mostra como não pagar nenhuma.
+              </p>
             </div>
-            <p className="mt-6 text-sm text-white/50">
-              Regras baseadas na Portaria 2.619/2011 e na RDC 216/2004,
-              atualizadas constantemente pelo nosso nutricionista.
-            </p>
           </div>
         </div>
       </Section>
