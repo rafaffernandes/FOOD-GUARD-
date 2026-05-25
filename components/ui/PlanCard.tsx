@@ -17,9 +17,9 @@ export function PlanCard({
   return (
     <div
       className={cn(
-        "relative flex flex-col rounded-3xl border bg-white p-7 transition-all hover:shadow-lift",
+        "relative flex flex-col rounded-3xl border bg-white p-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-lift",
         featured
-          ? "border-brand-400 shadow-glow ring-1 ring-brand-300 lg:-translate-y-3"
+          ? "border-brand-400 shadow-glow ring-1 ring-brand-300 lg:-translate-y-3 lg:hover:-translate-y-5"
           : "border-surface-sunken shadow-soft",
       )}
     >

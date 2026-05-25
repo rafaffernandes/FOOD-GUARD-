@@ -4,8 +4,8 @@ const apiKey = process.env.ASAAS_API_KEY;
 const env = process.env.ASAAS_ENV === "production" ? "production" : "sandbox";
 
 const STATIC_LINKS: Record<PlanId, string | undefined> = {
+  basico: process.env.ASAAS_PAYMENT_LINK_BASICO,
   essencial: process.env.ASAAS_PAYMENT_LINK_ESSENCIAL,
-  conformidade: process.env.ASAAS_PAYMENT_LINK_CONFORMIDADE,
   premium: process.env.ASAAS_PAYMENT_LINK_PREMIUM,
 };
 
@@ -48,7 +48,7 @@ export async function createCheckout(planId: PlanId): Promise<CheckoutResult> {
           chargeType: "RECURRENT",
           subscriptionCycle: "MONTHLY",
           value: plan.price,
-          description: `Assinatura mensal do plano ${plan.name} (carência 12 meses).`,
+          description: `Assinatura mensal do plano ${plan.name}.`,
         }),
       });
       const data = (await res.json()) as { url?: string; errors?: unknown };

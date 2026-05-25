@@ -1,5 +1,5 @@
 import type { PlanId } from "@/lib/content/plans";
-import { type Answers, questions } from "./questions";
+import { type Answers, PROFILE_QUESTIONS, questions } from "./questions";
 
 export type RiskBand = "critico" | "medio" | "baixo";
 
@@ -44,8 +44,8 @@ const BAND_CONFIG: Record<
     label: "Crítico",
     plan: "premium",
     money: {
-      fineRange: "R$ 20.000 a R$ 1.500.000",
-      lateAdequationCost: 28000,
+      fineRange: "R$ 10.000 a R$ 30.000",
+      lateAdequationCost: 12000,
       autuacaoChance: "até 78%",
     },
     insight:
@@ -53,10 +53,10 @@ const BAND_CONFIG: Record<
   },
   medio: {
     label: "Médio",
-    plan: "conformidade",
+    plan: "essencial",
     money: {
-      fineRange: "R$ 5.000 a R$ 200.000",
-      lateAdequationCost: 14000,
+      fineRange: "R$ 5.000 a R$ 15.000",
+      lateAdequationCost: 7000,
       autuacaoChance: "cerca de 45%",
     },
     insight:
@@ -64,14 +64,14 @@ const BAND_CONFIG: Record<
   },
   baixo: {
     label: "Baixo",
-    plan: "essencial",
+    plan: "basico",
     money: {
-      fineRange: "R$ 2.000 a R$ 50.000",
-      lateAdequationCost: 6000,
+      fineRange: "R$ 2.000 a R$ 8.000",
+      lateAdequationCost: 3000,
       autuacaoChance: "cerca de 12%",
     },
     insight:
-      "Você está bem encaminhado — falta manter a conformidade viva e auditável ao longo do tempo.",
+      "Você está bem encaminhado — falta manter tudo em ordem e auditável ao longo do tempo.",
   },
 };
 
@@ -91,8 +91,8 @@ export function computeDiagnostic(answers: Answers): DiagnosticResult {
     const points = option?.points ?? 0;
     score += points;
 
-    // O perfil de risco (Q1) não vira item de checklist técnico.
-    if (q.id === "tipo") continue;
+    // Perguntas de perfil (tipo/porte) não viram item de checklist técnico.
+    if (PROFILE_QUESTIONS.includes(q.id)) continue;
 
     checklist.push({
       area: q.area,
@@ -107,8 +107,8 @@ export function computeDiagnostic(answers: Answers): DiagnosticResult {
 
   // Insight prioriza o gap mais grave, com fallback por banda.
   const priorityOrder = [
-    "Responsável Técnico nutricionista (CRN ativo)",
-    "Documentação técnica (Manual, POPs, APPCC, fichas)",
+    "Nutricionista responsável pela operação",
+    "Documentação técnica (POPs, doc. ANVISA, Manual)",
     "Situação regular junto à fiscalização sanitária",
     "Treinamento de manipuladores documentado",
   ];

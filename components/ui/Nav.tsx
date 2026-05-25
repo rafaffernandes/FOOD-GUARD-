@@ -10,6 +10,7 @@ import { Container } from "./Container";
 import { Logo } from "./Logo";
 
 const links = [
+  { href: "/", label: "Home" },
   { href: "/diagnostico", label: "Diagnóstico" },
   { href: "/planos", label: "Planos" },
   { href: "/sobre", label: "Sobre" },

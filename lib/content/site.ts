@@ -1,8 +1,8 @@
 export const site = {
   name: "Food Guard",
-  tagline: "Conformidade sanitária e nutricional como software.",
+  tagline: "Excelência em segurança alimentar.",
   description:
-    "Assessoria de conformidade sanitária e nutricional para food service. Responsável Técnico nutricionista com nome e CRN ativo, previsibilidade contratual e um diagnóstico regulatório gratuito em 90 segundos.",
+    "Assessoria de segurança alimentar para food service. Nutricionista responsável com nome e CRN ativo, resposta rápida e um diagnóstico gratuito em 90 segundos.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
     "http://localhost:3000",
@@ -12,7 +12,7 @@ export const site = {
   founders: [
     {
       name: "Renan Muniz",
-      role: "Responsável Técnico · co-founder · DPO",
+      role: "Nutricionista responsável · co-founder · DPO",
       credentials:
         "Nutricionista CRN-3 ativo · +10 anos em food service · atende os primeiros clientes pessoalmente.",
       initials: "RM",
@@ -26,7 +26,7 @@ export const site = {
     },
   ],
   guarantee: "Adequação em 90 dias ou devolução.",
-  regulations: ["RDC 216/2004 (Anvisa)", "Resolução CFN nº 600/2018"],
+  regulations: ["RDC 216/2004 (Anvisa)", "Portaria 2.619/2011"],
 } as const;
 
 export const whatsappLink = (text?: string) =>

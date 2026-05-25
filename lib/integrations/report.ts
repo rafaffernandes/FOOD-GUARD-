@@ -63,7 +63,7 @@ export function buildReportHtml(
     </div>
 
     <p style="font-size:13px;color:#6b7a75;line-height:1.6;margin:24px 0 0;">
-      Estimativas com base na RDC 216/2004 (Anvisa) e na Resolução CFN nº 600/2018, sob revisão do RT Renan Muniz (CRN-3). Os valores são ilustrativos e variam por município e gravidade.
+      Estimativas com base na RDC 216/2004 (Anvisa) e na Portaria 2.619/2011, sob revisão do nutricionista Renan Muniz (CRN ativo). Os valores são ilustrativos e variam por município e gravidade.
     </p>
   </div>
 </body>

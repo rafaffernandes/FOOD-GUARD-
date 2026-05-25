@@ -10,7 +10,7 @@ const schema = z.object({
   email: z.string().email(),
   phone: z.string().min(8),
   company: z.string().min(2),
-  role: z.enum(["Dono", "CEO", "Diretor", "Gerente", "Outro"]),
+  role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"]),
   consent: z.literal(true),
   whatsappOptin: z.boolean().optional(),
   answers: z.record(z.string()),

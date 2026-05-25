@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 /** Marca do Food Guard: escudo (navy) + check e espiga de trigo (verde). */
 export function LogoMark({
   className,
-  shieldClassName = "text-navy-800",
+  shieldClassName = "text-navy-700",
 }: {
   className?: string;
   shieldClassName?: string;
@@ -17,31 +17,46 @@ export function LogoMark({
       aria-label="Food Guard"
       fill="none"
     >
-      {/* Escudo */}
+      {/* Anel — metade navy (esquerda) + metade verde (direita) */}
       <path
-        d="M32 5 L55 13 V31 C55 45.5 45 54 32 59.5 C19 54 9 45.5 9 31 V13 Z"
+        d="M32 3 A27 27 0 0 0 32 57"
         className={shieldClassName}
         stroke="currentColor"
-        strokeWidth="4"
-        strokeLinejoin="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
-      {/* Check + haste da espiga (verde) */}
       <path
-        d="M18 33 L27 42 L47 16"
+        d="M32 3 A27 27 0 0 1 32 57"
         className="text-brand-500"
         stroke="currentColor"
-        strokeWidth="5"
+        strokeWidth="3.5"
         strokeLinecap="round"
+      />
+      {/* Escudo (navy) */}
+      <path
+        d="M21 18 L31 15 L32 17 L33 15 L43 18 V30 C43 39 38 44 32 47 C26 44 21 39 21 30 Z"
+        className={shieldClassName}
+        stroke="currentColor"
+        strokeWidth="2.6"
         strokeLinejoin="round"
       />
-      {/* Grãos da espiga (dos dois lados da haste) */}
+      {/* Garfo (navy) */}
+      <g
+        className={shieldClassName}
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      >
+        <path d="M29.5 21 V26" />
+        <path d="M32 21 V26" />
+        <path d="M34.5 21 V26" />
+        <path d="M29.5 26 H34.5" />
+        <path d="M32 26 V44" strokeWidth="2.4" />
+      </g>
+      {/* Folhas (verde) */}
       <g className="text-brand-500" fill="currentColor">
-        <path d="M40 28 q6 -2 8 -7 q-6 1 -8 7 z" />
-        <path d="M43 24 q6 -2 8 -7 q-6 1 -8 7 z" />
-        <path d="M46 20 q6 -2 8 -7 q-6 1 -8 7 z" />
-        <path d="M40 28 q-6 -2 -8 -7 q6 1 8 7 z" />
-        <path d="M43 24 q-6 -2 -8 -7 q6 1 8 7 z" />
-        <path d="M47 14 q2 -5 0 -10 q-2 5 0 10 z" />
+        <path d="M32 40 q-8 0 -11 -6 q7 -1 11 6 z" />
+        <path d="M32 40 q8 0 11 -6 q-7 -1 -11 6 z" />
       </g>
     </svg>
   );

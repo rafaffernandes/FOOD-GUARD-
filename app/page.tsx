@@ -18,7 +18,6 @@ import { Container } from "@/components/ui/Container";
 import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { plans } from "@/lib/content/plans";
-import { site } from "@/lib/content/site";
 
 const problems = [
   {
@@ -28,26 +27,26 @@ const problems = [
   },
   {
     icon: Gauge,
-    title: "Opacidade total",
-    text: "Você não sabe o que falta, quanto custa resolver, nem em quanto tempo. O RT tradicional é informal, some quando você precisa e não dá clareza nenhuma.",
+    title: "Tudo vira surpresa",
+    text: "Você só descobre o que estava errado quando a fiscalização chega — e aí o custo é muito maior do que se tivesse resolvido antes.",
   },
   {
     icon: CalendarClock,
     title: "Falta de previsibilidade",
-    text: "Contratos verbais, RT que aparece esporadicamente, nenhuma trilha de auditoria. Quando a fiscalização chega, você descobre que estava descoberto.",
+    text: "Contratos verbais, nutricionista que aparece esporadicamente, nenhum registro. Quando a fiscalização chega, você descobre que estava descoberto.",
   },
 ];
 
 const solution = [
   {
     icon: BadgeCheck,
-    title: "Responsabilidade técnica nominal",
-    text: "RT com nome, foto e CRN ativo assinando pela sua operação. Sem promessas vazias.",
+    title: "Um nutricionista responsável de verdade",
+    text: "Nutricionista com nome, rosto e CRN ativo cuidando da segurança alimentar da sua operação. Sem promessas vazias.",
   },
   {
     icon: ShieldCheck,
     title: "Previsibilidade contratual",
-    text: "Escopo claro, visitas por mês definidas, resposta rápida garantida e adequação em 90 dias ou seu dinheiro de volta.",
+    text: "Escopo claro, visitas definidas, resposta rápida e adequação em 90 dias ou seu dinheiro de volta.",
   },
   {
     icon: Sparkles,
@@ -56,27 +55,23 @@ const solution = [
   },
   {
     icon: MessageSquare,
-    title: "Menos papelada, mais organização",
-    text: "Toda a documentação e as auditorias digitalizadas, com painel do cliente, agenda de visitas e suporte direto no WhatsApp.",
+    title: "Sem burocracia",
+    text: "Toda a documentação e as auditorias digitalizadas, com agenda de visitas e suporte direto no WhatsApp. A papelada é por nossa conta.",
   },
 ];
 
 const faqs = [
   {
-    q: "Por que o Food Guard é diferente das assessorias tradicionais?",
-    a: "Nascemos para modernizar um setor que parou no tempo: unimos um Responsável Técnico nutricionista com CRN-3 ativo a tecnologia que elimina papelada, dá respostas rápidas e transparência total. Você sabe exatamente o que tem, o que falta e quanto custa — algo que o RT informal não entrega.",
-  },
-  {
-    q: "Por que preciso de um Responsável Técnico nutricionista?",
-    a: "A Resolução CFN nº 600/2018 e a RDC 216/2004 da Anvisa exigem responsabilidade técnica e documentação (Manual de Boas Práticas, POPs, APPCC, fichas técnicas) para operações de food service. Sem isso, você fica exposto a autuação e interdição.",
+    q: "Por que preciso de um nutricionista responsável?",
+    a: "A Portaria 2.619/2011 e a RDC 216/2004 exigem boas práticas e documentação (Manual de Boas Práticas, POPs, fichas técnicas) para operações de food service. Um nutricionista responsável garante que tudo isso esteja em ordem e assina pela sua operação — sem isso, você fica exposto a autuação e interdição.",
   },
   {
     q: "Como funciona a cobrança?",
-    a: "Assinatura mensal em três planos (Essencial, Conformidade e Premium), com carência mínima de 12 meses. Os preços são visíveis em todo o site — transparência faz parte do nosso posicionamento.",
+    a: "Assinatura mensal em três planos (Básico, Essencial e Premium), com preços visíveis em todo o site. Sem surpresa, sem letra miúda.",
   },
   {
     q: "O diagnóstico é confiável?",
-    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na RDC 216/2004 e na CFN nº 600/2018 e atualizadas constantemente pelo nosso Responsável Técnico, Renan Muniz.",
+    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na Portaria 2.619/2011 e na RDC 216/2004, atualizadas constantemente pelo nosso nutricionista, Renan Muniz.",
   },
   {
     q: "Vou ter que preencher muita papelada?",
@@ -95,24 +90,28 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-white to-surface-soft">
-        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-50" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-hero-glow" />
-        <Container className="relative flex flex-col items-center py-20 text-center lg:py-28">
+      {/* Hero — capa full (foto via placeholder; trocar por <Image> ao receber) */}
+      <section className="relative overflow-hidden bg-navy-900 text-white">
+        {/* Camada da foto de capa (placeholder). Para usar foto real:
+            adicione bg-[url('/capa.jpg')] bg-cover bg-center neste div. */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
+        <div className="absolute inset-0 bg-brand-sheen opacity-[0.08]" />
+        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-20" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-hero-glow" />
+        <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
-            <Badge tone="brand">
-              <ShieldCheck className="h-3.5 w-3.5" /> Assessoria nutricional com
-              tecnologia
-            </Badge>
-            <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              Trabalhe <span className="text-brand-600">sem medo</span> da
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-brand-200 ring-1 ring-inset ring-white/15">
+              <ShieldCheck className="h-3.5 w-3.5" /> Uma empresa segura, um
+              profissional especializado
+            </span>
+            <h1 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Trabalhe <span className="text-brand-400">sem medo</span> da
               vigilância sanitária
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Seu nutricionista particular cuidando do seu negócio. Um RT com
-              nome, rosto e CRN ativo assinando pela sua operação — com respostas
-              na hora, zero papelada e adequação garantida em 90 dias.
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+              Seu nutricionista responsável cuidando da segurança alimentar da
+              sua operação. Profissional com nome, rosto e CRN ativo — com
+              resposta rápida, sem burocracia e adequação garantida em 90 dias.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
@@ -123,17 +122,17 @@ export default function HomePage() {
                 Ver planos e preços
               </Button>
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-muted">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60">
               <span className="flex items-center gap-1.5">
-                <Timer className="h-4 w-4 text-brand-600" /> Resultado em 90s,
+                <Timer className="h-4 w-4 text-brand-400" /> Resultado em 90s,
                 grátis
               </span>
               <span className="flex items-center gap-1.5">
-                <BadgeCheck className="h-4 w-4 text-brand-600" /> RT com CRN-3
-                ativo
+                <BadgeCheck className="h-4 w-4 text-brand-400" /> Nutricionista
+                com CRN ativo
               </span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-brand-600" /> 90 dias ou
+                <ShieldCheck className="h-4 w-4 text-brand-400" /> 90 dias ou
                 devolução
               </span>
             </div>
@@ -142,15 +141,15 @@ export default function HomePage() {
       </section>
 
       {/* Barra de autoridade */}
-      <div className="border-y border-surface-sunken bg-white">
+      <div className="border-b border-surface-sunken bg-white">
         <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6 text-sm font-medium text-ink-soft">
           <span className="text-xs uppercase tracking-wide text-ink-muted">
             Em conformidade com
           </span>
           {[
             "ANVISA · RDC 216/2004",
-            "CFN nº 600/2018",
-            "RT com CRN-3 ativo",
+            "Portaria 2.619/2011",
+            "Nutricionista responsável",
             "Conforme a LGPD",
           ].map((item) => (
             <span key={item} className="flex items-center gap-1.5">
@@ -166,13 +165,13 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="O problema"
           title="Estar irregular custa caro — e quase sempre pega de surpresa"
-          description="Quem produz ou comercializa alimentos no Brasil está sujeito à RDC 216/2004 e à Resolução CFN nº 600/2018. Na prática, isso vira três dores concretas."
+          description="Quem produz ou comercializa alimentos no Brasil está sujeito à RDC 216/2004 e à Portaria 2.619/2011. Na prática, isso vira três dores concretas."
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {problems.map((p) => (
             <div
               key={p.title}
-              className="rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft"
+              className="rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-danger-50 text-danger-600">
                 <p.icon className="h-6 w-6" />
@@ -191,14 +190,14 @@ export default function HomePage() {
         <Container className="py-16 sm:py-24">
           <SectionHeading
             eyebrow="A solução"
-            title="Responsabilidade técnica e conformidade, empacotadas em assinatura"
-            description="Quatro atributos que o mercado informal de RT não oferece."
+            title="Segurança alimentar e tranquilidade, em uma assinatura"
+            description="Quatro atributos que o atendimento tradicional não oferece."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {solution.map((s) => (
               <div
                 key={s.title}
-                className="flex gap-5 rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft"
+                className="flex gap-5 rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
                   <s.icon className="h-6 w-6" />
@@ -226,10 +225,10 @@ export default function HomePage() {
             />
             <ul className="mt-8 space-y-4">
               {[
-                "Score de risco de 0 a 100, com revelação animada.",
+                "Score de risco de 0 a 100, com resultado imediato.",
                 "Dinheiro em risco: multa estimada e custo de adequação tardia.",
-                "Checklist técnico do que falta na sua operação.",
-                "Plano recomendado com preço visível e dupla opção: agendar com o RT ou assinar.",
+                "Checklist do que falta na sua operação.",
+                "Plano recomendado com preço visível e a opção de agendar com o nutricionista.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
@@ -246,7 +245,7 @@ export default function HomePage() {
               <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-danger-400" />
               <div>
                 <p className="font-display text-lg font-bold text-white">
-                  Multas de R$ 2 mil a R$ 1,5 milhão
+                  Multas de R$ 2 mil a R$ 30 mil
                 </p>
                 <p className="text-sm text-white/60">
                   O diagnóstico estima quanto a irregularidade pode custar à sua
@@ -259,8 +258,8 @@ export default function HomePage() {
             </p>
             <div className="mt-6 space-y-4">
               {[
-                ["66–100", "Risco baixo", "Essencial", "text-brand-400"],
-                ["31–65", "Risco médio", "Conformidade", "text-warn-500"],
+                ["66–100", "Risco baixo", "Básico", "text-brand-400"],
+                ["31–65", "Risco médio", "Essencial", "text-warn-500"],
                 ["0–30", "Risco crítico", "Premium", "text-danger-500"],
               ].map(([range, risk, plan, color]) => (
                 <div
@@ -280,8 +279,8 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-6 text-sm text-white/50">
-              Regras baseadas na RDC 216/2004 e na CFN nº 600/2018, atualizadas
-              constantemente pelo nosso Responsável Técnico.
+              Regras baseadas na Portaria 2.619/2011 e na RDC 216/2004,
+              atualizadas constantemente pelo nosso nutricionista.
             </p>
           </div>
         </div>
@@ -294,7 +293,7 @@ export default function HomePage() {
             align="center"
             eyebrow="Planos"
             title="Preços visíveis, sem letra miúda"
-            description="Três planos de assinatura mensal. Carência de 12 meses. Garantia de adequação em 90 dias ou devolução."
+            description="Três planos de assinatura mensal. Garantia de adequação em 90 dias ou seu dinheiro de volta."
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
@@ -310,31 +309,30 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Fundadores */}
+      {/* Quem assina pela sua operação — destaque ao nutricionista */}
       <Section>
-        <SectionHeading
-          eyebrow="Quem assina pela sua operação"
-          title="Pessoas reais, com nome e registro"
-          description="Sem call center, sem promessa vazia. Os sócios atendem os primeiros clientes pessoalmente."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {site.founders.map((f) => (
-            <div
-              key={f.name}
-              className="flex gap-5 rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft"
+        <div className="grid items-center gap-8 rounded-3xl border border-surface-sunken bg-white p-8 shadow-soft sm:grid-cols-[auto,1fr] sm:p-10">
+          {/* Placeholder da foto do Renan — trocar por <Image> ao receber */}
+          <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-3xl bg-brand-600 font-display text-4xl font-bold text-white sm:mx-0">
+            RM
+          </div>
+          <div>
+            <Badge tone="brand">Nutricionista responsável · CRN ativo</Badge>
+            <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
+              Um nutricionista de verdade cuidando do seu negócio
+            </h2>
+            <p className="mt-2 text-ink-soft">
+              Renan Muniz, nutricionista com CRN ativo e mais de 10 anos em food
+              service, assina pela sua operação, visita sua cozinha e responde no
+              WhatsApp. Sem call center, sem promessa vazia.
+            </p>
+            <Link
+              href="/sobre"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800"
             >
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-600 font-display text-xl font-bold text-white">
-                {f.initials}
-              </div>
-              <div>
-                <h3 className="font-display text-lg font-bold text-ink">
-                  {f.name}
-                </h3>
-                <p className="text-sm font-medium text-brand-700">{f.role}</p>
-                <p className="mt-2 text-sm text-ink-soft">{f.credentials}</p>
-              </div>
-            </div>
-          ))}
+              Conheça quem somos <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </Section>
 

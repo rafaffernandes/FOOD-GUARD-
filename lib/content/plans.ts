@@ -1,4 +1,4 @@
-export type PlanId = "essencial" | "conformidade" | "premium";
+export type PlanId = "basico" | "essencial" | "premium";
 
 export interface Plan {
   id: PlanId;
@@ -11,49 +11,49 @@ export interface Plan {
 
 export const plans: Plan[] = [
   {
-    id: "essencial",
-    name: "Essencial",
-    price: 1500,
-    positioning: "Pra começar com tudo em dia.",
+    id: "basico",
+    name: "Básico",
+    price: 700,
+    positioning: "Pra colocar o essencial em ordem.",
     features: [
-      { label: "Visitas presenciais para blindar sua cozinha", value: "1/semana" },
-      { label: "Seu nutricionista responsável (RT)", value: "Sim" },
-      { label: "Documentação obrigatória (Manual + POPs)", value: "Inclusa" },
-      { label: "Controle de perigos (APPCC)", value: "Sob demanda" },
-      { label: "Treinamento da sua equipe", value: "1×/semestre" },
-      { label: "WhatsApp direto com seu nutricionista", value: "Comercial" },
-      { label: "Auditorias de blindagem", value: "1×/ano" },
+      { label: "Visitas presenciais na sua operação", value: "Quinzenais" },
+      { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
+      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
+      { label: "Manual de Boas Práticas", value: "Não" },
+      { label: "WhatsApp com o nutricionista", value: "Comercial" },
+      { label: "Análise de cardápio", value: "Não" },
+      { label: "Criação de ficha técnica", value: "Não" },
     ],
   },
   {
-    id: "conformidade",
-    name: "Conformidade",
-    price: 2700,
-    positioning: "Pra crescer com segurança.",
-    highlighted: true,
+    id: "essencial",
+    name: "Essencial",
+    price: 1200,
+    positioning: "Pra operar com segurança no dia a dia.",
     features: [
-      { label: "Visitas presenciais para blindar sua cozinha", value: "2/semana" },
-      { label: "Seu nutricionista responsável (RT)", value: "Sim" },
-      { label: "Documentação obrigatória (Manual + POPs)", value: "Inclusa" },
-      { label: "Controle de perigos (APPCC)", value: "Incluso" },
-      { label: "Treinamento da sua equipe", value: "1×/trimestre" },
-      { label: "WhatsApp direto com seu nutricionista", value: "Estendido" },
-      { label: "Auditorias de blindagem", value: "2×/ano" },
+      { label: "Visitas presenciais na sua operação", value: "1x/semana" },
+      { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
+      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
+      { label: "Manual de Boas Práticas", value: "Padrão" },
+      { label: "WhatsApp com o nutricionista", value: "Estendido" },
+      { label: "Análise de cardápio", value: "Revisão" },
+      { label: "Criação de ficha técnica", value: "À parte" },
     ],
   },
   {
     id: "premium",
     name: "Premium",
-    price: 3800,
-    positioning: "Pra redes e operações complexas.",
+    price: 1999,
+    positioning: "Tudo incluso, com nutricionista responsável.",
+    highlighted: true,
     features: [
-      { label: "Visitas presenciais para blindar sua cozinha", value: "3/semana" },
-      { label: "Seu nutricionista responsável (RT)", value: "Sênior · Renan" },
-      { label: "Documentação obrigatória (Manual + POPs)", value: "Inclusa" },
-      { label: "Controle de perigos (APPCC)", value: "Completo" },
-      { label: "Treinamento da sua equipe", value: "1×/mês" },
-      { label: "WhatsApp direto com seu nutricionista", value: "24/7" },
-      { label: "Auditorias de blindagem", value: "Trimestral" },
+      { label: "Visitas presenciais na sua operação", value: "2x/semana" },
+      { label: "Nutricionista responsável (assina pela operação)", value: "Sim · Renan" },
+      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
+      { label: "Manual de Boas Práticas", value: "Personalizado" },
+      { label: "WhatsApp com o nutricionista", value: "Prioritário" },
+      { label: "Análise de cardápio", value: "Completa (criação)" },
+      { label: "Criação de ficha técnica", value: "Sim" },
     ],
   },
 ];
@@ -62,11 +62,11 @@ export const planById = (id: PlanId): Plan =>
   plans.find((p) => p.id === id) as Plan;
 
 export const comparisonRows = [
-  "Visitas presenciais para blindar sua cozinha",
-  "Seu nutricionista responsável (RT)",
-  "Documentação obrigatória (Manual + POPs)",
-  "Controle de perigos (APPCC)",
-  "Treinamento da sua equipe",
-  "WhatsApp direto com seu nutricionista",
-  "Auditorias de blindagem",
+  "Visitas presenciais na sua operação",
+  "Nutricionista responsável (assina pela operação)",
+  "Documentação ANVISA + POPs",
+  "Manual de Boas Práticas",
+  "WhatsApp com o nutricionista",
+  "Análise de cardápio",
+  "Criação de ficha técnica",
 ] as const;

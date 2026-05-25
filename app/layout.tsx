@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   },
   description: site.description,
   keywords: [
-    "responsável técnico nutricionista",
+    "nutricionista responsável food service",
+    "segurança alimentar",
     "RDC 216",
-    "conformidade sanitária",
-    "food service",
+    "Portaria 2619",
+    "vigilância sanitária",
     "manual de boas práticas",
-    "APPCC",
-    "RT food service São Paulo",
+    "nutricionista food service São Paulo",
   ],
   openGraph: {
     type: "website",

@@ -1,7 +1,12 @@
 import type { PlanId } from "@/lib/content/plans";
 import type { RiskBand } from "@/lib/diagnostic/engine";
 
-export type LeadRole = "Dono" | "CEO" | "Diretor" | "Gerente" | "Outro";
+export type LeadRole =
+  | "Diretor"
+  | "Gestor"
+  | "Gerente"
+  | "Supervisor"
+  | "Outro";
 
 export interface LeadPayload {
   name: string;

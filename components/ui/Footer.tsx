@@ -64,7 +64,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/contato" className="hover:text-brand-300">
-                  Fale com o RT
+                  Fale com nosso time
                 </Link>
               </li>
             </ul>
@@ -77,7 +77,7 @@ export function Footer() {
             "DPO designado",
             "Dados seguros",
             "RDC 216/2004 (Anvisa)",
-            "CFN nº 600/2018",
+            "Portaria 2.619/2011",
           ].map((seal) => (
             <span
               key={seal}
@@ -91,10 +91,10 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Food Guard. RT: Renan Muniz · CRN-3
-            ativo · Encarregado de dados (DPO).
+            © {new Date().getFullYear()} Food Guard. Nutricionista responsável:
+            Renan Muniz · CRN ativo · Encarregado de dados (DPO).
           </p>
-          <p>Assessoria de conformidade sanitária e nutricional · São Paulo · Grande SP.</p>
+          <p>Assessoria de segurança alimentar · São Paulo · Grande SP.</p>
         </div>
       </Container>
     </footer>

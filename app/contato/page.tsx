@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { site, whatsappLink } from "@/lib/content/site";
+import { formatPhone } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com o Responsável Técnico do Food Guard. Atendimento em São Paulo capital e Grande SP.",
+    "Fale com o time do Food Guard. Atendimento em São Paulo capital e Grande SP.",
 };
 
 export default function ContatoPage() {
@@ -17,11 +18,11 @@ export default function ContatoPage() {
       <section className="bg-surface-soft">
         <Container className="py-16 text-center sm:py-20">
           <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Fale com o RT
+            Fale com nosso time
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
-            Tire dúvidas sobre conformidade, planos ou sobre o seu diagnóstico. O
-            atendimento é direto com os sócios.
+            Tire dúvidas sobre segurança alimentar, planos ou sobre o seu
+            diagnóstico. Atendimento direto com o nosso time.
           </p>
         </Container>
       </section>
@@ -31,11 +32,11 @@ export default function ContatoPage() {
           <ContactCard
             icon={MessageCircle}
             title="WhatsApp"
-            text="Resposta rápida no horário comercial."
+            text={`Resposta rápida no horário comercial. ${formatPhone(site.whatsapp)}`}
             action={
               <Button
                 href={whatsappLink(
-                  "Olá! Vim pelo site do Food Guard e quero falar sobre conformidade.",
+                  "Olá! Vim pelo site do Food Guard e quero falar sobre segurança alimentar.",
                 )}
                 external
                 size="sm"

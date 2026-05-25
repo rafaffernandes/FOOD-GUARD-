@@ -1,80 +1,77 @@
 export interface QuestionOption {
   id: string;
   label: string;
-  points: number; // 0-20 — mais pontos = mais conformidade = menor risco
-  /** Se a área é considerada em conformidade ao escolher esta opção. */
+  points: number; // pontos da opção; mais pontos = menor risco
+  /** Se a área é considerada em ordem ao escolher esta opção. */
   compliant: boolean;
 }
 
 export interface Question {
   id: string;
-  /** Área técnica que a pergunta avalia (usada no checklist). */
+  /** Área avaliada (usada no checklist). */
   area: string;
   title: string;
   help?: string;
-  /** Frase de gap quando a área não está em conformidade. */
+  /** Frase de gap quando a área não está em ordem. */
   gap: string;
   options: QuestionOption[];
 }
 
 export const MAX_SCORE = 100;
 
+/** Perguntas só de perfil (não viram item de checklist técnico). */
+export const PROFILE_QUESTIONS = ["tipo", "porte"];
+
 export const questions: Question[] = [
   {
     id: "tipo",
     area: "Perfil de risco da operação",
-    title: "Qual o tipo e porte da sua operação?",
-    help: "Operações maiores ou com produção própria têm exigências sanitárias mais rígidas.",
+    title: "Qual o tipo da sua operação?",
+    help: "Operações com produção própria têm exigências sanitárias mais rígidas.",
     gap: "Operação com perfil de risco elevado para fiscalização.",
     options: [
-      {
-        id: "padaria_pequena",
-        label: "Padaria, lanchonete ou café pequeno (até 10 colaboradores)",
-        points: 20,
-        compliant: true,
-      },
-      {
-        id: "restaurante_medio",
-        label: "Restaurante ou buffet médio (11 a 50 colaboradores)",
-        points: 14,
-        compliant: true,
-      },
-      {
-        id: "rede_coletiva",
-        label: "Rede com múltiplas unidades ou refeição coletiva (51 a 200)",
-        points: 8,
-        compliant: false,
-      },
-      {
-        id: "dark_kitchen",
-        label: "Dark kitchen ou cozinha industrial",
-        points: 6,
-        compliant: false,
-      },
+      { id: "padaria_pequena", label: "Padaria, lanchonete ou café", points: 15, compliant: true },
+      { id: "restaurante_medio", label: "Restaurante ou buffet", points: 11, compliant: true },
+      { id: "rede_coletiva", label: "Rede de unidades ou refeição coletiva", points: 6, compliant: false },
+      { id: "dark_kitchen", label: "Dark kitchen ou cozinha industrial", points: 4, compliant: false },
     ],
   },
   {
-    id: "rt",
-    area: "Responsável Técnico nutricionista (CRN ativo)",
-    title: "Você tem Responsável Técnico nutricionista hoje?",
-    help: "A Resolução CFN nº 600/2018 exige um RT nutricionista para operações de food service.",
-    gap: "Designar um Responsável Técnico nutricionista com CRN ativo.",
+    id: "porte",
+    area: "Porte da operação",
+    title: "Qual o porte da sua operação?",
+    help: "Quanto mais colaboradores, maior a complexidade e o risco sanitário.",
+    gap: "Operação de grande porte exige controle sanitário mais rigoroso.",
+    options: [
+      { id: "p_menos10", label: "Menos de 10 colaboradores", points: 15, compliant: true },
+      { id: "p_ate10", label: "Até 10 colaboradores", points: 13, compliant: true },
+      { id: "p_10_30", label: "Entre 10 e 30 colaboradores", points: 10, compliant: true },
+      { id: "p_30_50", label: "Entre 30 e 50 colaboradores", points: 6, compliant: false },
+      { id: "p_mais50", label: "Mais de 50 colaboradores", points: 3, compliant: false },
+    ],
+  },
+  {
+    id: "nutri",
+    area: "Nutricionista responsável pela operação",
+    title: "Você tem nutricionista no seu estabelecimento?",
+    help: "A Portaria 2.619/2011 e a RDC 216/2004 tratam das exigências de segurança alimentar para operações de food service.",
+    gap: "Contar com um nutricionista responsável que assine pela operação.",
     options: [
       {
-        id: "rt_formal",
-        label: "Sim — RT nutricionista com CRN ativo e contrato",
-        points: 20,
+        id: "nutri_rt",
+        label: "Sim, com responsabilidade técnica (assina pela operação)",
+        points: 25,
         compliant: true,
       },
       {
-        id: "rt_informal",
-        label: "Tenho um RT informal, sem contrato ou que aparece pouco",
-        points: 8,
+        id: "nutri_sem_rt",
+        label: "Sim, mas sem responsabilidade técnica",
+        points: 10,
         compliant: false,
       },
       {
-        id: "rt_nenhum",
-        label: "Não tenho Responsável Técnico",
+        id: "nutri_nenhum",
+        label: "Não tenho nutricionista",
         points: 0,
         compliant: false,
       },
@@ -82,67 +79,27 @@ export const questions: Question[] = [
   },
   {
     id: "documentacao",
-    area: "Documentação técnica (Manual, POPs, APPCC, fichas)",
-    title: "Como está sua documentação técnica?",
-    help: "Manual de Boas Práticas, POPs, APPCC e fichas técnicas (RDC 216/2004).",
-    gap: "Elaborar ou atualizar Manual de Boas Práticas, POPs e fichas técnicas.",
+    area: "Documentação técnica (POPs, doc. ANVISA, Manual)",
+    title: "A documentação do seu estabelecimento está em dia?",
+    help: "POPs, documentação ANVISA, Manual de Boas Práticas e fichas técnicas (RDC 216/2004).",
+    gap: "Elaborar ou atualizar POPs, documentação ANVISA e Manual de Boas Práticas.",
     options: [
-      {
-        id: "doc_completa",
-        label: "Tudo em dia e revisado no último ano",
-        points: 20,
-        compliant: true,
-      },
-      {
-        id: "doc_parcial",
-        label: "Tenho parte da documentação",
-        points: 10,
-        compliant: false,
-      },
-      {
-        id: "doc_desatualizada",
-        label: "Está desatualizada ou não sei dizer",
-        points: 4,
-        compliant: false,
-      },
-      {
-        id: "doc_nenhuma",
-        label: "Não tenho nenhum documento técnico",
-        points: 0,
-        compliant: false,
-      },
+      { id: "doc_completa", label: "Sim, tudo em dia e revisado no último ano", points: 20, compliant: true },
+      { id: "doc_parcial", label: "Tenho parte da documentação", points: 10, compliant: false },
+      { id: "doc_desatualizada", label: "Está desatualizada ou não sei dizer", points: 4, compliant: false },
+      { id: "doc_nenhuma", label: "Não tenho documentação", points: 0, compliant: false },
     ],
   },
   {
     id: "fiscalizacao",
     area: "Situação regular junto à fiscalização sanitária",
     title: "Como foi sua última fiscalização sanitária?",
-    gap: "Plano de adequação para regularizar pendências com a vigilância sanitária.",
+    gap: "Plano de adequação para regularizar pendências com a vigilância.",
     options: [
-      {
-        id: "fisc_ok",
-        label: "Passei sem nenhuma pendência",
-        points: 20,
-        compliant: true,
-      },
-      {
-        id: "fisc_nunca",
-        label: "Nunca fui fiscalizado ou não lembro",
-        points: 10,
-        compliant: false,
-      },
-      {
-        id: "fisc_pendencia",
-        label: "Passei, mas com pendências ou notificação",
-        points: 6,
-        compliant: false,
-      },
-      {
-        id: "fisc_autuacao",
-        label: "Estou com autuação ou interdição em curso",
-        points: 0,
-        compliant: false,
-      },
+      { id: "fisc_ok", label: "Passei sem nenhuma pendência", points: 15, compliant: true },
+      { id: "fisc_nunca", label: "Nunca fui fiscalizado ou não lembro", points: 8, compliant: false },
+      { id: "fisc_pendencia", label: "Passei, mas com pendências ou notificação", points: 4, compliant: false },
+      { id: "fisc_autuacao", label: "Estou com autuação ou interdição em curso", points: 0, compliant: false },
     ],
   },
   {
@@ -152,24 +109,9 @@ export const questions: Question[] = [
     help: "A capacitação de manipuladores precisa ser periódica e registrada.",
     gap: "Realizar treinamento de manipuladores de alimentos com registro.",
     options: [
-      {
-        id: "trein_ok",
-        label: "Sim — treinamento documentado e recente",
-        points: 20,
-        compliant: true,
-      },
-      {
-        id: "trein_informal",
-        label: "Treinamento informal ou antigo",
-        points: 8,
-        compliant: false,
-      },
-      {
-        id: "trein_nenhum",
-        label: "Sem treinamento",
-        points: 0,
-        compliant: false,
-      },
+      { id: "trein_ok", label: "Sim, documentado e recente", points: 10, compliant: true },
+      { id: "trein_informal", label: "Treinamento informal ou antigo", points: 4, compliant: false },
+      { id: "trein_nenhum", label: "Sem treinamento", points: 0, compliant: false },
     ],
   },
 ];

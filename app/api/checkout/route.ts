@@ -3,7 +3,7 @@ import { z } from "zod";
 import { createCheckout } from "@/lib/integrations/asaas";
 
 const schema = z.object({
-  planId: z.enum(["essencial", "conformidade", "premium"]),
+  planId: z.enum(["basico", "essencial", "premium"]),
 });
 
 export async function POST(request: Request) {

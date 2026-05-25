@@ -14,7 +14,7 @@ const schema = z.object({
     .min(10, "Telefone inválido")
     .regex(/[0-9()\s-]+/, "Telefone inválido"),
   company: z.string().min(2, "Informe o nome da empresa"),
-  role: z.enum(["Dono", "CEO", "Diretor", "Gerente", "Outro"], {
+  role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"], {
     errorMap: () => ({ message: "Selecione seu cargo" }),
   }),
   consent: z.literal(true, {
@@ -25,7 +25,7 @@ const schema = z.object({
 
 export type GatingValues = z.infer<typeof schema>;
 
-const roles = ["Dono", "CEO", "Diretor", "Gerente", "Outro"] as const;
+const roles = ["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"] as const;
 
 export function GatingForm({
   onSubmit,
@@ -115,8 +115,8 @@ export function GatingForm({
           {...register("whatsappOptin")}
         />
         <span>
-          Aceito receber meu relatório e o contato do RT pelo WhatsApp
-          (opcional).
+          Aceito receber meu relatório e o contato do nutricionista pelo
+          WhatsApp (opcional).
         </span>
       </label>
 

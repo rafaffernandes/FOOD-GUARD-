@@ -2,22 +2,22 @@
 
 import {
   AlertTriangle,
-  CalendarCheck,
   CheckCircle2,
   CircleAlert,
   CreditCard,
   Loader2,
+  MessageCircle,
   ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { planById } from "@/lib/content/plans";
+import { whatsappLink } from "@/lib/content/site";
 import type { DiagnosticResult } from "@/lib/diagnostic/engine";
 import { funnelEvents, track } from "@/lib/analytics";
 import { cn, formatBRL } from "@/lib/utils";
 import { ScoreGauge } from "./ScoreGauge";
-import { CalendlyEmbed } from "./CalendlyEmbed";
 
 const BAND_TONE = {
   critico: { tone: "danger" as const, label: "Risco Crítico" },
@@ -25,18 +25,41 @@ const BAND_TONE = {
   baixo: { tone: "brand" as const, label: "Risco Baixo" },
 };
 
+export interface ResultLead {
+  name: string;
+  phone: string;
+  role: string;
+  company: string;
+}
+
 export function ResultDashboard({
   result,
-  firstName,
-  company,
+  lead,
 }: {
   result: DiagnosticResult;
-  firstName: string;
-  company: string;
+  lead: ResultLead;
 }) {
   const plan = planById(result.recommendedPlan);
   const bandInfo = BAND_TONE[result.band];
+  const firstName = lead.name.split(" ")[0];
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  // Mensagem de WhatsApp com todos os dados do lead + resultado + plano.
+  const waMessage = [
+    "Olá! Fiz o diagnóstico no site da Food Guard e quero agendar uma avaliação com o nutricionista.",
+    "",
+    `Nome: ${lead.name}`,
+    `Empresa: ${lead.company}`,
+    `Cargo: ${lead.role}`,
+    `Telefone: ${lead.phone}`,
+    "",
+    "Resultado do diagnóstico:",
+    `• Score: ${result.score}/100 (Risco ${result.bandLabel})`,
+    `• Áreas a adequar: ${result.gapsCount}`,
+    `• Multa estimada: ${result.moneyAtRisk.fineRange}`,
+    `• Plano recomendado: ${plan.name} (${formatBRL(plan.price)}/mês)`,
+  ].join("\n");
+  const scheduleHref = whatsappLink(waMessage);
 
   async function handleCheckout() {
     track(funnelEvents.checkoutClicked, { plan: plan.id });
@@ -83,8 +106,8 @@ export function ResultDashboard({
             .
           </h2>
           <p className="mt-2 text-ink-soft">
-            Diagnóstico de <strong>{company}</strong> com base na RDC 216/2004 e
-            na CFN nº 600/2018. Identificamos{" "}
+            Diagnóstico de <strong>{lead.company}</strong> com base na RDC
+            216/2004 e na Portaria 2.619/2011. Identificamos{" "}
             <strong>{result.gapsCount}</strong>{" "}
             {result.gapsCount === 1 ? "área que precisa" : "áreas que precisam"}{" "}
             de adequação.
@@ -162,12 +185,13 @@ export function ResultDashboard({
 
           <div className="space-y-3">
             <Button
-              href="#agendar"
+              href={scheduleHref}
+              external
               className="w-full"
               onClick={() => track(funnelEvents.scheduleClicked, { plan: plan.id })}
             >
-              <CalendarCheck className="h-5 w-5" />
-              Agendar avaliação gratuita com o nutricionista
+              <MessageCircle className="h-5 w-5" />
+              Agendar avaliação com o nutricionista
             </Button>
             <button
               type="button"
@@ -183,18 +207,11 @@ export function ResultDashboard({
               Estou com urgência e quero assinar agora
             </button>
             <p className="text-center text-xs text-white/50">
-              Recomendamos a avaliação gratuita com o RT antes de assinar.
+              Ao agendar, seus dados e este resultado vão direto para o
+              nutricionista no WhatsApp.
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Agenda Calendly */}
-      <div id="agendar" className="scroll-mt-24">
-        <h3 className="mb-3 font-display text-lg font-bold text-ink">
-          Agende sua avaliação com o Renan (RT · CRN-3)
-        </h3>
-        <CalendlyEmbed />
       </div>
     </div>
   );

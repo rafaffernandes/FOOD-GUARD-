@@ -9,7 +9,7 @@ import { getAllPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Conteúdo técnico sobre conformidade sanitária, RDC 216/2004, RT nutricionista e boas práticas para food service.",
+    "Conteúdo sobre segurança alimentar, RDC 216/2004, Portaria 2.619/2011, nutricionista responsável e boas práticas para food service.",
 };
 
 export default function BlogPage() {

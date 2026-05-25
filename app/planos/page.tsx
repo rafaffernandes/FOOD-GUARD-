@@ -12,14 +12,10 @@ import { formatBRL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Planos e preços",
   description:
-    "Três planos de assinatura mensal para conformidade sanitária e nutricional: Essencial (R$ 1.500), Conformidade (R$ 2.700) e Premium (R$ 3.800). Carência 12 meses, garantia de 90 dias.",
+    "Três planos de assinatura mensal de segurança alimentar: Básico (R$ 700), Essencial (R$ 1.200) e Premium (R$ 1.999). Garantia de adequação em 90 dias.",
 };
 
 const planFaqs = [
-  {
-    q: "Como funciona o compromisso de 12 meses?",
-    a: "A assinatura é um ciclo anual de adequação e blindagem sanitária (12 meses) — o tempo que o RT precisa para deixar sua operação em conformidade e mantê-la assim. Esse compromisso garante a dedicação do nutricionista ao seu negócio. Em caso de saída antecipada, aplica-se a condição de rescisão prevista em contrato.",
-  },
   {
     q: "Como funciona a garantia de 90 dias?",
     a: "Se em 90 dias a sua operação não estiver adequada conforme o escopo do plano, devolvemos o valor pago. A garantia cobre a entrega do nosso trabalho técnico.",
@@ -29,8 +25,8 @@ const planFaqs = [
     a: "Sim. Conforme sua operação cresce ou as exigências mudam, você pode migrar de plano. O diagnóstico ajuda a identificar o ideal a cada momento.",
   },
   {
-    q: "O que está incluso além das visitas?",
-    a: "Todos os planos incluem RT nutricionista, Manual de Boas Práticas e POPs. APPCC, treinamentos, suporte por WhatsApp e auditorias variam conforme o plano.",
+    q: "Qual plano inclui o nutricionista responsável?",
+    a: "O plano Premium inclui o nutricionista responsável assinando pela sua operação. Os planos Básico e Essencial cuidam da documentação, das visitas e das boas práticas; a responsabilidade técnica pode ser contratada à parte.",
   },
 ];
 
@@ -41,11 +37,11 @@ export default function PlanosPage() {
         <Container className="py-16 text-center sm:py-20">
           <Badge tone="brand">Preços transparentes</Badge>
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Conformidade previsível, com preço na mesa
+            Segurança alimentar previsível, com preço na mesa
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-soft">
-            Assinatura mensal, carência de 12 meses e garantia de adequação em 90
-            dias ou devolução. Sem surpresa, sem letra miúda.
+            Assinatura mensal e garantia de adequação em 90 dias ou seu dinheiro
+            de volta. Sem surpresa, sem letra miúda.
           </p>
         </Container>
       </section>

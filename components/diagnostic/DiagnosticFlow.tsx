@@ -40,9 +40,12 @@ export function DiagnosticFlow() {
   const [result, setResult] = useState<DiagnosticResult | null>(null);
   const [pending, setPending] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  const [lead, setLead] = useState<{ name: string; company: string } | null>(
-    null,
-  );
+  const [lead, setLead] = useState<{
+    name: string;
+    phone: string;
+    role: string;
+    company: string;
+  } | null>(null);
   const [started, setStarted] = useState(false);
 
   const question = questions[step];
@@ -93,7 +96,12 @@ export function DiagnosticFlow() {
         }),
       }).catch((e) => console.error("lead post failed", e));
       track(funnelEvents.leadCaptured, { plan: result.recommendedPlan });
-      setLead({ name: values.name, company: values.company });
+      setLead({
+        name: values.name,
+        phone: values.phone,
+        role: values.role,
+        company: values.company,
+      });
       setPhase("result");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
@@ -104,11 +112,7 @@ export function DiagnosticFlow() {
   if (phase === "result" && result && lead) {
     return (
       <Container className="max-w-3xl py-12">
-        <ResultDashboard
-          result={result}
-          firstName={lead.name.split(" ")[0]}
-          company={lead.company}
-        />
+        <ResultDashboard result={result} lead={lead} />
       </Container>
     );
   }
