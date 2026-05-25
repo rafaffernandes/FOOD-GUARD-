@@ -41,7 +41,7 @@ const BAND_CONFIG: Record<
   }
 > = {
   critico: {
-    label: "Crítico",
+    label: "Alto",
     plan: "premium",
     money: {
       fineRange: "R$ 10.000 a R$ 30.000",
@@ -76,41 +76,43 @@ const BAND_CONFIG: Record<
 };
 
 function bandFromScore(score: number): RiskBand {
-  if (score <= 30) return "critico";
-  if (score <= 65) return "medio";
+  if (score < 45) return "critico"; // Alto
+  if (score < 70) return "medio";
   return "baixo";
 }
 
 export function computeDiagnostic(answers: Answers): DiagnosticResult {
-  let score = 0;
+  let riskTotal = 0;
   const checklist: ChecklistEntry[] = [];
 
   for (const q of questions) {
     const optionId = answers[q.id];
     const option = q.options.find((o) => o.id === optionId);
-    const points = option?.points ?? 0;
-    score += points;
+    const risk = option?.risk ?? 0;
+    riskTotal += risk;
 
-    // Perguntas de perfil (tipo/porte) não viram item de checklist técnico.
+    // Perguntas de perfil (tipo) não viram item de checklist técnico.
     if (PROFILE_QUESTIONS.includes(q.id)) continue;
 
+    const done = risk === 0;
     checklist.push({
       area: q.area,
-      done: option?.compliant ?? false,
-      gap: option?.compliant ? undefined : q.gap,
+      done,
+      gap: done ? undefined : q.gap,
     });
   }
 
-  score = Math.max(0, Math.min(100, score));
+  // score = 100 − soma dos pontos de risco · piso 15 · teto 100
+  const score = Math.max(15, Math.min(100, 100 - riskTotal));
   const band = bandFromScore(score);
   const cfg = BAND_CONFIG[band];
 
   // Insight prioriza o gap mais grave, com fallback por banda.
   const priorityOrder = [
-    "Nutricionista responsável pela operação",
-    "Documentação técnica (POPs, doc. ANVISA, Manual)",
-    "Situação regular junto à fiscalização sanitária",
-    "Treinamento de manipuladores documentado",
+    "Nutricionista responsável no CNPJ",
+    "Manual de Boas Práticas e POPs",
+    "Situação junto à vigilância sanitária",
+    "Treinamento de boas práticas da equipe",
   ];
   const topGap = priorityOrder
     .map((area) => checklist.find((c) => c.area === area && !c.done))

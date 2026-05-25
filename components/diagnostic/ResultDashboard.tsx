@@ -20,7 +20,7 @@ import { cn, formatBRL } from "@/lib/utils";
 import { ScoreGauge } from "./ScoreGauge";
 
 const BAND_TONE = {
-  critico: { tone: "danger" as const, label: "Risco Crítico" },
+  critico: { tone: "danger" as const, label: "Risco Alto" },
   medio: { tone: "warn" as const, label: "Risco Médio" },
   baixo: { tone: "brand" as const, label: "Risco Baixo" },
 };
