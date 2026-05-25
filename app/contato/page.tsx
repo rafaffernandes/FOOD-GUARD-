@@ -76,9 +76,8 @@ export default function ContatoPage() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-muted">
-          O Food Guard trata seus dados conforme a LGPD. Encarregado de Dados
-          (DPO): Renan Muniz. Para solicitações relativas aos seus dados, escreva
-          para {site.email}.
+          O Food Guard trata seus dados conforme a LGPD. Para solicitações
+          relativas aos seus dados, escreva para {site.email}.
         </p>
       </Section>
     </>

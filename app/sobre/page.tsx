@@ -120,8 +120,8 @@ export default function SobrePage() {
           <p className="mt-3 max-w-3xl text-ink-soft">
             Trabalhamos conforme a RDC 216/2004 (Anvisa) e a Portaria 2.619/2011,
             com as normas técnicas conduzidas pelo nosso time. Tratamos os dados
-            dos clientes conforme a LGPD, com registro de consentimento imutável e
-            Encarregado de Dados (DPO) designado.
+            dos clientes conforme a LGPD, com registro de consentimento e proteção
+            dos seus dados garantida.
           </p>
           <Button href="/diagnostico" className="mt-7">
             Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />

@@ -74,8 +74,7 @@ export function Footer() {
         <div className="mt-12 flex flex-wrap items-center gap-2 border-t border-white/10 pt-8">
           {[
             "Conforme a LGPD",
-            "DPO designado",
-            "Dados seguros",
+            "Seus dados seguros",
             "RDC 216/2004 (Anvisa)",
             "Portaria 2.619/2011",
           ].map((seal) => (
@@ -92,7 +91,7 @@ export function Footer() {
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Food Guard. Nutricionista responsável:
-            Renan Muniz · CRN ativo · Encarregado de dados (DPO).
+            Renan Muniz · CRN ativo · seus dados protegidos (LGPD).
           </p>
           <p>Assessoria de segurança alimentar · São Paulo · Grande SP.</p>
         </div>

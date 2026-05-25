@@ -12,7 +12,7 @@ export const site = {
   founders: [
     {
       name: "Renan Muniz",
-      role: "Nutricionista responsável · co-founder · DPO",
+      role: "Nutricionista responsável · co-founder",
       credentials:
         "Nutricionista CRN-3 ativo · +10 anos em food service · atende os primeiros clientes pessoalmente.",
       initials: "RM",
