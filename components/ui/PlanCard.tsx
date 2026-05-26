@@ -41,28 +41,19 @@ export function PlanCard({
       </div>
 
       <ul className="mt-6 flex-1 space-y-3">
-        {plan.features
-          .filter((f) => f.value !== "Não")
-          .map((f) => {
-            const isSim = f.value === "Sim";
-            return (
-              <li key={f.label} className="flex items-start gap-2.5 text-sm">
-                <Check
-                  className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                  strokeWidth={3}
-                />
-                <span className="text-ink-soft">
-                  {f.label}
-                  {!isSim && (
-                    <>
-                      : <strong className="text-ink">{f.value}</strong>
-                    </>
-                  )}
-                </span>
-              </li>
-            );
-          })}
+        {plan.featuresList.map((item) => (
+          <li key={item} className="flex items-start gap-2.5 text-sm">
+            <Check
+              className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+              strokeWidth={3}
+            />
+            <span className="text-ink-soft">{item}</span>
+          </li>
+        ))}
       </ul>
+      {plan.footnote && (
+        <p className="mt-4 text-xs italic text-ink-muted">{plan.footnote}</p>
+      )}
 
       <div className="mt-7">
         <PlanCheckoutButton

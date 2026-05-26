@@ -6,6 +6,11 @@ export interface Plan {
   price: number;
   positioning: string;
   highlighted?: boolean;
+  /** Bullets que aparecem no card do plano (linguagem comercial). */
+  featuresList: string[];
+  /** Texto fino que aparece sob a lista (ex.: "à parte"). */
+  footnote?: string;
+  /** Estrutura para a tabela comparativa em /planos. */
   features: { label: string; value: string }[];
 }
 
@@ -15,6 +20,11 @@ export const plans: Plan[] = [
     name: "Básico",
     price: 700,
     positioning: "Pra sair do zero e deixar a documentação em dia.",
+    featuresList: [
+      "Visitas presenciais quinzenais",
+      "Documentação ANVISA completa + POPs",
+      "WhatsApp com nutricionista — horário comercial (seg–sex, 9h–18h)",
+    ],
     features: [
       { label: "Visitas presenciais na sua operação", value: "Quinzenais" },
       { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
@@ -30,6 +40,14 @@ export const plans: Plan[] = [
     name: "Essencial",
     price: 1200,
     positioning: "Pra operar com confiança e passar qualquer fiscalização.",
+    featuresList: [
+      "Visitas presenciais semanais (1x/semana)",
+      "Documentação ANVISA completa + POPs",
+      "Manual de Boas Práticas padrão",
+      "WhatsApp com nutricionista — horário estendido (até 20h + sábados)",
+      "Revisão de cardápio",
+    ],
+    footnote: "Criação de fichas técnicas disponível à parte.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "1x/semana" },
       { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
@@ -46,6 +64,15 @@ export const plans: Plan[] = [
     price: 1999,
     positioning: "Pra quem quer um nutricionista como sócio da conformidade.",
     highlighted: true,
+    featuresList: [
+      "Visitas presenciais 2x por semana",
+      "Nutricionista Responsável Técnico (Renan Muniz · CRN-3 ativo)",
+      "Documentação ANVISA completa + POPs",
+      "Manual de Boas Práticas personalizado para sua operação",
+      "WhatsApp prioritário — resposta em até 2h",
+      "Criação e análise de cardápio completa",
+      "Fichas técnicas incluídas",
+    ],
     features: [
       { label: "Visitas presenciais na sua operação", value: "2x/semana" },
       { label: "Nutricionista responsável (assina pela operação)", value: "Sim · Renan" },

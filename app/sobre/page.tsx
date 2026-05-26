@@ -90,7 +90,7 @@ export default function SobrePage() {
                 </div>
               </div>
               <p className="mt-6 border-t border-surface-sunken pt-5 font-display text-lg font-semibold text-ink">
-                “Garantia de adequação em 90 dias ou seu dinheiro de volta.”
+                “90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar.”
               </p>
             </div>
 

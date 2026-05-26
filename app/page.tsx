@@ -48,7 +48,7 @@ const problems = [
 const solution = [
   {
     icon: BadgeCheck,
-    title: "Um nutricionista que conhece sua cozinha",
+    title: "Um nutricionista que conhece sua operação",
     text: "Um nutricionista do nosso time vai até a sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
   },
   {
@@ -109,23 +109,24 @@ export default function HomePage() {
         <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
             <h1 className="max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Trabalhe <span className="text-brand-400">sem medo</span> da
-              vigilância sanitária
+              Chega de trabalhar com{" "}
+              <span className="text-brand-400">medo</span> da vigilância
+              sanitária
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              ANVISA, documentações e fiscalizações ficam por nossa conta. Você
-              foca no que gera faturamento.
+              Um nutricionista especializado assume toda a parte regulatória da
+              sua operação. Você foca no que gera faturamento.
             </p>
             <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
-                👉 Testar agora: minha cozinha passaria?
+                Estou em conformidade? Descubra grátis
               </Button>
               <Button href="/planos" size="lg" variant="outline">
-                Quero minha cozinha protegida
+                Quero minha operação protegida
               </Button>
             </div>
             <p className="mt-3 text-sm text-white/55">
-              Grátis · 90s · veja quais pontos críticos podem gerar multa.
+              Grátis · 90s · Veja quais pontos críticos podem gerar multa.
             </p>
           </div>
         </Container>
@@ -157,7 +158,7 @@ export default function HomePage() {
           {[
             { stat: "+10", label: "anos do nutricionista em food service" },
             { stat: "CRN-3", label: "nutricionista responsável ativo" },
-            { stat: "90 dias", label: "garantia ou seu dinheiro de volta" },
+            { stat: "90 dias", label: "garantia de adequação real" },
             { stat: "100%", label: "documentação digital, sem papelada" },
           ].map((s) => (
             <div
@@ -243,7 +244,7 @@ export default function HomePage() {
             <SectionHeading
               eyebrow="O diagnóstico"
               title="Em 90 segundos você sai sabendo onde está exposto"
-              description="A gente checa sua operação contra a vigilância sanitária a partir de 5 perguntas simples. No fim você descobre quanto uma multa custaria, o que precisa arrumar e por onde começar — sem pagar nada e sem cadastro pra começar."
+              description="Cinco perguntas. Noventa segundos. Um retrato preciso do risco da sua operação, com o valor exato que você pode estar arriscando e o caminho mais curto pra resolver."
             />
             <ul className="mt-8 space-y-4">
               {[
@@ -263,53 +264,72 @@ export default function HomePage() {
             </Button>
           </div>
 
-          {/* Preview atrativo: mock de relatório com lacunas (curiosity gap) */}
+          {/* Preview atrativo: exemplo concreto do entregável (ilustrativo) */}
           <div className="relative rounded-3xl bg-navy-900 p-8 text-white shadow-lift">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
-              Em 90 segundos você vai ver
-            </p>
-            <div className="mt-5 flex flex-col items-center">
-              {/* gauge fake com "??" para gerar curiosidade */}
-              <div className="relative h-36 w-36">
-                <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="9" />
-                  <circle cx="50" cy="50" r="42" fill="none" stroke="#74b43c" strokeWidth="9" strokeLinecap="round" strokeDasharray="264" strokeDashoffset="120" />
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="font-display text-5xl font-bold text-brand-300">??</span>
-                  <span className="text-xs text-white/50">de 100</span>
-                </div>
-              </div>
-              <p className="mt-3 text-sm font-medium text-white">Seu nível de risco</p>
+            <div className="mb-5 flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
+                Exemplo do seu raio-x
+              </p>
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+                Ilustrativo
+              </span>
             </div>
-
-            <ul className="mt-7 space-y-3">
-              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
-                <span className="flex items-center gap-2 text-sm text-white/70">
-                  <Wallet className="h-4 w-4 text-brand-400" /> Quanto a multa pode custar
-                </span>
-                <span className="font-display text-base font-bold text-brand-300">R$ ??</span>
+            <ul className="space-y-3">
+              {/* Índice de conformidade */}
+              <li className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="flex items-center gap-2 text-white/80">
+                    <ShieldCheck className="h-4 w-4 text-brand-400" />
+                    Seu índice de conformidade
+                  </span>
+                  <span className="font-display text-lg font-bold text-brand-300">
+                    73 / 100
+                  </span>
+                </div>
+                <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full w-[73%] rounded-full bg-brand-500" />
+                </div>
+                <p className="mt-2 text-xs text-white/55">Risco moderado</p>
               </li>
-              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
-                <span className="flex items-center gap-2 text-sm text-white/70">
-                  <ClipboardList className="h-4 w-4 text-brand-400" /> O que falta na sua operação
+              {/* Multa */}
+              <li className="flex items-center justify-between rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+                <span className="flex items-center gap-2 text-sm text-white/80">
+                  <Wallet className="h-4 w-4 text-brand-400" />
+                  Multa que você está evitando
                 </span>
-                <span className="font-display text-base font-bold text-brand-300">?? itens</span>
+                <span className="font-display text-lg font-bold text-danger-300">
+                  Até R$ 18.000
+                </span>
               </li>
-              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
-                <span className="flex items-center gap-2 text-sm text-white/70">
-                  <Target className="h-4 w-4 text-brand-400" /> O plano ideal pra você
+              {/* Pontos críticos */}
+              <li className="flex items-center justify-between rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+                <span className="flex items-center gap-2 text-sm text-white/80">
+                  <ClipboardList className="h-4 w-4 text-brand-400" />
+                  Pontos críticos identificados
                 </span>
-                <span className="font-display text-base font-bold text-brand-300">??</span>
+                <span className="font-display text-base font-bold text-white">
+                  4 itens
+                </span>
+              </li>
+              {/* Próximo passo */}
+              <li className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+                <div className="flex items-center gap-2 text-sm text-white/80">
+                  <Target className="h-4 w-4 text-brand-400" />
+                  Próximo passo recomendado
+                </div>
+                <p className="mt-1 text-sm font-semibold text-white">
+                  Plano Básico — documentação + visitas quinzenais
+                </p>
               </li>
             </ul>
 
             <div className="mt-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-4 ring-1 ring-danger-500/30">
               <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-danger-400" />
               <p className="text-sm text-white/80">
-                Uma autuação vai de{" "}
-                <strong className="text-white">R$ 2 mil a R$ 30 mil</strong>. O
-                seu diagnóstico mostra como não pagar nenhuma.
+                Uma autuação sanitária custa entre{" "}
+                <strong className="text-white">R$ 2 mil e R$ 30 mil</strong>.
+                Seu diagnóstico mostra, ponto a ponto, o que falta — e quanto
+                isso pode custar se você esperar mais.
               </p>
             </div>
           </div>
@@ -323,7 +343,7 @@ export default function HomePage() {
             align="center"
             eyebrow="Planos"
             title="Preços visíveis, sem letra miúda"
-            description="Três planos de assinatura mensal. Garantia de adequação em 90 dias ou seu dinheiro de volta."
+            description="Três planos de assinatura mensal. 90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar."
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
@@ -355,17 +375,23 @@ export default function HomePage() {
               à toa
             </h2>
             <p className="mt-3 text-ink-soft">
-              O Renan é nutricionista com CRN ativo e mais de 10 anos dentro de
-              cozinhas de food service. Ele cansou de ver operações boas serem
-              autuadas por pura falta de acompanhamento. O Rafael vem da
-              tecnologia e enxergou um jeito de dar escala a esse cuidado sem
-              perder o lado humano. Dessa sociedade nasceu a Food Guard: um
-              nutricionista de verdade na sua operação e a tecnologia
-              trabalhando nos bastidores pra tudo ficar simples, rápido e em
-              dia.
+              Renan Muniz passou mais de 10 anos dentro de operações food
+              service — restaurantes, hospitais, catering, cozinha industrial.
+              Viu de perto o que acontece quando uma boa operação é autuada por
+              causa de um POP desatualizado ou um Manual que nunca saiu do
+              papel. Rafael vem da tecnologia e enxergou que esse problema tem
+              solução — desde que alguém construa o sistema certo em volta de
+              um nutricionista que realmente conhece o chão de fábrica.
+            </p>
+            <p className="mt-3 text-ink-soft">
+              A Food Guard nasceu dessa parceria: o conhecimento técnico de
+              quem esteve em centenas de inspeções, mais a tecnologia de quem
+              sabe como escalar esse cuidado sem perder o lado humano. O
+              resultado é simples — sua operação em dia, com um profissional
+              que você conhece pelo nome.
             </p>
             <Button href="/sobre" variant="outline" className="mt-5">
-              Conheça quem somos <ArrowRight className="h-4 w-4" />
+              Ver nossa história completa <ArrowRight className="h-4 w-4" />
             </Button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { Check } from "lucide-react";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -40,8 +40,9 @@ export default function PlanosPage() {
             Segurança alimentar previsível, com preço na mesa
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-soft">
-            Assinatura mensal e garantia de adequação em 90 dias ou seu dinheiro
-            de volta. Sem surpresa, sem letra miúda.
+            Três planos de assinatura mensal. 90 dias para estar 100% em
+            conformidade real — se não chegarmos lá, seguimos trabalhando sem
+            custo extra até chegar.
           </p>
         </Container>
       </section>
@@ -84,7 +85,7 @@ export default function PlanosPage() {
                     return (
                       <td key={p.id} className="px-4 py-4 text-sm text-ink-soft">
                         {value === "Não" || !value ? (
-                          <X className="h-4 w-4 text-ink-muted/60" strokeWidth={2.5} />
+                          <span className="text-ink-muted/50">—</span>
                         ) : value === "Sim" ? (
                           <Check className="h-4 w-4 text-brand-600" strokeWidth={3} />
                         ) : (
