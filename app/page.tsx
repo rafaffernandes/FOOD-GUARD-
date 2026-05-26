@@ -108,9 +108,9 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-hero-glow" />
         <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
-            <h1 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Um <span className="text-brand-400">nutricionista especializado</span>{" "}
-              assume toda a parte regulatória da sua cozinha.
+            <h1 className="max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+              Trabalhe <span className="text-brand-400">sem medo</span> da
+              vigilância sanitária
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
               ANVISA, documentações e fiscalizações ficam por nossa conta. Você
