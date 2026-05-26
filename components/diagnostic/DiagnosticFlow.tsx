@@ -22,7 +22,7 @@ import {
 import { type Answers, questions } from "@/lib/diagnostic/questions";
 import { cn } from "@/lib/utils";
 import { GatingForm, type GatingValues } from "./GatingForm";
-import { ResultDashboard } from "./ResultDashboard";
+import { ResultReport } from "./ResultReport";
 import { ScoreGauge } from "./ScoreGauge";
 
 type Phase = "quiz" | "gating" | "result";
@@ -42,6 +42,7 @@ export function DiagnosticFlow() {
   const [submitting, setSubmitting] = useState(false);
   const [lead, setLead] = useState<{
     name: string;
+    email: string;
     phone: string;
     role: string;
     company: string;
@@ -98,6 +99,7 @@ export function DiagnosticFlow() {
       track(funnelEvents.leadCaptured, { plan: result.recommendedPlan });
       setLead({
         name: values.name,
+        email: values.email,
         phone: values.phone,
         role: values.role,
         company: values.company,
@@ -111,9 +113,7 @@ export function DiagnosticFlow() {
 
   if (phase === "result" && result && lead) {
     return (
-      <Container className="max-w-3xl py-12">
-        <ResultDashboard result={result} lead={lead} />
-      </Container>
+      <ResultReport result={result} answers={answers} lead={lead} />
     );
   }
 
