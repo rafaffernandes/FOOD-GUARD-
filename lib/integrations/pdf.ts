@@ -82,7 +82,7 @@ export async function buildReportPdf(
   y -= 18;
   text(plan.positioning, { color: [0.42, 0.48, 0.46] });
   y -= 18;
-  text("Garantia: adequação em 90 dias ou devolução.");
+  text("Garantia: 90 dias para estar 100% em conformidade real.");
 
   // Rodapé (posição fixa no fim da página)
   y = 50;

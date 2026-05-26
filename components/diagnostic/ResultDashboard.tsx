@@ -179,7 +179,7 @@ export function ResultDashboard({
             <p className="mt-3 flex items-center gap-2 text-sm text-brand-200">
               <ShieldCheck className="h-4 w-4" />
               {/* garantia */}
-              Adequação em 90 dias ou devolução.
+              90 dias para estar 100% em conformidade real — se não, seguimos sem custo extra.
             </p>
           </div>
 

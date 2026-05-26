@@ -35,7 +35,7 @@ export const site = {
       initials: "RF",
     },
   ],
-  guarantee: "Adequação em 90 dias ou devolução.",
+  guarantee: "90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos sem custo extra.",
   regulations: ["RDC 216/2004 (Anvisa)", "Portaria 2.619/2011"],
 } as const;
 

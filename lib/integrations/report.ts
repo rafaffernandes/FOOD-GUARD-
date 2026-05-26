@@ -59,7 +59,7 @@ export function buildReportHtml(
       <div style="font-size:13px;color:#6ee7b7;margin-bottom:6px;">Plano recomendado</div>
       <div style="font-size:22px;font-weight:bold;">${plan.name} — ${formatBRL(plan.price)}/mês</div>
       <div style="font-size:14px;color:#a7f3d0;margin-top:4px;">${plan.positioning}</div>
-      <div style="font-size:13px;color:#a7f3d0;margin-top:12px;">Garantia: adequação em 90 dias ou devolução.</div>
+      <div style="font-size:13px;color:#a7f3d0;margin-top:12px;">Garantia: 90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos sem custo extra.</div>
     </div>
 
     <p style="font-size:13px;color:#6b7a75;line-height:1.6;margin:24px 0 0;">
