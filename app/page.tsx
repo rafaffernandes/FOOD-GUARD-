@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   CalendarClock,
   ClipboardCheck,
+  ClipboardList,
   FileWarning,
   Gauge,
   Instagram,
@@ -13,7 +14,9 @@ import {
   MessageCircle,
   MessageSquare,
   ShieldCheck,
+  Target,
   Timer,
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { FAQ } from "@/components/ui/FAQ";
@@ -107,8 +110,8 @@ export default function HomePage() {
         <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-brand-200 ring-1 ring-inset ring-white/15">
-              <ShieldCheck className="h-3.5 w-3.5" /> Uma empresa segura, um
-              profissional especializado
+              <ShieldCheck className="h-3.5 w-3.5" /> Você cuida da comida, a
+              gente cuida do resto
             </span>
             <h1 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Trabalhe <span className="text-brand-400">sem medo</span> da
@@ -227,15 +230,15 @@ export default function HomePage() {
           <div>
             <SectionHeading
               eyebrow="O diagnóstico"
-              title="5 perguntas. 90 segundos. Seu raio-x de conformidade."
-              description="Responda 5 perguntas rápidas sobre a sua operação e descubra na hora o quanto você está exposto a uma multa e o que fazer pra resolver. É grátis e você nem precisa se cadastrar pra começar."
+              title="Em 90 segundos você sai sabendo onde está exposto"
+              description="A gente checa sua operação contra a vigilância sanitária a partir de 5 perguntas simples. No fim você descobre quanto uma multa custaria, o que precisa arrumar e por onde começar — sem pagar nada e sem cadastro pra começar."
             />
             <ul className="mt-8 space-y-4">
               {[
-                "Saiba na hora se a sua operação corre risco de multa.",
-                "Veja em reais quanto uma irregularidade pode tirar do seu caixa.",
-                "Receba a lista exata do que falta pra ficar em dia.",
-                "Descubra qual plano resolve o seu caso, com o preço já na tela.",
+                "Sai do escuro: descubra agora o que pode te custar caro.",
+                "Veja, em reais, o tamanho do prejuízo que está evitando.",
+                "Receba um plano claro: o que arrumar primeiro pra ficar tranquilo.",
+                "Tudo no celular, em 90 segundos, sem ter que se cadastrar.",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
@@ -247,23 +250,54 @@ export default function HomePage() {
               Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />
             </Button>
           </div>
-          <div className="rounded-3xl bg-ink p-8 text-white shadow-lift">
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-300">
-              O que você recebe em 90 segundos
+
+          {/* Preview atrativo: mock de relatório com lacunas (curiosity gap) */}
+          <div className="relative rounded-3xl bg-navy-900 p-8 text-white shadow-lift">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
+              Em 90 segundos você vai ver
             </p>
-            <h3 className="mt-2 font-display text-2xl font-bold text-white">
-              Seu raio-x de conformidade, na hora
-            </h3>
-            <p className="mt-3 text-white/70">
-              Em menos de 2 minutos você enxerga seu nível de risco, o tamanho do
-              prejuízo que está evitando e o passo a passo pra dormir tranquilo.
-            </p>
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-5 ring-1 ring-danger-500/30">
-              <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-danger-400" />
+            <div className="mt-5 flex flex-col items-center">
+              {/* gauge fake com "??" para gerar curiosidade */}
+              <div className="relative h-36 w-36">
+                <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="9" />
+                  <circle cx="50" cy="50" r="42" fill="none" stroke="#74b43c" strokeWidth="9" strokeLinecap="round" strokeDasharray="264" strokeDashoffset="120" />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="font-display text-5xl font-bold text-brand-300">??</span>
+                  <span className="text-xs text-white/50">de 100</span>
+                </div>
+              </div>
+              <p className="mt-3 text-sm font-medium text-white">Seu nível de risco</p>
+            </div>
+
+            <ul className="mt-7 space-y-3">
+              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
+                <span className="flex items-center gap-2 text-sm text-white/70">
+                  <Wallet className="h-4 w-4 text-brand-400" /> Quanto a multa pode custar
+                </span>
+                <span className="font-display text-base font-bold text-brand-300">R$ ??</span>
+              </li>
+              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
+                <span className="flex items-center gap-2 text-sm text-white/70">
+                  <ClipboardList className="h-4 w-4 text-brand-400" /> O que falta na sua operação
+                </span>
+                <span className="font-display text-base font-bold text-brand-300">?? itens</span>
+              </li>
+              <li className="flex items-center justify-between rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
+                <span className="flex items-center gap-2 text-sm text-white/70">
+                  <Target className="h-4 w-4 text-brand-400" /> O plano ideal pra você
+                </span>
+                <span className="font-display text-base font-bold text-brand-300">??</span>
+              </li>
+            </ul>
+
+            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-4 ring-1 ring-danger-500/30">
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-danger-400" />
               <p className="text-sm text-white/80">
                 Uma autuação vai de{" "}
-                <strong className="text-white">R$ 2 mil a R$ 30 mil</strong>. Seu
-                diagnóstico mostra como não pagar nenhuma.
+                <strong className="text-white">R$ 2 mil a R$ 30 mil</strong>. O
+                seu diagnóstico mostra como não pagar nenhuma.
               </p>
             </div>
           </div>
