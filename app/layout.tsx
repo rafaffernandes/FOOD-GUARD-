@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import { Analytics } from "@/components/analytics/Analytics";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Footer } from "@/components/ui/Footer";
 import { Nav } from "@/components/ui/Nav";
 import { site } from "@/lib/content/site";
@@ -67,6 +68,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

@@ -15,7 +15,6 @@ import {
   MessageSquare,
   ShieldCheck,
   Target,
-  Timer,
   Wallet,
 } from "lucide-react";
 import Link from "next/link";
@@ -109,43 +108,25 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-hero-glow" />
         <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-brand-200 ring-1 ring-inset ring-white/15">
-              <ShieldCheck className="h-3.5 w-3.5" /> Você cuida da comida, a
-              gente cuida do resto
-            </span>
-            <h1 className="mt-6 max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Trabalhe <span className="text-brand-400">sem medo</span> da
-              vigilância sanitária
+            <h1 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Um <span className="text-brand-400">nutricionista especializado</span>{" "}
+              assume toda a parte regulatória da sua cozinha.
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              Pare de torcer pra fiscalização não aparecer. Você cuida da comida e
-              um nutricionista de verdade cuida do resto: visita sua cozinha,
-              deixa toda a papelada em dia e responde rápido no WhatsApp. Sua
-              operação tranquila e pronta pra qualquer fiscalização.
+              ANVISA, documentações e fiscalizações ficam por nossa conta. Você
+              foca no que gera faturamento.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
-                Descobrir meu risco de multa
-                <ArrowRight className="h-5 w-5" />
+                👉 Testar agora: minha cozinha passaria?
               </Button>
               <Button href="/planos" size="lg" variant="outline">
-                Ver planos e preços
+                Quero minha cozinha protegida
               </Button>
             </div>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/60">
-              <span className="flex items-center gap-1.5">
-                <Timer className="h-4 w-4 text-brand-400" /> Resultado em 90s,
-                grátis
-              </span>
-              <span className="flex items-center gap-1.5">
-                <BadgeCheck className="h-4 w-4 text-brand-400" /> Sem cadastro pra
-                começar
-              </span>
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-brand-400" /> A gente vai até
-                você
-              </span>
-            </div>
+            <p className="mt-3 text-sm text-white/55">
+              Grátis · 90s · veja quais pontos críticos podem gerar multa.
+            </p>
           </div>
         </Container>
       </section>
@@ -169,6 +150,37 @@ export default function HomePage() {
           ))}
         </Container>
       </div>
+
+      {/* Prova social — credibilidade honesta */}
+      <Section className="bg-white">
+        <div className="grid gap-4 sm:grid-cols-4">
+          {[
+            { stat: "+10", label: "anos do nutricionista em food service" },
+            { stat: "CRN-3", label: "nutricionista responsável ativo" },
+            { stat: "90 dias", label: "garantia ou seu dinheiro de volta" },
+            { stat: "100%", label: "documentação digital, sem papelada" },
+          ].map((s) => (
+            <div
+              key={s.label}
+              className="rounded-2xl border border-surface-sunken bg-surface-soft p-5 text-center"
+            >
+              <p className="font-display text-3xl font-bold text-brand-700">
+                {s.stat}
+              </p>
+              <p className="mt-1 text-sm text-ink-soft">{s.label}</p>
+            </div>
+          ))}
+        </div>
+        <figure className="mx-auto mt-8 max-w-3xl rounded-3xl border border-surface-sunken bg-surface-soft p-7 text-center shadow-soft">
+          <blockquote className="font-display text-lg italic text-ink sm:text-xl">
+            “Vi tanta operação boa sendo autuada por pura falta de
+            acompanhamento que decidi criar a Food Guard.”
+          </blockquote>
+          <figcaption className="mt-3 text-sm font-medium text-brand-700">
+            Renan Muniz · nutricionista responsável, CRN-3
+          </figcaption>
+        </figure>
+      </Section>
 
       {/* Problema */}
       <Section className="bg-[#f4efe4]">

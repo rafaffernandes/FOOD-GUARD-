@@ -14,7 +14,7 @@ export const plans: Plan[] = [
     id: "basico",
     name: "Básico",
     price: 700,
-    positioning: "Pra colocar o essencial em ordem.",
+    positioning: "Pra sair do zero e deixar a documentação em dia.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "Quinzenais" },
       { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
@@ -29,7 +29,7 @@ export const plans: Plan[] = [
     id: "essencial",
     name: "Essencial",
     price: 1200,
-    positioning: "Pra operar com segurança no dia a dia.",
+    positioning: "Pra operar com confiança e passar qualquer fiscalização.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "1x/semana" },
       { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
@@ -44,7 +44,7 @@ export const plans: Plan[] = [
     id: "premium",
     name: "Premium",
     price: 1999,
-    positioning: "Tudo incluso, com nutricionista responsável.",
+    positioning: "Pra quem quer um nutricionista como sócio da conformidade.",
     highlighted: true,
     features: [
       { label: "Visitas presenciais na sua operação", value: "2x/semana" },
