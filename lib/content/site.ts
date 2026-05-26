@@ -9,6 +9,16 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511999999999",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
   city: "São Paulo · Grande SP",
+  social: {
+    instagram: {
+      handle: "@foodguard.assessoria",
+      url: "https://instagram.com/foodguard.assessoria",
+    },
+    linkedin: {
+      handle: "Renan Muniz",
+      url: "https://www.linkedin.com/in/renan-muniz/",
+    },
+  },
   founders: [
     {
       name: "Renan Muniz",

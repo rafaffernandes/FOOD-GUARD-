@@ -1,17 +1,15 @@
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import type { Plan } from "@/lib/content/plans";
 import { cn, formatBRL } from "@/lib/utils";
 import { Badge } from "./Badge";
-import { Button } from "./Button";
+import { PlanCheckoutButton } from "./PlanCheckoutButton";
 
 export function PlanCard({
   plan,
   recommended,
-  href = "/diagnostico",
 }: {
   plan: Plan;
   recommended?: boolean;
-  href?: string;
 }) {
   const featured = recommended ?? plan.highlighted;
   return (
@@ -28,7 +26,9 @@ export function PlanCard({
       )}
       {featured && (
         <div className="absolute -top-3 left-7">
-          <Badge tone="brand">{recommended ? "Recomendado p/ você" : "Mais procurado"}</Badge>
+          <Badge tone="brand">
+            {recommended ? "Recomendado p/ você" : "Mais procurado"}
+          </Badge>
         </div>
       )}
       <h3 className="font-display text-xl font-bold text-ink">{plan.name}</h3>
@@ -41,23 +41,49 @@ export function PlanCard({
       </div>
 
       <ul className="mt-6 flex-1 space-y-3">
-        {plan.features.map((f) => (
-          <li key={f.label} className="flex items-start gap-2.5 text-sm">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" strokeWidth={3} />
-            <span className="text-ink-soft">
-              {f.label}: <strong className="text-ink">{f.value}</strong>
-            </span>
-          </li>
-        ))}
+        {plan.features.map((f) => {
+          const isIncluded = f.value === "Sim";
+          const isExcluded = f.value === "Não";
+          return (
+            <li key={f.label} className="flex items-start gap-2.5 text-sm">
+              {isIncluded || isExcluded ? (
+                isIncluded ? (
+                  <Check
+                    className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                    strokeWidth={3}
+                  />
+                ) : (
+                  <X
+                    className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted/60"
+                    strokeWidth={2.5}
+                  />
+                )
+              ) : (
+                <Check
+                  className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                  strokeWidth={3}
+                />
+              )}
+              <span className={cn(isExcluded ? "text-ink-muted" : "text-ink-soft")}>
+                {f.label}
+                {!isIncluded && !isExcluded && (
+                  <>
+                    : <strong className="text-ink">{f.value}</strong>
+                  </>
+                )}
+              </span>
+            </li>
+          );
+        })}
       </ul>
 
-      <Button
-        href={href}
-        variant={featured ? "primary" : "outline"}
-        className="mt-7 w-full"
-      >
-        Fazer diagnóstico
-      </Button>
+      <div className="mt-7">
+        <PlanCheckoutButton
+          planId={plan.id}
+          planName={plan.name}
+          variant={featured ? "primary" : "outline"}
+        />
+      </div>
     </div>
   );
 }

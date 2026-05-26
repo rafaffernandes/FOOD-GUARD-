@@ -24,8 +24,8 @@ export default function BlogPage() {
             Blog do Food Guard
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">
-            Conformidade sanitária explicada em linguagem clara — para você decidir
-            com segurança, não com medo.
+            Conformidade sanitária explicada em linguagem clara, pra você decidir
+            com segurança e não com medo.
           </p>
         </Container>
       </section>

@@ -3,11 +3,16 @@ import {
   ArrowRight,
   BadgeCheck,
   CalendarClock,
+  ClipboardCheck,
   FileWarning,
   Gauge,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  MessageCircle,
   MessageSquare,
   ShieldCheck,
-  Sparkles,
   Timer,
 } from "lucide-react";
 import Link from "next/link";
@@ -18,6 +23,7 @@ import { Container } from "@/components/ui/Container";
 import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { plans } from "@/lib/content/plans";
+import { site, whatsappLink } from "@/lib/content/site";
 
 const problems = [
   {
@@ -41,7 +47,7 @@ const solution = [
   {
     icon: BadgeCheck,
     title: "Um nutricionista que conhece sua cozinha",
-    text: "O Renan visita sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
+    text: "Um nutricionista do nosso time vai até a sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
   },
   {
     icon: ShieldCheck,
@@ -49,9 +55,9 @@ const solution = [
     text: "Escopo claro, visitas marcadas e um plano de ação com prazo. Sem surpresa: você sabe o que falta e quando vai estar resolvido.",
   },
   {
-    icon: Sparkles,
-    title: "Seu risco na tela em 90 segundos",
-    text: "Um diagnóstico gratuito mostra na hora o que pode te custar caro e por onde começar, muito antes de qualquer fiscalização.",
+    icon: ClipboardCheck,
+    title: "Pronto pra fiscalização a qualquer hora",
+    text: "Documentação sempre em dia e equipe orientada. Se a vigilância bater na porta hoje, você mostra tudo sem suar frio.",
   },
   {
     icon: MessageSquare,
@@ -281,35 +287,40 @@ export default function HomePage() {
           <p className="mt-8 text-center text-sm text-ink-muted">
             Não sabe qual escolher?{" "}
             <Link href="/diagnostico" className="font-semibold text-brand-700">
-              O diagnóstico recomenda o ideal para você.
+              Faça o diagnóstico e veja o ideal pra você.
             </Link>
           </p>
         </Container>
       </section>
 
-      {/* Quem assina pela sua operação — destaque ao nutricionista */}
+      {/* História da Food Guard */}
       <Section>
         <div className="grid items-center gap-8 rounded-3xl border border-surface-sunken bg-white p-8 shadow-soft sm:grid-cols-[auto,1fr] sm:p-10">
           {/* Placeholder da foto do Renan — trocar por <Image> ao receber */}
-          <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-3xl bg-brand-600 font-display text-4xl font-bold text-white sm:mx-0">
+          <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-3xl bg-brand-600 font-display text-5xl font-bold text-white sm:mx-0 sm:h-40 sm:w-40">
             RM
           </div>
           <div>
-            <Badge tone="brand">Nutricionista responsável · CRN ativo</Badge>
-            <h2 className="mt-3 font-display text-2xl font-bold text-ink sm:text-3xl">
-              Um nutricionista de verdade cuidando do seu negócio
-            </h2>
-            <p className="mt-2 text-ink-soft">
-              Renan Muniz, nutricionista com CRN ativo e mais de 10 anos em food
-              service, assina pela sua operação, visita sua cozinha e responde no
-              WhatsApp. Sem call center, sem promessa vazia.
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
+              Quem está por trás
             </p>
-            <Link
-              href="/sobre"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:text-brand-800"
-            >
+            <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+              A Food Guard nasceu de um incômodo: ver bom negócio levando multa
+              à toa
+            </h2>
+            <p className="mt-3 text-ink-soft">
+              O Renan é nutricionista com CRN ativo e mais de 10 anos dentro de
+              cozinhas de food service. Ele cansou de ver operações boas serem
+              autuadas por pura falta de acompanhamento. O Rafael vem da
+              tecnologia e enxergou um jeito de dar escala a esse cuidado sem
+              perder o lado humano. Dessa sociedade nasceu a Food Guard: um
+              nutricionista de verdade na sua operação e a tecnologia
+              trabalhando nos bastidores pra tudo ficar simples, rápido e em
+              dia.
+            </p>
+            <Button href="/sobre" variant="outline" className="mt-5">
               Conheça quem somos <ArrowRight className="h-4 w-4" />
-            </Link>
+            </Button>
           </div>
         </div>
       </Section>
@@ -328,8 +339,67 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* CTA final */}
+      {/* Fale com a gente */}
       <Section>
+        <SectionHeading
+          align="center"
+          eyebrow="Contato"
+          title="Fale com a gente"
+          description="Atendemos São Paulo capital e Grande SP. Quer tirar uma dúvida antes de começar? Chama no WhatsApp ou manda um e-mail, a gente responde rápido."
+        />
+        <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-3">
+          <a
+            href={whatsappLink("Olá! Vim pelo site da Food Guard e quero tirar uma dúvida.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
+          >
+            <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+            <div>
+              <p className="font-display font-bold text-ink">WhatsApp</p>
+              <p className="text-sm text-ink-soft">Resposta rápida no horário comercial.</p>
+            </div>
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
+          >
+            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+            <div>
+              <p className="font-display font-bold text-ink">E-mail</p>
+              <p className="break-all text-sm text-ink-soft">{site.email}</p>
+            </div>
+          </a>
+          <div className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft">
+            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
+            <div>
+              <p className="font-display font-bold text-ink">Onde atendemos</p>
+              <p className="text-sm text-ink-soft">São Paulo capital · Grande SP</p>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-soft">
+          <a
+            href={site.social.instagram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-brand-700"
+          >
+            <Instagram className="h-4 w-4" /> Instagram {site.social.instagram.handle}
+          </a>
+          <a
+            href={site.social.linkedin.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-brand-700"
+          >
+            <Linkedin className="h-4 w-4" /> LinkedIn ({site.social.linkedin.handle})
+          </a>
+        </div>
+      </Section>
+
+      {/* CTA final */}
+      <Section className="pt-0">
         <div className="overflow-hidden rounded-3xl bg-brand-600 px-8 py-14 text-center text-white sm:px-16">
           <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold sm:text-4xl">
             Descubra seu risco sanitário antes que a fiscalização descubra.

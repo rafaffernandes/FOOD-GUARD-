@@ -1,4 +1,4 @@
-import { ShieldCheck } from "lucide-react";
+import { Instagram, Linkedin, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { site } from "@/lib/content/site";
 import { plans } from "@/lib/content/plans";
@@ -66,6 +66,26 @@ export function Footer() {
                 <Link href="/contato" className="hover:text-brand-300">
                   Fale com nosso time
                 </Link>
+              </li>
+              <li className="flex items-center gap-3 pt-1">
+                <a
+                  href={site.social.instagram.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="hover:text-brand-300"
+                >
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a
+                  href={site.social.linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="hover:text-brand-300"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </a>
               </li>
             </ul>
           </div>

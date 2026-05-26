@@ -1,4 +1,4 @@
-import { Check, Minus } from "lucide-react";
+import { Check, X } from "lucide-react";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -84,9 +84,9 @@ export default function PlanosPage() {
                     return (
                       <td key={p.id} className="px-4 py-4 text-sm text-ink-soft">
                         {value === "Não" || !value ? (
-                          <Minus className="h-4 w-4 text-ink-muted" />
+                          <X className="h-4 w-4 text-ink-muted/60" strokeWidth={2.5} />
                         ) : value === "Sim" ? (
-                          <Check className="h-4 w-4 text-brand-600" />
+                          <Check className="h-4 w-4 text-brand-600" strokeWidth={3} />
                         ) : (
                           value
                         )}
