@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Calistoga, Inter, JetBrains_Mono, Sora } from "next/font/google";
+import {
+  IBM_Plex_Mono,
+  Inter,
+  Playfair_Display,
+  Source_Sans_3,
+  Sora,
+} from "next/font/google";
 import { Analytics } from "@/components/analytics/Analytics";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Footer } from "@/components/ui/Footer";
@@ -9,13 +15,17 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-display" });
-const calistoga = Calistoga({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-calistoga",
+  variable: "--font-playfair",
 });
-const jetbrains = JetBrains_Mono({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
+  variable: "--font-source",
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-mono",
 });
 
@@ -69,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${sora.variable} ${calistoga.variable} ${jetbrains.variable}`}
+      className={`${inter.variable} ${sora.variable} ${playfair.variable} ${sourceSans.variable} ${plexMono.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <script
