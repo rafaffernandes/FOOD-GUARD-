@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /home/user/FOOD-GUARD- && if git diff --quiet HEAD -- '*.ts' '*.tsx' '*.js' '*.jsx' 2>/dev/null; then exit 0; fi; out=$(npm run lint --silent 2>&1 | tail -25); if echo \"$out\" | grep -qiE 'error|warning'; then echo '--- lint issues encontradas ---'; echo \"$out\"; fi",
+            "timeout": 90
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run lint)",
+      "Bash(npm run start)",
+      "Bash(npm run dev)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm audit)",
+      "Bash(npm ls:*)",
+      "Bash(node:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git fetch:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(git branch:*)",
+      "Bash(curl -s -o /dev/null:*)",
+      "Bash(curl -s -X POST http://localhost:3000/*)",
+      "Bash(curl -s http://localhost:3000/*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(fuser -k 3000/tcp)",
+      "Bash(pkill:*)",
+      "Bash(ls:*)",
+      "Bash(rm -f:*)"
+    ]
+  }
+}

@@ -9,6 +9,55 @@ componentes ou tokens.
 
 ---
 
+## Project Context: Food Guard
+
+- **Stack:** Next.js 15 (App Router) + React 19 + TypeScript + Tailwind CSS.
+- **Produto-núcleo:** diagnóstico de conformidade sanitária (5 perguntas, motor
+  de pontos de risco, score 100 − soma, bandas 70/45) culminando no
+  `ResultReport`.
+- **Planos:** **Básico R$700 · Essencial R$1.200 · Premium R$1.999** (o
+  nutricionista responsável é exclusivo do Premium). IDs em `lib/content/plans.ts`.
+- **Voz da marca:** "nutricionista responsável" (nunca "RT"); legislação
+  **RDC 216/2004 + Portaria 2.619/2011** (nunca "CFN 600"); sem "carência",
+  sem "dinheiro de volta". Mais detalhes em `lib/content/site.ts`.
+- **Sources of truth:** `lib/content/site.ts`, `lib/content/plans.ts`,
+  `lib/diagnostic/questions.ts`, `lib/diagnostic/engine.ts`.
+- **Antes de declarar pronto:** `npm run build` ✓, `npm run lint` ✓, e — se
+  mexeu no fluxo de diagnóstico — rode o E2E (3 cenários).
+
+---
+
+## Deployment Workflow
+
+Este projeto vive em `rafaffernandes/FOOD-GUARD-`. A `main` é a branch de
+produção e a Vercel publica automaticamente em
+**https://food-guard-cnhl.vercel.app/**.
+
+1. **Trabalhe em uma branch de feature** — nunca empurre direto pra `main` sem
+   ter sido pedido. Branch ativa atual: `claude/company-website-design-CwX8o`.
+2. **Após cada bloco de mudança:** `npm run build` + `npm run lint`.
+3. **Para publicar:** commit na branch de feature e dê push duplo — primeiro na
+   feature, depois na `main` (`git push origin claude/...:main`). A Vercel
+   detecta o commit em `main` e publica em 1–2 min.
+4. **NÃO** tente abrir túneis públicos (ngrok, localtunnel) — o sandbox tem
+   allowlist de rede e bloqueia. O link de teste é sempre o domínio da Vercel
+   acima.
+5. **Quando o usuário pedir "manda o link":** entregue
+   `https://food-guard-cnhl.vercel.app/` e instrua hard refresh
+   (`Ctrl+Shift+R`) ou aba anônima. Não tente expor `localhost`.
+
+---
+
+## Output Limits
+
+- Mantenha respostas geralmente abaixo de **500 tokens de saída**. Para gerar
+  arquivos longos, escreva um por vez com `Write` (não enfie o conteúdo na
+  resposta de texto).
+- Em scaffolding multi-arquivo, prefira vários `Write`/`Edit` consecutivos a
+  um único bloco de texto enorme — evita estouro de tokens.
+
+---
+
 ## 1. Token Definitions
 
 **Fonte única da verdade:** [`tailwind.config.ts`](./tailwind.config.ts) (`theme.extend`).
