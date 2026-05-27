@@ -132,56 +132,35 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Barra de autoridade */}
-      <div className="border-b border-surface-sunken bg-white">
-        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-6 text-sm font-medium text-ink-soft">
-          <span className="text-xs uppercase tracking-wide text-ink-muted">
-            Em conformidade com
-          </span>
-          {[
-            "ANVISA",
-            "RDC 216/2004",
-            "Portaria 2.619/2011",
-            "CRN-3",
-          ].map((item) => (
-            <span key={item} className="flex items-center gap-1.5">
-              <BadgeCheck className="h-4 w-4 text-brand-600" />
-              {item}
-            </span>
-          ))}
+      {/* Barra de autoridade — marquee infinito (R → L) */}
+      <div className="relative overflow-hidden border-y border-surface-sunken bg-white">
+        <Container className="relative py-5">
+          <p className="text-center text-xs uppercase tracking-[0.18em] text-ink-muted">
+            Sua empresa em conformidade com
+          </p>
+          <div className="mt-3 overflow-hidden">
+            <div className="flex w-max animate-marquee items-center gap-12 whitespace-nowrap text-sm font-medium text-ink-soft">
+              {Array.from({ length: 2 }).flatMap((_, copy) =>
+                [
+                  "ANVISA",
+                  "Vigilância sanitária",
+                  "RDC 216/2004",
+                  "Portaria 2.619/2011",
+                ].map((item) => (
+                  <span
+                    key={`${copy}-${item}`}
+                    className="flex items-center gap-2"
+                  >
+                    <BadgeCheck className="h-4 w-4 text-brand-600" />
+                    {item}
+                    <span className="ml-12 text-ink-muted/40">·</span>
+                  </span>
+                )),
+              )}
+            </div>
+          </div>
         </Container>
       </div>
-
-      {/* Prova social — credibilidade honesta */}
-      <Section className="bg-white">
-        <div className="grid gap-4 sm:grid-cols-4">
-          {[
-            { stat: "+10", label: "anos do nutricionista em food service" },
-            { stat: "CRN-3", label: "nutricionista responsável ativo" },
-            { stat: "90 dias", label: "garantia de adequação real" },
-            { stat: "100%", label: "documentação digital, sem papelada" },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className="rounded-2xl border border-surface-sunken bg-surface-soft p-5 text-center"
-            >
-              <p className="font-display text-3xl font-bold text-brand-700">
-                {s.stat}
-              </p>
-              <p className="mt-1 text-sm text-ink-soft">{s.label}</p>
-            </div>
-          ))}
-        </div>
-        <figure className="mx-auto mt-8 max-w-3xl rounded-3xl border border-surface-sunken bg-surface-soft p-7 text-center shadow-soft">
-          <blockquote className="font-display text-lg italic text-ink sm:text-xl">
-            “Vi tanta operação boa sendo autuada por pura falta de
-            acompanhamento que decidi criar a Food Guard.”
-          </blockquote>
-          <figcaption className="mt-3 text-sm font-medium text-brand-700">
-            Renan Muniz · nutricionista responsável, CRN-3
-          </figcaption>
-        </figure>
-      </Section>
 
       {/* Problema */}
       <Section className="bg-[#f4efe4]">

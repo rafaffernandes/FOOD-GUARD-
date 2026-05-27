@@ -38,7 +38,7 @@ export const questions: Question[] = [
     id: "nutri",
     area: "Nutricionista responsável no CNPJ",
     title: "Você tem nutricionista responsável no CNPJ hoje?",
-    help: "O nutricionista responsável registrado no CRN-3 é exigido pela vigilância em quase todas as operações de alimento.",
+    help: "O nutricionista responsável registrado no CRN é exigido pela vigilância em quase todas as operações de alimento.",
     gap: "Designar um nutricionista responsável (CRN ativo) que acompanhe a operação.",
     options: [
       { id: "nutri_ativo", label: "Sim, nutricionista ativo e com visitas regulares", risk: 0 },

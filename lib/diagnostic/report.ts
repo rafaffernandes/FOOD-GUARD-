@@ -167,7 +167,7 @@ const NC_LIBRARY: Record<string, NonConformity[]> = {
     {
       item: "Sem nutricionista responsável",
       description:
-        "Operação sem profissional registrado no CRN-3 assumindo a responsabilidade técnica.",
+        "Operação sem profissional nutricionista no CRN assumindo a responsabilidade técnica.",
       norma: "Portaria 2.619/2011 · Art. 5",
       severity: "alta",
       deadline: "imediato",

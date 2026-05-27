@@ -66,7 +66,7 @@ export const plans: Plan[] = [
     highlighted: true,
     featuresList: [
       "Visitas presenciais 2x por semana",
-      "Nutricionista Responsável Técnico (Renan Muniz · CRN-3 ativo)",
+      "Nutricionista Responsável Técnico (Renan Muniz · CRN ativo)",
       "Documentação ANVISA completa + POPs",
       "Manual de Boas Práticas personalizado para sua operação",
       "WhatsApp prioritário — resposta em até 2h",
