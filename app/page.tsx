@@ -1,473 +1,393 @@
 import {
-  AlertTriangle,
-  ArrowRight,
   BadgeCheck,
   CalendarClock,
   ClipboardCheck,
-  ClipboardList,
   FileWarning,
   Gauge,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageCircle,
   MessageSquare,
   ShieldCheck,
-  Target,
-  Wallet,
 } from "lucide-react";
 import Link from "next/link";
-import { FAQ } from "@/components/ui/FAQ";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import {
+  GoldButton,
+  OutlineButton,
+  SectionLabel,
+  SmallCaps,
+} from "@/components/ui/Editorial";
 import { PlanCard } from "@/components/ui/PlanCard";
-import { Section, SectionHeading } from "@/components/ui/Section";
 import { plans } from "@/lib/content/plans";
-import { site, whatsappLink } from "@/lib/content/site";
+import { formatBRL } from "@/lib/utils";
 
-const problems = [
-  {
-    icon: FileWarning,
-    title: "A conta chega sem aviso",
-    text: "A fiscalização não marca hora. Se tiver algo fora do lugar, vem multa, interdição e prejuízo — sempre muito maior do que custaria ter resolvido antes.",
-  },
-  {
-    icon: Gauge,
-    title: "Você não sabe o que falta",
-    text: "Manual, POPs, fichas técnicas, treinamento da equipe. É exigência demais pra acompanhar sozinho, e fica impossível saber se a sua operação está mesmo em ordem.",
-  },
-  {
-    icon: CalendarClock,
-    title: "Ninguém assume por você",
-    text: "Sem um nutricionista acompanhando de perto, cada pendência vira problema seu. E, quando a vigilância aparece, é você quem responde por tudo.",
-  },
-];
-
-const solution = [
-  {
-    icon: BadgeCheck,
-    title: "Um nutricionista que conhece sua operação",
-    text: "Um nutricionista do nosso time vai até a sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Você sempre sabe onde está",
-    text: "Escopo claro, visitas marcadas e um plano de ação com prazo. Sem surpresa: você sabe o que falta e quando vai estar resolvido.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Pronto pra fiscalização a qualquer hora",
-    text: "Documentação sempre em dia e equipe orientada. Se a vigilância bater na porta hoje, você mostra tudo sem suar frio.",
-  },
-  {
-    icon: MessageSquare,
-    title: "A papelada é com a gente",
-    text: "Manual, POPs, fichas técnicas e auditorias organizados e digitalizados. Você cuida do seu negócio; a documentação fica por nossa conta.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Por que preciso de um nutricionista responsável?",
-    a: "A Portaria 2.619/2011 e a RDC 216/2004 exigem boas práticas e documentação (Manual de Boas Práticas, POPs, fichas técnicas) para operações de food service. Um nutricionista responsável garante que tudo isso esteja em ordem e assina pela sua operação — sem isso, você fica exposto a autuação e interdição.",
-  },
-  {
-    q: "Como funciona a cobrança?",
-    a: "Assinatura mensal em três planos (Básico, Essencial e Premium), com preços visíveis em todo o site. Sem surpresa, sem letra miúda.",
-  },
-  {
-    q: "O diagnóstico é confiável?",
-    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na Portaria 2.619/2011 e na RDC 216/2004, atualizadas constantemente pelo nosso nutricionista, Renan Muniz.",
-  },
-  {
-    q: "Vou ter que preencher muita papelada?",
-    a: "Zero papelada da sua parte. Nós montamos, organizamos e digitalizamos toda a documentação técnica para você — Manual de Boas Práticas, POPs, fichas e registros. Você só acompanha.",
-  },
-  {
-    q: "A vigilância bateu aqui hoje. Vocês resolvem rápido?",
-    a: "Sim. O atendimento no WhatsApp é direto com o nutricionista e montamos seu plano de emergência na hora. Comece pelo diagnóstico para já chegarmos sabendo o que a sua operação precisa.",
-  },
-  {
-    q: "Vocês atendem minha região?",
-    a: "Neste momento atendemos São Paulo capital e Grande SP. Faça o diagnóstico mesmo assim — entramos em contato para avaliar seu caso.",
-  },
-];
+/* ------------------------------------------------------------------ */
+/*  Home                                                              */
+/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   return (
-    <>
-      {/* Hero — capa full (foto via placeholder; trocar por <Image> ao receber) */}
-      <section className="relative overflow-hidden bg-navy-900 text-white">
-        {/* Camada da foto de capa (placeholder). Para usar foto real:
-            adicione bg-[url('/capa.jpg')] bg-cover bg-center neste div. */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-        <div className="absolute inset-0 bg-brand-sheen opacity-[0.08]" />
-        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-20" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-hero-glow" />
-        <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
-          <div className="animate-fade-up flex flex-col items-center">
-            <h1 className="max-w-4xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Chega de trabalhar com{" "}
-              <span className="text-brand-400">medo</span> da vigilância
-              sanitária
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              Um nutricionista especializado assume toda a parte regulatória da
-              sua operação. Você foca no que gera faturamento.
-            </p>
-            <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
-              <Button href="/diagnostico" size="lg">
-                Estou em conformidade? Descubra grátis
-              </Button>
-              <Button href="/planos" size="lg" variant="outline">
-                Quero minha operação protegida
-              </Button>
+    <div className="bg-[#FAFAF8] font-source text-navy-900">
+      {/* Ambient glow no canto */}
+      <div className="pointer-events-none fixed -top-32 right-0 h-[520px] w-[520px] rounded-full bg-brand-300/[0.06] blur-[160px]" />
+
+      {/* ------------------ HERO (centered, narrow, serif) ---------- */}
+      <section className="relative py-32 lg:py-44">
+        <Container className="max-w-3xl text-center">
+          <SmallCaps>Food Guard · Segurança alimentar</SmallCaps>
+
+          <h1 className="mt-8 font-serif text-[2.5rem] leading-[1.1] tracking-[-0.02em] text-navy-900 sm:text-6xl lg:text-[4.5rem]">
+            Chega de trabalhar com{" "}
+            <em className="not-italic text-brand-700">medo</em> da vigilância
+            sanitária.
+          </h1>
+
+          <div className="mx-auto mt-8 flex w-32 items-center justify-center">
+            <span className="h-px flex-1 bg-brand-700/40" />
+            <span className="mx-3 h-1.5 w-1.5 rounded-full bg-brand-700" />
+            <span className="h-px flex-1 bg-brand-700/40" />
+          </div>
+
+          <p className="mx-auto mt-10 max-w-2xl text-lg leading-[1.75] tracking-[0.01em] text-ink-soft">
+            Um nutricionista especializado assume toda a parte regulatória da
+            sua operação — ANVISA, documentação, fiscalizações. Você foca no
+            que gera faturamento.
+          </p>
+
+          <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <GoldButton href="/diagnostico">
+              Estou em conformidade? Descubra grátis
+            </GoldButton>
+            <OutlineButton href="/planos">
+              Quero minha operação protegida
+            </OutlineButton>
+          </div>
+
+          <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
+            Grátis · 90 segundos · sem cadastro
+          </p>
+        </Container>
+      </section>
+
+      {/* ------------------ AUTORIDADES ------------------------------ */}
+      <section className="border-y border-[#e8e4df] py-10">
+        <Container className="max-w-5xl">
+          <div className="flex flex-col items-center gap-6">
+            <SmallCaps>Sua empresa em conformidade com</SmallCaps>
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-3 font-serif text-xl text-navy-900">
+              <span>ANVISA</span>
+              <span className="h-1 w-1 rounded-full bg-brand-700/60" />
+              <span>Vigilância Sanitária</span>
+              <span className="h-1 w-1 rounded-full bg-brand-700/60" />
+              <span>RDC 216/2004</span>
+              <span className="h-1 w-1 rounded-full bg-brand-700/60" />
+              <span>Portaria 2.619/2011</span>
             </div>
-            <p className="mt-3 text-sm text-white/55">
-              Grátis · 90s · Veja quais pontos críticos podem gerar multa.
-            </p>
           </div>
         </Container>
       </section>
 
-      {/* Barra de autoridade — marquee infinito (R → L) */}
-      <div className="relative overflow-hidden border-y border-surface-sunken bg-white">
-        <Container className="relative py-5">
-          <p className="text-center text-xs uppercase tracking-[0.18em] text-ink-muted">
-            Sua empresa em conformidade com
-          </p>
-          <div className="mt-3 overflow-hidden">
-            <div className="flex w-max animate-marquee items-center gap-12 whitespace-nowrap text-sm font-medium text-ink-soft">
-              {Array.from({ length: 2 }).flatMap((_, copy) =>
-                [
-                  "ANVISA",
-                  "Vigilância sanitária",
-                  "RDC 216/2004",
-                  "Portaria 2.619/2011",
-                ].map((item) => (
-                  <span
-                    key={`${copy}-${item}`}
-                    className="flex items-center gap-2"
-                  >
-                    <BadgeCheck className="h-4 w-4 text-brand-600" />
-                    {item}
-                    <span className="ml-12 text-ink-muted/40">·</span>
-                  </span>
-                )),
-              )}
-            </div>
+      {/* ------------------ PROBLEMA --------------------------------- */}
+      <section className="py-32 lg:py-44">
+        <Container className="max-w-5xl">
+          <SectionLabel>O problema</SectionLabel>
+
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-serif text-4xl leading-[1.2] tracking-[-0.01em] text-navy-900 sm:text-5xl">
+              Estar irregular custa caro, e quase sempre{" "}
+              <em className="not-italic text-brand-700">pega de surpresa.</em>
+            </h2>
+            <p className="mt-6 text-lg leading-[1.75] text-ink-soft">
+              Quem trabalha com alimento no Brasil convive com a RDC 216/2004
+              e a Portaria 2.619/2011. Três coisas costumam pegar o dono
+              desprevenido:
+            </p>
           </div>
-        </Container>
-      </div>
 
-      {/* Problema */}
-      <Section className="bg-[#f4efe4]">
-        <SectionHeading
-          eyebrow="O problema"
-          title="Estar irregular custa caro e quase sempre pega de surpresa"
-          description="Quem trabalha com alimento no Brasil convive com a RDC 216/2004 e a Portaria 2.619/2011. Na correria do dia a dia, três coisas costumam pegar o dono desprevenido:"
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {problems.map((p) => (
-            <div
-              key={p.title}
-              className="rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-danger-50 text-danger-600">
-                <p.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink">
-                {p.title}
-              </h3>
-              <p className="mt-2 text-ink-soft">{p.text}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Solução */}
-      <section className="bg-[#fbfaf6]">
-        <Container className="py-16 sm:py-24">
-          <SectionHeading
-            eyebrow="A solução"
-            title="Segurança alimentar e tranquilidade em uma assinatura"
-            description="Tudo o que a sua operação precisa pra ficar em dia, reunido em uma assinatura mensal simples."
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {solution.map((s) => (
-              <div
-                key={s.title}
-                className="flex gap-5 rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+          <div className="mt-16 grid gap-8 md:grid-cols-3 lg:gap-12">
+            {[
+              {
+                num: "01",
+                icon: FileWarning,
+                title: "A conta chega sem aviso",
+                text: "A fiscalização não marca hora. Se tiver algo fora do lugar, vem multa, interdição e prejuízo — sempre muito maior do que custaria ter resolvido antes.",
+              },
+              {
+                num: "02",
+                icon: Gauge,
+                title: "Você não sabe o que falta",
+                text: "Manual, POPs, fichas, treinamento da equipe. É exigência demais pra acompanhar sozinho, e fica impossível saber se a operação está mesmo em ordem.",
+              },
+              {
+                num: "03",
+                icon: CalendarClock,
+                title: "Ninguém assume por você",
+                text: "Sem um nutricionista acompanhando de perto, cada pendência vira problema seu. E, quando a vigilância aparece, é você quem responde por tudo.",
+              },
+            ].map((p) => (
+              <article
+                key={p.title}
+                className="border-t-2 border-brand-700/80 bg-white px-2 pt-10"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <s.icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-ink">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-ink-soft">{s.text}</p>
-                </div>
-              </div>
+                <SmallCaps>{p.num}</SmallCaps>
+                <h3 className="mt-4 font-serif text-2xl leading-tight text-navy-900">
+                  {p.title}
+                </h3>
+                <p className="mt-4 text-base leading-[1.75] text-ink-soft">
+                  {p.text}
+                </p>
+              </article>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Como o diagnóstico funciona */}
-      <Section className="bg-brand-50/40">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow="O diagnóstico"
-              title="Em 90 segundos você sai sabendo onde está exposto"
-              description="Cinco perguntas. Noventa segundos. Um retrato preciso do risco da sua operação, com o valor exato que você pode estar arriscando e o caminho mais curto pra resolver."
-            />
-            <ul className="mt-8 space-y-4">
-              {[
-                "Sai do escuro: descubra agora o que pode te custar caro.",
-                "Veja, em reais, o tamanho do prejuízo que está evitando.",
-                "Receba um plano claro: o que arrumar primeiro pra ficar tranquilo.",
-                "Tudo no celular, em 90 segundos, sem ter que se cadastrar.",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-                  <span className="text-ink-soft">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Button href="/diagnostico" size="lg" className="mt-8">
-              Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />
-            </Button>
-          </div>
-
-          {/* Preview atrativo: exemplo concreto do entregável (ilustrativo) */}
-          <div className="relative rounded-3xl bg-navy-900 p-8 text-white shadow-lift">
-            <div className="mb-5 flex items-center justify-between">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300">
-                Exemplo do seu raio-x
+      {/* ------------------ SOLUÇÃO ---------------------------------- */}
+      <section className="border-t border-[#e8e4df] py-32 lg:py-44">
+        <Container className="max-w-5xl">
+          <div className="grid items-start gap-16 lg:grid-cols-[1.3fr_0.7fr]">
+            <div>
+              <SmallCaps>A solução</SmallCaps>
+              <h2 className="mt-6 font-serif text-4xl leading-[1.15] tracking-[-0.01em] text-navy-900 sm:text-5xl">
+                Segurança alimentar e tranquilidade,
+                <br />
+                <em className="not-italic text-brand-700">
+                  em uma assinatura.
+                </em>
+              </h2>
+              <p className="mt-6 max-w-xl text-lg leading-[1.75] text-ink-soft">
+                Tudo o que a sua operação precisa pra ficar em dia, reunido em
+                uma assinatura mensal simples.
               </p>
-              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
-                Ilustrativo
-              </span>
             </div>
-            <ul className="space-y-3">
-              {/* Índice de conformidade */}
-              <li className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="flex items-center gap-2 text-white/80">
-                    <ShieldCheck className="h-4 w-4 text-brand-400" />
-                    Seu índice de conformidade
-                  </span>
-                  <span className="font-display text-lg font-bold text-brand-300">
-                    73 / 100
-                  </span>
-                </div>
-                <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/10">
-                  <div className="h-full w-[73%] rounded-full bg-brand-500" />
-                </div>
-                <p className="mt-2 text-xs text-white/55">Risco moderado</p>
-              </li>
-              {/* Multa */}
-              <li className="flex items-center justify-between rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <span className="flex items-center gap-2 text-sm text-white/80">
-                  <Wallet className="h-4 w-4 text-brand-400" />
-                  Multa que você está evitando
-                </span>
-                <span className="font-display text-lg font-bold text-danger-300">
-                  Até R$ 18.000
-                </span>
-              </li>
-              {/* Pontos críticos */}
-              <li className="flex items-center justify-between rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <span className="flex items-center gap-2 text-sm text-white/80">
-                  <ClipboardList className="h-4 w-4 text-brand-400" />
-                  Pontos críticos identificados
-                </span>
-                <span className="font-display text-base font-bold text-white">
-                  4 itens
-                </span>
-              </li>
-              {/* Próximo passo */}
-              <li className="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <div className="flex items-center gap-2 text-sm text-white/80">
-                  <Target className="h-4 w-4 text-brand-400" />
-                  Próximo passo recomendado
-                </div>
-                <p className="mt-1 text-sm font-semibold text-white">
-                  Plano Básico — documentação + visitas quinzenais
+            <div className="space-y-6 border-l border-[#e8e4df] pl-8">
+              <div>
+                <p className="font-serif text-5xl text-navy-900">+10</p>
+                <p className="mt-2 text-sm text-ink-soft">
+                  anos do nutricionista em food service
                 </p>
-              </li>
-            </ul>
-
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-danger-500/15 p-4 ring-1 ring-danger-500/30">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-danger-400" />
-              <p className="text-sm text-white/80">
-                Uma autuação sanitária custa entre{" "}
-                <strong className="text-white">R$ 2 mil e R$ 30 mil</strong>.
-                Seu diagnóstico mostra, ponto a ponto, o que falta — e quanto
-                isso pode custar se você esperar mais.
-              </p>
+              </div>
+              <div className="h-px bg-[#e8e4df]" />
+              <div>
+                <p className="font-serif text-5xl text-navy-900">90 dias</p>
+                <p className="mt-2 text-sm text-ink-soft">
+                  pra estar 100% em conformidade real
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </Section>
 
-      {/* Planos */}
-      <section className="bg-surface-soft">
-        <Container className="py-16 sm:py-24">
-          <SectionHeading
-            align="center"
-            eyebrow="Planos"
-            title="Preços visíveis, sem letra miúda"
-            description="Três planos de assinatura mensal. 90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar."
-          />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-16 grid gap-px overflow-hidden rounded-lg border border-[#e8e4df] bg-[#e8e4df] md:grid-cols-2">
+            {[
+              {
+                icon: BadgeCheck,
+                title: "Um nutricionista que conhece sua operação",
+                text: "Um nutricionista do nosso time vai até a sua operação, entende sua rotina e cuida da segurança alimentar de perto. Você fala com uma pessoa de verdade, não com um call center.",
+              },
+              {
+                icon: ShieldCheck,
+                title: "Você sempre sabe onde está",
+                text: "Escopo claro, visitas marcadas e um plano de ação com prazo. Sem surpresa: você sabe o que falta e quando vai estar resolvido.",
+              },
+              {
+                icon: ClipboardCheck,
+                title: "Pronto pra fiscalização a qualquer hora",
+                text: "Documentação sempre em dia e equipe orientada. Se a vigilância bater na porta hoje, você mostra tudo sem suar frio.",
+              },
+              {
+                icon: MessageSquare,
+                title: "A papelada é com a gente",
+                text: "Manual, POPs, fichas técnicas e auditorias organizados e digitalizados. Você cuida do seu negócio; a documentação fica por nossa conta.",
+              },
+            ].map((s) => (
+              <article
+                key={s.title}
+                className="group flex items-start gap-5 bg-white p-10 transition-colors duration-200 hover:bg-[#f5f3f0]/40"
+              >
+                <s.icon
+                  className="mt-1 h-7 w-7 shrink-0 text-brand-700"
+                  strokeWidth={1.5}
+                />
+                <div>
+                  <h3 className="font-serif text-xl leading-tight text-navy-900">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-base leading-[1.75] text-ink-soft">
+                    {s.text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ------------------ DIAGNÓSTICO ------------------------------ */}
+      <section className="border-t border-[#e8e4df] bg-white py-32 lg:py-44">
+        <Container className="max-w-5xl">
+          <div className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <SmallCaps>O diagnóstico</SmallCaps>
+              <h2 className="mt-6 font-serif text-4xl leading-[1.15] tracking-[-0.01em] text-navy-900 sm:text-5xl">
+                Em 90 segundos você sai sabendo onde está{" "}
+                <em className="not-italic text-brand-700">exposto.</em>
+              </h2>
+              <p className="mt-6 text-lg leading-[1.75] text-ink-soft">
+                Cinco perguntas. Noventa segundos. Um retrato preciso do risco
+                da sua operação, com o valor exato que você pode estar
+                arriscando e o caminho mais curto pra resolver.
+              </p>
+
+              <ul className="mt-10 space-y-5">
+                {[
+                  "Descubra agora o que pode te custar caro.",
+                  "Veja, em reais, o tamanho do prejuízo que está evitando.",
+                  "Receba um plano claro: o que arrumar primeiro pra ficar tranquilo.",
+                  "Tudo no celular, em 90 segundos, sem se cadastrar.",
+                ].map((item, i) => (
+                  <li key={item} className="flex gap-5">
+                    <span className="font-serif text-xl leading-none text-brand-700">
+                      0{i + 1}
+                    </span>
+                    <span className="border-l border-[#e8e4df] pl-5 leading-[1.75] text-ink-soft">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-12">
+                <GoldButton href="/diagnostico">
+                  Descobrir meu risco de multa
+                </GoldButton>
+              </div>
+            </div>
+
+            <aside className="relative border-t-2 border-brand-700 bg-[#FAFAF8] p-10 shadow-sm">
+              <SmallCaps className="text-ink-muted">
+                Exemplo do seu raio-x · Ilustrativo
+              </SmallCaps>
+              <p className="mt-8 font-serif text-7xl leading-none text-navy-900">
+                73<span className="text-3xl text-ink-muted">/100</span>
+              </p>
+              <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-700">
+                Risco Moderado
+              </p>
+
+              <div className="my-8 h-px bg-[#e8e4df]" />
+
+              <dl className="space-y-5 text-sm">
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="text-ink-soft">Multa que você está evitando</dt>
+                  <dd className="font-serif text-xl text-navy-900">
+                    {formatBRL(18000)}
+                  </dd>
+                </div>
+                <div className="h-px bg-[#e8e4df]" />
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="text-ink-soft">Pontos críticos</dt>
+                  <dd className="font-serif text-xl text-navy-900">4 itens</dd>
+                </div>
+                <div className="h-px bg-[#e8e4df]" />
+                <div className="flex items-baseline justify-between gap-4">
+                  <dt className="text-ink-soft">Próximo passo</dt>
+                  <dd className="font-serif text-xl text-navy-900">
+                    Plano Básico
+                  </dd>
+                </div>
+              </dl>
+            </aside>
+          </div>
+        </Container>
+      </section>
+
+      {/* ------------------ PLANOS ----------------------------------- */}
+      <section className="border-t border-[#e8e4df] py-32 lg:py-44">
+        <Container className="max-w-5xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <SmallCaps>Planos</SmallCaps>
+            <h2 className="mt-6 font-serif text-4xl leading-[1.15] tracking-[-0.01em] text-navy-900 sm:text-5xl">
+              Preços visíveis,{" "}
+              <em className="not-italic text-brand-700">sem letra miúda.</em>
+            </h2>
+            <p className="mt-6 text-lg leading-[1.75] text-ink-soft">
+              Três planos de assinatura mensal. 90 dias para estar 100% em
+              conformidade real — se não chegarmos lá, seguimos trabalhando
+              sem custo extra até chegar.
+            </p>
+          </div>
+          <div className="mt-16 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
               <PlanCard key={plan.id} plan={plan} />
             ))}
           </div>
-          <p className="mt-8 text-center text-sm text-ink-muted">
+          <p className="mt-10 text-center text-sm text-ink-muted">
             Não sabe qual escolher?{" "}
-            <Link href="/diagnostico" className="font-semibold text-brand-700">
-              Faça o diagnóstico e veja o ideal pra você.
+            <Link
+              href="/diagnostico"
+              className="text-brand-700 underline decoration-brand-700/40 underline-offset-4 transition-colors hover:decoration-brand-700"
+            >
+              Faça o diagnóstico e veja o ideal pra você
             </Link>
+            .
           </p>
         </Container>
       </section>
 
-      {/* História da Food Guard */}
-      <Section>
-        <div className="grid items-center gap-8 rounded-3xl border border-surface-sunken bg-white p-8 shadow-soft sm:grid-cols-[auto,1fr] sm:p-10">
-          {/* Placeholder da foto do Renan — trocar por <Image> ao receber */}
-          <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-3xl bg-brand-600 font-display text-5xl font-bold text-white sm:mx-0 sm:h-40 sm:w-40">
-            RM
+      {/* ------------------ HISTÓRIA / PULL QUOTE -------------------- */}
+      <section className="border-t border-[#e8e4df] bg-[#f5f3f0]/40 py-32 lg:py-44">
+        <Container className="max-w-4xl">
+          <SectionLabel>Quem está por trás</SectionLabel>
+          <div className="relative text-center">
+            <span
+              aria-hidden
+              className="absolute -top-12 left-1/2 -translate-x-1/2 font-serif text-[120px] leading-none text-brand-700/30"
+            >
+              “
+            </span>
+            <blockquote className="relative font-serif text-3xl leading-[1.4] text-navy-900 sm:text-4xl">
+              A Food Guard nasceu de um incômodo: ver bom negócio levando
+              multa à toa por causa de um POP desatualizado ou um Manual que
+              nunca saiu do papel.
+            </blockquote>
           </div>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-              Quem está por trás
-            </p>
-            <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-              A Food Guard nasceu de um incômodo: ver bom negócio levando multa
-              à toa
-            </h2>
-            <p className="mt-3 text-ink-soft">
-              Renan Muniz passou mais de 10 anos dentro de operações food
-              service — restaurantes, hospitais, catering, cozinha industrial.
-              Viu de perto o que acontece quando uma boa operação é autuada por
-              causa de um POP desatualizado ou um Manual que nunca saiu do
-              papel. Rafael vem da tecnologia e enxergou que esse problema tem
-              solução — desde que alguém construa o sistema certo em volta de
-              um nutricionista que realmente conhece o chão de fábrica.
-            </p>
-            <p className="mt-3 text-ink-soft">
-              A Food Guard nasceu dessa parceria: o conhecimento técnico de
-              quem esteve em centenas de inspeções, mais a tecnologia de quem
-              sabe como escalar esse cuidado sem perder o lado humano. O
-              resultado é simples — sua operação em dia, com um profissional
-              que você conhece pelo nome.
-            </p>
-            <Button href="/sobre" variant="outline" className="mt-5">
-              Ver nossa história completa <ArrowRight className="h-4 w-4" />
-            </Button>
-          </div>
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <section className="bg-surface-soft">
-        <Container className="py-16 sm:py-24">
-          <SectionHeading
-            align="center"
-            eyebrow="Dúvidas"
-            title="Perguntas frequentes"
-          />
-          <div className="mx-auto mt-10 max-w-3xl">
-            <FAQ items={faqs} />
+          <div className="mt-12 grid items-center gap-6 sm:grid-cols-[auto_1fr_auto]">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-700 font-serif text-2xl text-white sm:mx-0">
+              RM
+            </div>
+            <div className="text-center sm:text-left">
+              <p className="font-serif text-xl text-navy-900">Renan Muniz</p>
+              <SmallCaps className="mt-1 inline-block">
+                Nutricionista responsável · CRN ativo
+              </SmallCaps>
+            </div>
+            <div className="mx-auto sm:mx-0">
+              <OutlineButton href="/sobre">
+                Ver nossa história completa
+              </OutlineButton>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Fale com a gente */}
-      <Section>
-        <SectionHeading
-          align="center"
-          eyebrow="Contato"
-          title="Fale com a gente"
-          description="Atendemos São Paulo capital e Grande SP. Quer tirar uma dúvida antes de começar? Chama no WhatsApp ou manda um e-mail, a gente responde rápido."
-        />
-        <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-3">
-          <a
-            href={whatsappLink("Olá! Vim pelo site da Food Guard e quero tirar uma dúvida.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
-          >
-            <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-            <div>
-              <p className="font-display font-bold text-ink">WhatsApp</p>
-              <p className="text-sm text-ink-soft">Resposta rápida no horário comercial.</p>
-            </div>
-          </a>
-          <a
-            href={`mailto:${site.email}`}
-            className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
-          >
-            <Mail className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-            <div>
-              <p className="font-display font-bold text-ink">E-mail</p>
-              <p className="break-all text-sm text-ink-soft">{site.email}</p>
-            </div>
-          </a>
-          <div className="flex items-start gap-3 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft">
-            <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-brand-600" />
-            <div>
-              <p className="font-display font-bold text-ink">Onde atendemos</p>
-              <p className="text-sm text-ink-soft">São Paulo capital · Grande SP</p>
-            </div>
-          </div>
-        </div>
-        <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-ink-soft">
-          <a
-            href={site.social.instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-brand-700"
-          >
-            <Instagram className="h-4 w-4" /> Instagram {site.social.instagram.handle}
-          </a>
-          <a
-            href={site.social.linkedin.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-brand-700"
-          >
-            <Linkedin className="h-4 w-4" /> LinkedIn ({site.social.linkedin.handle})
-          </a>
-        </div>
-      </Section>
-
-      {/* CTA final */}
-      <Section className="pt-0">
-        <div className="overflow-hidden rounded-3xl bg-brand-600 px-8 py-14 text-center text-white sm:px-16">
-          <h2 className="mx-auto max-w-2xl font-display text-3xl font-bold sm:text-4xl">
-            Descubra seu risco sanitário antes que a fiscalização descubra.
+      {/* ------------------ CTA FINAL -------------------------------- */}
+      <section className="border-t border-[#e8e4df] py-32 lg:py-40">
+        <Container className="max-w-3xl text-center">
+          <SectionLabel>Próximo passo</SectionLabel>
+          <h2 className="font-serif text-4xl leading-[1.15] tracking-[-0.01em] text-navy-900 sm:text-6xl">
+            Descubra seu risco antes que a{" "}
+            <em className="not-italic text-brand-700">fiscalização</em>{" "}
+            descubra.
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-brand-50">
-            Diagnóstico gratuito, sem login, resultado em 90 segundos.
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.75] text-ink-soft">
+            Diagnóstico gratuito, sem cadastro, resultado em 90 segundos.
           </p>
-          <Button
-            href="/diagnostico"
-            size="lg"
-            variant="secondary"
-            className="mt-8"
-          >
-            Descobrir meu risco de multa <ArrowRight className="h-5 w-5" />
-          </Button>
-        </div>
-      </Section>
-    </>
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <GoldButton href="/diagnostico">
+              Descobrir meu risco de multa
+            </GoldButton>
+            <OutlineButton href="/planos">Ver planos</OutlineButton>
+          </div>
+        </Container>
+      </section>
+    </div>
   );
 }

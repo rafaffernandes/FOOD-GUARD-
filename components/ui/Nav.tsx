@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "./Button";
 import { Container } from "./Container";
+import { GoldButton } from "./Editorial";
 import { Logo } from "./Logo";
 
 const links = [
@@ -23,20 +23,20 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-surface-sunken/80 bg-white/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#e8e4df] bg-[#FAFAF8]/90 backdrop-blur-md">
       <Container className="flex h-20 items-center justify-between">
         <Logo />
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                "text-[13px] font-medium tracking-wide transition-colors",
                 pathname === link.href
                   ? "text-brand-700"
-                  : "text-ink-soft hover:text-ink",
+                  : "text-navy-900/70 hover:text-navy-900",
               )}
             >
               {link.label}
@@ -45,14 +45,14 @@ export function Nav() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="/diagnostico" size="sm">
+          <GoldButton href="/diagnostico" className="h-10 px-5 text-[13px]">
             Fazer diagnóstico
-          </Button>
+          </GoldButton>
         </div>
 
         <button
           type="button"
-          className="rounded-lg p-2 text-ink md:hidden"
+          className="rounded-md p-2 text-navy-900 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Abrir menu"
           aria-expanded={open}
@@ -62,21 +62,21 @@ export function Nav() {
       </Container>
 
       {open && (
-        <div className="border-t border-surface-sunken bg-white md:hidden">
+        <div className="border-t border-[#e8e4df] bg-[#FAFAF8] md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-base font-medium text-ink-soft hover:bg-surface-sunken"
+                className="rounded-md px-3 py-2.5 text-base font-medium text-navy-900/80 hover:bg-[#f5f3f0]"
               >
                 {link.label}
               </Link>
             ))}
-            <Button href="/diagnostico" className="mt-2 w-full" onClick={() => setOpen(false)}>
+            <GoldButton href="/diagnostico" className="mt-3 w-full">
               Fazer diagnóstico
-            </Button>
+            </GoldButton>
           </Container>
         </div>
       )}

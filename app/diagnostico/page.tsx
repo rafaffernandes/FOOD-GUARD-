@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function DiagnosticoPage() {
   return (
-    <div className="min-h-[70vh] bg-surface-soft">
+    <div className="min-h-[70vh] bg-[#FAFAF8]">
       <DiagnosticFlow />
     </div>
   );
