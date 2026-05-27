@@ -58,7 +58,7 @@ export function PlanCard({
       <div className="mt-7">
         <PlanCheckoutButton
           planId={plan.id}
-          planName={plan.name}
+          label={plan.ctaLabel}
           variant={featured ? "primary" : "outline"}
         />
       </div>

@@ -12,11 +12,11 @@ const base =
 /** Botão "Assinar {plano}" que dispara o checkout (Asaas) e redireciona. */
 export function PlanCheckoutButton({
   planId,
-  planName,
+  label,
   variant = "primary",
 }: {
   planId: PlanId;
-  planName: string;
+  label: string;
   variant?: "primary" | "outline";
 }) {
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ export function PlanCheckoutButton({
       ) : (
         <CreditCard className="h-5 w-5" />
       )}
-      Assinar {planName}
+      {label}
     </button>
   );
 }

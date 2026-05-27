@@ -12,21 +12,25 @@ import { formatBRL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Planos e preços",
   description:
-    "Três planos de assinatura mensal de segurança alimentar: Básico (R$ 700), Essencial (R$ 1.200) e Premium (R$ 1.999). Garantia de adequação em 90 dias.",
+    "Três planos de consultoria nutricional para food service: Básico (R$ 700), Essencial (R$ 1.200) e Premium (R$ 1.999).",
 };
 
 const planFaqs = [
   {
-    q: "Como funciona a garantia de 90 dias?",
-    a: "Se em 90 dias a sua operação não estiver adequada conforme o escopo do plano, devolvemos o valor pago. A garantia cobre a entrega do nosso trabalho técnico.",
+    q: "Se a vigilância aparecer enquanto sou cliente, vocês me ajudam?",
+    a: "Sim, e na hora. O nosso atendimento no WhatsApp é direto com o nutricionista do seu plano. Se a fiscalização chegar, a gente entra em contato com o fiscal junto com você, organiza a documentação que ele precisa ver e monta o plano de resposta na hora — sem você ter que improvisar uma defesa sozinho.",
   },
   {
-    q: "Posso trocar de plano depois?",
-    a: "Sim. Conforme sua operação cresce ou as exigências mudam, você pode migrar de plano. O diagnóstico ajuda a identificar o ideal a cada momento.",
+    q: "Quanto tempo até minha operação estar em conformidade?",
+    a: "Depende de onde você está partindo, mas o caminho típico é: o que falta começa a sair do papel já na primeira visita; documentação obrigatória (POPs, doc. ANVISA, Manual de Boas Práticas) fica pronta entre 30 e 60 dias; conformidade plena, com a equipe treinada e processos rodando, costuma se consolidar em 90 dias.",
   },
   {
-    q: "Qual plano inclui o nutricionista responsável?",
-    a: "O plano Premium inclui o nutricionista responsável assinando pela sua operação. Os planos Básico e Essencial cuidam da documentação, das visitas e das boas práticas; a responsabilidade técnica pode ser contratada à parte.",
+    q: "Posso trocar de plano se precisar de mais suporte?",
+    a: "Pode, e na hora. Se a sua operação cresce, se você decide abrir uma unidade, se uma fiscalização aperta o ritmo — em qualquer um desses momentos você sobe de plano sem multa e sem reinício de prazo. Você paga só a diferença, e o nutricionista assume a partir do mês seguinte.",
+  },
+  {
+    q: "O nutricionista assina pela minha operação?",
+    a: "Só no plano Premium. No Premium, o Renan assume a responsabilidade técnica formal — ele assina, responde tecnicamente pela operação e é referência junto à vigilância. Nos planos Básico e Essencial, cuidamos da documentação e das visitas, mas a responsabilidade técnica permanece com o seu nutricionista atual (ou pode ser contratada à parte).",
   },
 ];
 
@@ -35,14 +39,13 @@ export default function PlanosPage() {
     <>
       <section className="bg-surface-soft">
         <Container className="py-16 text-center sm:py-20">
-          <Badge tone="brand">Preços transparentes</Badge>
+          <Badge tone="brand">Planos</Badge>
           <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Segurança alimentar previsível, com preço na mesa
+            A vigilância não avisa quando vai aparecer.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-soft">
-            Três planos de assinatura mensal. 90 dias para estar 100% em
-            conformidade real — se não chegarmos lá, seguimos trabalhando sem
-            custo extra até chegar.
+            Sua operação precisa estar pronta. Consultoria nutricional de ponta
+            a ponta — conformidade, margem e equipe no padrão, todo mês.
           </p>
         </Container>
       </section>
@@ -114,9 +117,9 @@ export default function PlanosPage() {
         </div>
       </Section>
 
-      <section className="bg-surface-soft">
+      <section id="faq" className="bg-surface-soft">
         <Container className="py-16 sm:py-24">
-          <SectionHeading align="center" eyebrow="Dúvidas" title="Sobre os planos" />
+          <SectionHeading align="center" eyebrow="Dúvidas" title="Perguntas frequentes" />
           <div className="mx-auto mt-10 max-w-3xl">
             <FAQ items={planFaqs} />
           </div>

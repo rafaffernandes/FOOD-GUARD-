@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageCircle } from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -9,7 +9,7 @@ import { formatPhone } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Fale com o time do Food Guard. Atendimento em São Paulo capital e Grande SP.",
+    "Fale com a Food Guard. Atendimento em São Paulo capital e Grande SP.",
 };
 
 export default function ContatoPage() {
@@ -18,16 +18,17 @@ export default function ContatoPage() {
       <section className="bg-surface-soft">
         <Container className="py-16 text-center sm:py-20">
           <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Fale com nosso time
+            Fale com a Food Guard
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
-            Tire dúvidas sobre segurança alimentar, planos ou sobre o seu
-            diagnóstico. Atendimento direto com o nosso time.
+            Tire dúvidas sobre planos, conformidade ou sobre o seu diagnóstico —
+            ou nos siga nas redes pra ver bastidores da consultoria.
           </p>
         </Container>
       </section>
 
       <Section>
+        {/* Canais diretos */}
         <div className="grid gap-6 sm:grid-cols-3">
           <ContactCard
             icon={MessageCircle}
@@ -36,7 +37,7 @@ export default function ContatoPage() {
             action={
               <Button
                 href={whatsappLink(
-                  "Olá! Vim pelo site do Food Guard e quero falar sobre segurança alimentar.",
+                  "Olá! Vim pelo site do Food Guard e quero conversar sobre consultoria nutricional.",
                 )}
                 external
                 size="sm"
@@ -62,13 +63,58 @@ export default function ContatoPage() {
           />
         </div>
 
+        {/* Redes sociais */}
+        <div className="mt-10">
+          <h2 className="font-display text-xl font-bold text-ink">
+            Nas redes
+          </h2>
+          <p className="mt-2 text-sm text-ink-muted">
+            Bastidores da consultoria, conteúdo técnico e respostas pra dúvidas
+            frequentes.
+          </p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <a
+              href={site.social.linkedin.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0a66c2] text-white">
+                <Linkedin className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="font-display font-bold text-ink">LinkedIn</p>
+                <p className="text-sm text-ink-soft group-hover:text-brand-700">
+                  /company/{site.social.linkedin.handle}
+                </p>
+              </div>
+            </a>
+            <a
+              href={site.social.instagram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 rounded-2xl border border-surface-sunken bg-white p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-lift"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white">
+                <Instagram className="h-6 w-6" />
+              </div>
+              <div>
+                <p className="font-display font-bold text-ink">Instagram</p>
+                <p className="text-sm text-ink-soft group-hover:text-brand-700">
+                  {site.social.instagram.handle}
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <div className="mt-12 rounded-3xl bg-brand-600 px-8 py-12 text-center text-white">
           <h2 className="font-display text-2xl font-bold sm:text-3xl">
             Antes de falar, descubra seu risco
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-brand-50">
-            O diagnóstico gratuito dá contexto à conversa: você chega sabendo o que
-            falta e qual plano faz sentido.
+            O diagnóstico gratuito dá contexto à conversa: você chega sabendo o
+            que falta e qual plano faz sentido.
           </p>
           <Button href="/diagnostico" size="lg" variant="secondary" className="mt-7">
             Fazer diagnóstico
@@ -76,7 +122,7 @@ export default function ContatoPage() {
         </div>
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-muted">
-          O Food Guard trata seus dados conforme a LGPD. Para solicitações
+          A Food Guard trata seus dados conforme a LGPD. Para solicitações
           relativas aos seus dados, escreva para {site.email}.
         </p>
       </Section>

@@ -1,12 +1,12 @@
 export const site = {
   name: "Food Guard",
-  tagline: "Excelência em segurança alimentar.",
+  tagline: "Consultoria nutricional para food service.",
   description:
-    "Assessoria de segurança alimentar para food service. Nutricionista responsável com nome e CRN ativo, resposta rápida e um diagnóstico gratuito em 90 segundos.",
+    "Consultoria nutricional para food service. Nutricionista responsável, documentação em dia e equipe orientada — sua operação pronta pra qualquer fiscalização.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
     "http://localhost:3000",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511999999999",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511976466553",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
   city: "São Paulo · Grande SP",
   social: {
@@ -15,8 +15,8 @@ export const site = {
       url: "https://instagram.com/foodguard.assessoria",
     },
     linkedin: {
-      handle: "Renan Muniz",
-      url: "https://www.linkedin.com/in/renan-muniz/",
+      handle: "foodguardassessoria",
+      url: "https://www.linkedin.com/company/foodguardassessoria/",
     },
   },
   founders: [

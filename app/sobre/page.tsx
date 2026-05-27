@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Target } from "lucide-react";
+import { ArrowRight, ScrollText, ShieldCheck, Target } from "lucide-react";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -8,7 +8,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 export const metadata: Metadata = {
   title: "Sobre",
   description:
-    "O Food Guard é uma assessoria de segurança alimentar para food service, com nutricionista responsável (CRN ativo) e tecnologia que tira a burocracia do seu caminho.",
+    "A Food Guard é uma consultoria nutricional para food service: conformidade, documentação e equipe orientada — todo mês, sem improviso.",
 };
 
 export default function SobrePage() {
@@ -17,32 +17,31 @@ export default function SobrePage() {
       <section className="bg-surface-soft">
         <Container className="py-16 sm:py-20">
           <Badge tone="brand">Sobre o Food Guard</Badge>
-          <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            Conformidade sanitária acessível, previsível e auditável
+          <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            Nascemos para estar do lado de quem alimenta o Brasil.
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            Transformamos uma obrigação difusa — ter um nutricionista responsável
-            e documentação em dia — em um serviço previsível, com resposta rápida,
-            segurança alimentar garantida e tecnologia que tira a burocracia do
-            seu caminho.
+            A Food Guard é uma consultoria nutricional para food service. Cuidamos
+            de conformidade, documentação, equipe orientada e da margem que se
+            ganha quando a operação roda no padrão — todo mês, sem improviso e
+            sem você precisar virar especialista em norma sanitária.
           </p>
         </Container>
       </section>
 
       <Section>
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-3">
           <div className="rounded-2xl border border-surface-sunken bg-white p-8 shadow-soft">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
               <Target className="h-6 w-6" />
             </div>
             <h2 className="mt-5 font-display text-xl font-bold text-ink">
-              Nossa visão
+              Pra que existimos
             </h2>
             <p className="mt-3 text-ink-soft">
-              Tornar a segurança alimentar acessível, previsível e auditável para
-              pequenas e médias operações de food service brasileiras — com
-              nutricionista responsável e tecnologia que reduz custo e erro
-              humano.
+              Pra que nenhum bom negócio que alimenta gente seja autuado por
+              falta de acompanhamento. A vigilância não avisa quando vai
+              aparecer — a Food Guard mantém a operação pronta antes disso.
             </p>
           </div>
           <div className="rounded-2xl border border-surface-sunken bg-white p-8 shadow-soft">
@@ -50,13 +49,27 @@ export default function SobrePage() {
               <ShieldCheck className="h-6 w-6" />
             </div>
             <h2 className="mt-5 font-display text-xl font-bold text-ink">
-              Nutricionista + tecnologia
+              O que entregamos
             </h2>
             <p className="mt-3 text-ink-soft">
-              Unimos um nutricionista responsável com CRN ativo à tecnologia que
-              tira a burocracia do seu caminho. Você sabe exatamente o que tem, o
-              que falta e quanto custa — com resposta rápida e adequação garantida
-              em 90 dias.
+              Consultoria nutricional de ponta a ponta: documentação obrigatória
+              em dia, visitas regulares à operação, treinamento da equipe e
+              resposta rápida quando aperta. Tudo de forma previsível, sob
+              contrato.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-surface-sunken bg-white p-8 shadow-soft">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <ScrollText className="h-6 w-6" />
+            </div>
+            <h2 className="mt-5 font-display text-xl font-bold text-ink">
+              Como trabalhamos
+            </h2>
+            <p className="mt-3 text-ink-soft">
+              Nosso time é composto por nutricionistas com CRN ativo, com
+              experiência prática em food service. Trabalhamos com método e
+              tecnologia que tira a burocracia do seu caminho — você acompanha,
+              a gente executa.
             </p>
           </div>
         </div>
@@ -65,49 +78,28 @@ export default function SobrePage() {
       <section className="bg-surface-soft">
         <Container className="py-16 sm:py-24">
           <SectionHeading
-            eyebrow="Quem assina pela sua operação"
-            title="Um nutricionista de verdade cuidando do seu negócio"
-            description="Não é um software impessoal: é um nutricionista responsável com nome, rosto e CRN ativo cuidando da sua segurança alimentar."
+            eyebrow="Atendemos"
+            title="Quem confia na Food Guard"
+            description="Restaurantes, padarias, lanchonetes, buffets, dark kitchens, escolas e operações de refeição coletiva em São Paulo capital e Grande SP."
           />
 
-          {/* Renan — destaque máximo (o RT) */}
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-3xl border border-brand-200 bg-white p-8 shadow-glow lg:col-span-2">
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-brand-600 font-display text-3xl font-bold text-white">
-                  RM
-                </div>
-                <div>
-                  <Badge tone="brand">Nutricionista responsável · CRN ativo</Badge>
-                  <h3 className="mt-2 font-display text-2xl font-bold text-ink">
-                    Renan Muniz
-                  </h3>
-                  <p className="mt-1 text-ink-soft">
-                    Nutricionista com CRN ativo e mais de 10 anos em food service.
-                    É ele quem assina, visita a sua operação e responde no
-                    WhatsApp.
-                  </p>
-                </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Restaurantes e bares", text: "De casa de bairro a operação com várias unidades." },
+              { title: "Padarias e confeitarias", text: "Produção própria, com exigências sanitárias específicas." },
+              { title: "Buffets, eventos e catering", text: "Operação variável, alto volume e múltiplos pontos de risco." },
+              { title: "Escolas e refeição coletiva", text: "Atendimento contínuo e regulação mais rigorosa." },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-surface-sunken bg-white p-6 shadow-soft"
+              >
+                <h3 className="font-display text-lg font-bold text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-soft">{item.text}</p>
               </div>
-              <p className="mt-6 border-t border-surface-sunken pt-5 font-display text-lg font-semibold text-ink">
-                “90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar.”
-              </p>
-            </div>
-
-            {/* Quem somos — empresa (sem destaque pessoal) */}
-            <div className="rounded-2xl border border-surface-sunken bg-surface p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy-700 text-white">
-                <ShieldCheck className="h-6 w-6" />
-              </div>
-              <h3 className="mt-4 font-display text-lg font-bold text-ink">
-                Quem somos
-              </h3>
-              <p className="mt-3 text-sm text-ink-soft">
-                Uma assessoria de segurança alimentar que une nutricionista
-                responsável e tecnologia. Nosso time cuida da documentação, das
-                visitas e das normas técnicas — você foca na sua operação.
-              </p>
-            </div>
+            ))}
           </div>
         </Container>
       </section>

@@ -6,6 +6,8 @@ export interface Plan {
   price: number;
   positioning: string;
   highlighted?: boolean;
+  /** Texto do botão de assinar (CTA persona-orientado). */
+  ctaLabel: string;
   /** Bullets que aparecem no card do plano (linguagem comercial). */
   featuresList: string[];
   /** Texto fino que aparece sob a lista (ex.: "à parte"). */
@@ -20,6 +22,7 @@ export const plans: Plan[] = [
     name: "Básico",
     price: 700,
     positioning: "Pra sair do zero e deixar a documentação em dia.",
+    ctaLabel: "Quero sair da vulnerabilidade",
     featuresList: [
       "Visitas presenciais quinzenais",
       "Documentação ANVISA completa + POPs",
@@ -40,6 +43,7 @@ export const plans: Plan[] = [
     name: "Essencial",
     price: 1200,
     positioning: "Pra operar com confiança e passar qualquer fiscalização.",
+    ctaLabel: "Quero parar de apagar incêndio",
     featuresList: [
       "Visitas presenciais semanais (1x/semana)",
       "Documentação ANVISA completa + POPs",
@@ -64,6 +68,7 @@ export const plans: Plan[] = [
     price: 1999,
     positioning: "Pra quem quer um nutricionista como sócio da conformidade.",
     highlighted: true,
+    ctaLabel: "Quero um nutricionista no meu negócio",
     featuresList: [
       "Visitas presenciais 2x por semana",
       "Nutricionista Responsável Técnico (Renan Muniz · CRN ativo)",

@@ -115,7 +115,7 @@ export default function HomePage() {
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
               Um nutricionista especializado assume toda a parte regulatória da
-              sua operação. Você foca no que gera faturamento.
+              sua operação. Você foca no que gera receita.
             </p>
             <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row">
               <Button href="/diagnostico" size="lg">
@@ -321,8 +321,8 @@ export default function HomePage() {
           <SectionHeading
             align="center"
             eyebrow="Planos"
-            title="Preços visíveis, sem letra miúda"
-            description="Três planos de assinatura mensal. 90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar."
+            title="A vigilância não avisa quando vai aparecer."
+            description="Sua operação precisa estar pronta. Consultoria nutricional de ponta a ponta — conformidade, margem e equipe no padrão, todo mês."
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
