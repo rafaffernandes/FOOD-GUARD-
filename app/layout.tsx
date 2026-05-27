@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Calistoga, Inter, JetBrains_Mono, Sora } from "next/font/google";
 import { Analytics } from "@/components/analytics/Analytics";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Footer } from "@/components/ui/Footer";
@@ -9,6 +9,15 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-display" });
+const calistoga = Calistoga({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-calistoga",
+});
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -58,7 +67,10 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${sora.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${sora.variable} ${calistoga.variable} ${jetbrains.variable}`}
+    >
       <body className="flex min-h-screen flex-col">
         <script
           type="application/ld+json"

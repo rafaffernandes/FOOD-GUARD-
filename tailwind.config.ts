@@ -63,6 +63,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-calistoga)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       borderRadius: {
         xl: "1rem",
@@ -73,6 +75,8 @@ const config: Config = {
         soft: "0 1px 2px rgba(6, 78, 59, 0.04), 0 8px 24px rgba(6, 78, 59, 0.06)",
         lift: "0 12px 40px rgba(6, 78, 59, 0.12)",
         glow: "0 0 0 1px rgba(88,143,44,0.14), 0 20px 60px -20px rgba(88,143,44,0.45)",
+        accent: "0 4px 14px rgba(116,180,60,0.30)",
+        "accent-lg": "0 8px 24px rgba(116,180,60,0.40)",
       },
       backgroundImage: {
         "grid-faint":
@@ -81,6 +85,12 @@ const config: Config = {
           "radial-gradient(60% 50% at 50% 0%, rgba(116,180,60,0.20) 0%, rgba(116,180,60,0) 70%)",
         "brand-sheen":
           "linear-gradient(135deg, #446e22 0%, #588f2c 45%, #74b43c 100%)",
+        "accent-gradient":
+          "linear-gradient(135deg, #74b43c 0%, #92cb40 100%)",
+        "signature-gradient":
+          "linear-gradient(135deg, #16335c 0%, #588f2c 50%, #74b43c 100%)",
+        "dot-pattern":
+          "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
       },
       keyframes: {
         "fade-up": {
@@ -99,12 +109,29 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "rotate-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "pulse-dot": {
+          "0%,100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.4)", opacity: "0.6" },
+        },
+        "fade-up-slow": {
+          "0%": { opacity: "0", transform: "translateY(28px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.6s cubic-bezier(0.22,1,0.36,1) both",
+        "fade-up-slow":
+          "fade-up-slow 0.7s cubic-bezier(0.16,1,0.3,1) both",
         "scale-in": "scale-in 0.5s cubic-bezier(0.22,1,0.36,1) both",
-        float: "float 6s ease-in-out infinite",
+        float: "float 5s ease-in-out infinite",
+        "float-slow": "float 7s ease-in-out infinite",
         marquee: "marquee 30s linear infinite",
+        "rotate-slow": "rotate-slow 60s linear infinite",
+        "pulse-dot": "pulse-dot 2s ease-in-out infinite",
       },
     },
   },
