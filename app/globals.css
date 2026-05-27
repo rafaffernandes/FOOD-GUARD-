@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-[#FAFAF8] text-navy-900 antialiased;
+    @apply bg-surface text-ink antialiased;
     text-rendering: optimizeLegibility;
   }
   ::selection {

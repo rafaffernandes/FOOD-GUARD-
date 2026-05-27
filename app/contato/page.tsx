@@ -2,7 +2,6 @@ import { Mail, MapPin, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/Editorial";
 import { Section } from "@/components/ui/Section";
 import { site, whatsappLink } from "@/lib/content/site";
 import { formatPhone } from "@/lib/utils";
@@ -16,12 +15,17 @@ export const metadata: Metadata = {
 export default function ContatoPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Fale com a gente"
-        title="Fale com"
-        highlight="nosso time."
-        subtitle="Tire dúvidas sobre segurança alimentar, planos ou sobre o seu diagnóstico. Atendimento direto com o nosso time."
-      />
+      <section className="bg-surface-soft">
+        <Container className="py-16 text-center sm:py-20">
+          <h1 className="font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            Fale com nosso time
+          </h1>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
+            Tire dúvidas sobre segurança alimentar, planos ou sobre o seu
+            diagnóstico. Atendimento direto com o nosso time.
+          </p>
+        </Container>
+      </section>
 
       <Section>
         <div className="grid gap-6 sm:grid-cols-3">

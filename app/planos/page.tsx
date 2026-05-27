@@ -1,8 +1,8 @@
 import { Check } from "lucide-react";
 import type { Metadata } from "next";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/Editorial";
 import { FAQ } from "@/components/ui/FAQ";
 import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -33,12 +33,19 @@ const planFaqs = [
 export default function PlanosPage() {
   return (
     <>
-      <PageHero
-        eyebrow="Planos · Preços transparentes"
-        title="Segurança alimentar previsível,"
-        highlight="com preço na mesa."
-        subtitle="Três planos de assinatura mensal. 90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos trabalhando sem custo extra até chegar."
-      />
+      <section className="bg-surface-soft">
+        <Container className="py-16 text-center sm:py-20">
+          <Badge tone="brand">Preços transparentes</Badge>
+          <h1 className="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            Segurança alimentar previsível, com preço na mesa
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-ink-soft">
+            Três planos de assinatura mensal. 90 dias para estar 100% em
+            conformidade real — se não chegarmos lá, seguimos trabalhando sem
+            custo extra até chegar.
+          </p>
+        </Container>
+      </section>
 
       <Section className="pt-12">
         <div className="grid gap-6 lg:grid-cols-3">
@@ -57,7 +64,7 @@ export default function PlanosPage() {
                 </th>
                 {plans.map((p) => (
                   <th key={p.id} className="px-4 py-4">
-                    <div className="font-serif text-xl text-navy-900">
+                    <div className="font-display text-lg font-bold text-ink">
                       {p.name}
                     </div>
                     <div className="text-sm font-medium text-brand-700">

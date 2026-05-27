@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/Editorial";
 import { Section } from "@/components/ui/Section";
 import { getAllPosts } from "@/lib/blog";
 
@@ -18,12 +17,18 @@ export default function BlogPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Blog · Conteúdo técnico"
-        title="Blog do"
-        highlight="Food Guard."
-        subtitle="Conformidade sanitária explicada em linguagem clara, pra você decidir com segurança e não com medo."
-      />
+      <section className="bg-surface-soft">
+        <Container className="py-16 sm:py-20">
+          <Badge tone="brand">Conteúdo técnico</Badge>
+          <h1 className="mt-5 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            Blog do Food Guard
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-ink-soft">
+            Conformidade sanitária explicada em linguagem clara, pra você decidir
+            com segurança e não com medo.
+          </p>
+        </Container>
+      </section>
 
       <Section>
         {posts.length === 0 ? (

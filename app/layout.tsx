@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import {
-  IBM_Plex_Mono,
-  Inter,
-  Playfair_Display,
-  Source_Sans_3,
-  Sora,
-} from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import { Analytics } from "@/components/analytics/Analytics";
 import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 import { Footer } from "@/components/ui/Footer";
@@ -15,19 +9,6 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-display" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
-const sourceSans = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-source",
-});
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -77,10 +58,7 @@ export default function RootLayout({
   };
 
   return (
-    <html
-      lang="pt-BR"
-      className={`${inter.variable} ${sora.variable} ${playfair.variable} ${sourceSans.variable} ${plexMono.variable}`}
-    >
+    <html lang="pt-BR" className={`${inter.variable} ${sora.variable}`}>
       <body className="flex min-h-screen flex-col">
         <script
           type="application/ld+json"

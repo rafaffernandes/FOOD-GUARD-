@@ -8,8 +8,8 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-navy-900 text-white">
-      <Container className="py-16">
+    <footer className="border-t border-white/10 bg-ink text-white">
+      <Container className="py-14">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-1">
             <Logo inverted />
@@ -20,7 +20,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-300">Produto</h3>
+            <h3 className="text-sm font-semibold text-white">Produto</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               <li>
                 <Link href="/diagnostico" className="hover:text-brand-300">
@@ -41,7 +41,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-300">Planos</h3>
+            <h3 className="text-sm font-semibold text-white">Planos</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               {plans.map((p) => (
                 <li key={p.id}>
@@ -54,7 +54,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-brand-300">Contato</h3>
+            <h3 className="text-sm font-semibold text-white">Contato</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-white/60">
               <li>{site.city}</li>
               <li>

@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/Editorial";
 import { Section, SectionHeading } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
@@ -15,12 +14,20 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <>
-      <PageHero
-        eyebrow="Sobre o Food Guard"
-        title="Conformidade sanitária"
-        highlight="acessível, previsível e auditável."
-        subtitle="Transformamos uma obrigação difusa — ter um nutricionista responsável e documentação em dia — em um serviço previsível, com resposta rápida, segurança alimentar garantida e tecnologia que tira a burocracia do seu caminho."
-      />
+      <section className="bg-surface-soft">
+        <Container className="py-16 sm:py-20">
+          <Badge tone="brand">Sobre o Food Guard</Badge>
+          <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            Conformidade sanitária acessível, previsível e auditável
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            Transformamos uma obrigação difusa — ter um nutricionista responsável
+            e documentação em dia — em um serviço previsível, com resposta rápida,
+            segurança alimentar garantida e tecnologia que tira a burocracia do
+            seu caminho.
+          </p>
+        </Container>
+      </section>
 
       <Section>
         <div className="grid gap-8 md:grid-cols-2">
