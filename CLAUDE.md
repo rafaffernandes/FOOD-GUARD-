@@ -1,5 +1,9 @@
 # Food Guard — Design System & Codebase Rules
 
+> **Idioma:** sempre responda em **português do Brasil**, independente do idioma
+> da pergunta. Commits, PRs, comentários de código e comunicação no chat — tudo
+> em pt-BR.
+
 Guia de referência para implementar designs (inclusive vindos do **Figma via MCP**)
 de forma consistente com a base de código existente. Leia antes de criar telas,
 componentes ou tokens.
