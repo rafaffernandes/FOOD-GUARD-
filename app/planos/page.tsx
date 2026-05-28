@@ -7,6 +7,7 @@ import { FAQ } from "@/components/ui/FAQ";
 import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { comparisonRows, plans } from "@/lib/content/plans";
+import { site } from "@/lib/content/site";
 import { formatBRL } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -34,9 +35,87 @@ const planFaqs = [
   },
 ];
 
+const serviceLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${site.url}/planos#service`,
+  name: "Consultoria nutricional para food service",
+  serviceType: "Consultoria em segurança alimentar e conformidade sanitária",
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: { "@type": "City", name: "São Paulo" },
+  url: `${site.url}/planos`,
+  description:
+    "Consultoria nutricional recorrente para restaurantes, padarias, buffets, dark kitchens e operações de refeição coletiva. Nutricionista responsável, documentação ANVISA (Manual de Boas Práticas, POPs, fichas técnicas), treinamento da equipe e suporte no WhatsApp. Em conformidade com RDC 216/2004 e Portaria 2.619/2011.",
+  offers: plans.map((p) => ({
+    "@type": "Offer",
+    name: `Plano ${p.name}`,
+    price: p.price,
+    priceCurrency: "BRL",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: p.price,
+      priceCurrency: "BRL",
+      unitText: "MONTH",
+      billingDuration: "P1M",
+    },
+    url: `${site.url}/planos`,
+    availability: "https://schema.org/InStock",
+    category: p.positioning,
+  })),
+};
+
+const productsLd = plans.map((p) => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": `${site.url}/planos#plano-${p.id}`,
+  name: `Plano ${p.name} — Food Guard`,
+  description: `${p.positioning} ${p.featuresList.join(". ")}.`,
+  brand: { "@type": "Brand", name: site.name },
+  category: "Consultoria nutricional / Conformidade sanitária",
+  offers: {
+    "@type": "Offer",
+    price: p.price,
+    priceCurrency: "BRL",
+    url: `${site.url}/planos`,
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: p.price,
+      priceCurrency: "BRL",
+      unitText: "MONTH",
+    },
+  },
+}));
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${site.url}/planos#faq`,
+  mainEntity: planFaqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function PlanosPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
+      />
+      {productsLd.map((p) => (
+        <script
+          key={p["@id"]}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(p) }}
+        />
+      ))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <section className="bg-surface-soft">
         <Container className="py-16 text-center sm:py-20">
           <Badge tone="brand">Planos</Badge>

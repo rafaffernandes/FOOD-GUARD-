@@ -47,14 +47,67 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  const organizationLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${site.url}/#organization`,
     name: site.name,
+    legalName: "Food Guard Assessoria Nutricional",
     url: site.url,
+    logo: `${site.url}/icon.png`,
+    image: `${site.url}/og.png`,
     description: site.description,
-    areaServed: "São Paulo, BR",
-    founder: site.founders.map((f) => ({ "@type": "Person", name: f.name })),
+    foundingDate: "2025",
+    slogan: site.tagline,
+    knowsAbout: [
+      "Segurança alimentar",
+      "RDC 216/2004 (Anvisa)",
+      "Portaria 2.619/2011",
+      "Manual de Boas Práticas",
+      "POPs · Procedimentos Operacionais Padronizados",
+      "APPCC",
+      "Treinamento de manipuladores de alimentos",
+      "Consultoria nutricional para food service",
+    ],
+    areaServed: {
+      "@type": "City",
+      name: "São Paulo",
+      containedInPlace: { "@type": "State", name: "SP" },
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "São Paulo",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: `+${site.whatsapp}`,
+        email: site.email,
+        availableLanguage: ["Portuguese"],
+        areaServed: "BR",
+      },
+    ],
+    sameAs: [site.social.instagram.url, site.social.linkedin.url],
+    founder: site.founders.map((f) => ({
+      "@type": "Person",
+      name: f.name,
+      jobTitle: f.role,
+      description: f.credentials,
+    })),
+  };
+
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    url: site.url,
+    name: site.name,
+    description: site.description,
+    inLanguage: "pt-BR",
+    publisher: { "@id": `${site.url}/#organization` },
   };
 
   return (
@@ -62,7 +115,11 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
         <Analytics />
         <Nav />
