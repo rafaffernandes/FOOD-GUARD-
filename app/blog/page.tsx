@@ -1,10 +1,12 @@
 import { ArrowRight, Clock } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { getAllPosts } from "@/lib/blog";
+import { photos } from "@/lib/content/photos";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -35,28 +37,46 @@ export default function BlogPage() {
           <p className="text-ink-muted">Em breve, novos artigos.</p>
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-shadow hover:shadow-lift"
-              >
-                <Badge tone="neutral">{post.tag}</Badge>
-                <h2 className="mt-4 font-display text-xl font-bold text-ink group-hover:text-brand-700">
-                  {post.title}
-                </h2>
-                <p className="mt-2 flex-1 text-ink-soft">{post.description}</p>
-                <div className="mt-5 flex items-center justify-between text-sm text-ink-muted">
-                  <span className="flex items-center gap-1.5">
-                    <Clock className="h-4 w-4" /> {post.readingTime}
-                  </span>
-                  <span className="flex items-center gap-1.5 font-semibold text-brand-700">
-                    Ler artigo{" "}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {posts.map((post) => {
+              const cover = photos.blog[post.slug];
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-surface-sunken bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+                >
+                  {cover && (
+                    <div className="relative aspect-[16/9] overflow-hidden bg-surface-soft">
+                      <Image
+                        src={cover}
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
+                  <div className="flex flex-1 flex-col p-7">
+                    <Badge tone="neutral">{post.tag}</Badge>
+                    <h2 className="mt-4 font-display text-xl font-bold text-ink group-hover:text-brand-700">
+                      {post.title}
+                    </h2>
+                    <p className="mt-2 flex-1 text-ink-soft">
+                      {post.description}
+                    </p>
+                    <div className="mt-5 flex items-center justify-between text-sm text-ink-muted">
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="h-4 w-4" /> {post.readingTime}
+                      </span>
+                      <span className="flex items-center gap-1.5 font-semibold text-brand-700">
+                        Ler artigo{" "}
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </Section>

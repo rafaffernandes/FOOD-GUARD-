@@ -17,8 +17,11 @@ import {
   Target,
   Wallet,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { FAQ } from "@/components/ui/FAQ";
+import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
+import { photos } from "@/lib/content/photos";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -98,13 +101,18 @@ const faqs = [
 export default function HomePage() {
   return (
     <>
-      {/* Hero — capa full (foto via placeholder; trocar por <Image> ao receber) */}
+      {/* Hero — capa full com foto e overlay navy */}
       <section className="relative overflow-hidden bg-navy-900 text-white">
-        {/* Camada da foto de capa (placeholder). Para usar foto real:
-            adicione bg-[url('/capa.jpg')] bg-cover bg-center neste div. */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-        <div className="absolute inset-0 bg-brand-sheen opacity-[0.08]" />
-        <div className="absolute inset-0 bg-grid-faint [background-size:22px_22px] opacity-20" />
+        <Image
+          src={photos.hero.src}
+          alt={photos.hero.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-900/70 via-navy-900/85 to-navy-950" />
+        <div className="absolute inset-0 bg-brand-sheen opacity-[0.06]" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[460px] bg-hero-glow" />
         <Container className="relative flex flex-col items-center py-24 text-center lg:py-32">
           <div className="animate-fade-up flex flex-col items-center">
@@ -170,19 +178,33 @@ export default function HomePage() {
           description="Quem trabalha com alimento no Brasil convive com a RDC 216/2004 e a Portaria 2.619/2011. Na correria do dia a dia, três coisas costumam pegar o dono desprevenido:"
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {problems.map((p) => (
-            <div
+          {problems.map((p, i) => (
+            <FadeInOnScroll
               key={p.title}
-              className="rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+              delay={i * 100}
+              as="article"
+              className="overflow-hidden rounded-2xl border border-surface-sunken bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-danger-50 text-danger-600">
-                <p.icon className="h-6 w-6" />
+              <div className="relative h-40 w-full overflow-hidden">
+                <Image
+                  src={photos.problems[i]}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/40 to-transparent" />
               </div>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink">
-                {p.title}
-              </h3>
-              <p className="mt-2 text-ink-soft">{p.text}</p>
-            </div>
+              <div className="-mt-6 relative p-7">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-danger-50 text-danger-600 ring-4 ring-white">
+                  <p.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-display text-lg font-bold text-ink">
+                  {p.title}
+                </h3>
+                <p className="mt-2 text-ink-soft">{p.text}</p>
+              </div>
+            </FadeInOnScroll>
           ))}
         </div>
       </Section>
@@ -196,21 +218,35 @@ export default function HomePage() {
             description="Tudo o que a sua operação precisa pra ficar em dia, reunido em uma assinatura mensal simples."
           />
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {solution.map((s) => (
-              <div
+            {solution.map((s, i) => (
+              <FadeInOnScroll
                 key={s.title}
-                className="flex gap-5 rounded-2xl border border-surface-sunken bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+                delay={i * 80}
+                as="article"
+                className="group grid grid-cols-[140px_1fr] overflow-hidden rounded-2xl border border-surface-sunken bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift sm:grid-cols-[180px_1fr]"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <s.icon className="h-6 w-6" />
+                <div className="relative h-full min-h-[160px] overflow-hidden bg-brand-50">
+                  <Image
+                    src={photos.solutions[i]}
+                    alt=""
+                    fill
+                    sizes="180px"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand-900/10 to-transparent" />
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-bold text-ink">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 text-ink-soft">{s.text}</p>
+                <div className="flex gap-4 p-6 sm:p-7">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-ink">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-soft">{s.text}</p>
+                  </div>
                 </div>
-              </div>
+              </FadeInOnScroll>
             ))}
           </div>
         </Container>
@@ -389,6 +425,40 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* Quem atendemos — galeria de segmentos */}
+      <Section className="bg-white">
+        <SectionHeading
+          align="center"
+          eyebrow="Quem atendemos"
+          title="Operações de food service em São Paulo e Grande SP"
+          description="De padaria de bairro a refeição coletiva — a Food Guard adapta o plano ao porte e ao perfil de risco da sua operação."
+        />
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {photos.segments.map((seg, i) => (
+            <FadeInOnScroll
+              key={seg.title}
+              delay={i * 80}
+              as="article"
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-navy-900 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+            >
+              <Image
+                src={seg.src}
+                alt={seg.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/40 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="font-display text-lg font-bold text-white">
+                  {seg.title}
+                </p>
+              </div>
+            </FadeInOnScroll>
+          ))}
+        </div>
+      </Section>
 
       {/* Fale com a gente */}
       <Section>

@@ -1,9 +1,11 @@
 import { ArrowRight, ScrollText, ShieldCheck, Target } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { photos } from "@/lib/content/photos";
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -14,13 +16,22 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <>
-      <section className="bg-surface-soft">
-        <Container className="py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-navy-900 text-white">
+        <Image
+          src={photos.about.src}
+          alt={photos.about.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-900/85 to-navy-900/65" />
+        <Container className="relative py-20 sm:py-28">
           <Badge tone="brand">Sobre o Food Guard</Badge>
-          <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+          <h1 className="mt-5 max-w-3xl font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Nascemos para estar do lado de quem alimenta o Brasil.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
             A Food Guard é uma consultoria nutricional para food service. Cuidamos
             de conformidade, documentação, equipe orientada e da margem que se
             ganha quando a operação roda no padrão — todo mês, sem improviso e

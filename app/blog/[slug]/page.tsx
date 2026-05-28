@@ -1,11 +1,13 @@
 import { ArrowLeft, Clock } from "lucide-react";
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts, getPost } from "@/lib/blog";
+import { photos } from "@/lib/content/photos";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -34,6 +36,7 @@ export default async function PostPage({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
+  const cover = photos.blog[slug];
 
   return (
     <article className="py-14 sm:py-20">
@@ -59,6 +62,19 @@ export default async function PostPage({
             </span>
           </div>
         </div>
+
+        {cover && (
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-2xl bg-surface-soft">
+            <Image
+              src={cover}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 768px"
+              priority
+              className="object-cover"
+            />
+          </div>
+        )}
 
         <div className="prose-fg mt-10">
           <MDXRemote source={post.content} />
