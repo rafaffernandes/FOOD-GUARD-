@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diagnóstico regulatório gratuito · Food Guard</title>
+<meta name="description" content="Está em conformidade com a vigilância sanitária? Descubra em 90 segundos. Diagnóstico gratuito com RT nutricionista. Sem compromisso." />
+<meta property="og:title" content="Diagnóstico regulatório gratuito · Food Guard" />
+<meta property="og:description" content="Em 90 segundos, descubra o gap regulatório da sua operação. Plano de ação + preço incluso. Sem custo." />
+<meta property="og:type" content="website" />
+
+<!--
+  NOTA: arquivo original colado pelo usuário, salvo aqui como referência.
+  Pequenos ajustes aplicados para que renderize corretamente contra a design system existente (styles.css):
+    var(--font-display)  →  var(--serif)
+    var(--font-body)     →  var(--sans)
+    var(--leaf-dark)     →  var(--leaf-deep)
+    .btn--primary        →  .btn--leaf (existe na DS)
+    .btn--inverse        →  .btn--ghost (existe na DS)
+    .italic-accent       →  em ressaltada (cor leaf-deep inline)
+  Versão limpa/integrada: landing.html. Variações: landing-alt-quiet.html, landing-alt-quiz.html.
+-->
+
+<!-- Pixels (placeholders prontos para receber IDs) -->
+<script>
+  /* MetaPixelID = '000000000000000' — substituir antes do go-live */
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
+</script>
+<script>
+  /* GA4MeasurementID = 'G-XXXXXXXXXX' — substituir antes do go-live */
+</script>
+
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { background: var(--paper); }
+
+  .lp-hero {
+    position: relative;
+    padding: clamp(2rem, 4vw, 4rem) 0 clamp(3rem, 5vw, 5rem);
+    background:
+      radial-gradient(ellipse 70% 50% at 100% 0%, rgba(111, 178, 62, 0.14), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 0% 100%, rgba(14, 42, 71, 0.06), transparent 60%),
+      var(--paper);
+    overflow: hidden;
+  }
+  .lp-hero__grid {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem); align-items: center;
+  }
+  @media (max-width: 980px) { .lp-hero__grid { grid-template-columns: 1fr; } }
+
+  .lp-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--cream); border: 1px solid var(--line-strong);
+    padding: 0.5rem 1rem 0.5rem 0.55rem; border-radius: 999px;
+    font-size: 0.83rem; color: var(--text-2); font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .lp-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--leaf); box-shadow: 0 0 0 4px rgba(111, 178, 62, 0.18); }
+
+  .lp-title {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.0;
+    letter-spacing: -0.024em; color: var(--navy); margin-bottom: 1.5rem;
+  }
+  .lp-title em { font-style: italic; color: var(--leaf-deep); font-weight: 300; }
+  .lp-title u { text-decoration: none; background: linear-gradient(transparent 70%, rgba(111,178,62,0.35) 70%); padding: 0 0.1em; }
+
+  .lp-lede {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.45;
+    color: var(--text-2); margin-bottom: 2rem; max-width: 44ch;
+  }
+
+  .lp-bullets { list-style: none; display: grid; gap: 0.75rem; margin-bottom: 2rem; padding: 0; }
+  .lp-bullets li { padding-left: 2rem; position: relative; font-size: 0.98rem; color: var(--text); font-weight: 500; }
+  .lp-bullets li::before {
+    content: ""; position: absolute; left: 0; top: 0.25em;
+    width: 20px; height: 20px; border-radius: 50%;
+    background-image: linear-gradient(135deg, var(--leaf), var(--leaf-deep));
+  }
+  .lp-bullets li::after {
+    content: ""; position: absolute; left: 5px; top: 9px;
+    width: 9px; height: 5px;
+    border-left: 2px solid var(--paper); border-bottom: 2px solid var(--paper);
+    transform: rotate(-45deg);
+  }
+
+  .lp-cta-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+  .lp-cta-row .btn--leaf { padding: 1.05rem 1.85rem; font-size: 1rem; }
+  .lp-sub { font-size: 0.85rem; color: var(--text-3); margin-top: 1.25rem; }
+
+  .lp-card {
+    background: var(--paper); border: 1px solid var(--line-strong);
+    border-radius: 20px; padding: clamp(1.75rem, 3vw, 2.25rem);
+    box-shadow: 0 30px 60px -30px rgba(6,22,41,0.25); position: relative;
+  }
+  .lp-card::before {
+    content: "GRATUITO"; position: absolute; top: -12px; left: 24px;
+    background: var(--leaf); color: var(--ink);
+    font-size: 0.72rem; letter-spacing: 0.16em;
+    padding: 0.35rem 0.75rem; border-radius: 999px; font-weight: 700;
+  }
+  .lp-card h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; color: var(--navy); margin-bottom: 0.3rem; letter-spacing: -0.012em; }
+  .lp-card p.muted { color: var(--text-2); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .lp-card .steps { display: grid; gap: 0.85rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+  .lp-step { display: grid; grid-template-columns: 28px 1fr; gap: 0.85rem; align-items: start; }
+  .lp-step__num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--cream); color: var(--navy);
+    font-family: var(--serif); font-weight: 500; font-size: 0.95rem;
+    display: grid; place-items: center;
+  }
+  .lp-step__body strong { display: block; color: var(--navy); font-size: 0.98rem; }
+  .lp-step__body span { display: block; color: var(--text-2); font-size: 0.88rem; margin-top: 0.2rem; }
+
+  .lp-card .btn { width: 100%; justify-content: center; }
+  .lp-card .micro { text-align: center; font-size: 0.78rem; color: var(--text-3); margin-top: 0.85rem; }
+
+  .risk-strip { background: var(--ink); color: var(--cream); padding: clamp(2rem, 3vw, 2.5rem) 0; }
+  .risk-strip__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 800px) { .risk-strip__grid { grid-template-columns: repeat(2, 1fr); } }
+  .risk-stat dt { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,239,228,0.5); margin-bottom: 0.5rem; }
+  .risk-stat dd { font-family: var(--serif); font-size: clamp(1.85rem, 3vw, 2.6rem); font-weight: 500; color: var(--leaf); line-height: 1; letter-spacing: -0.02em; margin: 0; }
+  .risk-stat dd span { font-family: var(--sans); color: rgba(244,239,228,0.7); font-size: 0.4em; font-weight: 400; margin-left: 0.2rem; }
+  .risk-stat .sub { color: rgba(244,239,228,0.65); font-size: 0.85rem; margin-top: 0.4rem; }
+
+  .for-whom { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  @media (max-width: 880px) { .for-whom { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .for-whom { grid-template-columns: 1fr; } }
+  .whom { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 1.25rem 1.25rem 1.4rem; transition: all 0.25s ease; }
+  .whom:hover { transform: translateY(-2px); border-color: var(--leaf); }
+  .whom__icon { width: 36px; height: 36px; border-radius: 9px; background: var(--cream); display: grid; place-items: center; color: var(--navy); margin-bottom: 0.85rem; }
+  .whom h4 { font-family: var(--serif); font-weight: 500; color: var(--navy); font-size: 1.05rem; margin-bottom: 0.25rem; }
+  .whom p { font-size: 0.85rem; color: var(--text-2); line-height: 1.5; }
+
+  .plans-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+  @media (max-width: 860px) { .plans-mini { grid-template-columns: 1fr; } }
+  .plans-mini .plan { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 1.85rem 1.75rem; display: flex; flex-direction: column; transition: all 0.25s ease; position: relative; }
+  .plans-mini .plan--featured { border-color: var(--navy); box-shadow: 0 18px 36px -22px rgba(6,22,41,0.35); background: var(--cream); }
+  .plans-mini .plan--featured::before { content: "Mais escolhido"; position: absolute; top: -12px; right: 18px; background: var(--navy); color: var(--paper); font-size: 0.7rem; letter-spacing: 0.14em; padding: 0.3rem 0.75rem; border-radius: 999px; font-weight: 600; text-transform: uppercase; }
+  .plans-mini .plan h4 { font-family: var(--serif); font-size: 1.2rem; color: var(--navy); font-weight: 500; margin-bottom: 0.4rem; }
+  .plans-mini .plan .price { font-family: var(--serif); font-size: 2.2rem; color: var(--navy); font-weight: 500; line-height: 1; letter-spacing: -0.018em; margin-bottom: 0.4rem; }
+  .plans-mini .plan .price small { font-family: var(--sans); font-weight: 500; color: var(--text-3); font-size: 0.85rem; margin-left: 0.2rem; }
+  .plans-mini .plan .visit { color: var(--leaf-deep); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; margin-bottom: 1rem; }
+  .plans-mini .plan ul { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.55rem; }
+  .plans-mini .plan li { padding-left: 1.4rem; position: relative; font-size: 0.88rem; color: var(--text-2); line-height: 1.45; }
+  .plans-mini .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--leaf-deep); font-weight: 700; }
+
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+  @media (max-width: 860px) { .reviews { grid-template-columns: 1fr; } }
+  .review { background: var(--cream); border-radius: 16px; padding: 1.5rem 1.6rem; }
+  .review p { font-family: var(--serif); font-size: 1.02rem; font-weight: 400; color: var(--navy); line-height: 1.4; margin-bottom: 1rem; font-style: italic; }
+  .review__author { font-size: 0.85rem; color: var(--text-2); }
+  .review__author b { color: var(--navy); font-weight: 600; display: block; }
+
+  .faq-inline { max-width: 760px; margin: 0 auto; }
+  .faq-inline summary { font-size: 1.05rem; }
+
+  .wpp-float {
+    position: fixed; right: 24px; bottom: 24px; z-index: 50;
+    background: var(--leaf-deep); color: var(--paper);
+    padding: 0.85rem 1.2rem; border-radius: 999px;
+    box-shadow: 0 16px 32px -8px rgba(6,22,41,0.4);
+    font-weight: 600; font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    transition: transform 0.2s;
+  }
+  .wpp-float:hover { transform: translateY(-2px); background: var(--leaf); color: var(--ink); }
+
+  .diag-mock {
+    aspect-ratio: 4/5; border-radius: 20px; padding: 2rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 100% 0%, rgba(111,178,62,0.18), transparent 60%),
+      linear-gradient(135deg, var(--ink) 0%, var(--navy) 100%);
+    color: var(--cream); position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .diag-mock__head { display: flex; justify-content: space-between; align-items: center; opacity: 0.7; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; }
+  .diag-mock__center { text-align: center; padding: 1rem 0; }
+  .diag-mock__score-label { font-size: 0.78rem; letter-spacing: 0.18em; opacity: 0.65; }
+  .diag-mock__score { font-family: var(--serif); font-size: clamp(5rem, 12vw, 8rem); font-weight: 400; line-height: 1; letter-spacing: -0.04em; margin: 0.5rem 0; }
+  .diag-mock__score-of { font-size: 0.42em; opacity: 0.6; font-weight: 400; margin-left: 0.2rem; }
+  .diag-mock__risk { display: inline-block; padding: 0.4rem 0.85rem; border-radius: 999px; background: rgba(255,179,71,0.18); color: #FFB347; font-size: 0.83rem; font-weight: 600; letter-spacing: 0.04em; }
+  .diag-mock__rec { background: rgba(244,239,228,0.06); border: 1px solid rgba(244,239,228,0.12); border-radius: 12px; padding: 1rem 1.25rem; font-size: 0.85rem; }
+  .diag-mock__rec b { color: var(--leaf); display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .diag-mock__rec .price { color: var(--cream); font-family: var(--serif); font-size: 1.6rem; font-weight: 500; line-height: 1; margin-top: 0.5rem; letter-spacing: -0.012em; }
+
+  .logos-bar { display: flex; align-items: center; gap: 2.5rem; justify-content: center; flex-wrap: wrap; padding: 2rem 0; opacity: 0.85; }
+  .logos-bar span { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--text-3); font-size: 1.1rem; }
+  .logos-bar .bold { font-family: var(--sans); font-style: normal; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.95rem; }
+
+  @media (max-width: 720px) {
+    .lp-cta-sticky {
+      position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 49;
+      background: var(--navy); color: var(--paper);
+      padding: 1rem 1.2rem; border-radius: 14px;
+      box-shadow: 0 18px 38px -14px rgba(6,22,41,0.55);
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 600; gap: 0.85rem;
+    }
+    .lp-cta-sticky b { font-family: var(--serif); font-weight: 500; font-size: 1.05rem; }
+    .lp-cta-sticky .arr { width: 18px; height: 18px; }
+    .wpp-float { bottom: 80px; }
+  }
+  @media (min-width: 721px) { .lp-cta-sticky { display: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <a href="#diagnostico" class="btn btn--leaf" onclick="trackCTA('topbar')">
+      Começar diagnóstico
+      <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </a>
+  </div>
+</header>
+
+<section class="lp-hero">
+  <div class="container">
+    <div class="lp-hero__grid">
+      <div>
+        <span class="lp-badge">
+          <span class="dot" aria-hidden="true"></span>
+          Diagnóstico gratuito · 90 segundos · sem ligação
+        </span>
+        <h1 class="lp-title">
+          Sua operação <u>está em conformidade</u> com a vigilância sanitária <em>hoje?</em>
+        </h1>
+        <p class="lp-lede">
+          Em 90 segundos descobrimos o gap regulatório da sua escola, restaurante, padaria ou hotel — e entregamos o plano de ação por escrito. Sem cobrar nada.
+        </p>
+        <ul class="lp-bullets">
+          <li>Score de risco regulatório calculado em tempo real</li>
+          <li>Lista do que falta para passar em fiscalização</li>
+          <li>Preço fixo dos 3 planos, sem ginga comercial</li>
+          <li>Call com o RT Renan Muniz quando você quiser</li>
+        </ul>
+        <div class="lp-cta-row">
+          <a href="#diagnostico" class="btn btn--leaf" onclick="trackCTA('hero_primary')">
+            Começar diagnóstico grátis
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+          <a href="https://wa.me/5511900000000?text=Quero+saber+mais+sobre+o+Food+Guard" target="_blank" rel="noopener" class="btn" style="background:var(--cream); color:var(--navy); border:1px solid var(--line-strong);" onclick="trackCTA('hero_whatsapp')">
+            Falar no WhatsApp
+          </a>
+        </div>
+        <p class="lp-sub">100% gratuito · sob NDA · sem ligação automática</p>
+      </div>
+
+      <aside class="diag-mock" aria-hidden="true">
+        <div class="diag-mock__head">
+          <span>Diagnóstico Food Guard</span>
+          <span>Caso típico</span>
+        </div>
+        <div class="diag-mock__center">
+          <div class="diag-mock__score-label">SCORE DE CONFORMIDADE</div>
+          <div class="diag-mock__score">42<span class="diag-mock__score-of">/100</span></div>
+          <div class="diag-mock__risk">Risco médio · gaps relevantes</div>
+        </div>
+        <div class="diag-mock__rec">
+          <b>Plano recomendado</b>
+          Conformidade · 2 visitas mensais
+          <div class="price">R$ 2.700<small style="font-size:0.55em; opacity:0.6;">/mês</small></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="risk-strip">
+  <div class="container">
+    <span class="eyebrow" style="color: var(--leaf);">Por que importa</span>
+    <h2 class="display-md mt-1" style="color: var(--cream); max-width: 24ch;">A multa não avisa antes de chegar.</h2>
+    <dl class="risk-strip__grid">
+      <div class="risk-stat">
+        <dt>Multa típica · 1ª autuação</dt>
+        <dd>R$ 12k<span>+</span></dd>
+        <p class="sub">Pode chegar a R$ 1,5M para indústria</p>
+      </div>
+      <div class="risk-stat">
+        <dt>Tempo médio de adequação tardia</dt>
+        <dd>6<span>meses</span></dd>
+        <p class="sub">Operando sob risco neste período</p>
+      </div>
+      <div class="risk-stat">
+        <dt>Operações autuadas/ano em SP</dt>
+        <dd>30%<span>+</span></dd>
+        <p class="sub">Food service e indústria, ANVISA</p>
+      </div>
+      <div class="risk-stat">
+        <dt>Diagnóstico Food Guard</dt>
+        <dd>90s</dd>
+        <p class="sub">E você sai com o plano em mãos</p>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">Para quem</span>
+    <h2 class="display-lg mt-1" style="max-width: 18ch;">Se você comanda uma operação que serve alimento, isso é para você.</h2>
+    <div class="for-whom">
+      <div class="whom">
+        <div class="whom__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+        <h4>Escolas e creches</h4>
+        <p>Refeitório próprio ou terceirizado · RT obrigatório por lei</p>
+      </div>
+      <div class="whom">
+        <div class="whom__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1 13H5L4 7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.8"></path></svg></div>
+        <h4>Restaurantes</h4>
+        <p>À la carte, delivery, dark kitchen · BPF · APPCC</p>
+      </div>
+      <div class="whom">
+        <div class="whom__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"></circle><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg></div>
+        <h4>Padarias e confeitarias</h4>
+        <p>Produção própria · selo de origem · rotulagem nutricional</p>
+      </div>
+      <div class="whom">
+        <div class="whom__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 21V8l9-5 9 5v13M9 21v-7h6v7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg></div>
+        <h4>Hotéis e buffets</h4>
+        <p>Volume alto · operação 24/7 · fiscalização frequente</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream" id="planos">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:end; gap:2rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+      <div>
+        <span class="eyebrow">Planos transparentes</span>
+        <h2 class="display-lg mt-1" style="max-width:22ch;">Preço fixo. Sem negociação cansativa.</h2>
+      </div>
+      <p style="max-width:36ch; color:var(--text-2); font-size:0.95rem;">
+        Você sai do diagnóstico já com o plano sugerido e o preço. Quer comparar, escolher diferente ou tirar dúvida? A call de 30min com o RT serve para isso.
+      </p>
+    </div>
+    <div class="plans-mini">
+      <div class="plan">
+        <h4>Essencial</h4>
+        <div class="price">R$ 1.500<small>/mês</small></div>
+        <div class="visit">1 VISITA / SEMANA</div>
+        <ul>
+          <li>RT nutricionista designado</li>
+          <li>Manual de Boas Práticas</li>
+          <li>POPs operacionais</li>
+          <li>Treinamento semestral</li>
+          <li>Suporte WhatsApp comercial</li>
+        </ul>
+        <a href="#diagnostico" class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" onclick="trackCTA('plan_essencial')">Começar diagnóstico</a>
+      </div>
+      <div class="plan plan--featured">
+        <h4>Profissional</h4>
+        <div class="price">R$ 2.700<small>/mês</small></div>
+        <div class="visit">2 VISITAS / SEMANA</div>
+        <ul>
+          <li>Tudo do Essencial +</li>
+          <li>Plano APPCC incluso</li>
+          <li>Treinamento trimestral</li>
+          <li>Auditoria preventiva 2×/ano</li>
+          <li>Acompanhamento em fiscalização</li>
+        </ul>
+        <a href="#diagnostico" class="btn btn--leaf" onclick="trackCTA('plan_profissional')">Começar diagnóstico</a>
+      </div>
+      <div class="plan">
+        <h4>Premium</h4>
+        <div class="price">R$ 3.800<small>/mês</small></div>
+        <div class="visit">3 VISITAS / SEMANA</div>
+        <ul>
+          <li>Tudo do Profissional +</li>
+          <li>RT sênior · Renan Muniz</li>
+          <li>APPCC completo</li>
+          <li>Treinamento mensal</li>
+          <li>Plantão WhatsApp 24/7</li>
+          <li>Auditoria trimestral</li>
+        </ul>
+        <a href="#diagnostico" class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" onclick="trackCTA('plan_premium')">Começar diagnóstico</a>
+      </div>
+    </div>
+    <p style="text-align:center; color:var(--text-3); font-size:0.85rem; margin-top:1.5rem;">
+      Contrato com carência de 12 meses · multa de 40% sobre meses remanescentes em caso de rescisão antecipada.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="eyebrow">O que dizem nossos clientes</span>
+    <h2 class="display-lg mt-1" style="max-width:18ch;">Operações reais. Resultados auditáveis.</h2>
+    <div class="reviews">
+      <article class="review">
+        <p>"Fui notificada pela vigilância na quinta. Sexta o RT do Food Guard estava na escola. Em 30 dias estávamos 100% adequados."</p>
+        <div class="review__author"><b>T.M.</b>Diretora pedagógica · escola particular SP</div>
+      </article>
+      <article class="review">
+        <p>"Já tive três consultorias antes. Nenhuma tão prática. O contrato deixa claro o que vão entregar. Renovamos no segundo mês."</p>
+        <div class="review__author"><b>M.R.</b>Dono · rede de padarias com 3 unidades</div>
+      </article>
+      <article class="review">
+        <p>"Abrimos o restaurante com alvará no prazo. Só foi possível porque o Food Guard cuidou de APPCC e BPF do zero, paralelo às obras."</p>
+        <div class="review__author"><b>J.C.</b>Sócio-gerente · restaurante autoral</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 1rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <div class="logos-bar">
+      <span class="bold">CRN-3</span>
+      <span>ANVISA</span>
+      <span class="bold">RDC 216</span>
+      <span>APPCC</span>
+      <span class="bold">CRN/RT</span>
+      <span>FSSC 22000</span>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cream" id="diagnostico">
+  <div class="container">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center;">
+      <div style="min-width: 0;">
+        <span class="eyebrow">Começar agora</span>
+        <h2 class="display-lg mt-1" style="max-width:18ch;">5 perguntas. 90 segundos. <em style="font-style:italic; color:var(--leaf-deep); font-weight:400;">Plano em mãos.</em></h2>
+        <p style="color: var(--text-2); font-size: 1.05rem; line-height: 1.55; margin-top: 1rem;">
+          Você responde a 5 perguntas em formato múltipla escolha. Ao final, deixa seu contato. Em 2 segundos o sistema gera o seu diagnóstico, com score, gap detalhado e plano recomendado.
+        </p>
+        <ul class="lp-bullets" style="margin-top: 1.5rem;">
+          <li>Sem ligação automática</li>
+          <li>Sem custo, sob NDA padrão</li>
+          <li>Diagnóstico no e-mail em PDF</li>
+          <li>Opção de agendar call com RT depois</li>
+        </ul>
+      </div>
+      <div class="lp-card">
+        <h3>Começar meu diagnóstico</h3>
+        <p class="muted">Leva menos de 90 segundos.</p>
+        <div class="steps">
+          <div class="lp-step">
+            <div class="lp-step__num">1</div>
+            <div class="lp-step__body">
+              <strong>Responda 5 perguntas</strong>
+              <span>Sobre estabelecimento, RT, documentos, fiscalização, treinamento</span>
+            </div>
+          </div>
+          <div class="lp-step">
+            <div class="lp-step__num">2</div>
+            <div class="lp-step__body">
+              <strong>Deixe seu contato</strong>
+              <span>Nome, telefone, e-mail, cargo</span>
+            </div>
+          </div>
+          <div class="lp-step">
+            <div class="lp-step__num">3</div>
+            <div class="lp-step__body">
+              <strong>Receba o diagnóstico</strong>
+              <span>Score, gap detalhado e plano recomendado · em tela e por e-mail</span>
+            </div>
+          </div>
+        </div>
+        <a href="diagnostico-fluxo.html" class="btn btn--leaf" onclick="trackCTA('form_card_primary')">
+          Começar agora · gratuito
+          <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <p class="micro">Ao continuar você concorda com a Política de Privacidade · LGPD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container faq-inline">
+    <span class="eyebrow">Perguntas frequentes</span>
+    <h2 class="display-lg mt-1 mb-3">Antes de começar.</h2>
+    <div class="faq">
+      <details open><summary>É realmente gratuito?</summary><p>Sim. O diagnóstico, o PDF e a call inicial com o RT são gratuitos. Você só paga se contratar um dos planos.</p></details>
+      <details><summary>Quem é o RT nutricionista do Food Guard?</summary><p>Renan Muniz · sócio co-founder, nutricionista sênior com Responsabilidade Técnica registrada no CRN-3.</p></details>
+      <details><summary>Quanto tempo para implantar a conformidade?</summary><p>Operações sem nada implementado: 60 a 90 dias. Operações com base prévia: 30 a 45 dias.</p></details>
+      <details><summary>Vocês atendem fora de São Paulo?</summary><p>Sim — remotamente em todo o Brasil, e presencialmente em São Paulo capital e Grande SP.</p></details>
+      <details><summary>Como funciona a carência?</summary><p>Todos os planos têm carência de 12 meses. Em caso de rescisão antecipada, multa de 40% sobre meses remanescentes.</p></details>
+      <details><summary>Meus dados estão seguros?</summary><p>Sim. Operamos sob LGPD, com DPO designado, criptografia em repouso e em trânsito.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2 class="cta-band__title">Cada dia sem RT é<br>um dia de <em>risco real.</em></h2>
+      <div class="cta-band__actions" style="display:flex; flex-direction:column; align-items:flex-end; gap:0.6rem;">
+        <a href="#diagnostico" class="btn btn--leaf" onclick="trackCTA('final_band')">
+          Diagnóstico gratuito agora
+          <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="https://wa.me/5511900000000" target="_blank" rel="noopener" class="btn btn--ghost" onclick="trackCTA('final_whatsapp')">Falar no WhatsApp</a>
+        <p style="color:rgba(244,239,228,0.6); font-size:0.8rem; margin:0;">Resposta em até 4h úteis · sob NDA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" style="padding: 2.5rem 0 1.5rem;">
+  <div class="container">
+    <div class="footer__bar">
+      <span>© 2026 Food Guard Assessoria · CNPJ XX.XXX.XXX/0001-XX</span>
+      <span>
+        <a href="index.html" style="color: rgba(244,239,228,0.65);">Site institucional</a> ·
+        <a href="#" style="color: rgba(244,239,228,0.65);">Política de privacidade</a> ·
+        <a href="mailto:dpo@foodguard.com.br" style="color: rgba(244,239,228,0.65);">DPO</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511900000000" target="_blank" rel="noopener" class="wpp-float" onclick="trackCTA('wpp_float')">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.5.8 3.2 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+  Falar agora
+</a>
+
+<a href="#diagnostico" class="lp-cta-sticky" onclick="trackCTA('sticky_mobile')">
+  <b>Diagnóstico grátis</b>
+  <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+
+<script>
+  function trackCTA(location) {
+    try {
+      window.gtag && gtag('event', 'cta_click', { 'cta_location': location });
+      window.fbq && fbq('track', 'Lead', { content_name: location });
+    } catch (e) {}
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Contato</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+  @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 1.5rem 1.75rem;
+  }
+  .contact-card h3 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--leaf-deep);
+    margin: 0 0 0.5rem;
+  }
+  .contact-card p { margin: 0; font-size: 1.05rem; color: var(--navy); font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; }
+  .contact-card small { display: block; margin-top: 0.25rem; color: var(--text-3); font-family: var(--sans); font-size: 0.85rem; font-weight: 400; letter-spacing: 0; }
+  .contact-form {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--r-lg);
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+  .contact-form h2 { color: var(--paper); margin-bottom: 0.75rem; }
+  .contact-form > p { color: rgba(244,239,228,0.7); margin-bottom: 1.5rem; }
+  .contact-form .field textarea { min-height: 110px; resize: vertical; font-family: var(--sans); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cases.html">Cases</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="page-head__grid">
+      <div>
+        <span class="eyebrow">Contato</span>
+        <h1 class="display-lg page-head__title">Vamos conversar.</h1>
+      </div>
+      <p class="lede page-head__lede">
+        Responde sempre uma nutricionista — não um robô. O canal mais rápido é o WhatsApp. Para algo mais formal, o formulário ao lado também chega direto na bandeja da equipe técnica.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-card">
+          <h3>WhatsApp</h3>
+          <p>(11) 9 0000-0000</p>
+          <small>Resposta em até 2h em dias úteis.</small>
+        </div>
+        <div class="contact-card">
+          <h3>E-mail</h3>
+          <p>ola@foodguard.com.br</p>
+          <small>Para propostas e parcerias institucionais.</small>
+        </div>
+        <div class="contact-card">
+          <h3>Endereço</h3>
+          <p>Av. Paulista, 1000 · 12º andar</p>
+          <small>Bela Vista · São Paulo · SP · 01310-100</small>
+        </div>
+        <div class="contact-card">
+          <h3>Horário</h3>
+          <p>Seg. à sex. · 8h às 19h</p>
+          <small>Emergências regulatórias 7 dias para clientes Premium.</small>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada! Em até 24h uma RT entra em contato.');">
+        <span class="eyebrow" style="color:#6FB23E;">Fale com a equipe</span>
+        <h2 class="display-md mt-1">Conte um pouco e a RT te procura.</h2>
+        <p>Quanto mais detalhe, mais rápido conseguimos preparar uma resposta útil. Nada do que você escrever sai daqui.</p>
+
+        <div class="diag__form">
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" placeholder="Como você gostaria de ser chamado" required />
+          </div>
+          <div class="field">
+            <label for="empresa">Estabelecimento</label>
+            <input id="empresa" type="text" placeholder="Nome fantasia, marca, projeto…" required />
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;">
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" type="email" placeholder="seu@email.com" required />
+            </div>
+            <div class="field">
+              <label for="tel">WhatsApp</label>
+              <input id="tel" type="tel" placeholder="(11) 9 0000-0000" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="assunto">Assunto</label>
+            <select id="assunto" required>
+              <option value="">Selecione…</option>
+              <option>Quero contratar um plano</option>
+              <option>Preciso de RT urgente</option>
+              <option>Tenho dúvidas técnicas</option>
+              <option>Parceria / institucional</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Mensagem</label>
+            <textarea id="msg" placeholder="Conte um pouco do seu cenário — tipo de operação, unidades, prazo, urgências…"></textarea>
+          </div>
+          <button class="btn btn--leaf" type="submit" style="align-self:flex-start;">
+            Enviar mensagem
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer footer--lg">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a class="brand" href="index.html" style="color:#F4EFE4;">
+          <span class="brand__mark" aria-hidden="true" style="background:rgba(244,239,228,0.08);border-color:rgba(244,239,228,0.2);">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path></svg>
+          </span>
+          <span>Food Guard<small style="color:rgba(244,239,228,0.5);">Assessoria</small></span>
+        </a>
+        <p>Excelência em segurança alimentar para padarias, restaurantes, buffets, dark kitchens e refeição coletiva.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="cases.html">Cases</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511900000000">WhatsApp · (11) 9 0000-0000</a></li>
+          <li><a href="mailto:ola@foodguard.com.br">ola@foodguard.com.br</a></li>
+          <li>Av. Paulista, 1000 · SP</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="prd.html">PRD · Visualizações</a></li>
+          <li><a href="index.html#diagnostico">Diagnóstico gratuito</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Food Guard Assessoria.</span>
+      <span>CNPJ 00.000.000/0001-00 · RT designada com CRN ativo</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5511900000000" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.4A12 12 0 1 0 20.5 3.5zm-8.5 18a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9.5 9.5 0 1 1 7.5 3.9zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.8.9-1 1.1s-.4.2-.7 0c-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s.1-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.1 3.1.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"></path></svg>
+</a>
+
+</body>
+</html>

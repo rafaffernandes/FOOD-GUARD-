@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Cases</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .case-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; padding: clamp(2rem, 4vw, 3.5rem) 0; border-bottom: 1px solid var(--line); }
+  .case-feature:last-of-type { border-bottom: 0; }
+  .case-feature__img { aspect-ratio: 4/3; border-radius: var(--r-lg); background: repeating-linear-gradient(45deg, #E0DAC9 0px, #E0DAC9 14px, #D4CDB8 14px, #D4CDB8 28px); position: relative; }
+  .case-feature__img::after { content: "FOTO · UNIDADE"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: var(--text-3); font-size: 0.75rem; letter-spacing: 0.3em; font-weight: 600; }
+  .case-feature--rev .case-feature__img { order: 2; }
+  .case-feature__quote {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-2);
+    margin: 1rem 0 0;
+    padding: 1rem 0 0;
+    border-top: 1px solid var(--line);
+    line-height: 1.5;
+  }
+  .case-feature__quote cite { display: block; font-style: normal; font-size: 0.85rem; color: var(--text-3); margin-top: 0.5rem; letter-spacing: 0.02em; }
+  .results { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .result { padding: 0.75rem 1.25rem; background: var(--cream); border-radius: var(--r-md); border: 1px solid var(--line); }
+  .result b { display: block; font-family: var(--serif); font-size: 1.6rem; color: var(--leaf-deep); font-weight: 500; line-height: 1; letter-spacing: -0.02em; }
+  .result small { font-size: 0.75rem; color: var(--text-3); letter-spacing: 0.1em; text-transform: uppercase; }
+  @media (max-width: 800px) {
+    .case-feature { grid-template-columns: 1fr; }
+    .case-feature--rev .case-feature__img { order: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="cases.html">Cases</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="page-head__grid">
+      <div>
+        <span class="eyebrow">Cases</span>
+        <h1 class="display-lg page-head__title">Marcas que dormem mais tranquilas.</h1>
+      </div>
+      <p class="lede page-head__lede">
+        Três histórias que a gente conta com permissão dos clientes. Mais 180 outras seguem rodando, sem aparecer, do jeito que toda boa RT deveria operar.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Case 1 -->
+    <article class="case-feature">
+      <div class="case-feature__img"></div>
+      <div>
+        <span class="eyebrow">Padaria Solar · 3 unidades</span>
+        <h2 class="display-md mt-1">De 2 autos de infração ao selo de excelência.</h2>
+        <p style="color:var(--text-2); margin-top:1rem;">Quando a Solar chegou, era uma rede de padarias de bairro com duas autuações em seis meses, equipe sobrecarregada e nenhum manual atualizado. O dono estava considerando vender. Em 18 meses de parceria a operação virou referência regional — vigilância passa, elogia e vai embora.</p>
+        <div class="results">
+          <div class="result"><b>0</b><small>autos em 18 meses</small></div>
+          <div class="result"><b>3</b><small>unidades cobertas</small></div>
+          <div class="result"><b>92%</b><small>equipe treinada</small></div>
+        </div>
+        <blockquote class="case-feature__quote">
+          “A Camila virou parte do nosso time. Hoje meus encarregados ligam pra ela antes de mim quando aparece dúvida — é assim que sei que funcionou.”
+          <cite>— José Carlos, dono · Padaria Solar</cite>
+        </blockquote>
+      </div>
+    </article>
+
+    <!-- Case 2 -->
+    <article class="case-feature case-feature--rev">
+      <div class="case-feature__img"></div>
+      <div>
+        <span class="eyebrow">Buffet Aliança · eventos</span>
+        <h2 class="display-md mt-1">Manuais que sobrevivem à rotatividade.</h2>
+        <p style="color:var(--text-2); margin-top:1rem;">Em buffet de eventos, a equipe muda toda semana — e o manual no fichário some toda quinzena. A Food Guard reescreveu os procedimentos em formato curto, ilustrado, plastificado e pendurado nas estações. Treinamento de 30 minutos virou onboarding obrigatório. Hoje a vigilância elogia o nível de organização visível em cada cozinha de evento.</p>
+        <div class="results">
+          <div class="result"><b>92%</b><small>equipe treinada</small></div>
+          <div class="result"><b>2</b><small>cidades atendidas</small></div>
+          <div class="result"><b>0</b><small>recusas de alvará</small></div>
+        </div>
+        <blockquote class="case-feature__quote">
+          “Antes da Food Guard, treinar equipe era pesadelo. Agora é parte do contrato de trabalho — e os clientes percebem.”
+          <cite>— Marina Bittencourt, sócia · Buffet Aliança</cite>
+        </blockquote>
+      </div>
+    </article>
+
+    <!-- Case 3 -->
+    <article class="case-feature">
+      <div class="case-feature__img"></div>
+      <div>
+        <span class="eyebrow">Vila do Sabor · dark kitchen</span>
+        <h2 class="display-md mt-1">Conformidade pronta antes da abertura.</h2>
+        <p style="color:var(--text-2); margin-top:1rem;">A Vila do Sabor é uma dark kitchen de 5 marcas digitais operando da mesma cozinha. O risco regulatório é multiplicado — cada marca é um CNPJ, cada CNPJ pede sua RT. A Food Guard estruturou o documento-mãe, os manuais por marca, e o cronograma de visitas compartilhado. Resultado: alvará em 11 dias depois do contrato assinado, sem pendência técnica.</p>
+        <div class="results">
+          <div class="result"><b>11</b><small>dias até alvará</small></div>
+          <div class="result"><b>5</b><small>marcas operando</small></div>
+          <div class="result"><b>1</b><small>RT principal</small></div>
+        </div>
+        <blockquote class="case-feature__quote">
+          “Eu esperava 3 meses de burocracia. A gente abriu em 2 semanas e a vigilância passou no primeiro mês como se estivéssemos abertos há anos.”
+          <cite>— Rodrigo Tanaka, fundador · Vila do Sabor</cite>
+        </blockquote>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="section section--cream">
+  <div class="container">
+    <div class="cta-band">
+      <h2 class="cta-band__title">Seu case pode ser <em>o próximo.</em></h2>
+      <div class="cta-band__actions">
+        <a class="btn btn--leaf" href="index.html#diagnostico">
+          Começar pelo diagnóstico
+          <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer footer--lg">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a class="brand" href="index.html" style="color:#F4EFE4;">
+          <span class="brand__mark" aria-hidden="true" style="background:rgba(244,239,228,0.08);border-color:rgba(244,239,228,0.2);">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path></svg>
+          </span>
+          <span>Food Guard<small style="color:rgba(244,239,228,0.5);">Assessoria</small></span>
+        </a>
+        <p>Excelência em segurança alimentar para padarias, restaurantes, buffets, dark kitchens e refeição coletiva.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="cases.html">Cases</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511900000000">WhatsApp · (11) 9 0000-0000</a></li>
+          <li><a href="mailto:ola@foodguard.com.br">ola@foodguard.com.br</a></li>
+          <li>Av. Paulista, 1000 · SP</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="prd.html">PRD · Visualizações</a></li>
+          <li><a href="index.html#diagnostico">Diagnóstico gratuito</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Food Guard Assessoria.</span>
+      <span>CNPJ 00.000.000/0001-00 · RT designada com CRN ativo</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5511900000000" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.4A12 12 0 1 0 20.5 3.5zm-8.5 18a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9.5 9.5 0 1 1 7.5 3.9zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.8.9-1 1.1s-.4.2-.7 0c-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s.1-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.1 3.1.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"></path></svg>
+</a>
+
+</body>
+</html>

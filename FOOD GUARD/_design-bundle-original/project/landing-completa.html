@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diagnóstico regulatório gratuito · Food Guard</title>
+<meta name="description" content="Está em conformidade com a vigilância sanitária? Descubra em 90 segundos. Diagnóstico gratuito com RT nutricionista. Sem compromisso." />
+<meta property="og:title" content="Diagnóstico regulatório gratuito · Food Guard" />
+<meta property="og:description" content="Em 90 segundos, descubra o gap regulatório da sua operação. Plano de ação + preço incluso. Sem custo." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="landing-utils.css" />
+<style>
+  /* Tweak-driven palette + variant switches. */
+  body[data-variant="quiet"] .hero__panel { background: var(--cream); color: var(--navy); }
+  body[data-variant="quiet"] .hero__title { color: var(--navy); }
+  body[data-variant="quiet"] .hero__title em { color: var(--leaf-deep); }
+  body[data-variant="quiet"] .hero__title .hl { background: linear-gradient(transparent 64%, rgba(217,132,43,0.3) 64%, rgba(217,132,43,0.3) 92%, transparent 92%); }
+  body[data-variant="quiet"] .hero__lede { color: var(--text-2); }
+  body[data-variant="quiet"] .hero__bullets { color: var(--text); }
+  body[data-variant="quiet"] .hero__bullets li::after { border-color: var(--paper); }
+  body[data-variant="quiet"] .hero__meta { border-top-color: var(--line); color: var(--text-3); }
+  body[data-variant="quiet"] .hero__meta b { color: var(--navy); }
+  body[data-variant="quiet"] .hero__seal { background: var(--ink); color: var(--leaf); }
+  body[data-variant="quiet"] .hero__seal strong { color: var(--leaf); }
+  body[data-variant="quiet"] .risk-strip { display: none; }
+
+  body[data-density="short"] .reviews-section,
+  body[data-density="short"] .for-whom-section { display: none; }
+</style>
+</head>
+<body data-accent="warm" data-variant="bold" data-density="full">
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="cases.html">Cases</a>
+      <a href="diagnostico-fluxo.html" class="btn btn--leaf" style="padding:0.55rem 1.1rem; font-size:0.88rem;" onclick="trackCTA('topbar')">Diagnóstico grátis
+        <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero__grid hero__grid--landing">
+      <div class="hero__panel" style="border-radius:var(--r-lg);">
+        <div class="hero__seal" aria-label="Diagnóstico grátis">
+          Diag.
+          <strong>GRÁTIS</strong>
+        </div>
+        <div class="hero__head">
+          <span class="eyebrow" style="color:var(--leaf);">Diagnóstico em 90 segundos · sob NDA</span>
+          <h1 class="hero__title">
+            Sua operação <span class="hl">está em conformidade</span><br>
+            com a vigilância sanitária <em>hoje?</em>
+          </h1>
+        </div>
+        <p class="hero__lede">
+          Em 90 segundos descobrimos o gap regulatório da sua escola, restaurante, padaria ou hotel — e entregamos o plano de ação por escrito. Sem cobrar nada, sem ligação automática.
+        </p>
+        <ul class="hero__bullets">
+          <li>Score de risco calculado em tempo real</li>
+          <li>Lista do que falta para passar em fiscalização</li>
+          <li>Preço fixo dos 3 planos · sem ginga comercial</li>
+        </ul>
+        <div class="hero__cta">
+          <a class="btn btn--leaf" href="diagnostico-fluxo.html" onclick="trackCTA('hero_primary')">
+            Começar diagnóstico grátis
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+          <a class="btn btn--ghost" href="https://wa.me/5511900000000?text=Quero+saber+mais+sobre+o+Food+Guard" target="_blank" rel="noopener" onclick="trackCTA('hero_whatsapp')">
+            Falar no WhatsApp
+          </a>
+        </div>
+        <div class="hero__meta">
+          <div><b>+180</b><br>operações sob RT</div>
+          <div><b>15 anos</b><br>de operação</div>
+          <div><b>100%</b><br>aprovação vigilância*</div>
+        </div>
+      </div>
+
+      <!-- Diagnostic preview card -->
+      <aside class="diag-mock" aria-hidden="true">
+        <div class="diag-mock__head">
+          <span>Diagnóstico Food Guard</span>
+          <span class="diag-mock__pulse"><span class="dot"></span> Tempo real</span>
+        </div>
+        <div class="diag-mock__center">
+          <div class="diag-mock__score-label">Score de conformidade</div>
+          <div class="diag-mock__score">42<span class="diag-mock__score-of">/100</span></div>
+          <div class="diag-mock__risk">Risco médio · gaps relevantes</div>
+        </div>
+        <div class="diag-mock__bars" aria-hidden="true">
+          <div class="diag-mock__bar"><span>RT designado</span><i style="--w:90%; --c:var(--leaf)"></i></div>
+          <div class="diag-mock__bar"><span>Manual BPF</span><i style="--w:55%; --c:#FFB347"></i></div>
+          <div class="diag-mock__bar"><span>APPCC</span><i style="--w:20%; --c:#E55A4A"></i></div>
+          <div class="diag-mock__bar"><span>Treinamentos</span><i style="--w:35%; --c:#E55A4A"></i></div>
+        </div>
+        <div class="diag-mock__rec">
+          <b>Plano recomendado</b>
+          <span>Conformidade · 2 visitas mensais</span>
+          <div class="price">R$ 2.700<small>/mês</small></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust__inner">
+      <span class="trust__label">+180 marcas confiam</span>
+      <div class="trust__logos">
+        <span class="trust__logo">Padaria Solar</span>
+        <span class="trust__logo">Vila do Sabor</span>
+        <span class="trust__logo">Casa Pão</span>
+        <span class="trust__logo">Mercearia Norte</span>
+        <span class="trust__logo">Buffet Aliança</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RISK STRIP ============ -->
+<section class="risk-strip">
+  <div class="container">
+    <div class="risk-strip__head">
+      <span class="eyebrow" style="color:var(--leaf);">Por que importa</span>
+      <h2 class="display-md mt-1">A multa não avisa antes de chegar.</h2>
+    </div>
+    <dl class="risk-strip__grid">
+      <div class="risk-stat">
+        <dt>Multa típica · 1ª autuação</dt>
+        <dd>R$ 12k<span>+</span></dd>
+        <p>Pode chegar a R$ 1,5M na indústria</p>
+      </div>
+      <div class="risk-stat">
+        <dt>Adequação tardia</dt>
+        <dd>6<span>meses</span></dd>
+        <p>Operando sob risco neste período</p>
+      </div>
+      <div class="risk-stat">
+        <dt>Autuações/ano · SP</dt>
+        <dd>30%<span>+</span></dd>
+        <p>Food service + indústria (ANVISA)</p>
+      </div>
+      <div class="risk-stat risk-stat--accent">
+        <dt>Food Guard</dt>
+        <dd>90<span>s</span></dd>
+        <p>Você sai do diagnóstico com o plano</p>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ FOR WHOM (steps pattern) ============ -->
+<section class="section for-whom-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Para quem</span>
+      <h2 class="display-md mt-1">Se você comanda uma operação que serve alimento, isso é pra você.</h2>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <span class="step__num">Escolas · creches</span>
+        <h3 class="step__title">Refeição coletiva</h3>
+        <p class="step__body">Refeitório próprio ou terceirizado · RT obrigatório por lei · auditoria frequente do MP.</p>
+      </article>
+      <article class="step">
+        <span class="step__num">Food service</span>
+        <h3 class="step__title">Restaurantes</h3>
+        <p class="step__body">À la carte, delivery, dark kitchen · BPF · APPCC · alvará e licença sanitária.</p>
+      </article>
+      <article class="step">
+        <span class="step__num">Produção própria</span>
+        <h3 class="step__title">Padarias · confeitarias</h3>
+        <p class="step__body">Produção interna · selo de origem · rotulagem nutricional · controle de alergênicos.</p>
+      </article>
+      <article class="step">
+        <span class="step__num">Volume + 24/7</span>
+        <h3 class="step__title">Hotéis · buffets</h3>
+        <p class="step__body">Operação contínua · turnos · clientes corporativos exigem certificações.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANS ============ -->
+<section class="section section--cream" id="planos">
+  <div class="container">
+    <div class="section-head" style="display:flex; justify-content:space-between; align-items:end; gap:2rem; flex-wrap:wrap; max-width:none;">
+      <div style="max-width:32ch;">
+        <span class="eyebrow">Planos transparentes</span>
+        <h2 class="display-md mt-1">Preço fixo. Sem negociação cansativa.</h2>
+      </div>
+      <p class="lede" style="max-width:36ch; margin:0;">
+        Você sai do diagnóstico já com o plano sugerido e o preço. Quer comparar ou tirar dúvida? A call de 30min com o RT serve pra isso.
+      </p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3 class="plan__name">Essencial</h3>
+        <div class="plan__price"><b>R$ 1.500</b><small>/mês</small></div>
+        <p class="plan__body">1 visita mensal · pra começar com tudo em dia.</p>
+        <ul class="plan__list">
+          <li>RT nutricionista no CNPJ</li>
+          <li>Manual de Boas Práticas + POPs</li>
+          <li>Treinamento semestral da equipe</li>
+          <li>Suporte WhatsApp comercial</li>
+        </ul>
+        <a class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" href="diagnostico-fluxo.html" onclick="trackCTA('plan_essencial')">Começar diagnóstico</a>
+      </article>
+      <article class="plan plan--feature">
+        <span class="plan__badge">Mais escolhido</span>
+        <h3 class="plan__name">Conformidade</h3>
+        <div class="plan__price"><b>R$ 2.700</b><small>/mês</small></div>
+        <p class="plan__body">2 visitas mensais · cobre operação + documentação.</p>
+        <ul class="plan__list">
+          <li>Tudo do Essencial</li>
+          <li>Plano APPCC incluso</li>
+          <li>Treinamento trimestral</li>
+          <li>Auditoria preventiva 2×/ano</li>
+          <li>Acompanhamento em fiscalização</li>
+        </ul>
+        <a class="btn btn--leaf" href="diagnostico-fluxo.html" onclick="trackCTA('plan_conformidade')">Começar diagnóstico</a>
+      </article>
+      <article class="plan">
+        <h3 class="plan__name">Premium</h3>
+        <div class="plan__price"><b>R$ 3.800</b><small>/mês</small></div>
+        <p class="plan__body">Visitas semanais · pra redes e operações 24/7.</p>
+        <ul class="plan__list">
+          <li>Tudo do Conformidade</li>
+          <li>RT sênior nominal · Renan Muniz</li>
+          <li>Treinamento mensal</li>
+          <li>Plantão WhatsApp 24/7</li>
+          <li>Auditoria trimestral</li>
+        </ul>
+        <a class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" href="diagnostico-fluxo.html" onclick="trackCTA('plan_premium')">Começar diagnóstico</a>
+      </article>
+    </div>
+    <p style="text-align:center; color:var(--text-3); font-size:0.85rem; margin-top:1.75rem;">
+      Carência de 12 meses · multa de 40% sobre meses remanescentes em caso de rescisão antecipada.
+    </p>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section reviews-section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">O que dizem</span>
+      <h2 class="display-md mt-1">Operações reais. Resultados auditáveis.</h2>
+    </div>
+    <div class="reviews">
+      <article class="review">
+        <p>"Fui notificada pela vigilância na quinta. Sexta o RT do Food Guard estava na escola. Em 30 dias estávamos 100% adequados."</p>
+        <footer><b>T.M.</b><span>Diretora pedagógica · escola particular SP</span></footer>
+      </article>
+      <article class="review">
+        <p>"Já tive três consultorias antes. Nenhuma tão prática. O contrato deixa claro o que vão entregar. Renovamos no segundo mês."</p>
+        <footer><b>M.R.</b><span>Dono · rede de padarias · 3 unidades</span></footer>
+      </article>
+      <article class="review">
+        <p>"Abrimos o restaurante com alvará no prazo. Só foi possível porque o Food Guard cuidou de APPCC e BPF do zero, paralelo às obras."</p>
+        <footer><b>J.C.</b><span>Sócio-gerente · restaurante autoral</span></footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIAGNOSTICO CARD ============ -->
+<section class="section section--cream" id="diagnostico">
+  <div class="container">
+    <div class="diag">
+      <div>
+        <span class="eyebrow" style="color:var(--leaf);">Começar agora</span>
+        <h2 class="display-md mt-1">5 perguntas. 90 segundos. <em>Plano em mãos.</em></h2>
+        <p class="mt-2">Múltipla escolha · sem ligação automática · sem custo. O diagnóstico chega em PDF no seu e-mail e fica disponível em tela. Você decide se quer call com o RT depois.</p>
+        <ul class="hero__bullets" style="margin-top:1.5rem;">
+          <li>Sob NDA padrão</li>
+          <li>Diagnóstico em PDF por e-mail</li>
+          <li>Opção de agendar call com RT</li>
+          <li>LGPD · você pode pedir exclusão</li>
+        </ul>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card__pill">GRATUITO</div>
+        <h3>Começar meu diagnóstico</h3>
+        <p class="muted">Leva menos de 90 segundos.</p>
+        <ol class="diag-card__steps">
+          <li>
+            <em>1</em>
+            <div><strong>Responda 5 perguntas</strong><span>Estabelecimento, RT, documentos, fiscalização, treinamento</span></div>
+          </li>
+          <li>
+            <em>2</em>
+            <div><strong>Deixe seu contato</strong><span>Nome, telefone, e-mail, cargo</span></div>
+          </li>
+          <li>
+            <em>3</em>
+            <div><strong>Receba o diagnóstico</strong><span>Score, gap detalhado e plano · em tela e por e-mail</span></div>
+          </li>
+        </ol>
+        <a class="btn btn--leaf" href="diagnostico-fluxo.html" style="width:100%; justify-content:center; padding:1rem;" onclick="trackCTA('form_card_primary')">
+          Começar agora · gratuito
+          <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <p class="diag-card__micro">Ao continuar você concorda com a Política de Privacidade · LGPD</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section">
+  <div class="container" style="max-width:780px;">
+    <div class="section-head">
+      <span class="eyebrow">Antes de começar</span>
+      <h2 class="display-md mt-1">As dúvidas que aparecem quase toda semana.</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>É realmente gratuito?</summary>
+        <p>Sim. O diagnóstico, o PDF e a call inicial com o RT são gratuitos. Você só paga se contratar um dos planos. Não cobramos taxa de cadastro nem taxa de análise.</p>
+      </details>
+      <details>
+        <summary>Quem é o RT nutricionista do Food Guard?</summary>
+        <p>Renan Muniz · sócio co-founder, nutricionista sênior com Responsabilidade Técnica registrada no CRN-3. Em todos os planos, há um RT designado e nominalmente responsável pelo seu contrato.</p>
+      </details>
+      <details>
+        <summary>Quanto tempo para implantar a conformidade?</summary>
+        <p>Operações sem base prévia: 60 a 90 dias para entrar em padrão de fiscalização. Operações com base prévia: 30 a 45 dias. O cronograma sai junto com o diagnóstico.</p>
+      </details>
+      <details>
+        <summary>Vocês atendem fora de São Paulo?</summary>
+        <p>Sim — remotamente em todo o Brasil, e presencialmente em São Paulo capital e Grande SP. Para outras cidades, deslocamos a equipe conforme o plano contratado.</p>
+      </details>
+      <details>
+        <summary>Como funciona a carência?</summary>
+        <p>Todos os planos têm carência de 12 meses. Em caso de rescisão antecipada pelo contratante, multa de 40% sobre os meses remanescentes. Por outro lado, se o Food Guard atrasar entrega documentada por mais de 30 dias úteis, você pode rescindir sem multa.</p>
+      </details>
+      <details>
+        <summary>Meus dados estão seguros?</summary>
+        <p>Sim. Operamos sob LGPD, com DPO designado (dpo@foodguard.com.br), criptografia em repouso e em trânsito, banco com Row Level Security e auditoria contínua.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2 class="cta-band__title">Cada dia sem RT é<br>um dia de <em>risco real.</em></h2>
+      <div class="cta-band__actions" style="display:flex; flex-direction:column; align-items:flex-end; gap:0.75rem;">
+        <a class="btn btn--leaf" href="diagnostico-fluxo.html" onclick="trackCTA('final_band')">
+          Diagnóstico gratuito agora
+          <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </a>
+        <a class="btn btn--ghost" href="https://wa.me/5511900000000" target="_blank" rel="noopener" onclick="trackCTA('final_whatsapp')">Falar no WhatsApp</a>
+        <p style="color:rgba(244,239,228,0.55); font-size:0.78rem; margin:0;">Resposta em até 4h úteis · sob NDA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer footer--lg">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__col footer__brand">
+        <a class="brand" href="index.html" style="color:#F4EFE4;">
+          <span class="brand__mark" aria-hidden="true" style="background:rgba(244,239,228,0.08);border-color:rgba(244,239,228,0.2);">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#F4EFE4" stroke-width="2" stroke-linecap="round"></path></svg>
+          </span>
+          <span>Food Guard<small style="color:rgba(244,239,228,0.5);">Assessoria</small></span>
+        </a>
+        <p>Excelência em segurança alimentar para padarias, restaurantes, buffets, dark kitchens e refeição coletiva.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="cases.html">Cases</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511900000000">WhatsApp · (11) 9 0000-0000</a></li>
+          <li><a href="mailto:ola@foodguard.com.br">ola@foodguard.com.br</a></li>
+          <li>Av. Paulista, 1000 · SP</li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="mailto:dpo@foodguard.com.br">DPO · LGPD</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Food Guard Assessoria · CNPJ XX.XXX.XXX/0001-XX</span>
+      <span>RT designada · CRN-3 ativo · sob NDA padrão</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp floating + sticky mobile CTA -->
+<a class="wa-float" href="https://wa.me/5511900000000" aria-label="Fale conosco no WhatsApp" onclick="trackCTA('wpp_float')">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.4A12 12 0 1 0 20.5 3.5zm-8.5 18a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9.5 9.5 0 1 1 7.5 3.9zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.8.9-1 1.1s-.4.2-.7 0c-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s.1-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.1 3.1.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"></path></svg>
+</a>
+
+<a class="sticky-cta" href="diagnostico-fluxo.html" onclick="trackCTA('sticky_mobile')">
+  <span><b>Diagnóstico grátis</b><small>90 segundos · sem custo</small></span>
+  <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+
+<!-- Tweaks mount + React (for live variant + palette toggle) -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="landing-tweaks.jsx"></script>
+
+<script>
+  function trackCTA(location) {
+    try {
+      window.gtag && gtag('event', 'cta_click', { 'cta_location': location });
+      window.fbq && fbq('track', 'Lead', { content_name: location });
+      window.dataLayer && window.dataLayer.push({ event: 'cta_click', cta_location: location });
+    } catch (e) {}
+  }
+  // Animate diag-mock bars + score on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.diag-mock__bar i').forEach((el, i) => {
+      setTimeout(() => el.classList.add('go'), 200 + i * 120);
+    });
+  });
+</script>
+
+</body>
+</html>

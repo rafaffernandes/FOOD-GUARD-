@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diagnóstico Food Guard · 90 segundos</title>
+<meta name="description" content="Fluxo guiado de diagnóstico regulatório · 5 perguntas + contato → score, gap e plano recomendado." />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="landing-utils.css" />
+<style>
+  body { background: var(--cream); min-height: 100vh; display:flex; flex-direction:column; }
+  main { flex:1; display:flex; align-items:center; padding: clamp(1rem, 4vw, 3rem) 0; }
+
+  /* shell */
+  .flow-shell {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    box-shadow: 0 40px 80px -40px rgba(6,22,41,0.3);
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(1.75rem, 4vw, 3rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .flow-shell::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--line);
+  }
+  .flow-shell::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    height: 5px;
+    width: var(--p, 0%);
+    background: linear-gradient(90deg, var(--leaf), var(--leaf-deep));
+    transition: width 0.45s cubic-bezier(.2,.7,.2,1);
+  }
+
+  /* head */
+  .flow-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  .flow-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--leaf-deep);
+  }
+  .flow-step b { color: var(--navy); font-family: var(--serif); font-size: 1.1rem; letter-spacing: -0.02em; font-weight: 500; }
+  .flow-back, .flow-skip {
+    background: transparent; border: 0;
+    color: var(--text-3); font-size: 0.85rem;
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.4rem 0.7rem; border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .flow-back:hover, .flow-skip:hover { color: var(--navy); background: var(--cream); }
+  .flow-back svg { width: 14px; height: 14px; }
+
+  /* question */
+  .flow-q { display: none; animation: slideIn 0.4s cubic-bezier(.2,.7,.2,1); }
+  .flow-q.on { display: block; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .flow-q__label {
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .flow-q__title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    margin: 0 0 0.5rem;
+    text-wrap: pretty;
+  }
+  .flow-q__sub {
+    color: var(--text-2);
+    font-size: 0.95rem;
+    margin: 0 0 1.5rem;
+  }
+  .flow-opts {
+    display: grid;
+    gap: 0.65rem;
+  }
+  .flow-opt {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+    padding: 1rem 1.1rem;
+    border: 1.5px solid var(--line);
+    border-radius: var(--r-md);
+    background: var(--paper);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+  }
+  .flow-opt:hover {
+    border-color: var(--leaf);
+    background: rgba(111,178,62,0.05);
+    transform: translateX(3px);
+  }
+  .flow-opt.sel {
+    border-color: var(--leaf);
+    background: rgba(111,178,62,0.08);
+    box-shadow: 0 0 0 4px rgba(111,178,62,0.12);
+  }
+  .flow-opt__key {
+    flex: 0 0 32px;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--cream);
+    color: var(--navy);
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1rem;
+    display: grid;
+    place-items: center;
+    transition: all 0.18s;
+  }
+  .flow-opt:hover .flow-opt__key,
+  .flow-opt.sel .flow-opt__key { background: var(--leaf); color: var(--ink); }
+  .flow-opt__body { flex: 1; }
+  .flow-opt__body strong { display: block; color: var(--navy); }
+  .flow-opt__body span { display: block; color: var(--text-3); font-size: 0.83rem; margin-top: 0.15rem; }
+  .flow-opt__weight {
+    flex: 0 0 auto;
+    font-size: 0.72rem;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.18s;
+  }
+  .flow-opt:hover .flow-opt__weight,
+  .flow-opt.sel .flow-opt__weight { opacity: 1; }
+
+  /* contact form */
+  .flow-form {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .flow-form .field { gap: 0.4rem; }
+  .flow-form label {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-3);
+    font-family: var(--sans);
+  }
+  .flow-form input,
+  .flow-form select {
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    color: var(--text);
+    padding: 0.85rem 1rem;
+    border-radius: var(--r-md);
+    font: inherit;
+    font-size: 0.98rem;
+    transition: all 0.15s;
+  }
+  .flow-form input:focus,
+  .flow-form select:focus {
+    outline: none;
+    border-color: var(--leaf);
+    background: var(--paper);
+    box-shadow: 0 0 0 4px rgba(111,178,62,0.15);
+  }
+  .flow-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) { .flow-form__row { grid-template-columns: 1fr; } }
+  .flow-form__nda {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    padding: 0.85rem 1rem;
+    background: var(--cream);
+    border-radius: var(--r-md);
+    border-left: 3px solid var(--leaf);
+  }
+
+  /* footer of card */
+  .flow-foot {
+    margin-top: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .flow-foot__hint {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    display:flex; align-items:center; gap:0.4rem;
+  }
+  .flow-foot__hint kbd {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.15rem 0.45rem;
+    font-size: 0.75rem;
+    font-family: var(--sans);
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* result screen */
+  .flow-result { display: none; animation: slideIn 0.5s cubic-bezier(.2,.7,.2,1); }
+  .flow-result.on { display: block; }
+  .result-hero {
+    background: linear-gradient(160deg, #0A1F36 0%, #061629 100%);
+    color: var(--cream);
+    padding: clamp(2rem, 4vw, 2.5rem);
+    border-radius: var(--r-lg);
+    margin: -0.5rem 0 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(111,178,62,0.18), transparent 60%);
+    pointer-events: none;
+  }
+  .result-hero > * { position: relative; z-index: 1; }
+  .result-hero__label {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.55);
+    font-weight: 600;
+  }
+  .result-score {
+    font-family: var(--serif);
+    font-size: clamp(5rem, 14vw, 8rem);
+    font-weight: 500;
+    color: var(--paper);
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin: 0.5rem 0;
+  }
+  .result-score__of {
+    font-size: 0.32em;
+    opacity: 0.5;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  .result-risk {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .result-risk--low  { background: rgba(111,178,62,0.18); color: var(--leaf); }
+  .result-risk--med  { background: rgba(255,179,71,0.18); color: #FFB347; }
+  .result-risk--high { background: rgba(229,90,74,0.18); color: #FF7A6B; }
+
+  .result-section { margin-top: 2rem; }
+  .result-section h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin: 0 0 1rem;
+    letter-spacing: -0.012em;
+  }
+  .result-gaps { display: grid; gap: 0.65rem; }
+  .gap-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    background: var(--cream);
+    border-radius: var(--r-md);
+    font-size: 0.9rem;
+  }
+  .gap-row__icon {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--paper);
+  }
+  .gap-row__icon.ok { background: var(--leaf); }
+  .gap-row__icon.warn { background: var(--warn); }
+  .gap-row__icon.bad { background: #C44A3D; }
+  .gap-row__text { color: var(--text); font-weight: 500; }
+  .gap-row__tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--text-3);
+  }
+
+  .result-plan {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  @media (max-width: 540px) { .result-plan { grid-template-columns: 1fr; text-align: left; } }
+  .result-plan__name { font-family: var(--serif); font-size: 1.3rem; font-weight: 500; color: var(--navy); margin: 0 0 0.25rem; letter-spacing: -0.012em; }
+  .result-plan__body { color: var(--text-2); font-size: 0.92rem; margin: 0; line-height: 1.5; }
+  .result-plan__price b { font-family: var(--serif); font-size: 2rem; color: var(--navy); font-weight: 500; letter-spacing: -0.02em; }
+  .result-plan__price small { font-size: 0.9rem; color: var(--text-3); font-weight: 500; margin-left: 0.2rem; }
+
+  .result-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .result-actions .btn { flex: 1; min-width: 220px; justify-content:center; }
+
+  /* brand strip on top of flow page */
+  .flow-topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 0.9rem 0;
+  }
+  .flow-topbar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .flow-topbar a { font-size: 0.85rem; color: var(--text-3); }
+  .flow-topbar a:hover { color: var(--navy); }
+
+  /* loading state for "calculating" */
+  .calc-screen { display:none; text-align:center; padding: 3rem 0; }
+  .calc-screen.on { display: block; animation: fadeIn 0.3s; }
+  @keyframes fadeIn { from {opacity:0;} to{opacity:1;} }
+  .calc-spinner {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 4px solid var(--cream);
+    border-top-color: var(--leaf);
+    margin: 0 auto 1.5rem;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .calc-msg {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--navy);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  /* Embedded in modal: hide chrome */
+  body.embed .flow-topbar { display: none; }
+  body.embed main { padding: 0.5rem 0; }
+  body.embed .flow-shell { box-shadow: none; border: 0; border-radius: 0; max-width: none; }
+</style>
+</head>
+<body data-accent="warm">
+
+<header class="flow-topbar">
+  <div class="flow-topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <a href="landing.html">← Voltar para o site</a>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="flow-shell" id="shell">
+
+      <!-- ============ HEAD ============ -->
+      <div class="flow-head">
+        <div class="flow-step"><b id="step-current">1</b> / <span id="step-total">6</span> · <span id="step-label">Estabelecimento</span></div>
+        <button class="flow-back" id="back-btn" type="button" style="visibility:hidden;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Voltar
+        </button>
+      </div>
+
+      <!-- ============ Q1 ============ -->
+      <div class="flow-q on" data-q="0">
+        <div class="flow-q__label">Pergunta 1 · estabelecimento</div>
+        <h2 class="flow-q__title">Qual o tipo da sua operação?</h2>
+        <p class="flow-q__sub">A categoria define quais normas se aplicam (RDC 216, FSSC 22000, etc).</p>
+        <div class="flow-opts">
+          <button class="flow-opt" data-val="escola" data-weight="20">
+            <span class="flow-opt__key">A</span>
+            <span class="flow-opt__body"><strong>Escola, creche ou refeição coletiva</strong><span>RT obrigatório por lei</span></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="restaurante" data-weight="15">
+            <span class="flow-opt__key">B</span>
+            <span class="flow-opt__body"><strong>Restaurante, bar, dark kitchen</strong><span>BPF · APPCC se delivery</span></span>
+          </button>
+          <button class="flow-opt" data-val="padaria" data-weight="12">
+            <span class="flow-opt__key">C</span>
+            <span class="flow-opt__body"><strong>Padaria, confeitaria, produção</strong><span>Selo de origem · rotulagem</span></span>
+          </button>
+          <button class="flow-opt" data-val="hotel" data-weight="18">
+            <span class="flow-opt__key">D</span>
+            <span class="flow-opt__body"><strong>Hotel, buffet, eventos</strong><span>Volume alto · 24/7</span></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="industria" data-weight="22">
+            <span class="flow-opt__key">E</span>
+            <span class="flow-opt__body"><strong>Indústria de alimentos · outro</strong><span>Multa até R$ 1,5M</span></span>
+            <span class="flow-opt__weight">↑↑ risco</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ Q2 ============ -->
+      <div class="flow-q" data-q="1">
+        <div class="flow-q__label">Pergunta 2 · responsabilidade técnica</div>
+        <h2 class="flow-q__title">Você tem RT nutricionista no CNPJ hoje?</h2>
+        <p class="flow-q__sub">A figura do RT registrado no CRN-3 é exigida pela vigilância em quase todas as operações de alimento.</p>
+        <div class="flow-opts">
+          <button class="flow-opt" data-val="sim-ativo" data-weight="0">
+            <span class="flow-opt__key">A</span>
+            <span class="flow-opt__body"><strong>Sim, RT ativo e visitas regulares</strong><span>Tudo registrado</span></span>
+            <span class="flow-opt__weight">✓ ok</span>
+          </button>
+          <button class="flow-opt" data-val="sim-inativo" data-weight="10">
+            <span class="flow-opt__key">B</span>
+            <span class="flow-opt__body"><strong>Sim, no papel — mas não visita</strong><span>"RT-fantasma"</span></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="nao" data-weight="20">
+            <span class="flow-opt__key">C</span>
+            <span class="flow-opt__body"><strong>Não tenho RT designado</strong><span>Vigilância pode autuar</span></span>
+            <span class="flow-opt__weight">↑↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="nao-sei" data-weight="15">
+            <span class="flow-opt__key">D</span>
+            <span class="flow-opt__body"><strong>Não sei dizer</strong><span>Recomendamos verificar</span></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ Q3 ============ -->
+      <div class="flow-q" data-q="2">
+        <div class="flow-q__label">Pergunta 3 · documentos</div>
+        <h2 class="flow-q__title">Manual de Boas Práticas e POPs estão em dia?</h2>
+        <p class="flow-q__sub">A fiscalização pede o Manual BPF impresso. Sem ele, autuação imediata.</p>
+        <div class="flow-opts">
+          <button class="flow-opt" data-val="atualizados" data-weight="0">
+            <span class="flow-opt__key">A</span>
+            <span class="flow-opt__body"><strong>Sim, atualizados nos últimos 12 meses</strong></span>
+            <span class="flow-opt__weight">✓ ok</span>
+          </button>
+          <button class="flow-opt" data-val="antigos" data-weight="8">
+            <span class="flow-opt__key">B</span>
+            <span class="flow-opt__body"><strong>Existem, mas estão desatualizados</strong></span>
+          </button>
+          <button class="flow-opt" data-val="parcial" data-weight="12">
+            <span class="flow-opt__key">C</span>
+            <span class="flow-opt__body"><strong>Tenho alguns, mas não todos</strong></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="nenhum" data-weight="18">
+            <span class="flow-opt__key">D</span>
+            <span class="flow-opt__body"><strong>Não tenho · nunca foram feitos</strong></span>
+            <span class="flow-opt__weight">↑↑ risco</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ Q4 ============ -->
+      <div class="flow-q" data-q="3">
+        <div class="flow-q__label">Pergunta 4 · fiscalização</div>
+        <h2 class="flow-q__title">Quando foi a última visita da vigilância?</h2>
+        <p class="flow-q__sub">A vigilância opera por amostragem. Quem nunca foi fiscalizado pode ser o próximo da fila.</p>
+        <div class="flow-opts">
+          <button class="flow-opt" data-val="recente-ok" data-weight="0">
+            <span class="flow-opt__key">A</span>
+            <span class="flow-opt__body"><strong>Últimos 12 meses · sem ressalvas</strong></span>
+            <span class="flow-opt__weight">✓ ok</span>
+          </button>
+          <button class="flow-opt" data-val="recente-auto" data-weight="15">
+            <span class="flow-opt__key">B</span>
+            <span class="flow-opt__body"><strong>Últimos 12 meses · com auto ou notificação</strong></span>
+            <span class="flow-opt__weight">↑↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="antiga" data-weight="6">
+            <span class="flow-opt__key">C</span>
+            <span class="flow-opt__body"><strong>Há mais de 2 anos</strong></span>
+          </button>
+          <button class="flow-opt" data-val="nunca" data-weight="10">
+            <span class="flow-opt__key">D</span>
+            <span class="flow-opt__body"><strong>Nunca recebi fiscalização</strong></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ Q5 ============ -->
+      <div class="flow-q" data-q="4">
+        <div class="flow-q__label">Pergunta 5 · equipe</div>
+        <h2 class="flow-q__title">Sua equipe recebeu treinamento de BPF nos últimos 12 meses?</h2>
+        <p class="flow-q__sub">Treinamento registrado em ata é exigência da maioria das vigilâncias municipais.</p>
+        <div class="flow-opts">
+          <button class="flow-opt" data-val="todos" data-weight="0">
+            <span class="flow-opt__key">A</span>
+            <span class="flow-opt__body"><strong>Sim, toda equipe · com ata</strong></span>
+            <span class="flow-opt__weight">✓ ok</span>
+          </button>
+          <button class="flow-opt" data-val="parcial" data-weight="6">
+            <span class="flow-opt__key">B</span>
+            <span class="flow-opt__body"><strong>Sim, parcial · sem registro formal</strong></span>
+          </button>
+          <button class="flow-opt" data-val="antigo" data-weight="10">
+            <span class="flow-opt__key">C</span>
+            <span class="flow-opt__body"><strong>Houve treinamento há mais de 12 meses</strong></span>
+            <span class="flow-opt__weight">↑ risco</span>
+          </button>
+          <button class="flow-opt" data-val="nunca" data-weight="15">
+            <span class="flow-opt__key">D</span>
+            <span class="flow-opt__body"><strong>Nunca foi feito</strong></span>
+            <span class="flow-opt__weight">↑↑ risco</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ CONTACT ============ -->
+      <div class="flow-q" data-q="5">
+        <div class="flow-q__label">Quase lá · contato</div>
+        <h2 class="flow-q__title">Pra onde mandamos o diagnóstico?</h2>
+        <p class="flow-q__sub">O PDF chega em até 2 minutos. Sob NDA padrão · LGPD · você pode pedir exclusão a qualquer momento.</p>
+
+        <form class="flow-form" id="contact-form" onsubmit="event.preventDefault(); calc();">
+          <div class="field">
+            <label for="nome">Seu nome</label>
+            <input id="nome" name="nome" type="text" placeholder="Como gostaria de ser chamado" required />
+          </div>
+          <div class="flow-form__row">
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" placeholder="voce@empresa.com.br" required />
+            </div>
+            <div class="field">
+              <label for="tel">WhatsApp</label>
+              <input id="tel" name="tel" type="tel" placeholder="(11) 9 0000-0000" required />
+            </div>
+          </div>
+          <div class="flow-form__row">
+            <div class="field">
+              <label for="empresa">Estabelecimento</label>
+              <input id="empresa" name="empresa" type="text" placeholder="Nome fantasia" required />
+            </div>
+            <div class="field">
+              <label for="cargo">Cargo</label>
+              <select id="cargo" name="cargo" required>
+                <option value="">Selecione…</option>
+                <option>Dono · sócio</option>
+                <option>CEO · diretor(a)</option>
+                <option>Gerente · operações</option>
+                <option>Nutricionista · responsável</option>
+                <option>Outro</option>
+              </select>
+            </div>
+          </div>
+          <p class="flow-form__nda">
+            Operamos sob NDA padrão. <b>Sem ligação automática.</b> Você decide se quer call com o RT depois.
+          </p>
+          <button class="btn btn--leaf" type="submit" style="justify-content:center; padding:1rem;">
+            Ver meu diagnóstico
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- ============ CALCULATING ============ -->
+      <div class="calc-screen" id="calc">
+        <div class="calc-spinner"></div>
+        <div class="calc-msg">Calculando seu score…</div>
+        <p class="calc-sub" id="calc-msg-sub">Analisando 5 dimensões da sua operação</p>
+      </div>
+
+      <!-- ============ RESULT ============ -->
+      <div class="flow-result" id="result">
+        <div class="flow-q__label">Seu diagnóstico está pronto</div>
+        <div class="result-hero">
+          <div class="result-hero__label">Score de conformidade Food Guard</div>
+          <div class="result-score" id="r-score">0<span class="result-score__of">/100</span></div>
+          <span class="result-risk" id="r-risk">—</span>
+        </div>
+
+        <div class="result-section">
+          <h3>O que falta na sua operação</h3>
+          <div class="result-gaps" id="r-gaps"></div>
+        </div>
+
+        <div class="result-section">
+          <h3>Plano recomendado</h3>
+          <div class="result-plan">
+            <div>
+              <div class="result-plan__name" id="r-plan-name">—</div>
+              <p class="result-plan__body" id="r-plan-body">—</p>
+            </div>
+            <div class="result-plan__price"><b id="r-plan-price">R$ —</b><small>/mês</small></div>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <a class="btn btn--leaf" href="https://wa.me/5511900000000?text=Quero+falar+sobre+meu+diagnóstico+Food+Guard" target="_blank" rel="noopener">
+            Falar com RT no WhatsApp
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </a>
+          <button class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" onclick="window.print()">
+            Salvar em PDF
+          </button>
+        </div>
+
+        <p style="text-align:center; color:var(--text-3); font-size:0.82rem; margin: 1.5rem 0 0;">
+          O PDF completo também foi enviado para <b id="r-email" style="color:var(--navy);">seu e-mail</b>.<br>
+          Não recebeu? Cheque o spam ou nos escreva em ola@foodguard.com.br
+        </p>
+      </div>
+
+      <!-- ============ FOOT ============ -->
+      <div class="flow-foot" id="foot">
+        <span class="flow-foot__hint">
+          Selecione uma opção <kbd>A</kbd>–<kbd>E</kbd> para continuar
+        </span>
+        <span class="flow-foot__hint">
+          <kbd>Esc</kbd> volta · <kbd>↵</kbd> avança
+        </span>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  const TOTAL_QS = 6; // 5 questions + contact = 6 steps
+  const STEP_LABELS = ['Estabelecimento','Responsável técnico','Documentos','Fiscalização','Treinamento','Contato'];
+  const PLANS = {
+    essencial:    { name: 'Essencial',    price: 'R$ 1.500', body: '1 visita mensal · RT no CNPJ, manual BPF, POPs, treinamento semestral.' },
+    conformidade: { name: 'Conformidade', price: 'R$ 2.700', body: '2 visitas mensais · APPCC, auditoria preventiva, acompanhamento em fiscalização.' },
+    premium:      { name: 'Premium',      price: 'R$ 3.800', body: 'Visitas semanais · RT sênior, plantão 24/7, auditoria trimestral.' }
+  };
+
+  const state = {
+    step: 0,
+    answers: {},
+    weights: {}
+  };
+
+  const $shell = document.getElementById('shell');
+  const $back = document.getElementById('back-btn');
+  const $stepCur = document.getElementById('step-current');
+  const $stepTotal = document.getElementById('step-total');
+  const $stepLabel = document.getElementById('step-label');
+  const $foot = document.getElementById('foot');
+  const $calc = document.getElementById('calc');
+  const $result = document.getElementById('result');
+  $stepTotal.textContent = TOTAL_QS;
+
+  function updateChrome() {
+    $stepCur.textContent = state.step + 1;
+    $stepLabel.textContent = STEP_LABELS[state.step] || '';
+    const pct = ((state.step) / TOTAL_QS) * 100;
+    $shell.style.setProperty('--p', pct + '%');
+    $back.style.visibility = state.step === 0 ? 'hidden' : 'visible';
+  }
+
+  function showQ(idx) {
+    document.querySelectorAll('.flow-q').forEach(q => q.classList.remove('on'));
+    const q = document.querySelector('.flow-q[data-q="' + idx + '"]');
+    if (q) q.classList.add('on');
+    state.step = idx;
+    updateChrome();
+  }
+
+  // Option clicks (Qs 0..4)
+  document.querySelectorAll('.flow-q[data-q]').forEach((q, idx) => {
+    if (idx > 4) return;
+    q.querySelectorAll('.flow-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        q.querySelectorAll('.flow-opt').forEach(o => o.classList.remove('sel'));
+        opt.classList.add('sel');
+        state.answers['q' + (idx + 1)] = opt.dataset.val;
+        state.weights['q' + (idx + 1)] = parseInt(opt.dataset.weight, 10);
+        // Auto-advance after small delay
+        setTimeout(() => {
+          if (state.step < TOTAL_QS - 1) showQ(state.step + 1);
+        }, 320);
+      });
+    });
+  });
+
+  // Back
+  $back.addEventListener('click', () => {
+    if (state.step > 0) showQ(state.step - 1);
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if ($result.classList.contains('on') || $calc.classList.contains('on')) return;
+    if (e.key === 'Escape' && state.step > 0) {
+      e.preventDefault();
+      showQ(state.step - 1);
+    }
+    if (state.step <= 4) {
+      const map = { a:0, b:1, c:2, d:3, e:4 };
+      const k = e.key.toLowerCase();
+      if (map[k] !== undefined) {
+        const opts = document.querySelectorAll('.flow-q[data-q="' + state.step + '"] .flow-opt');
+        if (opts[map[k]]) opts[map[k]].click();
+      }
+    }
+  });
+
+  // Calculate score
+  function calc() {
+    // collect contact
+    state.answers.nome    = document.getElementById('nome').value;
+    state.answers.email   = document.getElementById('email').value;
+    state.answers.tel     = document.getElementById('tel').value;
+    state.answers.empresa = document.getElementById('empresa').value;
+    state.answers.cargo   = document.getElementById('cargo').value;
+
+    // Hide form, show calc screen
+    document.querySelectorAll('.flow-q').forEach(q => q.classList.remove('on'));
+    $foot.style.display = 'none';
+    $calc.classList.add('on');
+    $shell.style.setProperty('--p', '100%');
+
+    // Progressive messages
+    const msgs = [
+      'Analisando 5 dimensões da sua operação',
+      'Cruzando com normas RDC 216 + ANVISA',
+      'Calibrando plano recomendado',
+      'Gerando PDF para envio'
+    ];
+    let i = 0;
+    const msgEl = document.getElementById('calc-msg-sub');
+    const tick = setInterval(() => {
+      i++;
+      if (msgs[i]) msgEl.textContent = msgs[i];
+    }, 450);
+
+    setTimeout(() => {
+      clearInterval(tick);
+      $calc.classList.remove('on');
+      renderResult();
+    }, 2200);
+  }
+
+  function renderResult() {
+    // Sum weights — total possible ~75-90
+    const totalWeight = Object.values(state.weights).reduce((a,b) => a + b, 0);
+    // Convert to score (100 = perfect, 0 = worst)
+    // Max realistic bad-case weight: 22+20+18+15+15 = 90
+    const score = Math.max(15, Math.min(100, Math.round(100 - (totalWeight * 1.0))));
+
+    let risk = 'low', riskLabel = 'Baixo risco · operação madura', plan = 'essencial';
+    if (score < 70 && score >= 45) { risk = 'med'; riskLabel = 'Risco médio · gaps relevantes'; plan = 'conformidade'; }
+    if (score < 45) { risk = 'high'; riskLabel = 'Risco alto · ação imediata'; plan = 'premium'; }
+
+    // Animate score number
+    const $score = document.getElementById('r-score');
+    let cur = 0;
+    const target = score;
+    const interval = setInterval(() => {
+      cur += Math.max(1, Math.round((target - cur) / 6));
+      if (cur >= target) { cur = target; clearInterval(interval); }
+      $score.innerHTML = cur + '<span class="result-score__of">/100</span>';
+    }, 35);
+
+    const $risk = document.getElementById('r-risk');
+    $risk.textContent = riskLabel;
+    $risk.className = 'result-risk result-risk--' + risk;
+
+    // Gaps based on answers
+    const gaps = [];
+    const w = state.weights;
+    if ((w.q2 || 0) >= 15) gaps.push({ k: 'bad', t: 'RT nutricionista não designado ou inativo', tag: 'crítico' });
+    else if ((w.q2 || 0) >= 8) gaps.push({ k: 'warn', t: 'RT existe mas requer revisão de visitas', tag: 'atenção' });
+    else gaps.push({ k: 'ok', t: 'RT nutricionista ativo', tag: 'ok' });
+
+    if ((w.q3 || 0) >= 12) gaps.push({ k: 'bad', t: 'Manual BPF + POPs inexistentes ou incompletos', tag: 'crítico' });
+    else if ((w.q3 || 0) >= 5) gaps.push({ k: 'warn', t: 'Manual e POPs desatualizados há +12 meses', tag: 'atenção' });
+    else gaps.push({ k: 'ok', t: 'Manual BPF + POPs em dia', tag: 'ok' });
+
+    if ((w.q4 || 0) >= 10) gaps.push({ k: 'bad', t: 'Histórico de fiscalização com pendências', tag: 'crítico' });
+    else if ((w.q4 || 0) >= 5) gaps.push({ k: 'warn', t: 'Operação fora do radar da vigilância', tag: 'atenção' });
+    else gaps.push({ k: 'ok', t: 'Histórico de fiscalização limpo', tag: 'ok' });
+
+    if ((w.q5 || 0) >= 10) gaps.push({ k: 'bad', t: 'Equipe sem treinamento formal de BPF', tag: 'crítico' });
+    else if ((w.q5 || 0) >= 5) gaps.push({ k: 'warn', t: 'Treinamento parcial ou sem registro', tag: 'atenção' });
+    else gaps.push({ k: 'ok', t: 'Equipe treinada · ata registrada', tag: 'ok' });
+
+    const $g = document.getElementById('r-gaps');
+    $g.innerHTML = gaps.map(g => `
+      <div class="gap-row">
+        <span class="gap-row__icon ${g.k}">${g.k === 'ok' ? '✓' : g.k === 'warn' ? '!' : '✕'}</span>
+        <span class="gap-row__text">${g.t}</span>
+        <span class="gap-row__tag">${g.tag}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('r-plan-name').textContent = PLANS[plan].name;
+    document.getElementById('r-plan-body').textContent = PLANS[plan].body;
+    document.getElementById('r-plan-price').textContent = PLANS[plan].price;
+    document.getElementById('r-email').textContent = state.answers.email || 'seu e-mail';
+
+    document.querySelector('.flow-head').style.display = 'none';
+    $result.classList.add('on');
+
+    // Persist
+    try { localStorage.setItem('foodguard_diag', JSON.stringify(state)); } catch(e) {}
+  }
+
+  // init
+  if (new URLSearchParams(location.search).get('embed') === '1') {
+    document.body.classList.add('embed');
+  }
+  // Pre-fill Q1 from URL param (used by the inline hero quiz in landing.html)
+  const preQ1 = new URLSearchParams(location.search).get('q1');
+  if (preQ1) {
+    const target = document.querySelector('.flow-q[data-q="0"] .flow-opt[data-val="' + preQ1 + '"]');
+    if (target) {
+      // small delay so transitions can run
+      setTimeout(() => target.click(), 50);
+    }
+  }
+  updateChrome();
+</script>
+
+</body>
+</html>

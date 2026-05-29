@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Comparativo · Landings Food Guard</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { margin: 0; background: #f0eee9; font-family: var(--sans); }
+
+  /* Browser-chrome wrapper for each iframe */
+  .lp-card { width: 100%; height: 100%; background: var(--paper); overflow: hidden; position: relative; border-radius: 6px; }
+  .lp-card__chrome {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 32px;
+    background: #ECE5D2;
+    border-bottom: 1px solid #C7BFAA;
+    display: flex; align-items: center; gap: 6px;
+    padding: 0 12px;
+    z-index: 2;
+    font-family: var(--sans);
+    font-size: 11px;
+    color: #6B7689;
+  }
+  .lp-card__chrome i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .lp-card__chrome i:nth-child(1) { background: #E55A4A; }
+  .lp-card__chrome i:nth-child(2) { background: #F0B72E; }
+  .lp-card__chrome i:nth-child(3) { background: #6FB23E; }
+  .lp-card__url {
+    background: var(--paper);
+    border: 1px solid #C7BFAA;
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: #38465C;
+    margin-left: 6px;
+    font-size: 10.5px;
+  }
+  .lp-card__body { position: absolute; top: 32px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+  .lp-card__body iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+  .lp-note {
+    position: absolute;
+    inset: 32px 0 0 0;
+    background: rgba(251,250,246,0.92);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1.5rem 1.75rem;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .lp-card:hover .lp-note { display: flex; }
+  .lp-note__box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    max-width: 340px;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    box-shadow: 0 12px 30px -10px rgba(6,22,41,0.4);
+  }
+  .lp-note__box b {
+    color: var(--leaf);
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+
+  /* Pin indicator */
+  .lp-pin {
+    position: absolute;
+    top: 8px; right: 12px;
+    z-index: 4;
+    background: var(--leaf);
+    color: var(--ink);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  function BrowserFrame({ src, url, note, pinned }) {
+    return (
+      <div className="lp-card">
+        {pinned ? <div className="lp-pin">{pinned}</div> : null}
+        <div className="lp-card__chrome">
+          <i></i><i></i><i></i>
+          <span className="lp-card__url">foodguard.com.br/{url}</span>
+        </div>
+        <div className="lp-card__body">
+          <iframe src={src} loading="lazy" title={url}></iframe>
+        </div>
+        {note ? (
+          <div className="lp-note">
+            <div className="lp-note__box">
+              <b>Sobre essa variação</b>
+              {note}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <DesignCanvas>
+        <DCSection
+          id="landings"
+          title="Landings · 3 variações + raw"
+          subtitle="Hover em qualquer cartão pra ver a nota da variação. Clique pra abrir em fullscreen."
+        >
+          <DCArtboard id="raw" label="Raw · seu HTML original" width={1280} height={1600}>
+            <BrowserFrame
+              src="landing-raw.html"
+              url="landing-raw.html"
+              note="Seu HTML colado, com tokens corrigidos pra renderizar na DS. Usa componentes que duplicam o que já existe — bom como referência, não como produção."
+            />
+          </DCArtboard>
+          <DCArtboard id="integrada" label="Integrada · recomendada" width={1280} height={1600}>
+            <BrowserFrame
+              src="landing.html"
+              url="landing.html"
+              pinned="Padrão"
+              note="Reusa hero/.trust/.plans/.diag/.faq da DS. Hero com mock animado do score (barras + pulso 'tempo real'). Sticky CTA mobile. Mesma nav/footer do site."
+            />
+          </DCArtboard>
+          <DCArtboard id="quiet" label="Quiet · editorial" width={1280} height={1600}>
+            <BrowserFrame
+              src="landing-alt-quiet.html"
+              url="landing-alt-quiet.html"
+              note="Hero cream em vez de ink. Sem risk-strip vermelho/laranja. Uma só review em destaque. Tom: confiança sem urgência fabricada. Bom pra B2B mais sênior."
+            />
+          </DCArtboard>
+          <DCArtboard id="quiz" label="Quiz-first · agressiva em conversão" width={1280} height={1600}>
+            <BrowserFrame
+              src="landing-alt-quiz.html"
+              url="landing-alt-quiz.html"
+              note="A pergunta 1 do diagnóstico está embutida no hero. Cliques na resposta levam direto pro fluxo já pré-preenchido. Maior friction-free; ideal pra Meta Ads."
+            />
+          </DCArtboard>
+        </DCSection>
+
+        <DCSection
+          id="flow"
+          title="Fluxo do diagnóstico"
+          subtitle="O que abre quando o usuário clica em qualquer CTA das 3 landings."
+        >
+          <DCArtboard id="fluxo-q" label="Q1 · entrada" width={720} height={900}>
+            <BrowserFrame
+              src="diagnostico-fluxo.html"
+              url="diagnostico-fluxo.html"
+              note="5 perguntas com auto-advance + atalhos A-E. Esc volta, ↵ avança. Barra de progresso no topo do card."
+            />
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+    );
+  }
+
+  function mount() {
+    if (!window.DesignCanvas || !window.DCSection || !window.DCArtboard) {
+      setTimeout(mount, 50);
+      return;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  }
+  mount();
+</script>
+
+</body>
+</html>

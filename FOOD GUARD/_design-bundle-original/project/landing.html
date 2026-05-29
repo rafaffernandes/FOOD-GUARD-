@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diagnóstico regulatório gratuito · Food Guard</title>
+<meta name="description" content="Descubra as pendências regulatórias do seu negócio em 90 segundos. Plano de ação personalizado, sem custo." />
+<meta property="og:title" content="Diagnóstico regulatório gratuito · Food Guard" />
+<meta property="og:description" content="90 segundos. Plano de ação personalizado. Sem custo, sem compromisso." />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="landing-utils.css" />
+<style>
+  html, body { background: var(--paper); }
+
+  /* ===== slim brand bar ===== */
+  .lp-topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    padding: 0.9rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: saturate(140%) blur(10px);
+  }
+  .lp-topbar__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .lp-topbar__contact {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-size: 0.86rem; color: var(--text-2); font-weight: 500;
+  }
+  .lp-topbar__contact svg { width: 16px; height: 16px; color: var(--leaf-deep); }
+  .lp-topbar__contact a { color: var(--navy); border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+  .lp-topbar__contact a:hover { border-bottom-color: var(--leaf); }
+  @media (max-width: 540px) { .lp-topbar__contact span { display: none; } }
+
+  /* ===== HERO ===== */
+  .lp-hero {
+    padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(3.5rem, 6vw, 6rem);
+    background:
+      radial-gradient(ellipse 70% 55% at 100% 0%, rgba(111, 178, 62, 0.16), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 0% 100%, rgba(14, 42, 71, 0.05), transparent 60%),
+      var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  @media (max-width: 980px) { .lp-hero__grid { grid-template-columns: 1fr; } }
+
+  .lp-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    padding: 0.45rem 1rem 0.45rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--text-2);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .lp-eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--leaf);
+    box-shadow: 0 0 0 4px rgba(111,178,62,0.18);
+    animation: pulseDot 1.8s ease-out infinite;
+  }
+  @keyframes pulseDot {
+    0% { box-shadow: 0 0 0 0 rgba(111,178,62,0.5); }
+    70% { box-shadow: 0 0 0 10px rgba(111,178,62,0); }
+    100% { box-shadow: 0 0 0 0 rgba(111,178,62,0); }
+  }
+
+  .lp-h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.3rem, 5.2vw, 4.2rem);
+    line-height: 1.0;
+    letter-spacing: -0.026em;
+    color: var(--navy);
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+    max-width: 14ch;
+  }
+  .lp-h1 em { font-style: italic; font-weight: 400; color: var(--leaf-deep); }
+  .lp-h1 .hl {
+    background: linear-gradient(transparent 64%, rgba(111,178,62,0.35) 64%, rgba(111,178,62,0.35) 92%, transparent 92%);
+    padding: 0 0.1em;
+  }
+
+  .lp-lede {
+    font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+    color: var(--text-2);
+    line-height: 1.55;
+    margin: 0 0 2rem;
+    max-width: 48ch;
+  }
+
+  .lp-cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .btn-mega {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.15rem 2rem;
+    background: var(--leaf);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 1.05rem;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.18s;
+    box-shadow: 0 16px 32px -8px rgba(111,178,62,0.4);
+    position: relative;
+  }
+  .btn-mega:hover {
+    background: var(--leaf-deep);
+    color: var(--paper);
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px -10px rgba(90,148,48,0.5);
+  }
+  .btn-mega:hover .arr { transform: translateX(4px); }
+  .btn-mega .arr { width: 20px; height: 20px; transition: transform 0.18s; }
+  .btn-secondary-link {
+    color: var(--text-2);
+    font-weight: 500;
+    font-size: 0.92rem;
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-secondary-link:hover { color: var(--navy); border-color: var(--leaf); }
+
+  .lp-proof {
+    display: flex; align-items: center; gap: 0.85rem;
+    color: var(--text-3); font-size: 0.86rem;
+    margin-top: 0.75rem;
+  }
+  .lp-proof__avatars { display: inline-flex; }
+  .lp-proof__avatars span {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--paper);
+    background: linear-gradient(135deg, var(--leaf), var(--leaf-deep));
+    display: inline-block;
+  }
+  .lp-proof__avatars span + span { margin-left: -10px; background: linear-gradient(135deg, var(--warn), #B5691A); }
+  .lp-proof__avatars span + span + span { background: linear-gradient(135deg, var(--navy-2), var(--ink)); }
+  .lp-proof b { color: var(--navy); font-weight: 600; }
+
+  /* ===== HERO RIGHT — animated diag-mock keeps the visual weight ===== */
+
+  /* ===== Stats dashboard ===== */
+  .lp-stats {
+    background: var(--ink);
+    color: var(--cream);
+    padding: clamp(3rem, 5vw, 5rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-stats::before {
+    content: "";
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(111,178,62,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .lp-stats__head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    position: relative;
+  }
+  .lp-stats__head .eyebrow { color: var(--leaf); }
+  .lp-stats__head h2 {
+    color: var(--cream);
+    max-width: 22ch;
+    margin: 0.75rem auto 0;
+    text-wrap: balance;
+  }
+  .lp-stats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(244,239,228,0.08);
+    border: 1px solid rgba(244,239,228,0.08);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    position: relative;
+  }
+  @media (max-width: 880px) { .lp-stats__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .lp-stats__grid { grid-template-columns: 1fr; } }
+  .lp-stat {
+    background: var(--ink);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: relative;
+  }
+  .lp-stat__num {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 4.5vw, 3.6rem);
+    font-weight: 500;
+    color: var(--leaf);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .lp-stat__num small {
+    font-family: var(--sans);
+    font-size: 0.35em;
+    font-weight: 500;
+    color: rgba(244,239,228,0.6);
+    margin-left: 0.15em;
+    letter-spacing: 0;
+  }
+  .lp-stat__title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--cream);
+    letter-spacing: -0.012em;
+    margin: 0;
+  }
+  .lp-stat__body {
+    font-size: 0.9rem;
+    color: rgba(244,239,228,0.65);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .lp-stat__icon {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    width: 28px; height: 28px;
+    color: rgba(111,178,62,0.4);
+  }
+
+  /* ===== FAQ section ===== */
+  .lp-faq {
+    padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+  }
+  .lp-faq__inner { max-width: 820px; margin: 0 auto; }
+  .lp-faq__head {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .lp-faq__head h2 { max-width: 22ch; margin: 0.75rem auto 0.5rem; text-wrap: balance; }
+  .lp-faq__head p { color: var(--text-2); max-width: 50ch; margin: 0 auto; font-size: 1rem; }
+
+  .lp-faq .faq details { padding: 1.4rem 0; }
+  .lp-faq .faq summary { font-size: 1.08rem; padding-right: 1rem; }
+
+  .lp-faq__final {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--line);
+  }
+  .lp-faq__final p { color: var(--text-2); margin-bottom: 1rem; font-size: 0.95rem; }
+
+  /* ===== Footer micro ===== */
+  .lp-foot {
+    background: var(--ink);
+    color: rgba(244,239,228,0.5);
+    font-size: 0.8rem;
+    padding: 1.25rem 0;
+  }
+  .lp-foot__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2.5rem);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .lp-foot a { color: rgba(244,239,228,0.7); border-bottom: 1px solid transparent; transition: border-color 0.15s; }
+  .lp-foot a:hover { border-bottom-color: var(--leaf); }
+
+  /* ===== WhatsApp float ===== */
+  .wa-float-lp {
+    position: fixed;
+    bottom: 1.25rem; right: 1.25rem;
+    z-index: 50;
+    background: #25D366;
+    color: white;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 28px rgba(6,22,41,0.3);
+    transition: transform 0.2s;
+  }
+  .wa-float-lp:hover { transform: scale(1.08); }
+  .wa-float-lp svg { width: 26px; height: 26px; }
+
+  /* ===== Quiz modal ===== */
+  .quiz-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(6,22,41,0.65);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.25s ease;
+  }
+  .quiz-modal.on { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .quiz-modal__inner {
+    width: 100%;
+    max-width: 760px;
+    height: clamp(560px, 88vh, 820px);
+    background: var(--paper);
+    border-radius: var(--r-lg);
+    box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.35s cubic-bezier(.2,.7,.2,1);
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .quiz-modal__close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 2;
+    width: 36px; height: 36px;
+    border: 0;
+    background: var(--cream);
+    color: var(--navy);
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .quiz-modal__close:hover { background: var(--navy); color: var(--paper); transform: rotate(90deg); }
+  .quiz-modal__close svg { width: 16px; height: 16px; }
+  .quiz-modal__frame {
+    width: 100%; height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  /* ===== Quiet variant via tweaks ===== */
+  body[data-variant="quiet"] .lp-hero {
+    background:
+      radial-gradient(ellipse 60% 50% at 0% 0%, rgba(217,132,43,0.08), transparent 60%),
+      var(--cream);
+  }
+  body[data-variant="quiet"] .lp-h1 em { color: var(--warn); }
+  body[data-variant="quiet"] .lp-h1 .hl {
+    background: linear-gradient(transparent 64%, rgba(217,132,43,0.3) 64%, rgba(217,132,43,0.3) 92%, transparent 92%);
+  }
+  body[data-variant="quiet"] .lp-eyebrow { background: var(--paper); }
+
+  /* lock body scroll when modal open */
+  body.modal-open { overflow: hidden; }
+</style>
+</head>
+<body data-accent="warm" data-variant="bold">
+
+<!-- ============ TOPBAR ============ -->
+<header class="lp-topbar">
+  <div class="lp-topbar__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 4v10a3 3 0 0 0 6 0V4" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path><path d="M12 14v6" stroke="#0E2A47" stroke-width="2" stroke-linecap="round"></path></svg>
+      </span>
+      <span>Food Guard<small>Assessoria</small></span>
+    </a>
+    <div class="lp-topbar__contact">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <span>Dúvidas?</span>
+      <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">(11) 9 0000-0000</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="lp-hero">
+  <div class="container">
+    <div class="lp-hero__grid">
+      <div>
+        <span class="lp-eyebrow">Diagnóstico em 90 segundos </span>
+        <h1 class="lp-h1">
+          Sua operação <span class="hl">está em conformidade</span> com a vigilância <em>hoje?</em>
+        </h1>
+        <p class="lp-lede">
+          Descubra as pendências regulatórias do seu negócio em 90 segundos. Receba um plano de ação personalizado, sem custo e sem compromisso. Clique e comece agora.
+        </p>
+        <div class="lp-cta-row">
+          <button class="btn-mega" type="button" onclick="openQuiz('hero')" aria-label="Iniciar diagnóstico gratuito">
+            Começar diagnóstico grátis
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <a href="https://wa.me/5511900000000?text=Quero+falar+com+um+RT+do+Food+Guard" target="_blank" rel="noopener" class="btn-secondary-link" onclick="trackCTA('hero_wa')">
+            ou fale com um RT
+          </a>
+        </div>
+        <div class="lp-proof">
+          <div class="lp-proof__avatars" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span><b>+180 operações</b> já fizeram o diagnóstico</span>
+        </div>
+      </div>
+
+      <!-- Animated diag-mock keeps visual weight without showing the quiz -->
+      <aside class="diag-mock" aria-hidden="true">
+        <div class="diag-mock__head">
+          <span>Exemplo de diagnóstico</span>
+          <span class="diag-mock__pulse"><span class="dot"></span> Tempo real</span>
+        </div>
+        <div class="diag-mock__center">
+          <div class="diag-mock__score-label">Score de conformidade</div>
+          <div class="diag-mock__score">42<span class="diag-mock__score-of">/100</span></div>
+          <div class="diag-mock__risk">Risco médio · gaps relevantes</div>
+        </div>
+        <div class="diag-mock__bars">
+          <div class="diag-mock__bar"><span>RT designado</span><i style="--w:90%; --c:var(--leaf)"></i></div>
+          <div class="diag-mock__bar"><span>Manual BPF</span><i style="--w:55%; --c:#FFB347"></i></div>
+          <div class="diag-mock__bar"><span>APPCC</span><i style="--w:20%; --c:#E55A4A"></i></div>
+          <div class="diag-mock__bar"><span>Treinamentos</span><i style="--w:35%; --c:#E55A4A"></i></div>
+        </div>
+        <div class="diag-mock__rec">
+          <b>Plano recomendado</b>
+          <span>Conformidade · 2 visitas mensais</span>
+          <div class="price">R$ 2.700<small>/mês</small></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS DASHBOARD ============ -->
+<section class="lp-stats">
+  <div class="container">
+    <div class="lp-stats__head">
+      <span class="eyebrow">Por que Food Guard</span>
+      <h2 class="display-md">Números reais. Operação auditável.</h2>
+    </div>
+    <div class="lp-stats__grid">
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-6 4.5L18 21l-6-4.5L6 21l2-7.5L2 9h7l3-7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        <div class="lp-stat__num">+180<small></small></div>
+        <h3 class="lp-stat__title">Operações sob RT ativa</h3>
+        <p class="lp-stat__body">Padarias, restaurantes, escolas, hotéis e indústrias com nutricionista responsável designado.</p>
+      </div>
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"></circle><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path></svg>
+        <div class="lp-stat__num">15<small>anos</small></div>
+        <h3 class="lp-stat__title">De operação ininterrupta</h3>
+        <p class="lp-stat__body">Equipe sênior, processos auditáveis e relacionamento com vigilância sanitária em todo o Brasil.</p>
+      </div>
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <div class="lp-stat__num">100<small>%</small></div>
+        <h3 class="lp-stat__title">Aprovação em vigilância</h3>
+        <p class="lp-stat__body">Clientes ativos têm zero autos de infração mantendo o plano em dia.<br><small style="opacity:0.55; font-size:0.78rem;">*Carteira regular 2023-2025</small></p>
+      </div>
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        <div class="lp-stat__num">≤ 48<small>h</small></div>
+        <h3 class="lp-stat__title">Resposta de emergência</h3>
+        <p class="lp-stat__body">Notificação, auto de infração ou intercorrência? A equipe técnica responde em até 48 horas úteis.</p>
+      </div>
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path><circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="1.8"></circle></svg>
+        <div class="lp-stat__num">92<small>% NPS</small></div>
+        <h3 class="lp-stat__title">Satisfação dos clientes</h3>
+        <p class="lp-stat__body">Net Promoter Score medido trimestralmente. 9 em cada 10 clientes recomendam o Food Guard.</p>
+      </div>
+      <div class="lp-stat">
+        <svg class="lp-stat__icon" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 22V12h6v10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        <div class="lp-stat__num">90<small>s</small></div>
+        <h3 class="lp-stat__title">Tempo do diagnóstico</h3>
+        <p class="lp-stat__body">5 perguntas em múltipla escolha. Resultado em tela, PDF no e-mail, sob NDA padrão.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 2.5rem;">
+      <button class="btn-mega" type="button" onclick="openQuiz('stats')" style="background: var(--paper); color: var(--ink); box-shadow: 0 16px 32px -8px rgba(244,239,228,0.2);">
+        Quero meu diagnóstico
+        <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="lp-faq">
+  <div class="container">
+    <div class="lp-faq__inner">
+      <div class="lp-faq__head">
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h2 class="display-md">Tirando as dúvidas antes de começar.</h2>
+        <p>As perguntas que aparecem com mais frequência nas calls iniciais — respondidas direto.</p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>O diagnóstico é realmente gratuito?</summary>
+          <p>Sim, 100%. O diagnóstico online, o PDF do resultado e a call inicial com o RT são gratuitos. Não cobramos taxa de cadastro, taxa de análise nem nada parecido. Você só paga se contratar um dos planos depois.</p>
+        </details>
+        <details>
+          <summary>Como vocês assumem a Responsabilidade Técnica no meu CNPJ?</summary>
+          <p>Após o contrato assinado, a nutricionista designada é registrada como Responsável Técnica do seu estabelecimento, com CRN-3 ativo e comunicação formal ao órgão competente. Você recebe cópia do ART e o registro fica auditável a qualquer momento.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo leva entre fechar o plano e a primeira visita?</summary>
+          <p>Operações sem base prévia: 60 a 90 dias para entrar em padrão de fiscalização. Operações com base prévia: 30 a 45 dias. A primeira visita acontece em até 7 dias úteis. Em situações de urgência (vigilância marcada, mudança rápida de RT), conseguimos comprimir para 48h no plano Premium.</p>
+        </details>
+        <details>
+          <summary>E se a RT principal sair de férias ou pedir desligamento?</summary>
+          <p>Todo cliente tem uma RT principal e uma RT backup pré-designada. A transição é interna, sem prazo de carência e sem custo adicional — você não fica descoberto um único dia da operação.</p>
+        </details>
+        <details>
+          <summary>Vocês atendem fora de São Paulo?</summary>
+          <p>Atendemos remotamente em todo o Brasil e presencialmente em São Paulo capital e Grande SP. Para outras cidades, fazemos o atendimento por modelo híbrido (visitas presenciais periódicas + acompanhamento remoto). Informe seu CEP no diagnóstico e confirmamos a cobertura.</p>
+        </details>
+        <details>
+          <summary>Como funciona a carência e a rescisão do contrato?</summary>
+          <p>Todos os planos têm carência de 12 meses. Em caso de rescisão antecipada pelo contratante, multa de 40% sobre o valor dos meses remanescentes. Em contrapartida, se o Food Guard atrasar entrega documentada por mais de 30 dias úteis, você pode rescindir sem multa.</p>
+        </details>
+        <details>
+          <summary>Quais formas de pagamento vocês aceitam?</summary>
+          <p>PIX, boleto bancário e cartão de crédito recorrente. PIX e cartão têm liberação imediata; boleto, em até 2 dias úteis. A cobrança recorrente no cartão é a forma mais comum entre nossos clientes.</p>
+        </details>
+        <details>
+          <summary>O que acontece se eu receber uma fiscalização?</summary>
+          <p>Acompanhamos a fiscalização em tempo real via WhatsApp (planos Conformidade e Premium) e presencialmente quando possível. Caso haja auto de infração, montamos a defesa técnica e o plano de adequação imediato, sem custo extra para o seu contrato.</p>
+        </details>
+        <details>
+          <summary>Posso trocar de plano depois?</summary>
+          <p>Pode. Upgrades são imediatos. Downgrades são liberados após o 6º mês de contrato e seguem para o próximo ciclo de cobrança. Sem multa, sem burocracia — basta solicitar ao seu RT.</p>
+        </details>
+        <details>
+          <summary>Meus dados estão seguros? E sobre a LGPD?</summary>
+          <p>Sim. Operamos sob LGPD com DPO designado (dpo@foodguard.com.br), criptografia em repouso e em trânsito, banco de dados com Row Level Security e auditoria contínua. Você pode pedir a exclusão dos seus dados a qualquer momento — temos prazo de 5 dias úteis para confirmar.</p>
+        </details>
+        <details>
+          <summary>O diagnóstico é confidencial?</summary>
+          <p>Sim, sob NDA padrão. As respostas e o e-mail ficam restritos à equipe técnica que vai gerar seu plano. Não compartilhamos dados com terceiros nem usamos para ações de marketing de massa.</p>
+        </details>
+      </div>
+
+      <div class="lp-faq__final">
+        <p>Não achou sua dúvida? Você pode falar direto com a equipe técnica.</p>
+        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+          <button class="btn-mega" type="button" onclick="openQuiz('faq')">
+            Começar diagnóstico grátis
+            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <a href="https://wa.me/5511900000000?text=Tenho+uma+dúvida+sobre+o+Food+Guard" target="_blank" rel="noopener" class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong); padding:1.15rem 2rem; font-size:1rem;" onclick="trackCTA('faq_wa')">
+            Falar no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="lp-foot">
+  <div class="lp-foot__inner">
+    <span>© 2026 Food Guard Assessoria · CNPJ XX.XXX.XXX/0001-XX · RT designada · CRN-3 ativo</span>
+    <span>
+      <a href="#">Política de privacidade</a> ·
+      <a href="mailto:dpo@foodguard.com.br">DPO · LGPD</a> ·
+      <a href="landing-completa.html">Site institucional</a>
+    </span>
+  </div>
+</footer>
+
+<!-- ============ QUIZ MODAL ============ -->
+<div class="quiz-modal" id="quiz-modal" role="dialog" aria-modal="true" aria-label="Diagnóstico Food Guard" aria-hidden="true">
+  <div class="quiz-modal__inner">
+    <button class="quiz-modal__close" type="button" onclick="closeQuiz()" aria-label="Fechar diagnóstico">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+    </button>
+    <iframe id="quiz-frame" class="quiz-modal__frame" title="Diagnóstico Food Guard" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- WhatsApp -->
+<a class="wa-float-lp" href="https://wa.me/5511900000000?text=Vim+pela+land+page+do+Food+Guard" target="_blank" rel="noopener" aria-label="WhatsApp" onclick="trackCTA('wa_float')">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.4A12 12 0 1 0 20.5 3.5zm-8.5 18a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9.5 9.5 0 1 1 7.5 3.9zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.8.9-1 1.1s-.4.2-.7 0c-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s.1-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.1 3.1.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"></path></svg>
+</a>
+
+<!-- Tweaks -->
+<div id="tweaks-root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="landing-tweaks.jsx"></script>
+
+<script>
+  function trackCTA(location) {
+    try {
+      window.gtag && gtag('event', 'cta_click', { 'cta_location': location });
+      window.fbq && fbq('track', 'Lead', { content_name: location });
+      window.dataLayer && window.dataLayer.push({ event: 'cta_click', cta_location: location });
+    } catch (e) {}
+  }
+
+  // Animate the diag-mock bars on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.diag-mock__bar i').forEach((el, i) => {
+      setTimeout(() => el.classList.add('go'), 200 + i * 120);
+    });
+  });
+
+  // Quiz modal control
+  const $modal = document.getElementById('quiz-modal');
+  const $frame = document.getElementById('quiz-frame');
+  function openQuiz(source) {
+    trackCTA('open_quiz_' + (source || 'unknown'));
+    if (!$frame.src) {
+      $frame.src = 'diagnostico-fluxo.html?embed=1';
+    }
+    $modal.classList.add('on');
+    $modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+  function closeQuiz() {
+    $modal.classList.remove('on');
+    $modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  }
+  // Click backdrop to close
+  $modal.addEventListener('click', (e) => {
+    if (e.target === $modal) closeQuiz();
+  });
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $modal.classList.contains('on')) closeQuiz();
+  });
+</script>
+
+</body>
+</html>
