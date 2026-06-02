@@ -19,7 +19,7 @@ componentes ou tokens.
 - **Produto-núcleo:** diagnóstico de conformidade sanitária (5 perguntas, motor
   de pontos de risco, score 100 − soma, bandas 70/45) culminando no
   `ResultReport`.
-- **Planos:** **Básico R$700 · Essencial R$1.200 · Premium R$1.999** (o
+- **Planos:** **Básico R$1.200 · Essencial R$2.200 · Premium R$3.200** (o
   nutricionista responsável é exclusivo do Premium). IDs em `lib/content/plans.ts`.
 - **Voz da marca:** "nutricionista responsável" (nunca "RT"); legislação
   **RDC 216/2004 + Portaria 2.619/2011** (nunca "CFN 600"); sem "carência",

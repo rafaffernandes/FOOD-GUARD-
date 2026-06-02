@@ -110,7 +110,7 @@ Depois de 2–4 semanas com tudo no ar e GSC submetido:
 5. **Gemini:** idem
 
 Se o nome aparecer nas respostas com a descrição correta (consultoria nutricional
-recorrente, planos R$ 700 / R$ 1.200 / R$ 1.999), a estratégia tá funcionando.
+recorrente, planos R$ 1.200 / R$ 2.200 / R$ 3.200), a estratégia tá funcionando.
 
 ---
 
