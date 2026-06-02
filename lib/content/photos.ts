@@ -1,65 +1,74 @@
-/* URLs do Unsplash curadas — todas royalty-free (Unsplash License).
- * Pra trocar uma foto: substitua a URL aqui e o resto do site atualiza.
- * Quando tiver foto própria, salve em public/ e ajuste o src.
+/* URLs do Unsplash curadas — todas Unsplash License (gratuitas, sem atribuição obrigatória).
+ * Regras: sem preto e branco · sem fotos escuras · sem contexto asiático.
+ * Pra trocar: substitua o ID aqui e o site atualiza.
  */
 
 const u = (id: string, w = 1600, h?: number) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}${
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=85&w=${w}${
     h ? `&h=${h}` : ""
   }`;
 
 export const photos = {
+  // Hero — chef com prancheta em cozinha profissional (Pádua, Itália)
   hero: {
-    src: u("photo-1556909114-f6e7ad7d3136", 2000, 1200),
-    alt: "Cozinha profissional limpa e organizada",
-    credit: "Unsplash · Edward Howell",
+    src: u("photo-1636115130040-adf36e3ed32b", 2000, 1200),
+    alt: "Chef conferindo documentação com prancheta em cozinha profissional",
+    credit: "Unsplash · Francesco La Corte",
   },
+  // Sobre — chef com luvas manipulando ingredientes
   about: {
-    src: u("photo-1581349437898-cebbe9831942", 1600, 900),
-    alt: "Profissional de cozinha conferindo o preparo",
+    src: u("photo-1762980622899-d1dd9cdbc430", 1600, 900),
+    alt: "Chef com luvas de EPI trabalhando em cozinha profissional",
     credit: "Unsplash",
   },
   segments: [
     {
       title: "Restaurantes e bares",
-      src: u("photo-1517248135467-4c7edcad34c4", 800, 600),
-      alt: "Interior de um restaurante moderno",
+      src: u("photo-1779231926942-95810fc8eb33", 800, 600),
+      alt: "Interior de restaurante moderno e estiloso",
     },
     {
       title: "Padarias e confeitarias",
-      src: u("photo-1509440159596-0249088772ff", 800, 600),
-      alt: "Padaria com pães frescos",
+      src: u("photo-1732565729552-994c6af761e3", 800, 600),
+      alt: "Pães artesanais frescos em rack de padaria profissional",
     },
     {
       title: "Buffets e eventos",
-      src: u("photo-1555244162-803834f70033", 800, 600),
-      alt: "Mesa de buffet preparada",
+      src: u("photo-1775679784685-1535499768c9", 800, 600),
+      alt: "Salão de eventos com buffet decorado com flores e iluminação colorida",
     },
     {
       title: "Dark kitchens",
-      src: u("photo-1565299624946-b28f40a0ae38", 800, 600),
-      alt: "Preparo de comida para delivery",
+      src: u("photo-1767562678474-c92cec881bc3", 800, 600),
+      alt: "Cozinha de delivery profissional com embalagens de pedidos",
     },
   ],
   problems: [
-    u("photo-1556909114-f6e7ad7d3136", 600, 400),
-    u("photo-1521656693074-0ef32e80a5d5", 600, 400),
-    u("photo-1556909212-d5b604d0c90d", 600, 400),
+    // Louis Hansel — cozinha profissional ocidental, bem iluminada
+    u("photo-1577219492769-b63a779fac28", 600, 400),
+    // Linha de produção de refeições — serviço de entrega alemão (Essen auf Rädern)
+    u("photo-1762330018258-2cf9b8f80618", 600, 400),
+    // Corte de vegetais frescos em cozinha ao ar livre (Kagawong, Canadá) — muito colorida
+    u("photo-1507048331197-7d4ac70811cf", 600, 400),
   ],
   solutions: [
-    u("photo-1581349437898-cebbe9831942", 600, 400),
-    u("photo-1559339352-11d035aa65de", 600, 400),
-    u("photo-1556910103-1c02745aae4d", 600, 400),
-    u("photo-1521017432531-fbd92d768814", 600, 400),
+    // Avental vermelho + luva azul — EPI completo em cozinha (Brian J. Tromp, Holanda)
+    u("photo-1645932067745-c10b7fa2df6b", 600, 400),
+    // Gestão digital: funcionário com POS em cozinha comercial ocidental
+    u("photo-1778792447408-b22ad88daa37", 600, 400),
+    // Louis Hansel — fatiamento de tomate, cozinha profissional ocidental
+    u("photo-1554997433-8e233c02c751", 600, 400),
+    // Louis Hansel — finalização de prato com erva, precisão profissional
+    u("photo-1564844536308-50b114a1d946", 600, 400),
   ],
   blog: {
     "rdc-216-o-que-todo-food-service-precisa-saber": u(
-      "photo-1556909114-f6e7ad7d3136",
+      "photo-1651525670114-2b8117390b28",
       1200,
       630,
     ),
     "preciso-de-responsavel-tecnico-nutricionista": u(
-      "photo-1581349437898-cebbe9831942",
+      "photo-1675270745543-883eae091a5c",
       1200,
       630,
     ),

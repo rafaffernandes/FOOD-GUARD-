@@ -13,25 +13,25 @@ import { formatBRL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Planos e preços",
   description:
-    "Três planos de consultoria nutricional para food service: Básico (R$ 700), Essencial (R$ 1.200) e Premium (R$ 1.999).",
+    "Três planos de consultoria nutricional para food service: Básico (R$ 1.200), Essencial (R$ 2.200) e Premium (R$ 3.200).",
 };
 
 const planFaqs = [
   {
     q: "Se a vigilância aparecer enquanto sou cliente, vocês me ajudam?",
-    a: "Sim, e na hora. O nosso atendimento no WhatsApp é direto com o nutricionista do seu plano. Se a fiscalização chegar, a gente entra em contato com o fiscal junto com você, organiza a documentação que ele precisa ver e monta o plano de resposta na hora — sem você ter que improvisar uma defesa sozinho.",
+    a: "Sim, e na hora. O atendimento no WhatsApp é direto com o nutricionista do seu plano. Se a fiscalização chegar, a gente entra junto com você, organiza a documentação que o fiscal precisa ver e monta o plano de resposta imediatamente. Você não precisa improvisar nada.",
   },
   {
     q: "Quanto tempo até minha operação estar em conformidade?",
-    a: "Depende de onde você está partindo, mas o caminho típico é: o que falta começa a sair do papel já na primeira visita; documentação obrigatória (POPs, doc. ANVISA, Manual de Boas Práticas) fica pronta entre 30 e 60 dias; conformidade plena, com a equipe treinada e processos rodando, costuma se consolidar em 90 dias.",
+    a: "Depende de onde você está partindo. O caminho típico: as pendências mais urgentes saem do papel já na primeira visita. Documentação obrigatória (POPs, ANVISA, Manual de Boas Práticas) fica pronta entre 30 e 60 dias. Conformidade plena, com equipe treinada e processos rodando, costuma se consolidar em 90 dias.",
   },
   {
     q: "Posso trocar de plano se precisar de mais suporte?",
-    a: "Pode, e na hora. Se a sua operação cresce, se você decide abrir uma unidade, se uma fiscalização aperta o ritmo — em qualquer um desses momentos você sobe de plano sem multa e sem reinício de prazo. Você paga só a diferença, e o nutricionista assume a partir do mês seguinte.",
+    a: "Pode, a qualquer momento. Se a operação cresce, você abre uma nova unidade ou uma fiscalização exige mais atenção, você sobe de plano sem multa e sem reinício de prazo. Paga só a diferença, e o nutricionista assume no mês seguinte.",
   },
   {
     q: "O nutricionista assina pela minha operação?",
-    a: "Só no plano Premium. No Premium, o Renan assume a responsabilidade técnica formal — ele assina, responde tecnicamente pela operação e é referência junto à vigilância. Nos planos Básico e Essencial, cuidamos da documentação e das visitas, mas a responsabilidade técnica permanece com o seu nutricionista atual (ou pode ser contratada à parte).",
+    a: "A responsabilidade técnica pela operação é sempre do proprietário. O Responsável Técnico (RT) assina os documentos obrigatórios, mas isso não transfere a responsabilidade legal do negócio. No plano Premium, disponibilizamos um nutricionista como RT formal, que assina a documentação e é o referenciado junto à vigilância. Nos planos Básico e Essencial, a responsabilidade permanece com o proprietário.",
   },
 ];
 
@@ -165,13 +165,13 @@ export default function PlanosPage() {
                   {plans.map((p) => {
                     const value = p.features.find((f) => f.label === row)?.value;
                     return (
-                      <td key={p.id} className="px-4 py-4 text-sm text-ink-soft">
+                      <td key={p.id} className="px-4 py-4 text-sm">
                         {value === "Não" || !value ? (
-                          <span className="text-ink-muted/50">—</span>
+                          <span className="font-medium text-ink-muted/60">Não</span>
                         ) : value === "Sim" ? (
-                          <Check className="h-4 w-4 text-brand-600" strokeWidth={3} />
+                          <span className="font-semibold text-brand-700">Sim</span>
                         ) : (
-                          value
+                          <span className="text-ink-soft">{value}</span>
                         )}
                       </td>
                     );

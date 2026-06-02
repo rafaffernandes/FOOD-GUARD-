@@ -21,8 +21,8 @@ export default function ContatoPage() {
             Fale com a Food Guard
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
-            Tire dúvidas sobre planos, conformidade ou sobre o seu diagnóstico —
-            ou nos siga nas redes pra ver bastidores da consultoria.
+            Tire dúvidas sobre planos, conformidade ou sobre o seu diagnóstico.
+            Ou nos siga nas redes pra ver bastidores da consultoria.
           </p>
         </Container>
       </section>

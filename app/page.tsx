@@ -34,7 +34,7 @@ const problems = [
   {
     icon: FileWarning,
     title: "A conta chega sem aviso",
-    text: "A fiscalização não marca hora. Se tiver algo fora do lugar, vem multa, interdição e prejuízo — sempre muito maior do que custaria ter resolvido antes.",
+    text: "A fiscalização não marca hora. Se tiver algo fora do lugar, vem multa, interdição e prejuízo, sempre muito maior do que custaria ter resolvido antes.",
   },
   {
     icon: Gauge,
@@ -67,7 +67,7 @@ const solution = [
   {
     icon: MessageSquare,
     title: "A papelada é com a gente",
-    text: "Manual, POPs, fichas técnicas e auditorias organizados e digitalizados. Você cuida do seu negócio; a documentação fica por nossa conta.",
+    text: "Auditorias organizadas e digitalizadas. Manual, POPs e fichas técnicas em dia. Você cuida do seu negócio, a documentação fica por nossa conta.",
   },
 ];
 
@@ -82,7 +82,7 @@ const faqs = [
   },
   {
     q: "O diagnóstico é confiável?",
-    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na Portaria 2.619/2011 e na RDC 216/2004, atualizadas constantemente pelo nosso nutricionista, Renan Muniz.",
+    a: "O diagnóstico segue regras objetivas (não é \"chute\" de IA), baseadas na Portaria 2.619/2011 e na RDC 216/2004, atualizadas constantemente pela nossa equipe de nutricionistas.",
   },
   {
     q: "Vou ter que preencher muita papelada?",
@@ -278,7 +278,7 @@ export default function HomePage() {
             />
             <ul className="mt-8 space-y-4">
               {[
-                "Sai do escuro: descubra agora o que pode te custar caro.",
+                "Não fique no escuro: descubra agora o que pode te custar caro.",
                 "Veja, em reais, o tamanho do prejuízo que está evitando.",
                 "Receba um plano claro: o que arrumar primeiro pra ficar tranquilo.",
                 "Tudo no celular, em 90 segundos, sem ter que se cadastrar.",
@@ -348,7 +348,7 @@ export default function HomePage() {
                   Próximo passo recomendado
                 </div>
                 <p className="mt-1 text-sm font-semibold text-white">
-                  Plano Básico — documentação + visitas quinzenais
+                  Plano Básico: documentação e visitas quinzenais
                 </p>
               </li>
             </ul>
@@ -358,7 +358,7 @@ export default function HomePage() {
               <p className="text-sm text-white/80">
                 Uma autuação sanitária custa entre{" "}
                 <strong className="text-white">R$ 2 mil e R$ 30 mil</strong>.
-                Seu diagnóstico mostra, ponto a ponto, o que falta — e quanto
+                Seu diagnóstico mostra, ponto a ponto, o que falta e quanto
                 isso pode custar se você esperar mais.
               </p>
             </div>
@@ -373,7 +373,7 @@ export default function HomePage() {
             align="center"
             eyebrow="Planos"
             title="A vigilância não avisa quando vai aparecer."
-            description="Sua operação precisa estar pronta. Consultoria nutricional de ponta a ponta — conformidade, margem e equipe no padrão, todo mês."
+            description="Sua operação precisa estar pronta. Consultoria nutricional de ponta a ponta: conformidade, margem e equipe no padrão, todo mês."
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
@@ -389,41 +389,31 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* História da Food Guard */}
+      {/* Quem somos */}
       <Section>
-        <div className="grid items-center gap-8 rounded-3xl border border-surface-sunken bg-white p-8 shadow-soft sm:grid-cols-[auto,1fr] sm:p-10">
-          {/* Placeholder da foto do Renan — trocar por <Image> ao receber */}
-          <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-3xl bg-brand-600 font-display text-5xl font-bold text-white sm:mx-0 sm:h-40 sm:w-40">
-            RM
-          </div>
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
-              Quem está por trás
-            </p>
-            <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
-              A Food Guard nasceu de um incômodo: ver bom negócio levando multa
-              à toa
-            </h2>
-            <p className="mt-3 text-ink-soft">
-              Renan Muniz passou mais de 10 anos dentro de operações food
-              service — restaurantes, hospitais, catering, cozinha industrial.
-              Viu de perto o que acontece quando uma boa operação é autuada por
-              causa de um POP desatualizado ou um Manual que nunca saiu do
-              papel. Rafael vem da tecnologia e enxergou que esse problema tem
-              solução — desde que alguém construa o sistema certo em volta de
-              um nutricionista que realmente conhece o chão de fábrica.
-            </p>
-            <p className="mt-3 text-ink-soft">
-              A Food Guard nasceu dessa parceria: o conhecimento técnico de
-              quem esteve em centenas de inspeções, mais a tecnologia de quem
-              sabe como escalar esse cuidado sem perder o lado humano. O
-              resultado é simples — sua operação em dia, com um profissional
-              que você conhece pelo nome.
-            </p>
-            <Button href="/sobre" variant="outline" className="mt-5">
-              Ver nossa história completa <ArrowRight className="h-4 w-4" />
-            </Button>
-          </div>
+        <div className="rounded-3xl border border-surface-sunken bg-white p-8 shadow-soft sm:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
+            Quem somos
+          </p>
+          <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-ink sm:text-3xl">
+            A Food Guard nasceu de um incômodo: ver bom negócio levando multa
+            à toa
+          </h2>
+          <p className="mt-3 text-ink-soft">
+            A Food Guard é uma consultoria nutricional para food service. Cuidamos
+            de conformidade, documentação, equipe orientada e da margem que se
+            ganha quando a operação roda no padrão. Todo mês, sem improviso e
+            sem você precisar virar especialista em norma sanitária.
+          </p>
+          <p className="mt-3 text-ink-soft">
+            Nutricionistas especializados em inspeções, com experiência prática em
+            centenas de visitas sanitárias. Tecnologia que tira a burocracia do seu caminho. O
+            resultado é simples: sua operação em dia, com um profissional
+            que você conhece pelo nome.
+          </p>
+          <Button href="/sobre" variant="outline" className="mt-5">
+            Ver nossa história completa <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
       </Section>
 
@@ -447,7 +437,7 @@ export default function HomePage() {
           align="center"
           eyebrow="Quem atendemos"
           title="Operações de food service em São Paulo e Grande SP"
-          description="De padaria de bairro a refeição coletiva — a Food Guard adapta o plano ao porte e ao perfil de risco da sua operação."
+          description="De padaria de bairro a refeição coletiva, a Food Guard adapta o plano ao porte e ao perfil de risco da sua operação."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {photos.segments.map((seg, i) => (

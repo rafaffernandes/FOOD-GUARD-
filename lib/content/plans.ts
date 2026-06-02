@@ -6,13 +6,9 @@ export interface Plan {
   price: number;
   positioning: string;
   highlighted?: boolean;
-  /** Texto do botão de assinar (CTA persona-orientado). */
   ctaLabel: string;
-  /** Bullets que aparecem no card do plano (linguagem comercial). */
   featuresList: string[];
-  /** Texto fino que aparece sob a lista (ex.: "à parte"). */
   footnote?: string;
-  /** Estrutura para a tabela comparativa em /planos. */
   features: { label: string; value: string }[];
 }
 
@@ -20,42 +16,43 @@ export const plans: Plan[] = [
   {
     id: "basico",
     name: "Básico",
-    price: 700,
+    price: 1200,
     positioning: "Pra sair do zero e deixar a documentação em dia.",
     ctaLabel: "Quero sair da vulnerabilidade",
     featuresList: [
       "Visitas presenciais quinzenais",
-      "Documentação ANVISA completa + POPs",
-      "WhatsApp com nutricionista — horário comercial (seg–sex, 9h–18h)",
+      "Documentação ANVISA completa e POPs",
+      "WhatsApp com nutricionista — horário comercial (seg-sex, 9h-18h)",
     ],
+    footnote: "Manual de Boas Práticas e fichas técnicas disponíveis à parte.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "Quinzenais" },
-      { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
-      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
-      { label: "Manual de Boas Práticas", value: "Não" },
+      { label: "Nutricionista responsável técnico", value: "Não" },
+      { label: "Documentação ANVISA e POPs", value: "Inclusa" },
+      { label: "Manual de Boas Práticas", value: "À parte" },
       { label: "WhatsApp com o nutricionista", value: "Comercial" },
       { label: "Análise de cardápio", value: "Não" },
-      { label: "Criação de ficha técnica", value: "Não" },
+      { label: "Criação de ficha técnica", value: "À parte" },
     ],
   },
   {
     id: "essencial",
     name: "Essencial",
-    price: 1200,
+    price: 2200,
     positioning: "Pra operar com confiança e passar qualquer fiscalização.",
     ctaLabel: "Quero parar de apagar incêndio",
     featuresList: [
       "Visitas presenciais semanais (1x/semana)",
-      "Documentação ANVISA completa + POPs",
+      "Documentação ANVISA completa e POPs",
       "Manual de Boas Práticas padrão",
-      "WhatsApp com nutricionista — horário estendido (até 20h + sábados)",
+      "WhatsApp com nutricionista — horário estendido (até 20h e sábados)",
       "Revisão de cardápio",
     ],
     footnote: "Criação de fichas técnicas disponível à parte.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "1x/semana" },
-      { label: "Nutricionista responsável (assina pela operação)", value: "Não" },
-      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
+      { label: "Nutricionista responsável técnico", value: "Não" },
+      { label: "Documentação ANVISA e POPs", value: "Inclusa" },
       { label: "Manual de Boas Práticas", value: "Padrão" },
       { label: "WhatsApp com o nutricionista", value: "Estendido" },
       { label: "Análise de cardápio", value: "Revisão" },
@@ -65,23 +62,24 @@ export const plans: Plan[] = [
   {
     id: "premium",
     name: "Premium",
-    price: 1999,
+    price: 3200,
     positioning: "Pra quem quer um nutricionista como sócio da conformidade.",
     highlighted: true,
     ctaLabel: "Quero um nutricionista no meu negócio",
     featuresList: [
       "Visitas presenciais 2x por semana",
-      "Nutricionista Responsável Técnico (Renan Muniz · CRN ativo)",
-      "Documentação ANVISA completa + POPs",
+      "Nutricionista Responsável Técnico (RT)",
+      "Documentação ANVISA completa e POPs",
       "Manual de Boas Práticas personalizado para sua operação",
       "WhatsApp prioritário — resposta em até 2h",
       "Criação e análise de cardápio completa",
       "Fichas técnicas incluídas",
     ],
+    footnote: "Possibilidade de estagiário contratado à parte.",
     features: [
       { label: "Visitas presenciais na sua operação", value: "2x/semana" },
-      { label: "Nutricionista responsável (assina pela operação)", value: "Sim · Renan" },
-      { label: "Documentação ANVISA + POPs", value: "Inclusa" },
+      { label: "Nutricionista responsável técnico", value: "Sim" },
+      { label: "Documentação ANVISA e POPs", value: "Inclusa" },
       { label: "Manual de Boas Práticas", value: "Personalizado" },
       { label: "WhatsApp com o nutricionista", value: "Prioritário" },
       { label: "Análise de cardápio", value: "Completa (criação)" },
@@ -95,8 +93,8 @@ export const planById = (id: PlanId): Plan =>
 
 export const comparisonRows = [
   "Visitas presenciais na sua operação",
-  "Nutricionista responsável (assina pela operação)",
-  "Documentação ANVISA + POPs",
+  "Nutricionista responsável técnico",
+  "Documentação ANVISA e POPs",
   "Manual de Boas Práticas",
   "WhatsApp com o nutricionista",
   "Análise de cardápio",
