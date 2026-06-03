@@ -356,6 +356,190 @@
   }
   .result-actions .btn { flex: 1; min-width: 220px; justify-content:center; }
 
+  /* ── Botão contratar no resultado ── */
+  .contratar-wrap {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .btn--contratar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: var(--leaf);
+    color: var(--ink);
+    border: 0;
+    border-radius: var(--r-md);
+    padding: 1.05rem 1.75rem;
+    font: 600 1rem/1 var(--sans);
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+    text-align: center;
+  }
+  .btn--contratar:hover { background: var(--leaf-deep); color: var(--cream); transform: translateY(-1px); }
+  .btn--contratar:disabled { opacity: 0.55; cursor: wait; transform: none; }
+  .contratar-note {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  }
+  .contratar-error {
+    background: rgba(196,74,61,0.08);
+    border: 1px solid rgba(196,74,61,0.25);
+    border-radius: var(--r-md);
+    padding: 0.9rem 1.1rem;
+    color: #C44A3D;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  /* ── Tela de boas-vindas ── */
+  .welcome-screen { display: none; animation: slideIn 0.5s cubic-bezier(.2,.7,.2,1); }
+  .welcome-screen.on { display: block; }
+
+  .welcome-hero {
+    background: linear-gradient(160deg, #062B14 0%, #0A1F36 100%);
+    border-radius: var(--r-lg);
+    padding: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .welcome-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(111,178,62,0.22), transparent 65%);
+    pointer-events: none;
+  }
+  .welcome-hero > * { position: relative; z-index: 1; }
+  .welcome-check {
+    width: 64px; height: 64px;
+    background: var(--leaf);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.8rem;
+    color: var(--ink);
+    box-shadow: 0 0 0 12px rgba(111,178,62,0.15);
+  }
+  .welcome-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 500;
+    color: var(--cream);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .welcome-sub {
+    color: rgba(244,239,228,0.65);
+    font-size: 0.98rem;
+    margin: 0;
+  }
+
+  .welcome-plan-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--r-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .welcome-plan-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .welcome-plan-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: -0.015em;
+  }
+  .welcome-plan-price b {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--leaf-deep);
+    letter-spacing: -0.02em;
+  }
+  .welcome-plan-price small { font-size: 0.9rem; color: var(--text-3); margin-left: 0.2rem; }
+
+  .welcome-services {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .welcome-services li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.93rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .welcome-services li::before {
+    content: "✓";
+    flex: 0 0 20px;
+    width: 20px; height: 20px;
+    background: var(--leaf);
+    color: var(--ink);
+    border-radius: 50%;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: 0.1rem;
+  }
+
+  .welcome-sign-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .btn--sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: var(--navy);
+    color: var(--cream);
+    border: 0;
+    border-radius: var(--r-md);
+    padding: 1.1rem 2rem;
+    font: 600 1.05rem/1 var(--sans);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s, transform 0.15s;
+  }
+  .btn--sign:hover { background: #0A2A50; transform: translateY(-1px); }
+  .welcome-sign-note {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    text-align: center;
+  }
+  .welcome-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text-2);
+    padding-top: 0.5rem;
+  }
+  .welcome-whatsapp a { color: var(--leaf-deep); font-weight: 600; }
+
   /* brand strip on top of flow page */
   .flow-topbar {
     background: var(--paper);
@@ -652,12 +836,23 @@
           </div>
         </div>
 
-        <div class="result-actions">
-          <a class="btn btn--leaf" href="https://wa.me/5511900000000?text=Quero+falar+sobre+meu+diagnóstico+Food+Guard" target="_blank" rel="noopener">
+        <div class="contratar-wrap">
+          <button class="btn--contratar" id="contratar-btn" type="button">
+            Contratar <span id="contratar-plan-label">este plano</span>
+            <svg style="width:18px;height:18px;flex-shrink:0;" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </button>
+          <div class="contratar-error" id="contratar-error"></div>
+          <p class="contratar-note">
+            <svg style="width:14px;height:14px;opacity:.6;" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            Assinatura digital via DocuSign · LGPD · sem burocracia em papel
+          </p>
+        </div>
+
+        <div class="result-actions" style="margin-top:0.75rem; padding-top:0.75rem;">
+          <a class="btn" href="https://wa.me/5511900000000?text=Quero+falar+sobre+meu+diagnóstico+Food+Guard" target="_blank" rel="noopener" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong); justify-content:center;">
             Falar com RT no WhatsApp
-            <svg class="arr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </a>
-          <button class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong);" onclick="window.print()">
+          <button class="btn" style="background:transparent; color:var(--navy); border:1px solid var(--line-strong); justify-content:center;" onclick="window.print()">
             Salvar em PDF
           </button>
         </div>
@@ -665,6 +860,39 @@
         <p style="text-align:center; color:var(--text-3); font-size:0.82rem; margin: 1.5rem 0 0;">
           O PDF completo também foi enviado para <b id="r-email" style="color:var(--navy);">seu e-mail</b>.<br>
           Não recebeu? Cheque o spam ou nos escreva em ola@foodguard.com.br
+        </p>
+      </div>
+
+      <!-- ============ BOAS-VINDAS ============ -->
+      <div class="welcome-screen" id="welcome">
+        <div class="welcome-hero">
+          <div class="welcome-check">✓</div>
+          <h2 class="welcome-title">Bem-vindo, <span id="w-nome">—</span>!</h2>
+          <p class="welcome-sub">Seu contrato está pronto para assinatura digital</p>
+        </div>
+
+        <div class="welcome-plan-card">
+          <div class="welcome-plan-head">
+            <div class="welcome-plan-name" id="w-plan-name">—</div>
+            <div class="welcome-plan-price"><b id="w-plan-price">—</b><small>/mês</small></div>
+          </div>
+          <ul class="welcome-services" id="w-services"></ul>
+        </div>
+
+        <div class="welcome-sign-wrap">
+          <a class="btn--sign" id="w-sign-btn" href="#" target="_blank" rel="noopener">
+            <svg style="width:20px;height:20px;flex-shrink:0;" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Assinar contrato no DocuSign
+          </a>
+          <p class="welcome-sign-note">
+            O link de assinatura também foi enviado para <b id="w-email">seu e-mail</b>.
+            <br>Válido por 7 dias.
+          </p>
+        </div>
+
+        <p class="welcome-whatsapp">
+          Dúvidas? Fale com nossa nutricionista RT:
+          <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">WhatsApp →</a>
         </p>
       </div>
 
@@ -856,12 +1084,71 @@
     document.getElementById('r-plan-price').textContent = PLANS[plan].price;
     document.getElementById('r-email').textContent = state.answers.email || 'seu e-mail';
 
+    // Atualiza label do botão de contratar com o nome do plano
+    document.getElementById('contratar-plan-label').textContent = PLANS[plan].name;
+
+    // Guarda plano selecionado no state
+    state.planKey = plan;
+
     document.querySelector('.flow-head').style.display = 'none';
     $result.classList.add('on');
 
     // Persist
     try { localStorage.setItem('foodguard_diag', JSON.stringify(state)); } catch(e) {}
   }
+
+  // ── Contratar: chama a API e abre a tela de boas-vindas ──
+  const $contratarBtn = document.getElementById('contratar-btn');
+  const $contratarError = document.getElementById('contratar-error');
+
+  $contratarBtn.addEventListener('click', async () => {
+    $contratarError.style.display = 'none';
+    $contratarBtn.disabled = true;
+    $contratarBtn.textContent = 'Preparando seu contrato…';
+
+    const payload = {
+      nome:    state.answers.nome,
+      email:   state.answers.email,
+      empresa: state.answers.empresa,
+      plano:   state.planKey,
+    };
+
+    try {
+      const res = await fetch('/api/create-contract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Erro desconhecido');
+      }
+
+      // Preenche a tela de boas-vindas
+      document.getElementById('w-nome').textContent = state.answers.nome;
+      document.getElementById('w-email').textContent = state.answers.email;
+      document.getElementById('w-plan-name').textContent = data.plan.name;
+      document.getElementById('w-plan-price').textContent = data.plan.price;
+
+      const $services = document.getElementById('w-services');
+      $services.innerHTML = data.plan.services.map(s => `<li>${s}</li>`).join('');
+
+      document.getElementById('w-sign-btn').href = data.signingUrl;
+
+      // Transição: resultado → boas-vindas
+      $result.classList.remove('on');
+      document.getElementById('welcome').classList.add('on');
+      $shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    } catch (err) {
+      $contratarError.textContent = err.message || 'Não foi possível criar o contrato. Tente novamente.';
+      $contratarError.style.display = 'block';
+      $contratarBtn.disabled = false;
+      $contratarBtn.innerHTML = 'Tentar novamente <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+    }
+  });
 
   // init
   if (new URLSearchParams(location.search).get('embed') === '1') {

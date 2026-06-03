@@ -1,0 +1,12 @@
+{
+  "name": "food-guard",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "docusign-esign": "^6.4.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
