@@ -1,4 +1,6 @@
 {
+  "framework": null,
+  "buildCommand": null,
   "outputDirectory": "FOOD GUARD/site",
   "rewrites": [
     { "source": "/api/:path*", "destination": "/api/:path*" }
