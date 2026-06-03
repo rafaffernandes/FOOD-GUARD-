@@ -198,7 +198,7 @@
           <li>Manual de boas práticas + POPs</li>
           <li>Suporte por WhatsApp em horário comercial</li>
         </ul>
-        <a class="btn btn--leaf" href="#diagnostico">Quero conhecer</a>
+        <button class="btn btn--leaf" onclick="abrirContratacao('essencial')">Contratar Essencial — R$ 1.500/mês</button>
       </article>
 
       <article class="plan plan--feature">
@@ -213,7 +213,7 @@
           <li>Atendimento de emergência ≤ 48h</li>
           <li>Painel do cliente com documentos</li>
         </ul>
-        <a class="btn btn--leaf" href="#diagnostico">Quero conhecer</a>
+        <button class="btn btn--leaf" onclick="abrirContratacao('conformidade')">Contratar Conformidade — R$ 2.700/mês</button>
       </article>
 
       <article class="plan">
@@ -227,7 +227,7 @@
           <li>Acompanhamento de vistorias da vigilância</li>
           <li>Hotline 7 dias com a RT</li>
         </ul>
-        <a class="btn btn--leaf" href="#diagnostico">Quero conhecer</a>
+        <button class="btn btn--leaf" onclick="abrirContratacao('premium')">Contratar Premium — R$ 3.800/mês</button>
       </article>
     </div>
   </div>
@@ -433,6 +433,93 @@
 <a class="wa-float" href="https://wa.me/5511900000000" aria-label="Fale conosco no WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A12 12 0 0 0 3.5 20.5L2 22l1.6-1.4A12 12 0 1 0 20.5 3.5zm-8.5 18a9.5 9.5 0 0 1-4.8-1.3l-.3-.2-3 .8.8-2.9-.2-.3a9.5 9.5 0 1 1 7.5 3.9zm5.4-7.1c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1c-.2.3-.8.9-1 1.1s-.4.2-.7 0c-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5s.1-.4 0-.5-.7-1.7-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.1 3.1.2.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.3z"></path></svg>
 </a>
+
+<!-- Modal de contratação -->
+<div id="modal-contratacao" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:1rem;">
+  <div style="background:#fff;border-radius:1.25rem;padding:2rem 2rem 1.75rem;max-width:440px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.18);">
+    <h3 style="margin:0 0 .25rem;color:#0E2A47;font-size:1.2rem;">Contratar <span id="modal-plan-label"></span></h3>
+    <p style="margin:0 0 1.25rem;color:#666;font-size:.9rem;">Preencha seus dados para prosseguir ao pagamento.</p>
+    <form id="form-contratacao" autocomplete="on">
+      <div style="display:flex;flex-direction:column;gap:.75rem;">
+        <input id="mc-nome" type="text" placeholder="Seu nome completo" required
+          style="padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:.6rem;font-size:.95rem;outline:none;">
+        <input id="mc-email" type="email" placeholder="E-mail" required
+          style="padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:.6rem;font-size:.95rem;outline:none;">
+        <input id="mc-empresa" type="text" placeholder="Nome do estabelecimento" required
+          style="padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:.6rem;font-size:.95rem;outline:none;">
+      </div>
+      <div id="mc-error" style="display:none;background:#fff3f3;color:#c0392b;border-radius:.5rem;padding:.75rem;font-size:.85rem;margin-top:.75rem;"></div>
+      <div style="display:flex;gap:.75rem;margin-top:1.25rem;">
+        <button type="button" onclick="fecharContratacao()"
+          style="flex:1;padding:.8rem;border:1.5px solid #ddd;border-radius:.6rem;background:#fff;cursor:pointer;font-size:.9rem;">
+          Cancelar
+        </button>
+        <button id="mc-btn" type="submit"
+          style="flex:2;padding:.8rem;background:#6FB23E;color:#fff;border:none;border-radius:.6rem;cursor:pointer;font-weight:700;font-size:.95rem;">
+          Ir para pagamento →
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  var _planoSelecionado = '';
+  var PLAN_LABELS = { essencial: 'Essencial', conformidade: 'Conformidade', premium: 'Premium' };
+
+  function abrirContratacao(plano) {
+    _planoSelecionado = plano;
+    document.getElementById('modal-plan-label').textContent = PLAN_LABELS[plano] || plano;
+    document.getElementById('mc-error').style.display = 'none';
+    document.getElementById('mc-btn').textContent = 'Ir para pagamento →';
+    document.getElementById('mc-btn').disabled = false;
+    var modal = document.getElementById('modal-contratacao');
+    modal.style.display = 'flex';
+    document.getElementById('mc-nome').focus();
+  }
+
+  function fecharContratacao() {
+    document.getElementById('modal-contratacao').style.display = 'none';
+  }
+
+  document.getElementById('modal-contratacao').addEventListener('click', function(e) {
+    if (e.target === this) fecharContratacao();
+  });
+
+  document.getElementById('form-contratacao').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('mc-btn');
+    var errEl = document.getElementById('mc-error');
+    errEl.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = 'Aguarde…';
+
+    var payload = {
+      nome:    document.getElementById('mc-nome').value.trim(),
+      email:   document.getElementById('mc-email').value.trim(),
+      empresa: document.getElementById('mc-empresa').value.trim(),
+      plano:   _planoSelecionado,
+    };
+
+    try {
+      var res = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      var data = await res.json();
+
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Erro ao processar pagamento.');
+
+      window.location.href = data.paymentUrl;
+    } catch (err) {
+      errEl.textContent = err.message || 'Não foi possível gerar o pagamento. Tente novamente.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Ir para pagamento →';
+    }
+  });
+</script>
 
 <!-- Tweaks mount point -->
 
