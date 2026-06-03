@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Fase 2: Próximos Passos para Produção</title>
+<style>
+  :root{
+    --brand-50:#ecfdf5; --brand-100:#d1fae5; --brand-600:#059669; --brand-700:#047857; --brand-950:#022c22;
+    --ink:#0b1f1a; --ink-soft:#33433e; --ink-muted:#6b7a75;
+    --surface:#ffffff; --surface-soft:#f6faf8; --surface-sunken:#eef4f1;
+    --danger:#dc2626; --danger-50:#fef2f2; --warn:#d97706; --warn-50:#fffbeb; --info:#2563eb; --info-50:#eff6ff;
+    --radius:16px; --shadow:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--surface-soft);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(160deg,var(--brand-950),var(--brand-700));color:#fff;padding:48px 0 40px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:16px}
+  header h1{font-size:30px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header p{margin:0;color:#d1fae5;max-width:640px}
+  .meta{margin-top:18px;font-size:13px;color:#a7f3d0}
+  main{padding:36px 0 56px}
+  h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:40px 0 14px;display:flex;align-items:center;gap:10px}
+  h2 .num{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:8px;
+    background:var(--brand-600);color:#fff;font-size:14px;font-weight:800}
+  .lead{background:var(--surface);border:1px solid var(--surface-sunken);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow)}
+  .lead strong{color:var(--brand-700)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+  .chip{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid transparent}
+  .chip.me{background:var(--brand-50);color:var(--brand-700);border-color:var(--brand-100)}
+  .chip.you{background:var(--info-50);color:var(--info);border-color:#dbeafe}
+  .chip.mix{background:var(--warn-50);color:var(--warn);border-color:#fde68a}
+  .card{background:var(--surface);border:1px solid var(--surface-sunken);border-radius:var(--radius);
+    padding:18px 20px;margin:12px 0;box-shadow:var(--shadow)}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .card h3{margin:0;font-size:16.5px;font-weight:700}
+  .tag{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:7px;white-space:nowrap}
+  .tag.me{background:var(--brand-50);color:var(--brand-700)}
+  .tag.you{background:var(--info-50);color:var(--info)}
+  .tag.mix{background:var(--warn-50);color:var(--warn)}
+  .card p{margin:8px 0 0;color:var(--ink-soft);font-size:14.5px}
+  .kv{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:12px;font-size:13px;color:var(--ink-muted)}
+  .kv b{color:var(--ink-soft);font-weight:600}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-left:6px}
+  .p0{background:var(--danger-50);color:var(--danger)} .p1{background:var(--warn-50);color:var(--warn)} .p2{background:var(--surface-sunken);color:var(--ink-soft)}
+  table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow);font-size:14px;border:1px solid var(--surface-sunken)}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--surface-sunken)}
+  th{background:var(--surface-soft);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-muted)}
+  tr:last-child td{border-bottom:0}
+  .ok{color:var(--brand-700);font-weight:600}.no{color:var(--danger);font-weight:600}
+  .timeline{border-left:2px solid var(--brand-100);margin:14px 0 0;padding:4px 0 4px 22px}
+  .step{position:relative;padding:0 0 18px}
+  .step::before{content:"";position:absolute;left:-29px;top:4px;width:12px;height:12px;border-radius:50%;
+    background:var(--brand-600);border:3px solid var(--surface-soft)}
+  .step h4{margin:0;font-size:15px;font-weight:700}
+  .step p{margin:4px 0 0;font-size:14px;color:var(--ink-soft)}
+  code{background:var(--surface-sunken);padding:1px 6px;border-radius:5px;font-size:13px}
+  footer{border-top:1px solid var(--surface-sunken);padding:24px 0 48px;color:var(--ink-muted);font-size:13px}
+  @media print{body{background:#fff}header{background:var(--brand-700)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.card,.lead,table{box-shadow:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="badge">Food Guard · Roadmap</span>
+    <h1>Fase 2 — Próximos Passos para Produção</h1>
+    <p>O que falta pra Food Guard sair do ar de validação e operar cobrando, captando e qualificando leads com segurança jurídica.</p>
+    <div class="meta">Atualizado em junho/2026 · Fase 1 concluída (site, diagnóstico, marketing, guia de contas e agente de qualificação)</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="lead">
+    <strong>Onde estamos:</strong> o núcleo está pronto — diagnóstico com motor de score, relatório/PDF, blog, SEO e o site completo.
+    A Fase 1 entregou ainda o <em>plano de marketing</em>, o <em>calendário editorial</em>, o <em>guia das contas externas</em>
+    (<code>docs/setup-producao.md</code>) e o <em>scaffold do agente de qualificação</em> (<code>lib/agent/</code>).
+    Falta a camada de <strong>operação real</strong>: pagamento que ativa assinatura, conformidade legal (LGPD) e as integrações ligadas.
+    <div class="legend">
+      <span class="chip me">🟢 Eu faço no código</span>
+      <span class="chip you">🔵 Depende de você (conta/credencial/dado)</span>
+      <span class="chip mix">🟡 Misto (você fornece, eu implemento)</span>
+    </div>
+  </div>
+
+  <!-- P0 -->
+  <h2><span class="num">1</span> Bloqueadores pra ir ao ar <span class="pill p0">P0</span></h2>
+
+  <div class="card">
+    <div class="top">
+      <h3>Conformidade LGPD</h3>
+      <span class="tag mix">🟡 Misto</span>
+    </div>
+    <p>Política de Privacidade, Termos de Uso, aviso/consentimento de cookies e <b>CNPJ + razão social</b> no rodapé.
+       O site coleta dados pessoais (nome, e-mail, telefone) — sem isso, captar lead e rodar ads é risco legal.</p>
+    <div class="kv">
+      <span><b>Por quê:</b> obrigatório por lei pra captar lead</span>
+      <span><b>Eu:</b> crio as páginas e o banner de consentimento</span>
+      <span><b>Você:</b> CNPJ, razão social e endereço fiscal</span>
+      <span><b>Esforço:</b> baixo-médio</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>Contas externas no ar (Supabase · Resend · Asaas)</h3>
+      <span class="tag you">🔵 Você</span>
+    </div>
+    <p>Criar os projetos e colar as chaves na Vercel, seguindo o passo a passo já pronto em <code>docs/setup-producao.md</code>.
+       Hoje tudo roda em "modo dev" (leads só vão pro console).</p>
+    <div class="kv">
+      <span><b>Por quê:</b> sem isso, nenhum lead ou pagamento é gravado</span>
+      <span><b>Ordem:</b> domínio → Supabase → Resend → Asaas</span>
+      <span><b>Eu:</b> valido e ligo cada integração</span>
+      <span><b>Esforço:</b> médio (1 tarde)</span>
+    </div>
+  </div>
+
+  <!-- P1 -->
+  <h2><span class="num">2</span> Pra cobrar e medir de verdade <span class="pill p1">P1</span></h2>
+
+  <div class="card">
+    <div class="top">
+      <h3>Completar o webhook do Asaas</h3>
+      <span class="tag me">🟢 Eu</span>
+    </div>
+    <p>Hoje o pagamento confirmado <b>não ativa nada</b> — o webhook (<code>app/api/webhooks/asaas/route.ts:24</code>) só registra no log.
+       Vou persistir o status no Supabase, marcar o lead como cliente e notificar a equipe.</p>
+    <div class="kv">
+      <span><b>Depende de:</b> Supabase no ar</span>
+      <span><b>Esforço:</b> médio</span>
+      <span><b>Risco se ignorar:</b> cliente paga e ninguém é avisado</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>Página de pós-pagamento / onboarding</h3>
+      <span class="tag me">🟢 Eu</span>
+    </div>
+    <p>O que acontece depois que o cliente paga? Tela de "obrigado", próximos passos e início do onboarding com o nutricionista responsável.</p>
+    <div class="kv"><span><b>Depende de:</b> fluxo Asaas</span><span><b>Esforço:</b> baixo</span></div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>Analytics + conversões (GA4 + Meta Pixel)</h3>
+      <span class="tag mix">🟡 Misto</span>
+    </div>
+    <p>Os eventos já estão instrumentados (<code>lib/analytics.ts</code>). Falta criar as contas e marcar <code>lead_captured</code> como conversão.
+       <b>Pré-requisito do tráfego pago</b> — sem isso o ads roda cego.</p>
+    <div class="kv"><span><b>Você:</b> IDs do GA4 e do Pixel</span><span><b>Eu:</b> marco conversões e valido UTMs</span><span><b>Esforço:</b> baixo</span></div>
+  </div>
+
+  <!-- P2 -->
+  <h2><span class="num">3</span> Operação, qualidade e escala <span class="pill p2">P2</span></h2>
+
+  <div class="card">
+    <div class="top">
+      <h3>Agente de qualificação — Fase 2</h3>
+      <span class="tag me">🟢 Eu</span>
+    </div>
+    <p>O scaffold (Fase 1) já classifica cada lead em tier A/B/C com SLA e canal (<code>lib/agent/</code>).
+       A Fase 2 persiste o <b>status do lead</b> no Supabase, monta a fila por tier e <b>notifica o nutricionista nos tier A</b> (SLA de 15 min).</p>
+    <div class="kv"><span><b>Depende de:</b> Supabase no ar</span><span><b>Ref.:</b> docs/agente/ARQUITETURA.md</span><span><b>Esforço:</b> médio</span></div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>WhatsApp Cloud API (atendimento automatizado)</h3>
+      <span class="tag mix">🟡 Misto</span>
+    </div>
+    <p>O botão atual usa <code>wa.me</code> (suficiente pro humano). Pra o agente <b>enviar e receber</b> mensagens com templates aprovados,
+       é preciso a WhatsApp Cloud API da Meta. Habilita a automação real do follow-up.</p>
+    <div class="kv"><span><b>Você:</b> conta Meta Business + número + templates</span><span><b>Eu:</b> integro com o agente</span><span><b>Esforço:</b> médio-alto</span></div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>og.png + monitoramento de erros (Sentry)</h3>
+      <span class="tag mix">🟡 Misto</span>
+    </div>
+    <p>Imagem de compartilhamento (links bonitos no WhatsApp/redes) e Sentry pra não ficar cego a erros em produção.</p>
+    <div class="kv"><span><b>Você:</b> conta Sentry (grátis)</span><span><b>Eu:</b> og.png + integração</span><span><b>Esforço:</b> baixo</span></div>
+  </div>
+
+  <div class="card">
+    <div class="top">
+      <h3>Agente — Fase 3+ (IA + painel)</h3>
+      <span class="tag me">🟢 Eu</span>
+    </div>
+    <p>Personalização da 1ª mensagem com a Claude API (<code>draftMessage</code>, com fallback nos templates) e um painel simples de leads
+       (fila por tier e métricas de conversão).</p>
+    <div class="kv"><span><b>Depende de:</b> Fase 2 + WhatsApp API</span><span><b>Esforço:</b> médio</span></div>
+  </div>
+
+  <!-- Readiness -->
+  <h2><span class="num">4</span> Prontidão das integrações</h2>
+  <table>
+    <thead><tr><th>Integração</th><th>Código</th><th>Falta</th></tr></thead>
+    <tbody>
+      <tr><td>Diagnóstico / score / PDF</td><td class="ok">Pronto</td><td>—</td></tr>
+      <tr><td>Supabase (leads)</td><td class="ok">Pronto</td><td class="no">Criar projeto + chaves</td></tr>
+      <tr><td>Resend (e-mail)</td><td class="ok">Pronto</td><td class="no">API key + domínio verificado</td></tr>
+      <tr><td>Asaas (pagamento)</td><td class="ok">Pronto</td><td class="no">Conta + links/API + completar webhook</td></tr>
+      <tr><td>WhatsApp (botão wa.me)</td><td class="ok">Pronto</td><td>Confirmar nº oficial</td></tr>
+      <tr><td>Analytics (GA4/Pixel)</td><td class="ok">Pronto</td><td class="no">IDs reais</td></tr>
+      <tr><td>LGPD (privacidade/termos)</td><td class="no">A fazer</td><td class="no">CNPJ + páginas</td></tr>
+      <tr><td>Agente de qualificação</td><td class="ok">Fase 1</td><td>Fases 2–3</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Roadmap -->
+  <h2><span class="num">5</span> Sequência sugerida</h2>
+  <div class="timeline">
+    <div class="step"><h4>Semana 1 — Destravar</h4><p>LGPD (eu) <b>+</b> criar contas externas (você), em paralelo. Ao fim: o site capta lead legalmente e grava no banco.</p></div>
+    <div class="step"><h4>Semana 2 — Cobrar e medir</h4><p>Completar webhook Asaas + página de pós-pagamento + ativar GA4/Pixel. Ao fim: dá pra vender e medir conversão.</p></div>
+    <div class="step"><h4>Semanas 3–4 — Operar</h4><p>Agente Fase 2 (fila + notificação tier A) + og.png + Sentry. Ao fim: leads qualificados e priorizados automaticamente.</p></div>
+    <div class="step"><h4>Mês 2+ — Escalar</h4><p>WhatsApp Cloud API + Agente Fase 3 (IA + painel). Ao fim: follow-up automatizado e visão de funil.</p></div>
+  </div>
+
+  <div class="lead" style="margin-top:28px">
+    <strong>Quer começar?</strong> Eu posso atacar agora tudo que é <span class="chip me" style="padding:2px 10px">🟢 código</span>
+    sem depender de você — sugiro <b>LGPD + webhook Asaas</b> primeiro. Em paralelo, você toca as contas externas pelo
+    <code>docs/setup-producao.md</code>. É só me dizer "vai".
+  </div>
+
+</main>
+
+<footer class="wrap">
+  Food Guard · Consultoria nutricional para food service · RDC 216/2004 + Portaria 2.619/2011 ·
+  Documento de planejamento interno (Fase 2).
+</footer>
+</body>
+</html>
