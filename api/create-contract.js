@@ -146,8 +146,12 @@ module.exports = async function handler(req, res) {
     // Gera a URL de assinatura embedded (abre direto no DocuSign)
     const viewRequest = new docusign.RecipientViewRequest();
     viewRequest.returnUrl =
-      (process.env.SITE_URL || 'https://foodguard.com.br') +
-      '/contrato-assinado.html?plano=' + plano + '&nome=' + encodeURIComponent(nome);
+      (process.env.SITE_URL || 'https://foodguardassessoria.com.br') +
+      '/contrato-assinado.html?plano=' + plano +
+      '&nome=' + encodeURIComponent(nome) +
+      '&email=' + encodeURIComponent(email) +
+      '&empresa=' + encodeURIComponent(empresa) +
+      '&envelope=' + envelopeId;
     viewRequest.authenticationMethod = 'none';
     viewRequest.email = email;
     viewRequest.userName = nome;

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pagamento Confirmado — Food Guard Assessoria</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .pg-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: #f8faf5;
+  }
+  .pg-card {
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 3rem 2.5rem;
+    max-width: 520px;
+    width: 100%;
+    box-shadow: 0 4px 32px rgba(14,42,71,.08);
+    text-align: center;
+  }
+  .pg-icon {
+    width: 72px; height: 72px;
+    background: #e8f5e0;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  .pg-icon svg { width: 36px; height: 36px; }
+  .pg-card h1 { font-size: 1.6rem; color: #0E2A47; margin-bottom: .5rem; }
+  .pg-card .sub { color: #5a7a5a; margin-bottom: 1.75rem; }
+  .steps-list {
+    text-align: left;
+    background: #f8faf5;
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    font-size: .9rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+  }
+  .steps-list li { margin-bottom: .5rem; }
+  .btn--home {
+    display: inline-block;
+    background: #0E2A47;
+    color: #fff;
+    font-weight: 600;
+    padding: .85rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: .95rem;
+  }
+  .btn--home:hover { background: #1a3f6a; }
+  .wa-link { display: block; margin-top: 1.25rem; color: #6FB23E; font-size: .9rem; text-decoration: none; }
+  .wa-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="pg-wrap">
+  <div class="pg-card">
+    <div class="pg-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M9 12l2 2 4-4" stroke="#6FB23E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="9" stroke="#6FB23E" stroke-width="2"/>
+      </svg>
+    </div>
+    <h1>Pagamento confirmado!</h1>
+    <p class="sub">Obrigado, <strong id="nome-cliente"></strong>. Seu <strong id="plan-label"></strong> está ativo.</p>
+
+    <ul class="steps-list">
+      <li>✅ Pagamento recebido com sucesso</li>
+      <li>📧 Contrato enviado para o seu e-mail — verifique sua caixa de entrada</li>
+      <li>✍️ Assine o contrato digitalmente pelo link no e-mail</li>
+      <li>🚀 Após a assinatura, nossa equipe entrará em contato</li>
+    </ul>
+
+    <a href="index.html" class="btn--home">Voltar ao site</a>
+    <a class="wa-link" id="wa-link" href="#">Precisa de ajuda? Fale no WhatsApp →</a>
+  </div>
+</div>
+<script>
+  const p = new URLSearchParams(location.search);
+  const PLAN_NAMES = { essencial: 'Plano Essencial', conformidade: 'Plano Conformidade', premium: 'Plano Premium' };
+  document.getElementById('nome-cliente').textContent = p.get('nome') || 'cliente';
+  document.getElementById('plan-label').textContent = PLAN_NAMES[p.get('plano')] || p.get('plano') || 'plano';
+  document.getElementById('wa-link').href = 'https://wa.me/5511900000000?text=' +
+    encodeURIComponent('Olá! Acabei de confirmar o pagamento do ' + (PLAN_NAMES[p.get('plano')] || '') + ' e preciso de ajuda.');
+</script>
+</body>
+</html>

@@ -863,12 +863,12 @@
         </p>
       </div>
 
-      <!-- ============ BOAS-VINDAS ============ -->
+      <!-- ============ PAGAMENTO ============ -->
       <div class="welcome-screen" id="welcome">
         <div class="welcome-hero">
-          <div class="welcome-check">✓</div>
-          <h2 class="welcome-title">Bem-vindo, <span id="w-nome">—</span>!</h2>
-          <p class="welcome-sub">Seu contrato está pronto para assinatura digital</p>
+          <div class="welcome-check">💳</div>
+          <h2 class="welcome-title">Quase lá, <span id="w-nome">—</span>!</h2>
+          <p class="welcome-sub">Finalize o pagamento para ativar seu plano e receber o contrato</p>
         </div>
 
         <div class="welcome-plan-card">
@@ -876,17 +876,15 @@
             <div class="welcome-plan-name" id="w-plan-name">—</div>
             <div class="welcome-plan-price"><b id="w-plan-price">—</b><small>/mês</small></div>
           </div>
-          <ul class="welcome-services" id="w-services"></ul>
         </div>
 
         <div class="welcome-sign-wrap">
-          <a class="btn--sign" id="w-sign-btn" href="#" target="_blank" rel="noopener">
-            <svg style="width:20px;height:20px;flex-shrink:0;" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Assinar contrato no DocuSign
+          <a class="btn--sign" id="w-pay-btn" href="#" target="_blank" rel="noopener">
+            <svg style="width:20px;height:20px;flex-shrink:0;" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M2 10h20" stroke="currentColor" stroke-width="2"/></svg>
+            Pagar com PIX, boleto ou cartão
           </a>
           <p class="welcome-sign-note">
-            O link de assinatura também foi enviado para <b id="w-email">seu e-mail</b>.
-            <br>Válido por 7 dias.
+            Após o pagamento, o contrato será enviado para o seu e-mail para assinatura digital.
           </p>
         </div>
 
@@ -1097,14 +1095,14 @@
     try { localStorage.setItem('foodguard_diag', JSON.stringify(state)); } catch(e) {}
   }
 
-  // ── Contratar: chama a API e abre a tela de boas-vindas ──
+  // ── Contratar: gera link de pagamento Asaas → redireciona ──
   const $contratarBtn = document.getElementById('contratar-btn');
   const $contratarError = document.getElementById('contratar-error');
 
   $contratarBtn.addEventListener('click', async () => {
     $contratarError.style.display = 'none';
     $contratarBtn.disabled = true;
-    $contratarBtn.textContent = 'Preparando seu contrato…';
+    $contratarBtn.textContent = 'Gerando link de pagamento…';
 
     const payload = {
       nome:    state.answers.nome,
@@ -1114,7 +1112,7 @@
     };
 
     try {
-      const res = await fetch('/api/create-contract', {
+      const res = await fetch('/api/create-payment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -1126,24 +1124,19 @@
         throw new Error(data.error || 'Erro desconhecido');
       }
 
-      // Preenche a tela de boas-vindas
+      // Preenche tela de pagamento
       document.getElementById('w-nome').textContent = state.answers.nome;
-      document.getElementById('w-email').textContent = state.answers.email;
       document.getElementById('w-plan-name').textContent = data.plan.name;
       document.getElementById('w-plan-price').textContent = data.plan.price;
+      document.getElementById('w-pay-btn').href = data.paymentUrl;
 
-      const $services = document.getElementById('w-services');
-      $services.innerHTML = data.plan.services.map(s => `<li>${s}</li>`).join('');
-
-      document.getElementById('w-sign-btn').href = data.signingUrl;
-
-      // Transição: resultado → boas-vindas
+      // Transição: resultado → tela de pagamento
       $result.classList.remove('on');
       document.getElementById('welcome').classList.add('on');
       $shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     } catch (err) {
-      $contratarError.textContent = err.message || 'Não foi possível criar o contrato. Tente novamente.';
+      $contratarError.textContent = err.message || 'Não foi possível gerar o pagamento. Tente novamente.';
       $contratarError.style.display = 'block';
       $contratarBtn.disabled = false;
       $contratarBtn.innerHTML = 'Tentar novamente <svg style="width:18px;height:18px;" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
