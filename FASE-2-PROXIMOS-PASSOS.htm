@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Fase 2: Próximos Passos</title>
+<style>
+  :root{
+    --brand:#588f2c; --brand-700:#446e22; --brand-50:#f3faea; --brand-100:#e4f4ca;
+    --navy:#16335c; --navy-700:#16335c; --navy-900:#0b1c34;
+    --ink:#0e1f33; --ink-soft:#3a4b60; --ink-muted:#6b7a8c;
+    --surface:#fff; --surface-soft:#f4f8fc; --surface-sunken:#e9eff5;
+    --danger:#dc2626; --danger-50:#fef2f2; --warn:#d97706; --warn-50:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    color:var(--ink);background:var(--surface-soft);line-height:1.6;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
+  header.hero{
+    background:radial-gradient(60% 120% at 50% 0%,rgba(116,180,60,.18),rgba(116,180,60,0) 70%),
+               linear-gradient(135deg,var(--navy-900),var(--navy));
+    color:#fff;padding:56px 20px 64px;text-align:center;
+  }
+  .hero .badge{
+    display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    color:#e4f4ca;font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    padding:6px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  .hero h1{font-size:40px;line-height:1.1;margin:0 0 12px;font-weight:800;letter-spacing:-.02em}
+  .hero h1 span{color:#aedb66}
+  .hero p{margin:0 auto;max-width:620px;color:#d9e4f1;font-size:17px}
+  .meta{margin-top:22px;font-size:13px;color:#85a3c9}
+  main{margin-top:-36px}
+  .card{
+    background:var(--surface);border:1px solid var(--surface-sunken);border-radius:20px;
+    padding:26px 28px;margin:18px 0;box-shadow:0 1px 2px rgba(6,78,59,.04),0 8px 24px rgba(6,78,59,.06);
+  }
+  .card h2{
+    font-size:22px;margin:0 0 4px;font-weight:800;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:12px;
+  }
+  .num{
+    flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--brand-50);
+    color:var(--brand-700);font-size:15px;font-weight:800;display:grid;place-items:center;
+    border:1px solid var(--brand-100);
+  }
+  .card .lead{color:var(--ink-soft);margin:2px 0 16px;font-size:15px}
+  ul.tasks{list-style:none;padding:0;margin:0}
+  ul.tasks li{
+    position:relative;padding:10px 0 10px 30px;border-top:1px solid var(--surface-sunken);font-size:15px;
+  }
+  ul.tasks li:first-child{border-top:none}
+  ul.tasks li::before{
+    content:"";position:absolute;left:4px;top:16px;width:14px;height:14px;border-radius:4px;
+    border:2px solid var(--brand);background:var(--surface);
+  }
+  ul.tasks li b{color:var(--ink)}
+  ul.tasks li code{
+    background:var(--surface-sunken);padding:1px 6px;border-radius:6px;font-size:13px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--navy);
+  }
+  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;vertical-align:middle;margin-left:8px}
+  .p-alta{background:var(--danger-50);color:var(--danger)}
+  .p-media{background:var(--warn-50);color:var(--warn)}
+  .p-base{background:var(--brand-50);color:var(--brand-700)}
+  table{width:100%;border-collapse:collapse;margin-top:6px;font-size:14px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--surface-sunken);vertical-align:top}
+  th{background:var(--surface-soft);font-weight:700;color:var(--navy);font-size:13px;text-transform:uppercase;letter-spacing:.03em}
+  td.was{color:var(--ink-muted);text-decoration:line-through}
+  td.now{color:var(--brand-700);font-weight:700}
+  .callout{
+    border-left:4px solid var(--brand);background:var(--brand-50);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;font-size:14px;color:var(--ink-soft)
+  }
+  .callout.warn{border-color:var(--warn);background:var(--warn-50)}
+  .done{
+    background:linear-gradient(135deg,var(--brand-700),var(--brand));color:#fff;border:none;
+  }
+  .done h2{color:#fff}
+  .done .num{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.25)}
+  .done ul.tasks li{border-color:rgba(255,255,255,.18);color:#eafbe0}
+  .done ul.tasks li::before{border-color:#aedb66;background:#aedb66}
+  .done ul.tasks li b{color:#fff}
+  footer{text-align:center;color:var(--ink-muted);font-size:13px;margin-top:34px}
+  @media(max-width:560px){.hero h1{font-size:30px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="badge">Food Guard · Roadmap</div>
+  <h1>Fase 2 — <span>Próximos Passos</span></h1>
+  <p>O site e o diagnóstico já estão de pé. Esta fase fecha as divergências de marca,
+     coloca as integrações em produção e otimiza a conversão do funil.</p>
+  <div class="meta">Gerado em 03/06/2026 · branch <code style="color:#aedb66">claude/youthful-franklin-7ze5E</code></div>
+</header>
+
+<div class="wrap">
+<main>
+
+  <section class="card">
+    <h2><span class="num">0</span> Reconciliar marca × código <span class="pill p-alta">Prioridade alta</span></h2>
+    <p class="lead">Há divergências entre o que o <code>CLAUDE.md</code> define e o que o código
+       realmente entrega. Decida o valor canônico e alinhe os dois antes de seguir.</p>
+    <table>
+      <tr><th>Item</th><th>CLAUDE.md diz</th><th>Código atual</th></tr>
+      <tr><td>Preços dos planos</td><td class="was">700 / 1.200 / 1.999</td><td class="now">1.200 / 2.200 / 3.200</td></tr>
+      <tr><td>Cor primária</td><td class="was">verde #059669</td><td class="now">verde-lima/oliva #588f2c + paleta navy</td></tr>
+      <tr><td>Sigla "RT"</td><td class="was">nunca usar "RT"</td><td class="now">Premium usa "Responsável Técnico (RT)"</td></tr>
+      <tr><td>Garantia</td><td class="was">sem "dinheiro de volta"</td><td class="now">"90 dias… sem custo extra" ✓ ok</td></tr>
+    </table>
+    <div class="callout warn">Ação: definir a fonte da verdade (recomendado: o código),
+      atualizar o <code>CLAUDE.md</code> e padronizar "nutricionista responsável" vs "RT" na copy.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">1</span> Blindar o produto-núcleo (diagnóstico) <span class="pill p-alta">Prioridade alta</span></h2>
+    <p class="lead">É o coração do funil — não pode ter brecha.</p>
+    <ul class="tasks">
+      <li><b>E2E dos 3 cenários</b> — validar bandas <b>crítico (&lt;45)</b>, <b>médio (&lt;70)</b> e <b>baixo</b> ponta a ponta.</li>
+      <li><b>Recalcular o score no servidor</b> em <code>app/api/leads/route.ts</code> — nunca confiar no número vindo do cliente.</li>
+      <li><b>Geração do PDF</b> do relatório (<code>pdf-lib</code>) + envio por e-mail no <code>GatingForm</code>.</li>
+      <li><b>Revisar pesos de risco</b> e os textos de <code>insight</code>/<code>gap</code> com o nutricionista responsável.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">2</span> Integrações em produção <span class="pill p-media">Prioridade média</span></h2>
+    <p class="lead">Hoje tudo tem degradação graciosa (roda sem env var). Ligar de verdade:</p>
+    <ul class="tasks">
+      <li><b>Supabase</b> — aplicar <code>supabase/schema.sql</code> (tabelas <code>leads</code> + <code>consent_log</code>) e setar as chaves.</li>
+      <li><b>Resend</b> — domínio verificado + template do e-mail de relatório.</li>
+      <li><b>Asaas</b> — fluxo de <code>api/checkout</code> + <code>api/webhooks/asaas</code> testado com cobrança real (sandbox → produção).</li>
+      <li><b>Env vars</b> — <code>NEXT_PUBLIC_SITE_URL</code>, <code>NEXT_PUBLIC_WHATSAPP</code>, <code>NEXT_PUBLIC_CONTACT_EMAIL</code> + chaves dos serviços na Vercel.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">3</span> Conversão, conteúdo & SEO <span class="pill p-base">Contínuo</span></h2>
+    <ul class="tasks">
+      <li><b>Blog</b> — já há 4 artigos MDX; planejar cadência e CTAs para o diagnóstico em cada post.</li>
+      <li><b>SEO</b> — conferir <code>metadata</code>, Open Graph e <b>JSON-LD</b> (Organization/Service) em <code>layout.tsx</code>.</li>
+      <li><b>Analytics</b> — eventos de funil (início do diagnóstico, gating, plano recomendado, checkout).</li>
+      <li><b>FloatingWhatsApp</b> — usar <code>whatsappLink()</code> com mensagem pré-preenchida por contexto.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="num">4</span> Quality gates & deploy <span class="pill p-base">Sempre</span></h2>
+    <ul class="tasks">
+      <li>Após cada bloco: <code>npm run build</code> ✓ e <code>npm run lint</code> ✓.</li>
+      <li>Trabalhar em branch de feature; publicar via push duplo (feature → <code>main</code>).</li>
+      <li>Vercel publica em <b>https://food-guard-cnhl.vercel.app/</b> em 1–2 min.</li>
+    </ul>
+  </section>
+
+  <section class="card done">
+    <h2><span class="num">✓</span> Definição de "pronto" da Fase 2</h2>
+    <ul class="tasks">
+      <li>Divergências de marca reconciliadas e <code>CLAUDE.md</code> atualizado.</li>
+      <li>Diagnóstico com E2E verde e score validado no servidor.</li>
+      <li>Supabase, Resend e Asaas funcionando em produção.</li>
+      <li><code>build</code> + <code>lint</code> limpos · copy em pt-BR e na voz da marca.</li>
+    </ul>
+  </section>
+
+  <footer>Food Guard · Conformidade sanitária e nutricional como software · pt-BR</footer>
+</main>
+</div>
+</body>
+</html>
