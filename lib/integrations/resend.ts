@@ -48,3 +48,31 @@ export async function sendDiagnosticEmail(
     return { ok: false, error: message };
   }
 }
+
+const teamEmail =
+  process.env.TEAM_NOTIFY_EMAIL || process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+
+/**
+ * Notificação interna para a equipe (ex.: lead tier A com SLA de 15 min).
+ * Degradação graciosa: sem Resend/destinatário, loga em dev.
+ */
+export async function notifyTeam(subject: string, text: string): Promise<void> {
+  if (!resendConfigured || !teamEmail) {
+    console.info(`[dev] notificação interna — ${subject}: ${text}`);
+    return;
+  }
+  try {
+    const resend = new Resend(apiKey);
+    await resend.emails.send({
+      from,
+      to: teamEmail,
+      subject: `[Food Guard] ${subject}`,
+      text,
+    });
+  } catch (err) {
+    console.error(
+      "[resend] notifyTeam:",
+      err instanceof Error ? err.message : "erro desconhecido",
+    );
+  }
+}

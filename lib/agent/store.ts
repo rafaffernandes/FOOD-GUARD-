@@ -186,3 +186,32 @@ export async function setDraftStatus(
   }
   return true;
 }
+
+/** Grava o rascunho de follow-up de um lead na fila (lead_activity, pendente). */
+export async function saveLeadActivity(
+  leadId: string | undefined,
+  tier: string,
+  channel: string,
+  message: string,
+  rationale: string,
+  aiGenerated: boolean,
+): Promise<boolean> {
+  const client = admin();
+  if (!client || !leadId) {
+    console.info("[dev] lead_activity não persistido (sem Supabase ou lead id).");
+    return false;
+  }
+  const { error } = await client.from("lead_activity").insert({
+    lead_id: leadId,
+    tier,
+    channel,
+    message,
+    rationale,
+    ai_generated: aiGenerated,
+  });
+  if (error) {
+    console.error("[lead_activity] erro ao salvar:", error.message);
+    return false;
+  }
+  return true;
+}

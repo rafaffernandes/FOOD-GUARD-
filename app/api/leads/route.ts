@@ -1,7 +1,9 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { z } from "zod";
+import { draftLeadFollowUp } from "@/lib/agent/followup";
+import { saveLeadActivity } from "@/lib/agent/store";
 import { computeDiagnostic } from "@/lib/diagnostic/engine";
-import { sendDiagnosticEmail } from "@/lib/integrations/resend";
+import { notifyTeam, sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
 
@@ -52,8 +54,35 @@ export async function POST(request: Request) {
   };
 
   const saved = await saveLead(lead);
-  // E-mail não bloqueia a resposta ao usuário.
-  void sendDiagnosticEmail(lead, result);
+
+  // Trabalho pós-resposta (não bloqueia o usuário): e-mail do relatório +
+  // qualificação por IA → rascunho de follow-up na fila + alerta nos tier A.
+  after(async () => {
+    try {
+      await sendDiagnosticEmail(lead, result);
+    } catch (err) {
+      console.error("[after] e-mail do diagnóstico:", err);
+    }
+    try {
+      const { qualified, draft } = await draftLeadFollowUp(lead);
+      await saveLeadActivity(
+        saved.id,
+        qualified.tier,
+        draft.channel,
+        draft.message,
+        draft.rationale,
+        draft.aiGenerated,
+      );
+      if (qualified.tier === "A") {
+        await notifyTeam(
+          `Lead tier A: ${lead.company}`,
+          `${lead.name} (${lead.company}) — risco ${lead.band}, score ${lead.score}/100. SLA de 15 min. Rascunho de follow-up na fila: /admin/aprovacoes`,
+        );
+      }
+    } catch (err) {
+      console.error("[after] qualificação do lead:", err);
+    }
+  });
 
   return NextResponse.json({
     ok: saved.ok,
