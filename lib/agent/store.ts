@@ -77,3 +77,112 @@ export async function saveOutreachDraft(
   await client.from("prospects").update({ status: "rascunhado" }).eq("id", prospectId);
   return true;
 }
+
+export type DraftTable = "outreach_drafts" | "content_drafts" | "lead_activity";
+
+/** Item normalizado da fila de aprovação (junta os 3 tipos de rascunho). */
+export interface PendingDraft {
+  id: string;
+  table: DraftTable;
+  kind: "Prospecção" | "Conteúdo" | "Qualificação";
+  title: string;
+  subtitle?: string;
+  channel?: string;
+  message: string;
+  rationale?: string;
+  aiGenerated: boolean;
+  createdAt: string;
+}
+
+/** Todos os rascunhos pendentes de aprovação, dos 3 agentes, mais antigos primeiro. */
+export async function fetchPendingDrafts(): Promise<PendingDraft[]> {
+  const client = admin();
+  if (!client) {
+    console.info("[dev] Supabase não configurado — fila de aprovação vazia.");
+    return [];
+  }
+
+  const out: PendingDraft[] = [];
+
+  const { data: outreach } = await client
+    .from("outreach_drafts")
+    .select(
+      "id, channel, message, rationale, ai_generated, created_at, prospects(company_name, neighborhood)",
+    )
+    .eq("status", "pendente")
+    .order("created_at", { ascending: true });
+  for (const r of outreach ?? []) {
+    const p = Array.isArray(r.prospects) ? r.prospects[0] : r.prospects;
+    out.push({
+      id: r.id,
+      table: "outreach_drafts",
+      kind: "Prospecção",
+      title: p?.company_name ?? "Empresa",
+      subtitle: p?.neighborhood ?? undefined,
+      channel: r.channel,
+      message: r.message,
+      rationale: r.rationale ?? undefined,
+      aiGenerated: r.ai_generated,
+      createdAt: r.created_at,
+    });
+  }
+
+  const { data: content } = await client
+    .from("content_drafts")
+    .select("id, platform, topic, hook, body, cta, ai_generated, created_at")
+    .eq("status", "pendente")
+    .order("created_at", { ascending: true });
+  for (const r of content ?? []) {
+    out.push({
+      id: r.id,
+      table: "content_drafts",
+      kind: "Conteúdo",
+      title: `${r.platform}${r.topic ? ` · ${r.topic}` : ""}`,
+      subtitle: r.hook ?? undefined,
+      message: `${r.body}\n\nCTA: ${r.cta ?? ""}`,
+      aiGenerated: r.ai_generated,
+      createdAt: r.created_at,
+    });
+  }
+
+  const { data: activity } = await client
+    .from("lead_activity")
+    .select(
+      "id, tier, channel, message, rationale, ai_generated, created_at, leads(name, company)",
+    )
+    .eq("status", "pendente")
+    .order("created_at", { ascending: true });
+  for (const r of activity ?? []) {
+    const l = Array.isArray(r.leads) ? r.leads[0] : r.leads;
+    out.push({
+      id: r.id,
+      table: "lead_activity",
+      kind: "Qualificação",
+      title: l?.company ?? l?.name ?? "Lead",
+      subtitle: `tier ${r.tier ?? "?"}${l?.name ? ` · ${l.name}` : ""}`,
+      channel: r.channel,
+      message: r.message,
+      rationale: r.rationale ?? undefined,
+      aiGenerated: r.ai_generated,
+      createdAt: r.created_at,
+    });
+  }
+
+  return out;
+}
+
+/** Marca um rascunho como aprovado ou rejeitado. */
+export async function setDraftStatus(
+  table: DraftTable,
+  id: string,
+  status: "aprovado" | "rejeitado",
+): Promise<boolean> {
+  const client = admin();
+  if (!client) return false;
+  const { error } = await client.from(table).update({ status }).eq("id", id);
+  if (error) {
+    console.error("[approval] erro ao atualizar status:", error.message);
+    return false;
+  }
+  return true;
+}
