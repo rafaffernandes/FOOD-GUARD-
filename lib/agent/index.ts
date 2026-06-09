@@ -20,6 +20,7 @@ export * from "./client";
 export * from "./prospeccao";
 export * from "./conteudo";
 export * from "./followup";
+export * from "./maestro";
 
 export interface LeadAgentResult {
   qualified: QualifiedLead;
