@@ -26,12 +26,7 @@ export async function saveLead(lead: LeadPayload): Promise<SaveLeadResult> {
 
   // Degradação graciosa: sem credenciais, loga e segue (modo dev).
   if (!client) {
-    console.info("[dev] Supabase não configurado — lead capturado localmente:", {
-      email: lead.email,
-      company: lead.company,
-      score: lead.score,
-      plan: lead.recommendedPlan,
-    });
+    console.info("[dev] Supabase não configurado — lead capturado localmente (score:", lead.score, "| plano:", lead.recommendedPlan, ")");
     return { ok: true, devMode: true };
   }
 

@@ -4,6 +4,7 @@ import { computeDiagnostic } from "@/lib/diagnostic/engine";
 import { sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
+import { getIp, rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -18,6 +19,14 @@ const schema = z.object({
 });
 
 export async function POST(request: Request) {
+  const { allowed } = rateLimit(getIp(request), 5, 10 * 60 * 1000);
+  if (!allowed) {
+    return NextResponse.json(
+      { ok: false, error: "Muitas tentativas. Tente novamente em alguns minutos." },
+      { status: 429 },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -28,7 +37,7 @@ export async function POST(request: Request) {
   const parsed = schema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { ok: false, error: "Dados inválidos", issues: parsed.error.flatten() },
+      { ok: false, error: "Dados inválidos" },
       { status: 422 },
     );
   }
