@@ -15,6 +15,11 @@ import { type QualifiedLead, qualify } from "./qualify";
 
 export * from "./qualify";
 export * from "./playbook";
+export * from "./schemas";
+export * from "./client";
+export * from "./prospeccao";
+export * from "./conteudo";
+export * from "./followup";
 
 export interface LeadAgentResult {
   qualified: QualifiedLead;
