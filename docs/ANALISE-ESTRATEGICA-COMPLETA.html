@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Análise Estratégica Completa e Plano de Refatoração</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--brand50:#ecfdf5;--ink:#0b1f1a;--soft:#33433e;--muted:#6b7a75;
+  --bg:#f6faf8;--sunken:#eef4f1;--danger:#dc2626;--danger50:#fef2f2;--warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;
+  --r:16px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  .wrap{max-width:940px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:46px 0 38px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  header h1{font-size:28px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header p{margin:0;color:#d1fae5;max-width:680px}
+  main{padding:34px 0 60px}
+  h2{font-size:21px;font-weight:800;margin:42px 0 14px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:8px;background:var(--brand2);color:#fff;font-size:14px;font-weight:800;flex-shrink:0}
+  h3{font-size:16px;font-weight:700;margin:22px 0 8px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);padding:20px 22px;margin:12px 0;box-shadow:var(--sh)}
+  .verdict{border-left:5px solid var(--brand2)}
+  .alert{border-left:5px solid var(--danger);background:var(--danger50)}
+  .warn{border-left:5px solid var(--warn);background:var(--warn50)}
+  .ok{border-left:5px solid var(--brand2);background:var(--brand50)}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);font-size:14px;border:1px solid var(--sunken);margin:12px 0}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--sunken);vertical-align:top}
+  th{background:var(--bg);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  .good{color:var(--brand);font-weight:700}.bad{color:var(--danger);font-weight:700}.mid{color:var(--warn);font-weight:700}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:13px}
+  ul{margin:8px 0;padding-left:22px}li{margin:5px 0}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:6px;margin-right:6px}
+  .p0{background:var(--danger50);color:var(--danger)}.p1{background:var(--warn50);color:var(--warn)}.p2{background:var(--sunken);color:var(--soft)}
+  .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0}
+  .kpi .box{background:#fff;border:1px solid var(--sunken);border-radius:12px;padding:14px;box-shadow:var(--sh)}
+  .kpi b{display:block;font-size:22px;color:var(--brand)}
+  .kpi span{font-size:12.5px;color:var(--muted)}
+  footer{border-top:1px solid var(--sunken);padding:22px 0 46px;color:var(--muted);font-size:13px}
+  @media print{body{background:#fff}.card,table{box-shadow:none}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="badge">Food Guard · Análise Estratégica</span>
+  <h1>Análise completa e honesta + Plano de Refatoração</h1>
+  <p>Validação do plano de marketing · Auditoria do site (UX, SEO, LLMs) · Avaliação real do potencial do negócio · O que mudar. Sem puxa-saquismo — análise de quem leu o código inteiro.</p>
+  <p style="margin-top:14px;font-size:13px;color:#a7f3d0">junho/2026 · baseada no código real do repositório e nos docs das Fases 1–3</p>
+</div></header>
+<main class="wrap">
+
+<!-- ============ 1. MARKETING ============ -->
+<h2><span class="n">1</span> Seu plano de marketing funciona? <span style="font-size:14px;color:var(--brand)">SIM — com 2 correções</span></h2>
+
+<div class="card verdict">
+<b>Veredito: a meta de 2 clientes/mês é CONSERVADORA e atingível — na real, é baixa demais pra justificar a máquina que você está montando.</b> A matemática fecha folgada. Seu risco não é o plano; é a <b>execução dispersa</b> e a <b>capacidade de entrega</b>.
+</div>
+
+<h3>A matemática da sua meta (2 clientes/mês)</h3>
+<div class="kpi">
+  <div class="box"><b>~29</b><span>leads necessários/mês (conv. 7% lead→cliente)</span></div>
+  <div class="box"><b>R$ 1.500–2.000</b><span>verba de ads suficiente (CPL R$ 50–70)</span></div>
+  <div class="box"><b>R$ 4.500</b><span>MRR novo/mês (ticket médio ~R$ 2.250)</span></div>
+  <div class="box"><b>~1 mês</b><span>payback do CAC — modelo saudável</span></div>
+</div>
+<p>Com LTV/CAC acima de 20x (ver <code>docs/unit-economics.md</code>), <b>cada real em ads devolve muito mais em receita recorrente</b>. Se a conversão da call for normal (25%), 2 clientes/mês saem só do Google Ads. Os agentes (conteúdo + prospecção) são aceleradores por cima disso.</p>
+
+<h3>Seus 4 motores — avaliação individual</h3>
+<table>
+<tr><th>Motor</th><th>Nota</th><th>Análise honesta</th></tr>
+<tr><td><b>Google Ads → site → lead</b></td><td class="good">9/10</td><td>Seu melhor motor. Intenção altíssima ("fui autuado", "RT nutricionista"). É o único canal com resultado em <b>dias</b>. CERTO em chamar de "o mais importante". <b>Mas hoje está cego:</b> GA4/Pixel sem IDs = impossível otimizar por conversão. É o bloqueador nº 1.</td></tr>
+<tr><td><b>Agente recém-abertos</b></td><td class="good">8/10</td><td>Gatilho genial (empresa nova = precisa de licença AGORA). Diferencial competitivo real — quase ninguém faz isso de forma sistemática. Risco: depende do pipeline de dados (Receita/CNPJ) que ainda não existe.</td></tr>
+<tr><td><b>Conteúdo via agente</b></td><td class="mid">7/10</td><td>Funciona, mas é motor de <b>médio prazo</b> (SEO leva 4–6 meses). Não conte com ele pros 2 clientes dos primeiros 90 dias. Conte com ele pra derrubar o CAC no mês 6+.</td></tr>
+<tr><td><b>Prospecção multi-segmento</b></td><td class="mid">5/10</td><td>O mais arriscado dos quatro. Outbound frio tem taxa de resposta de 3–8% e exige acertar mensagem por segmento. Fazer pra <b>4 segmentos ao mesmo tempo</b> enquanto valida = dispersão. Sequencie.</td></tr>
+</table>
+
+<h3>As 2 correções que eu faria</h3>
+<div class="card warn"><b>Correção 1 — Ordem, não tudo junto.</b> Mês 1–2: Ads + recém-abertos (intenção alta, resultado rápido). Mês 3–4: conteúdo ganhando tração. Mês 5+: prospecção dos demais segmentos com a mensagem já validada. Sua estrutura (maestro + especialistas) já nasce pronta pra todos — a <b>ordem de ligar</b> é que muda.</div>
+<div class="card warn"><b>Correção 2 — O plano ignora a ENTREGA.</b> Consultoria com visita presencial: 1 nutricionista atende ~10–15 clientes. Com 2 clientes/mês, em 6 meses o Renan está no teto. <b>O plano de marketing precisa de um gêmeo: plano de capacidade</b> (quando contratar o 2º nutricionista, modelo PJ por visita, roteirização). Sem isso, o marketing funciona e a entrega quebra — churn mata o LTV que sustenta a conta toda.</div>
+
+<!-- ============ 2. SITE / UX ============ -->
+<h2><span class="n">2</span> Auditoria do site — UX, front-end e navegabilidade</h2>
+
+<div class="card verdict"><b>Nota geral: 7,5/10.</b> Fundação técnica acima da média de qualquer concorrente local (design system, tokens, performance, arquitetura limpa). Os gaps são de <b>conversão e confiança</b>, não de estética.</div>
+
+<h3>O que está bom (mantenha)</h3>
+<ul>
+<li><b>Stack e performance:</b> Next 15 + Server Components, sem bitmaps, fontes via <code>next/font</code>, ícones SVG — First Load ~102 kB compartilhado. Site leve de verdade, LCP tende a excelente.</li>
+<li><b>Design system consistente:</b> tokens, <code>cn()</code>, primitivos reutilizados. Visual profissional e coeso.</li>
+<li><b>O diagnóstico como produto de entrada</b> é sua melhor decisão de UX: baixa fricção, entrega valor antes de pedir dados.</li>
+</ul>
+
+<h3>O que eu mudaria (em ordem de impacto na conversão)</h3>
+<table>
+<tr><th>#</th><th>Mudança</th><th>Por quê</th></tr>
+<tr><td><span class="pill p0">P0</span></td><td><b>Prova social inexistente.</b> Não há depoimento, logo de cliente, número de operações atendidas, foto real do Renan em cozinha.</td><td>Serviço de confiança sem rosto/prova = conversão capada. 1 depoimento em vídeo de 30s vale mais que qualquer refactor de CSS. É a <b>maior alavanca do site hoje</b>.</td></tr>
+<tr><td><span class="pill p0">P0</span></td><td><b>Rodapé sem CNPJ/endereço + sem Política de Privacidade/Termos.</b></td><td>Além do risco legal (LGPD — vocês coletam dados!), é sinal de confiança que o dono de restaurante procura antes de pagar R$ 2.200/mês. Google e LLMs também leem isso como sinal de legitimidade.</td></tr>
+<tr><td><span class="pill p1">P1</span></td><td><b>Pós-diagnóstico sem caminho quente.</b> O resultado mostra score e plano, mas a ponte "resultado → falar com humano AGORA" precisa ser mais agressiva pra tier A (autuado): botão de WhatsApp pré-preenchido com o contexto do diagnóstico.</td><td>O lead mais quente do funil esfria em horas. Cada clique a menos entre "vi meu risco" e "estou falando com o nutricionista" = dinheiro.</td></tr>
+<tr><td><span class="pill p1">P1</span></td><td><b>Sem imagens reais.</b> O site é 100% CSS/SVG — elegante, mas frio pra um negócio que é sobre COZINHAS e PESSOAS.</td><td>2–3 fotos reais (Renan em visita, cozinha antes/depois) na home e no /sobre humanizam sem matar a performance (usar <code>next/image</code>).</td></tr>
+<tr><td><span class="pill p1">P1</span></td><td><b>og.png ausente.</b></td><td>Todo link compartilhado no WhatsApp (seu canal principal!) aparece sem imagem. Conversão de clique em link compartilhado cai muito.</td></tr>
+<tr><td><span class="pill p2">P2</span></td><td><b>Header sem CTA persistente de urgência</b> ("Fui autuado" / "Preciso de ajuda agora").</td><td>O visitante em pânico (melhor cliente) precisa achar a saída de emergência em 1s, em qualquer página.</td></tr>
+<tr><td><span class="pill p2">P2</span></td><td><b>Blog sem captura intermediária.</b> Artigo → ou faz diagnóstico ou vai embora.</td><td>Um lead magnet leve (checklist PDF "o que a vigilância cobra primeiro") captura quem ainda não quer diagnóstico.</td></tr>
+</table>
+
+<!-- ============ 3. SEO ============ -->
+<h2><span class="n">3</span> SEO — o site foi feito pra rankear?</h2>
+<div class="card verdict"><b>Sim, a fundação é boa (8/10 técnico) — mas SEO se ganha com conteúdo + autoridade, e aí está 3/10 ainda.</b></div>
+<table>
+<tr><th>Item</th><th>Status</th><th>Comentário</th></tr>
+<tr><td>Metadata, canonical, sitemap, robots</td><td class="good">OK</td><td>Bem implementado no <code>layout.tsx</code> / <code>sitemap.ts</code></td></tr>
+<tr><td>JSON-LD (Organization + WebSite)</td><td class="good">OK</td><td>Acima da média. Falta <code>Service</code> + <code>FAQPage</code> + <code>LocalBusiness</code> com área servida por bairro</td></tr>
+<tr><td>SSG/performance (Core Web Vitals)</td><td class="good">OK</td><td>Páginas estáticas, JS enxuto</td></tr>
+<tr><td>Volume de conteúdo</td><td class="bad">FRACO</td><td>4 artigos. O calendário prevê 24+ — é isso que move a agulha. Long-tail local ("vigilância sanitária Tatuapé") está aberto, concorrência fraca</td></tr>
+<tr><td>Backlinks / autoridade de domínio</td><td class="bad">ZERO</td><td>Nenhuma estratégia. Parcerias com contadores, ABRASEL, guias locais = caminho barato</td></tr>
+<tr><td>Domínio próprio</td><td class="bad">PENDENTE</td><td>Rodar em <code>*.vercel.app</code> mata SEO e marca. Registrar <code>foodguard.com.br</code> é pré-requisito de TUDO</td></tr>
+<tr><td>Google Business Profile</td><td class="bad">AUSENTE</td><td>Pra negócio local-SP é talvez o canal orgânico nº 1 e está fora do plano. Criar perfil, pedir reviews de clientes</td></tr>
+</table>
+
+<!-- ============ 4. LLMs ============ -->
+<h2><span class="n">4</span> A Food Guard está pronta pra ser recomendada por LLMs (ChatGPT, Gemini, Claude)?</h2>
+<div class="card verdict"><b>Parcialmente (6/10) — vocês estão à frente de 95% dos concorrentes por sequer pensar nisso, mas falta o principal: existir fora do próprio site.</b></div>
+<p>O que já joga a favor: <code>robots.ts</code> <b>libera explicitamente GPTBot, ClaudeBot, PerplexityBot</b> (decisão rara e correta), conteúdo em HTML semântico server-rendered (LLMs leem fácil), JSON-LD, e artigos que respondem perguntas diretas — formato que LLMs citam.</p>
+<h3>O que falta (em ordem)</h3>
+<ol>
+<li><b>Citações externas.</b> LLMs recomendam quem aparece em FONTES que elas confiam: diretórios (Google Business, guias do setor), imprensa local, ABRASEL/SEBRAE, listas "melhores consultorias sanitárias SP". Sem presença externa, nenhuma LLM te encontra — esse é 70% do gap.</li>
+<li><b>Página "quem somos/serviço" fortemente factual:</b> o que faz, onde atende (bairros nomeados), preços, credencial CRN do nutricionista — LLMs adoram fatos verificáveis e citam páginas assim.</li>
+<li><b>FAQ com schema FAQPage</b> respondendo literalmente o que as pessoas perguntam às LLMs ("preciso de nutricionista responsável pra abrir restaurante em SP?").</li>
+<li><b>Consistência NAP</b> (nome-endereço-telefone idênticos em todo lugar) + CNPJ público no site.</li>
+<li><b>Wikipedia/Wikidata não</b> (cedo demais), mas perfis completos em LinkedIn/Instagram com descrição factual idêntica à do site, sim.</li>
+</ol>
+<p><b>Teste de validação trimestral</b> (já documentado em <code>docs/ai-readiness.md</code>): perguntar a 4 LLMs "consultoria de vigilância sanitária pra restaurante em SP" e medir se a Food Guard aparece.</p>
+
+<!-- ============ 5. HONESTIDADE ============ -->
+<h2><span class="n">5</span> A conversa honesta — unicórnio, milhões, ou ilusão?</h2>
+
+<div class="card alert">
+<b>A resposta direta que você pediu: NÃO, a Food Guard como está desenhada hoje não é candidata a unicórnio. E está tudo bem — porque ela É candidata a um negócio excelente, lucrativo e vendável.</b>
+</div>
+
+<h3>Por que não é unicórnio (a matemática que não fecha)</h3>
+<ul>
+<li><b>O modelo é serviço, não software.</b> Visita presencial quinzenal/semanal = receita escala LINEAR com gente contratada. Unicórnio (R$ 5bi+) exige margem de software (80%+) e escala sem fricção. Consultoria tem margem 50–70% e escala com contratação — é outro esporte.</li>
+<li><b>Pra valer R$ 5bi precisaria de ~R$ 250–500M de receita anual</b> = dezenas de milhares de clientes pagando R$ 2.200/mês = milhares de nutricionistas na rua. Isso é uma operação tipo franquia gigante, não uma startup de IA.</li>
+<li><b>A IA que você está construindo reduz custo de aquisição e operação — não muda a natureza do negócio.</b> Agentes baratos pra captar e qualificar são vantagem competitiva real, mas o produto vendido continua sendo horas de nutricionista.</li>
+</ul>
+
+<h3>O que você ESTÁ construindo de verdade (e por que é bom)</h3>
+<div class="card ok">
+<b>Uma consultoria tech-enabled com CAC estruturalmente menor que o de qualquer concorrente.</b> Isso é raro e valioso. O mercado é real e grande: SP tem ~250 mil estabelecimentos de alimentação; só a Zona Leste tem dezenas de milhares; a dor (multa R$ 2–30 mil, interdição) é aguda e recorrente; e os concorrentes são consultorias artesanais sem nenhum motor digital. <b>Você não precisa ser disruptivo — precisa ser 10x mais eficiente em aquisição que consultoria de boca-a-boca. E isso você já está montando.</b>
+</div>
+
+<h3>Quanto pode valer em 2 anos? (cenários realistas)</h3>
+<table>
+<tr><th>Cenário</th><th>Clientes ativos</th><th>MRR</th><th>Valor de venda estimado*</th><th>O que precisa acontecer</th></tr>
+<tr><td>Base (2/mês, churn 4%)</td><td>~40</td><td>~R$ 90 mil</td><td class="mid">R$ 1,5–3 milhões</td><td>Executar o plano atual</td></tr>
+<tr><td>Bom (4–5/mês a partir do mês 6)</td><td>~90</td><td>~R$ 200 mil</td><td class="good">R$ 4–8 milhões</td><td>Ads escalado + 3–4 nutricionistas + processos</td></tr>
+<tr><td>Excelente (motor + produto digital)</td><td>~150 + receita SaaS</td><td>~R$ 350 mil+</td><td class="good">R$ 10–20 milhões</td><td>O item da seção 6 ↓</td></tr>
+</table>
+<p style="font-size:13px;color:var(--muted)">*Consultoria recorrente organizada vende por 3–6x receita anual ajustada no Brasil; com camada de software proprietário o múltiplo sobe. "Vender por milhões em 2 anos": <b>possível no cenário bom — desde que o negócio rode SEM depender de vocês dois</b> (processos, time, churn baixo documentado). Comprador paga por máquina, não por herói.</p>
+
+<h3>O movimento que muda o teto do negócio</h3>
+<div class="card warn">
+<b>Productize: transformar parte da entrega em software que o cliente usa.</b> Hoje 100% do valor entregue é humano. O caminho pra múltiplo maior: um <b>painel de conformidade</b> que o cliente acessa (checklists vivos, alertas de vencimento de documentação, registros de temperatura, trilha de auditoria, fotos das visitas). Isso (1) aumenta retenção brutalmente — cancelar = perder o histórico de conformidade; (2) cria plano de entrada barato 100% digital (ex.: R$ 297/mês self-service) que escala SEM nutricionista; (3) é o que um comprador chamaria de "ativo de software". <b>Não é pra fazer agora — é o horizonte do mês 6+, depois de validar a aquisição.</b> Mas é a diferença entre vender por 3x e vender por 8x receita.
+</div>
+
+<!-- ============ 6. PLANO ============ -->
+<h2><span class="n">6</span> Plano de refatoração estruturado (90 dias)</h2>
+
+<h3>Fase A — Destravar (semanas 1–2) <span class="pill p0">P0</span></h3>
+<ul>
+<li>Registrar <b>foodguard.com.br</b> + e-mail profissional (pré-requisito de marca, SEO, LLMs, Resend)</li>
+<li><b>LGPD:</b> Política de Privacidade + Termos + CNPJ no rodapé (eu faço as páginas; você fornece CNPJ)</li>
+<li><b>GA4 + Meta Pixel</b> com conversões marcadas (sem isso, ads roda cego — bloqueador do motor nº 1)</li>
+<li>Ligar Supabase/Resend/Asaas (guia pronto em <code>docs/setup-producao.md</code>) + completar webhook Asaas</li>
+<li><b>Prova social v1:</b> 1 depoimento real + foto do Renan em operação + og.png</li>
+</ul>
+
+<h3>Fase B — Acender o motor principal (semanas 3–6) <span class="pill p1">P1</span></h3>
+<ul>
+<li>Google Ads no ar: campanhas "autuação" + "responsável técnico", R$ 1.500/mês, CPL-alvo &lt; R$ 70</li>
+<li>Google Business Profile + NAP consistente (orgânico local + base pra LLMs)</li>
+<li>Especialista nº 1 do maestro (recém-abertos ZL) em <b>simulação</b> → revisar logs → ligar envio</li>
+<li>Ponte quente pós-diagnóstico (WhatsApp pré-preenchido pra tier A) + schema FAQPage/Service</li>
+</ul>
+
+<h3>Fase C — Compor (semanas 7–12) <span class="pill p2">P2</span></h3>
+<ul>
+<li>Agente de conteúdo: 2 artigos/semana + derivados LinkedIn/Instagram (calendário já existe)</li>
+<li>2º segmento de prospecção (só depois do 1º validado com taxa de resposta medida)</li>
+<li>Parcerias de indicação (contadores/fornecedores) — canal de CAC ~zero</li>
+<li><b>Plano de capacidade da entrega</b>: gatilho de contratação do 2º nutricionista em ~12 clientes</li>
+<li>Spec do painel de conformidade (o "productize" — só especificar, construir no mês 4+)</li>
+</ul>
+
+<div class="card verdict">
+<b>Resumo em 5 linhas:</b> (1) Sua meta de 2/mês é tímida — a máquina comporta 4–5. (2) O plano funciona, mas sequencie: Ads + recém-abertos primeiro, resto depois. (3) O site é tecnicamente forte; o que falta é confiança (prova social, CNPJ, fotos) e o domínio próprio. (4) Unicórnio não — negócio de R$ 5–20 milhões em 2–3 anos, sim, se a entrega escalar junto. (5) O movimento que muda seu teto é transformar parte da entrega em software (painel de conformidade) — horizonte mês 6+.
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Análise estratégica interna · junho/2026 · Próxima revisão: após 30 leads reais de ads.</footer>
+</body>
+</html>
