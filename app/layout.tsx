@@ -99,6 +99,38 @@ export default function RootLayout({
     })),
   };
 
+  // LocalBusiness: reforça SEO local e dá às LLMs área servida por bairro.
+  const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${site.url}/#localbusiness`,
+    name: site.name,
+    legalName: site.legalName,
+    url: site.url,
+    image: `${site.url}/opengraph-image`,
+    telephone: `+${site.whatsapp}`,
+    email: site.email,
+    priceRange: "R$1.200 - R$3.200/mês",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "São Paulo",
+      addressRegion: "SP",
+      addressCountry: "BR",
+    },
+    areaServed: [
+      { "@type": "City", name: "São Paulo" },
+      ...[
+        "Tatuapé", "Mooca", "Penha", "Itaquera", "Aricanduva",
+        "Vila Prudente", "São Miguel Paulista", "Itaim Paulista",
+        "Guaianases", "Vila Formosa", "Carrão", "São Mateus",
+      ].map((bairro) => ({
+        "@type": "Place",
+        name: `${bairro}, Zona Leste — São Paulo`,
+      })),
+    ],
+    parentOrganization: { "@id": `${site.url}/#organization` },
+  };
+
   const websiteLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -120,6 +152,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
         />
         <Analytics />
         <Nav />

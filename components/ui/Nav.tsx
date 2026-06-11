@@ -1,13 +1,19 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { Menu, Siren, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { whatsappLink } from "@/lib/content/site";
 import { cn } from "@/lib/utils";
 import { Button } from "./Button";
 import { Container } from "./Container";
 import { Logo } from "./Logo";
+
+/** Saída de emergência: visitante autuado fala com humano em 1 clique. */
+const urgentHref = whatsappLink(
+  "Fui autuado pela vigilância sanitária e preciso de ajuda urgente.",
+);
 
 const links = [
   { href: "/", label: "Home" },
@@ -44,7 +50,15 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
+          <a
+            href={urgentHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-danger-100 bg-danger-50 px-3.5 py-2 text-sm font-semibold text-danger-600 transition hover:border-danger-500/40"
+          >
+            <Siren className="h-4 w-4" /> Fui autuado
+          </a>
           <Button href="/diagnostico" size="sm">
             Fazer diagnóstico
           </Button>
@@ -74,6 +88,15 @@ export function Nav() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href={urgentHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="mt-1 inline-flex items-center justify-center gap-1.5 rounded-full border border-danger-100 bg-danger-50 px-5 py-2.5 text-sm font-semibold text-danger-600"
+            >
+              <Siren className="h-4 w-4" /> Fui autuado — preciso de ajuda
+            </a>
             <Button href="/diagnostico" className="mt-2 w-full" onClick={() => setOpen(false)}>
               Fazer diagnóstico
             </Button>

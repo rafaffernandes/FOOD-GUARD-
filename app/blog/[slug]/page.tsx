@@ -80,6 +80,21 @@ export default async function PostPage({
           <MDXRemote source={post.content} />
         </div>
 
+        {/* Lead magnet: captura quem ainda não quer o diagnóstico */}
+        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-brand-200 bg-brand-50/60 p-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="font-display text-lg font-bold text-ink">
+              📋 Checklist gratuito: o que a vigilância cobra primeiro
+            </p>
+            <p className="mt-1 text-sm text-ink-soft">
+              Imprima e confira sua cozinha item a item — antes da fiscalização.
+            </p>
+          </div>
+          <Button href="/checklist-vigilancia" variant="outline" size="sm" className="shrink-0">
+            Baixar checklist
+          </Button>
+        </div>
+
         <div className="mt-14 rounded-3xl bg-brand-600 px-8 py-10 text-center text-white">
           <h2 className="font-display text-2xl font-bold">
             Como está a conformidade da sua operação?

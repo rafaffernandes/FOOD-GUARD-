@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contato",
     "/privacidade",
     "/termos",
+    "/checklist-vigilancia",
   ].map(
     (path) => ({
       url: `${site.url}${path}`,
