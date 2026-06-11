@@ -9,6 +9,10 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511976466553",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
   city: "São Paulo · Grande SP",
+  /** Razão social e CNPJ (rodapé/LGPD). Preencher via env quando emitido. */
+  legalName:
+    process.env.NEXT_PUBLIC_LEGAL_NAME || "Food Guard Assessoria Nutricional",
+  cnpj: process.env.NEXT_PUBLIC_CNPJ || "",
   social: {
     instagram: {
       handle: "@foodguard.assessoria",

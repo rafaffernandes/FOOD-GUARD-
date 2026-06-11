@@ -94,10 +94,19 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Food Guard. Nutricionista responsável:
-            Renan Muniz · CRN ativo · seus dados protegidos (LGPD).
+            © {new Date().getFullYear()} {site.legalName}
+            {site.cnpj ? ` · CNPJ ${site.cnpj}` : ""} · Nutricionista
+            responsável: Renan Muniz · CRN ativo.
           </p>
-          <p>Assessoria de segurança alimentar · São Paulo · Grande SP.</p>
+          <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <Link href="/privacidade" className="hover:text-brand-300">
+              Política de Privacidade
+            </Link>
+            <Link href="/termos" className="hover:text-brand-300">
+              Termos de Uso
+            </Link>
+            <span>São Paulo · Grande SP</span>
+          </p>
         </div>
       </Container>
     </footer>
