@@ -24,6 +24,8 @@ export interface Prospect {
   openedAt: string;
   /** Dias desde a abertura — quanto menor, mais quente. */
   ageDays: number;
+  /** Telefone de contato (WhatsApp), quando disponível. */
+  phone?: string;
 }
 
 export interface ProspectOutreach extends OutreachDraft {
