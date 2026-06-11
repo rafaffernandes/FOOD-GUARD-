@@ -187,6 +187,41 @@ export async function setDraftStatus(
   return true;
 }
 
+/** Grava um rascunho de conteúdo (LinkedIn/Instagram/blog) na fila (pendente). */
+export async function saveContentDraft(
+  topic: string,
+  draft: {
+    platform: string;
+    hook: string;
+    body: string;
+    hashtags: string[];
+    cta: string;
+    imageIdea: string | null;
+    aiGenerated: boolean;
+  },
+): Promise<boolean> {
+  const client = admin();
+  if (!client) {
+    console.info("[dev] rascunho de conteúdo (não persistido):", topic);
+    return false;
+  }
+  const { error } = await client.from("content_drafts").insert({
+    platform: draft.platform,
+    topic,
+    hook: draft.hook,
+    body: draft.body,
+    hashtags: draft.hashtags,
+    cta: draft.cta,
+    image_idea: draft.imageIdea,
+    ai_generated: draft.aiGenerated,
+  });
+  if (error) {
+    console.error("[content_drafts] erro ao salvar:", error.message);
+    return false;
+  }
+  return true;
+}
+
 /** Grava o rascunho de follow-up de um lead na fila (lead_activity, pendente). */
 export async function saveLeadActivity(
   leadId: string | undefined,
