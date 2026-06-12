@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Guia de Validação e Go-Live (passo a passo)</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--brand50:#ecfdf5;--ink:#0b1f1a;--soft:#33433e;--muted:#6b7a75;
+  --bg:#f6faf8;--sunken:#eef4f1;--danger:#dc2626;--danger50:#fef2f2;--warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;
+  --r:16px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:44px 0 36px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  header h1{font-size:27px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header p{margin:0;color:#d1fae5;max-width:680px}
+  main{padding:30px 0 60px}
+  h2{font-size:20px;font-weight:800;margin:38px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:var(--brand2);color:#fff;font-size:15px;font-weight:800;flex-shrink:0}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 8px 40px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);padding:18px 20px;margin:12px 0;box-shadow:var(--sh)}
+  .card.tip{border-left:5px solid var(--info);background:var(--info50)}
+  .card.warn{border-left:5px solid var(--warn);background:var(--warn50)}
+  .card.go{border-left:5px solid var(--brand2);background:var(--brand50)}
+  ol{margin:6px 0;padding-left:22px}li{margin:6px 0}
+  a{color:var(--brand);font-weight:600}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;word-break:break-all}
+  .env{background:#0b1f1a;color:#d1fae5;border-radius:10px;padding:12px 14px;font-size:12.5px;margin:10px 0;white-space:pre-wrap;word-break:break-all;font-family:ui-monospace,Menlo,monospace}
+  .val{background:var(--brand50);border:1px solid #d1fae5;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px}
+  .val b{color:var(--brand)}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);font-size:13px;border:1px solid var(--sunken);margin:12px 0}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--sunken);vertical-align:top}
+  th{background:var(--bg);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  .ok{color:var(--brand);font-weight:700}.opt{color:var(--muted)}
+  .pill{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+  .req{background:var(--danger50);color:var(--danger)}.optp{background:var(--sunken);color:var(--soft)}.donep{background:var(--brand50);color:var(--brand)}
+  footer{border-top:1px solid var(--sunken);padding:22px 0 46px;color:var(--muted);font-size:13px}
+  @media print{body{background:#fff}.card,table{box-shadow:none}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="badge">Food Guard · Runbook</span>
+  <h1>Guia de Validação e Go-Live — passo a passo</h1>
+  <p>Tudo que você precisa fazer pra validar a Food Guard nos previews e, só depois, publicar em produção. Por plataforma, com links e o que conferir em cada etapa.</p>
+</div></header>
+<main class="wrap">
+
+<div class="card tip">
+<b>Antes de começar — 3 coisas:</b>
+<ol>
+<li><b>Nada está em produção.</b> Tudo vive no <b>PR #1</b> e nos previews. Só vai pro ar quando você validar e me disser "pode publicar".</li>
+<li><b>Onde colar as chaves:</b> Vercel → projeto <code>food-guard-cnhl</code> → <b>Settings → Environment Variables</b>. Marque <b>"All Environments"</b> (assim o preview também funciona pra testar). <a href="https://vercel.com/rafaffernandes-projects/food-guard-cnhl/settings/environment-variables" target="_blank">Abrir env vars</a></li>
+<li><b>Onde testar:</b> o preview do PR → <a href="https://food-guard-cnhl-git-claude-charm-4b49d1-rafaffernandes-projects.vercel.app" target="_blank">food-guard-cnhl-git-claude-charm…vercel.app</a>. Após colar env vars, dê <b>Redeploy</b> no preview pra ele recarregar.</li>
+</ol>
+Faça <b>na ordem</b> (cada bloco depende do anterior). Tempo total: ~1–2h.
+</div>
+
+<!-- 1 SUPABASE -->
+<h2><span class="n">1</span> Banco de dados — Supabase <span class="pill req">obrigatório</span></h2>
+<p class="sub">É onde ficam leads, pagamentos e os rascunhos dos agentes.</p>
+<div class="card">
+<ol>
+<li>Acesse <a href="https://app.supabase.com" target="_blank">app.supabase.com</a> → crie um projeto (região <b>South America / São Paulo</b>).</li>
+<li>Menu <b>SQL Editor</b> → cole e rode, um de cada vez, o conteúdo destes 3 arquivos do repositório:
+  <br>• <code>supabase/schema.sql</code> (leads + consentimento)
+  <br>• <code>supabase/fase-3-agents.sql</code> (prospects, rascunhos, atividade)
+  <br>• <code>supabase/payments.sql</code> (pagamentos)</li>
+<li>Menu <b>Project Settings → API</b> → copie a <b>Project URL</b> e a chave <b>service_role</b> (secreta).</li>
+</ol>
+<div class="env">NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOi...</div>
+<div class="val"><b>✅ Validar:</b> em <b>Table Editor</b>, devem aparecer as tabelas <code>leads</code>, <code>prospects</code>, <code>outreach_drafts</code>, <code>content_drafts</code>, <code>lead_activity</code> e <code>payments</code>.</div>
+</div>
+
+<!-- 2 RESEND -->
+<h2><span class="n">2</span> E-mail — Resend <span class="pill req">obrigatório</span></h2>
+<p class="sub">Envia o relatório do diagnóstico (PDF) e os alertas internos da equipe.</p>
+<div class="card">
+<ol>
+<li><a href="https://resend.com/api-keys" target="_blank">resend.com/api-keys</a> → criar API key (começa com <code>re_</code>).</li>
+<li><a href="https://resend.com/domains" target="_blank">resend.com/domains</a> → adicionar <code>foodguard.com.br</code> → colar os registros <b>SPF/DKIM</b> no DNS do domínio → aguardar "Verified". <b>Sem isso o e-mail cai em spam.</b></li>
+</ol>
+<div class="env">RESEND_API_KEY=re_xxxxxxxx
+RESEND_FROM="Food Guard &lt;diagnostico@foodguard.com.br&gt;"
+TEAM_NOTIFY_EMAIL=seu-email@foodguard.com.br</div>
+<div class="val"><b>✅ Validar:</b> no preview, faça um diagnóstico de teste com <b>seu próprio e-mail</b> → o relatório deve chegar na sua caixa em 1–2 min.</div>
+</div>
+
+<!-- 3 ASAAS -->
+<h2><span class="n">3</span> Pagamento — Asaas <span class="pill donep">conta já criada</span></h2>
+<p class="sub">Cobrança dos planos + confirmação automática (webhook) + onboarding.</p>
+<div class="card">
+<ol>
+<li>No Asaas (faça primeiro no <a href="https://sandbox.asaas.com" target="_blank">sandbox</a>, depois repita na <a href="https://www.asaas.com" target="_blank">produção</a>): <b>Integrações → Webhooks</b> → URL:
+  <br><code>https://foodguard.com.br/api/webhooks/asaas</code> (no teste, use a URL do preview + <code>/api/webhooks/asaas</code>)
+  <br>→ defina um <b>token</b> e cole nos dois lados.</li>
+<li>Nos <b>links de pagamento</b> dos 3 planos (Básico R$1.200 · Essencial R$2.200 · Premium R$3.200), configure o <b>redirecionamento de sucesso</b> para <code>/obrigado</code>.</li>
+<li>Cole as chaves (use as do sandbox pra testar):</li>
+</ol>
+<div class="env">ASAAS_API_KEY=$aact_xxxx
+ASAAS_ENV=sandbox        # depois "production"
+ASAAS_WEBHOOK_TOKEN=um-token-secreto-forte</div>
+<div class="val"><b>✅ Validar (sandbox):</b> faça um pagamento de teste → (1) aparece uma linha na tabela <code>payments</code> do Supabase; (2) chega um e-mail "💰 Pagamento confirmado"; (3) o navegador cai na página <b>/obrigado</b>.</div>
+</div>
+
+<!-- 4 CLAUDE -->
+<h2><span class="n">4</span> IA dos agentes — Claude API <span class="pill req">obrigatório p/ agentes</span></h2>
+<p class="sub">Sem a chave, os agentes funcionam em modo "rascunho determinístico" (texto fixo). Com ela, personalizam dentro das regras.</p>
+<div class="card">
+<ol>
+<li><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> (ou platform.claude.com) → <b>API Keys</b> → criar chave.</li>
+</ol>
+<div class="env">ANTHROPIC_API_KEY=sk-ant-xxxx
+AGENTS_MODE=simulacao    # mantenha em simulacao (não envia nada)
+AGENTS_KILL_SWITCH=off   # "on" desliga todos os agentes na hora</div>
+<div class="val"><b>✅ Validar:</b> abra no preview <code>/api/agents/teste-prospeccao</code> (se setou <code>CRON_SECRET</code>, precisa do header <code>Authorization: Bearer SEU_SEGREDO</code>) → deve retornar os 11 cenários com os textos da prospecção.</div>
+</div>
+
+<!-- 5 PAINEL -->
+<h2><span class="n">5</span> Painel de aprovação <span class="pill req">obrigatório</span></h2>
+<p class="sub">Onde você revisa e aprova os rascunhos dos agentes. Protegido por senha.</p>
+<div class="card">
+<div class="env">ADMIN_USER=voce
+ADMIN_PASSWORD=uma-senha-forte
+CRON_SECRET=outro-segredo-forte   # protege as rotas automáticas dos agentes</div>
+<div class="val"><b>✅ Validar:</b> abra <code>/admin/aprovacoes</code> no preview → o navegador pede usuário/senha (Basic Auth) → após logar, vê a fila (vazia por enquanto, normal).</div>
+</div>
+
+<!-- 6 ANALYTICS -->
+<h2><span class="n">6</span> Medição — GA4 + Meta Pixel <span class="pill req">pré-requisito do Google Ads</span></h2>
+<p class="sub">Sem isso, o tráfego pago roda cego (não dá pra otimizar por conversão).</p>
+<div class="card">
+<ol>
+<li><a href="https://analytics.google.com" target="_blank">analytics.google.com</a> → criar propriedade → copiar <b>Measurement ID</b> (<code>G-XXXX</code>).</li>
+<li><a href="https://business.facebook.com/events_manager" target="_blank">Gerenciador de Eventos da Meta</a> → criar Pixel → copiar o ID.</li>
+</ol>
+<div class="env">NEXT_PUBLIC_GA_ID=G-XXXXXXX
+NEXT_PUBLIC_META_PIXEL_ID=000000000000000</div>
+<div class="val"><b>✅ Validar:</b> no GA4 → relatório <b>Tempo real</b> → abra o preview noutra aba → sua visita deve aparecer.</div>
+</div>
+
+<!-- 7 MARCA/LEGAL -->
+<h2><span class="n">7</span> Marca e dados legais <span class="pill req">obrigatório p/ LGPD</span></h2>
+<div class="card">
+<div class="env">NEXT_PUBLIC_SITE_URL=https://foodguard.com.br
+NEXT_PUBLIC_WHATSAPP=5511XXXXXXXXX   # nº oficial, só dígitos
+NEXT_PUBLIC_CONTACT_EMAIL=contato@foodguard.com.br
+NEXT_PUBLIC_LEGAL_NAME="Food Guard ..."   # razão social
+NEXT_PUBLIC_CNPJ=00.000.000/0001-00</div>
+<div class="val"><b>✅ Validar:</b> no rodapé do preview aparece o <b>CNPJ + razão social</b> e os links <b>Política de Privacidade</b> e <b>Termos</b> abrem (<code>/privacidade</code>, <code>/termos</code>). Confira também que o botão flutuante e o "Fui autuado" abrem o WhatsApp certo.</div>
+</div>
+
+<!-- 8 ORGANICO -->
+<h2><span class="n">8</span> Presença externa (sem código) <span class="pill optp">recomendado</span></h2>
+<div class="card">
+<ol>
+<li><b>Google Business Profile:</b> <a href="https://business.google.com" target="_blank">business.google.com</a> → criar perfil da Food Guard (nome, telefone, área de SP). É o canal orgânico local nº 1 e ajuda as LLMs a te recomendarem.</li>
+<li><b>Prova social:</b> me envie <b>1 depoimento</b> de cliente + <b>2–3 fotos reais</b> (Renan em visita / cozinha) → eu coloco no site (hoje ele é 100% sem foto).</li>
+</ol>
+</div>
+
+<!-- 9 CHECKLIST -->
+<h2><span class="n">9</span> Checklist final de validação (no preview)</h2>
+<div class="card">
+<table>
+<tr><th>Página / Fluxo</th><th>O que conferir</th></tr>
+<tr><td><code>/</code> (home)</td><td>Botão "Fui autuado" no topo abre WhatsApp; visual ok no celular</td></tr>
+<tr><td><code>/diagnostico</code></td><td>Responder as 5 perguntas → ver score → preencher dados → receber e-mail</td></tr>
+<tr><td><code>/obrigado</code></td><td>Página de pós-pagamento aparece bonita</td></tr>
+<tr><td><code>/privacidade</code> e <code>/termos</code></td><td>Textos corretos (ajuste se quiser)</td></tr>
+<tr><td><code>/checklist-vigilancia</code></td><td>Checklist abre e imprime (Ctrl+P → PDF)</td></tr>
+<tr><td>Compartilhar link no WhatsApp</td><td>Aparece a imagem de preview (og-image)</td></tr>
+<tr><td><code>/admin/aprovacoes</code></td><td>Pede senha e abre a fila</td></tr>
+<tr><td>Pagamento sandbox</td><td>Linha em <code>payments</code> + e-mail + redirect /obrigado</td></tr>
+</table>
+</div>
+
+<!-- 10 GOLIVE -->
+<h2><span class="n">10</span> Go-Live (publicar em produção)</h2>
+<div class="card go">
+<b>Só depois de validar tudo acima.</b> Quando estiver ok:
+<ol>
+<li>Confirme que as env vars estão também em <b>Production</b> (não só Preview).</li>
+<li>Vire o Asaas para <code>ASAAS_ENV=production</code> e configure o webhook de <b>produção</b>.</li>
+<li>Me diga <b>"pode publicar"</b> → eu faço o merge do PR #1 → a Vercel publica em <code>foodguard.com.br</code> em 1–2 min.</li>
+</ol>
+<b>Os agentes continuam em simulação</b> (<code>AGENTS_MODE=simulacao</code>) mesmo em produção, até você validar os rascunhos e mandar ligar o envio real (que ainda depende da WhatsApp Cloud API + pipeline de empresas).
+</div>
+
+<!-- REF -->
+<h2><span class="n">★</span> Tabela de referência — todas as variáveis</h2>
+<div class="card">
+<table>
+<tr><th>Variável</th><th>De onde vem</th><th>Status</th></tr>
+<tr><td>NEXT_PUBLIC_SITE_URL</td><td>seu domínio</td><td class="ok">tem</td></tr>
+<tr><td>NEXT_PUBLIC_SUPABASE_URL</td><td>Supabase</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>SUPABASE_SERVICE_ROLE_KEY</td><td>Supabase</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>RESEND_API_KEY</td><td>Resend</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>RESEND_FROM</td><td>seu domínio verificado</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>TEAM_NOTIFY_EMAIL</td><td>você define</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>ASAAS_API_KEY</td><td>Asaas</td><td><span class="pill req">falta colar</span></td></tr>
+<tr><td>ASAAS_ENV</td><td>sandbox → production</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>ASAAS_WEBHOOK_TOKEN</td><td>você define</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>ANTHROPIC_API_KEY</td><td>console.anthropic.com</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>AGENTS_MODE / AGENTS_KILL_SWITCH</td><td>você define (simulacao / off)</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>ADMIN_USER / ADMIN_PASSWORD</td><td>você define</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>CRON_SECRET</td><td>você define</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>NEXT_PUBLIC_GA_ID</td><td>Google Analytics</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>NEXT_PUBLIC_META_PIXEL_ID</td><td>Meta</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>NEXT_PUBLIC_WHATSAPP</td><td>nº oficial</td><td><span class="opt">conferir</span></td></tr>
+<tr><td>NEXT_PUBLIC_CONTACT_EMAIL</td><td>seu e-mail</td><td><span class="opt">conferir</span></td></tr>
+<tr><td>NEXT_PUBLIC_LEGAL_NAME / NEXT_PUBLIC_CNPJ</td><td>seu CNPJ</td><td><span class="pill req">falta</span></td></tr>
+<tr><td>WHATSAPP_CLOUD_TOKEN / PHONE_NUMBER_ID</td><td>Meta (futuro)</td><td><span class="optp">depois</span></td></tr>
+</table>
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Guia de validação e go-live · junho/2026 · Dúvida em qualquer passo: me chame que eu detalho.</footer>
+</body>
+</html>
