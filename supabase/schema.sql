@@ -16,7 +16,7 @@ create table if not exists public.leads (
   company text not null,
   score int not null check (score between 0 and 100),
   risk_band text not null check (risk_band in ('critico','medio','baixo')),
-  recommended_plan text not null check (recommended_plan in ('essencial','conformidade','premium')),
+  recommended_plan text not null check (recommended_plan in ('basico','essencial','premium')),
   answers jsonb not null default '{}'::jsonb,
   consent boolean not null default false,
   whatsapp_optin boolean not null default false,
