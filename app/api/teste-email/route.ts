@@ -6,9 +6,8 @@ export const dynamic = "force-dynamic";
 
 /**
  * Endpoint TEMPORÁRIO de diagnóstico do e-mail (Resend).
- * Envia um e-mail de teste e devolve o resultado/erro EXATO como JSON,
- * pra descobrir por que o e-mail do diagnóstico não sai.
- * Uso: /api/_debug/email?to=seuemail@gmail.com
+ * Envia um e-mail de teste e devolve o resultado/erro EXATO como JSON.
+ * Uso: /api/teste-email?to=seuemail@gmail.com
  * Remover antes de ir pra produção.
  */
 export async function GET(request: Request) {
