@@ -8,8 +8,11 @@ declare global {
   }
 }
 
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// IDs públicos de analytics (já aparecem no HTML do site). Podem ser
+// sobrescritos por env var na Vercel; o fallback é o valor de produção.
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-GGM8HKTRG3";
+export const META_PIXEL_ID =
+  process.env.NEXT_PUBLIC_META_PIXEL_ID || "1961165194592041";
 
 /** Dispara um evento do funil para GA4 e Meta Pixel, se configurados. */
 export function track(event: string, params: EventParams = {}) {
