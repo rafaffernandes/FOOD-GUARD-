@@ -9,11 +9,11 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511976466553",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
   city: "São Paulo · Grande SP",
-  /** Nome público (fantasia) exibido no site. A razão social e o CNPJ reais
-   * NÃO aparecem no front — ficam só no backend (env server-side) para
-   * Asaas/nota fiscal. Empresário individual: razão social = nome da pessoa. */
+  /** Nome público (fantasia) exibido no site. A razão social (= nome da pessoa,
+   * por ser empresário individual) NUNCA aparece no front. O CNPJ é exibido
+   * apenas na Política de Privacidade e nos Termos, como controlador LGPD. */
   legalName: process.env.NEXT_PUBLIC_LEGAL_NAME || "Food Guard",
-  cnpj: "",
+  cnpj: "60.833.961/0001-73",
   social: {
     instagram: {
       handle: "@foodguard.assessoria",

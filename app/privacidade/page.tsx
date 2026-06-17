@@ -17,7 +17,8 @@ export default function PrivacidadePage() {
           Política de Privacidade
         </h1>
         <p className="mt-2 text-sm text-ink-muted">
-          Última atualização: junho de 2026 · {site.legalName}
+          Última atualização: junho de 2026 · {site.legalName} · CNPJ{" "}
+          {site.cnpj}
         </p>
 
         <div className="prose-fg mt-8 space-y-6 text-ink-soft">
@@ -26,11 +27,12 @@ export default function PrivacidadePage() {
               1. Quem somos
             </h2>
             <p className="mt-2">
-              A Food Guard é uma consultoria especializada em food service, com
-              foco em regularização e segurança dos alimentos (RDC 216/2004 e
-              Portaria 2.619/2011). Esta política explica como tratamos seus
-              dados pessoais, em conformidade com a Lei Geral de Proteção de
-              Dados (Lei nº 13.709/2018 — LGPD).
+              A Food Guard (CNPJ {site.cnpj}) é a controladora dos seus dados e
+              uma consultoria especializada em food service, com foco em
+              regularização e segurança dos alimentos (RDC 216/2004 e Portaria
+              2.619/2011). Esta política explica como tratamos seus dados
+              pessoais, em conformidade com a Lei Geral de Proteção de Dados
+              (Lei nº 13.709/2018 — LGPD).
             </p>
           </section>
 

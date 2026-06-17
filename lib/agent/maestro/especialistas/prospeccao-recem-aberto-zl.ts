@@ -7,7 +7,7 @@ import type { AgentAction, AgentEvent, Especialista } from "../types";
  * Zona Leste de SP. Tudo TRAVADO e determinístico:
  *  - textos fixos (aprovados pelo cliente) — o agente só preenche {empresa}/{link};
  *  - roteamento por regra (Zona Leste + aberto há <= 90 dias);
- *  - árvore de resposta: qualquer resposta -> auto-confirma e passa pro Renan;
+ *  - árvore de resposta: qualquer resposta -> auto-confirma e passa pro nutricionista responsável;
  *    "SAIR" e afins -> opt-out. NUNCA responde dúvida técnica sozinho.
  *
  * IMPORTANTE: este agente NÃO qualifica lead. Ele só abre a conversa e leva ao
@@ -90,7 +90,7 @@ E se em algum momento precisar de apoio com Vigilância Sanitária, documentaç�
 
 /** Resposta automática quando o prospect responde algo (qualquer coisa != opt-out). */
 export const AUTO_CONFIRMACAO =
-  "Que bom que respondeu! 😊 Vou encaminhar sua mensagem para o Renan, nosso nutricionista responsável — ele entra em contato ainda hoje, em horário comercial. Qualquer coisa, estamos por aqui!";
+  "Que bom que respondeu! 😊 Vou encaminhar sua mensagem para o nosso nutricionista responsável — ele entra em contato ainda hoje, em horário comercial. Qualquer coisa, estamos por aqui!";
 
 /** Confirmação de opt-out. */
 export const OPTOUT_MSG = (empresa: string) =>
@@ -133,7 +133,7 @@ export function mensagemDoPasso(passo: Passo, prospect: Prospect): AgentAction {
 /**
  * Trata uma resposta recebida do prospect. Regra: qualquer resposta encerra a
  * sequência. Opt-out -> confirma e descadastra. Caso contrário -> auto-confirma
- * e ALERTA o Renan pra assumir (humano sempre; IA nunca negocia/responde dúvida).
+ * e ALERTA o nutricionista responsável pra assumir (humano sempre; IA nunca negocia/responde dúvida).
  */
 export function tratarResposta(texto: string, prospect: Prospect): AgentAction[] {
   if (classificarResposta(texto) === "optout") {
@@ -158,7 +158,7 @@ export function tratarResposta(texto: string, prospect: Prospect): AgentAction[]
     {
       kind: "notificar",
       assunto: `Prospect respondeu: ${prospect.companyName}`,
-      texto: `${prospect.companyName} respondeu: "${texto}". Encerrei a sequência — Renan deve assumir a conversa em horário comercial.`,
+      texto: `${prospect.companyName} respondeu: "${texto}". Encerrei a sequência — o nutricionista responsável deve assumir a conversa em horário comercial.`,
     },
   ];
 }
@@ -213,9 +213,9 @@ export function cenariosDeTeste(): CenarioTeste[] {
     { nome: "Aberta há 400 dias → NÃO dispara", dispara: prospeccaoRecemAbertoZL.aplica(ev(antiga)), acoes: [] },
     { nome: "Cadência: D3 (sem resposta)", dispara: true, acoes: [mensagemDoPasso("d3", recem)] },
     { nome: "Cadência: D7 (despedida)", dispara: true, acoes: [mensagemDoPasso("d7", recem)] },
-    { nome: 'Resposta "Quero falar com alguém" → auto-confirma + Renan', dispara: true, acoes: tratarResposta("Quero falar com alguém", recem) },
-    { nome: 'Resposta "Quanto custa?" → auto-confirma + Renan (não responde preço)', dispara: true, acoes: tratarResposta("Quanto custa?", recem) },
-    { nome: 'Resposta "me manda mais info" → auto-confirma + Renan', dispara: true, acoes: tratarResposta("me manda mais info", recem) },
+    { nome: 'Resposta "Quero falar com alguém" → auto-confirma + humano', dispara: true, acoes: tratarResposta("Quero falar com alguém", recem) },
+    { nome: 'Resposta "Quanto custa?" → auto-confirma + humano (não responde preço)', dispara: true, acoes: tratarResposta("Quanto custa?", recem) },
+    { nome: 'Resposta "me manda mais info" → auto-confirma + humano', dispara: true, acoes: tratarResposta("me manda mais info", recem) },
     { nome: 'Resposta "SAIR" → opt-out', dispara: true, acoes: tratarResposta("SAIR", recem) },
     { nome: 'Resposta "não tenho interesse" → opt-out', dispara: true, acoes: tratarResposta("não tenho interesse, obrigado", recem) },
   ];

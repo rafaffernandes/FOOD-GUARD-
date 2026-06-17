@@ -39,7 +39,7 @@ export function draftFirstMessage(lead: LeadPayload, q: QualifiedLead): string {
         ? "e que a operação ainda está sem nutricionista designado"
         : "e que há itens que costumam ser os primeiros cobrados em fiscalização";
     return (
-      `Oi ${nome}, aqui é o Renan, nutricionista responsável da Food Guard. ` +
+      `Oi ${nome}, aqui é da Food Guard — nutricionista responsável pra food service. ` +
       `Vi que a ${lead.company} saiu com risco ${banda} no diagnóstico ${gancho}. ` +
       `Esse é exatamente o tipo de situação que a gente resolve com documentação ` +
       `em dia (RDC 216 e Portaria 2.619) e acompanhamento presencial. ` +

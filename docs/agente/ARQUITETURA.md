@@ -79,7 +79,7 @@ em [`lib/agent/playbook.ts`](../../lib/agent/playbook.ts). Respeita a voz da mar
 (nunca "RT"; RDC 216 + Portaria 2.619; sem "carência"/"dinheiro de volta").
 
 Exemplo (tier A, WhatsApp):
-> "Oi {nome}, aqui é o Renan, nutricionista responsável da Food Guard. Vi que sua
+> "Oi {nome}, aqui é da Food Guard — nutricionista responsável pra food service. Vi que sua
 > operação ({empresa}) saiu com **risco {banda}** no diagnóstico — e que houve uma
 > autuação recente. Esse é exatamente o tipo de situação que a gente resolve.
 > Consegue falar 10 min hoje?"
