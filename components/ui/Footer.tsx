@@ -94,9 +94,8 @@ export function Footer() {
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.legalName}
-            {site.cnpj ? ` · CNPJ ${site.cnpj}` : ""} · Nutricionista
-            responsável: Renan Muniz · CRN ativo.
+            © {new Date().getFullYear()} {site.name} · Consultoria nutricional
+            para food service · São Paulo · Grande SP.
           </p>
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <Link href="/privacidade" className="hover:text-brand-300">

@@ -446,7 +446,8 @@ export function ResultReport({
             respostas e não substitui uma auditoria técnica presencial.
           </p>
           <p className="mt-2">
-            Nutricionista responsável: <strong>Renan Muniz · CRN ativo</strong>
+            Revisão técnica:{" "}
+            <strong>nutricionista responsável da Food Guard · CRN ativo</strong>
           </p>
         </footer>
       </Container>

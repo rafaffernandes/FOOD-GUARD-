@@ -91,12 +91,6 @@ export default function RootLayout({
       },
     ],
     sameAs: [site.social.instagram.url, site.social.linkedin.url],
-    founder: site.founders.map((f) => ({
-      "@type": "Person",
-      name: f.name,
-      jobTitle: f.role,
-      description: f.credentials,
-    })),
   };
 
   // LocalBusiness: reforça SEO local e dá às LLMs área servida por bairro.

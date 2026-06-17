@@ -17,7 +17,6 @@ export default function TermosPage() {
         </h1>
         <p className="mt-2 text-sm text-ink-muted">
           Última atualização: junho de 2026 · {site.legalName}
-          {site.cnpj ? ` · CNPJ ${site.cnpj}` : ""}
         </p>
 
         <div className="mt-8 space-y-6 text-ink-soft">

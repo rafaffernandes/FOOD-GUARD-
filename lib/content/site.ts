@@ -9,10 +9,11 @@ export const site = {
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511976466553",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
   city: "São Paulo · Grande SP",
-  /** Razão social e CNPJ (rodapé/LGPD). Preencher via env quando emitido. */
-  legalName:
-    process.env.NEXT_PUBLIC_LEGAL_NAME || "Food Guard Assessoria Nutricional",
-  cnpj: process.env.NEXT_PUBLIC_CNPJ || "",
+  /** Nome público (fantasia) exibido no site. A razão social e o CNPJ reais
+   * NÃO aparecem no front — ficam só no backend (env server-side) para
+   * Asaas/nota fiscal. Empresário individual: razão social = nome da pessoa. */
+  legalName: process.env.NEXT_PUBLIC_LEGAL_NAME || "Food Guard",
+  cnpj: "",
   social: {
     instagram: {
       handle: "@foodguard.assessoria",
@@ -23,22 +24,6 @@ export const site = {
       url: "https://www.linkedin.com/company/foodguardassessoria/",
     },
   },
-  founders: [
-    {
-      name: "Renan Muniz",
-      role: "Nutricionista responsável · co-founder",
-      credentials:
-        "Nutricionista com CRN ativo · +10 anos em food service · atende os primeiros clientes pessoalmente.",
-      initials: "RM",
-    },
-    {
-      name: "Rafael Fernandes",
-      role: "Produto · IA · operação digital · co-founder",
-      credentials:
-        "Construção da plataforma, automações, aquisição digital e gestão do negócio.",
-      initials: "RF",
-    },
-  ],
   guarantee: "90 dias para estar 100% em conformidade real — se não chegarmos lá, seguimos sem custo extra.",
   regulations: ["RDC 216/2004 (Anvisa)", "Portaria 2.619/2011"],
 } as const;

@@ -87,7 +87,7 @@ export async function buildReportPdf(
   // Rodapé (posição fixa no fim da página)
   y = 50;
   text(
-    "Estimativas com base na RDC 216/2004 (Anvisa) e na Portaria 2.619/2011, sob revisao do nutricionista Renan Muniz (CRN ativo).",
+    "Estimativas com base na RDC 216/2004 (Anvisa) e na Portaria 2.619/2011, sob revisao do nutricionista responsavel (CRN ativo).",
     { size: 8, color: [0.42, 0.48, 0.46] },
   );
   y = 38;
