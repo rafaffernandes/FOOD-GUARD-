@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Food Guard — Plano de Teste Final (antes do Go-Live)</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--brand50:#ecfdf5;--ink:#0b1f1a;--soft:#33433e;--muted:#6b7a75;
+  --bg:#f6faf8;--sunken:#eef4f1;--danger:#dc2626;--danger50:#fef2f2;--warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;
+  --r:16px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:940px;margin:0 auto;padding:0 20px}
+  header{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:44px 0 36px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  header h1{font-size:27px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header p{margin:0;color:#d1fae5;max-width:720px}
+  main{padding:30px 0 60px}
+  h2{font-size:19px;font-weight:800;margin:34px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:var(--brand2);color:#fff;font-size:14px;font-weight:800;flex-shrink:0}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 10px 40px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);padding:8px 20px;margin:12px 0;box-shadow:var(--sh)}
+  .card.tip{border-left:5px solid var(--info);background:var(--info50);padding:18px 20px}
+  .card.go{border-left:5px solid var(--brand2);background:var(--brand50);padding:18px 20px}
+  .card.warn{border-left:5px solid var(--warn);background:var(--warn50);padding:18px 20px}
+  .chk{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--sunken)}
+  .chk:last-child{border-bottom:0}
+  .box{flex-shrink:0;width:22px;height:22px;border:2px solid var(--brand2);border-radius:6px;margin-top:2px}
+  .chk b{color:var(--ink)}
+  .chk .how{color:var(--soft);font-size:14px}
+  .chk .exp{color:var(--brand);font-size:13.5px;font-weight:600;margin-top:3px}
+  .chk .exp::before{content:"✓ Esperado: ";font-weight:700}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;word-break:break-word}
+  ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
+  footer{border-top:1px solid var(--sunken);padding:22px 0 46px;color:var(--muted);font-size:12.5px}
+  @media print{body{background:#fff}.card{box-shadow:none}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.box{-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="badge">Food Guard · QA · Go-Live</span>
+  <h1>Plano de Teste Final — antes de publicar em produção</h1>
+  <p>Roteiro de validação ponta a ponta. Faça <b>tudo no preview</b>, marque cada caixa, e só me diga "pode publicar" quando <b>todos os itens estiverem ✓</b>. Imprima em PDF (Ctrl+P) se quiser ir riscando.</p>
+</div></header>
+<main class="wrap">
+
+<div class="card tip">
+<b>Antes de começar, tenha em mãos:</b>
+<ul>
+<li>O link do <b>preview</b> (não a produção).</li>
+<li><b>Seu e-mail</b> (para receber o relatório de teste) e um <b>celular</b> (para testar no mobile e o WhatsApp).</li>
+<li>Os <b>dados de teste do sandbox</b> de pagamento (cartão de teste do gateway) — só para o bloco de pagamento.</li>
+<li>Abas abertas: <b>Supabase</b> (Table Editor) e <b>Google Analytics</b> (Tempo real).</li>
+</ul>
+</div>
+
+<!-- 1 -->
+<h2><span class="n">1</span> Páginas e navegação</h2>
+<p class="sub">Tudo abre, sem erro e bonito — no computador e no celular.</p>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Todas as páginas abrem</b><div class="how">Visite: <code>/</code>, <code>/diagnostico</code>, <code>/planos</code>, <code>/sobre</code>, <code>/contato</code>, <code>/blog</code> (e abra 1 artigo), <code>/privacidade</code>, <code>/termos</code>, <code>/obrigado</code>, <code>/checklist-vigilancia</code>.</div><div class="exp">cada página carrega sem erro, layout correto.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Funciona no celular</b><div class="how">Abra o preview no seu celular e navegue pela home e pelo menu.</div><div class="exp">textos legíveis, botões clicáveis, nada cortado.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Menu e CTAs</b><div class="how">Clique nos botões principais ("Fazer diagnóstico", "Fui autuado", planos).</div><div class="exp">levam para a página/WhatsApp certos.</div></div></div>
+</div>
+
+<!-- 2 -->
+<h2><span class="n">2</span> Diagnóstico — os 3 cenários</h2>
+<p class="sub">O coração do produto. Teste os três níveis de risco.</p>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Cenário A — Risco CRÍTICO</b><div class="how">Responda as 5 perguntas no "pior caso" (sem nutricionista, sem documentação, já autuado, etc.).</div><div class="exp">score baixo, faixa <b>crítico</b>, recomenda o plano mais completo.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Cenário B — Risco MÉDIO</b><div class="how">Refaça com respostas mistas (algumas ok, outras não).</div><div class="exp">score intermediário, faixa <b>médio</b>.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Cenário C — Risco BAIXO</b><div class="how">Refaça no "melhor caso" (tudo em dia).</div><div class="exp">score alto, faixa <b>baixo</b>.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Captura do lead</b><div class="how">Em um dos cenários, preencha nome, <b>SEU e-mail</b>, telefone e empresa, aceite o consentimento e envie.</div><div class="exp">vê a tela de resultado (ResultReport) com a nota e a recomendação.</div></div></div>
+</div>
+
+<!-- 3 -->
+<h2><span class="n">3</span> E-mail do diagnóstico</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>O relatório chega</b><div class="how">Após enviar com seu e-mail, aguarde 1–2 min e veja sua caixa de entrada.</div><div class="exp">chega o e-mail com o relatório (PDF) do diagnóstico.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Sem dados pessoais</b><div class="how">Leia o rodapé do relatório/PDF.</div><div class="exp">aparece "nutricionista responsável", <b>NUNCA</b> o nome do Renan.</div></div></div>
+</div>
+
+<!-- 4 -->
+<h2><span class="n">4</span> Banco de dados (Supabase)</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Lead salvo</b><div class="how">Supabase → Table Editor → tabela <code>leads</code>.</div><div class="exp">a linha do seu teste está lá (nome, e-mail, score, plano recomendado).</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Consentimento registrado</b><div class="how">Tabela <code>consent_log</code>.</div><div class="exp">há um registro do consentimento do mesmo lead.</div></div></div>
+</div>
+
+<!-- 5 -->
+<h2><span class="n">5</span> Pagamento (checkout dentro do site)</h2>
+<p class="sub">Teste no <b>sandbox</b>. (Quando o checkout do Mercado Pago estiver pronto, use os cartões de teste do MP.)</p>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Não sai do site</b><div class="how">Em <code>/planos</code>, clique em "Assinar".</div><div class="exp">o pagamento abre <b>dentro do foodguard</b>, não em outro domínio.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>PIX</b><div class="how">Escolha PIX e gere.</div><div class="exp">o QR Code + "copia e cola" aparecem na própria página.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Cartão (teste)</b><div class="how">Escolha cartão, use um cartão de teste do gateway e confirme.</div><div class="exp">processa e cai na página <code>/obrigado</code>.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Confirmação automática (webhook)</b><div class="how">Após o pagamento de teste ser confirmado no sandbox.</div><div class="exp">(1) linha nova na tabela <code>payments</code>; (2) e-mail "💰 Pagamento confirmado".</div></div></div>
+</div>
+
+<!-- 6 -->
+<h2><span class="n">6</span> Painel admin</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Pede senha</b><div class="how">Abra <code>/admin/aprovacoes</code> em aba anônima.</div><div class="exp">o navegador pede usuário e senha.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Entra com a senha certa</b><div class="how">Digite o usuário/senha que você definiu.</div><div class="exp">abre a fila de aprovações (vazia é normal).</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Bloqueia a senha errada</b><div class="how">Tente uma senha qualquer.</div><div class="exp">nega o acesso (não entra).</div></div></div>
+</div>
+
+<!-- 7 -->
+<h2><span class="n">7</span> Medição (Analytics)</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Google Analytics ao vivo</b><div class="how">GA4 → Relatórios → Tempo real, com o site aberto em outra aba.</div><div class="exp">sua visita aparece ("1 usuário ativo").</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Meta Pixel</b><div class="how">Extensão "Meta Pixel Helper" (Chrome), com o site aberto.</div><div class="exp">o ícone fica azul e mostra o pixel disparando.</div></div></div>
+</div>
+
+<!-- 8 -->
+<h2><span class="n">8</span> Segurança</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Cabeçalhos de segurança presentes</b><div class="how">Abra <code>securityheaders.com</code> e cole a URL do preview (ou F12 → Network → clique na página → Headers).</div><div class="exp">aparecem CSP, Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Nada quebrado pelo CSP</b><div class="how">Navegue (home → diagnóstico → blog) com o Console aberto (F12).</div><div class="exp">nenhum erro vermelho de "blocked by Content Security Policy".</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Admin trancado</b><div class="how">Abra <code>/admin</code> sem estar logado.</div><div class="exp">é barrado (pede senha / 401).</div></div></div>
+</div>
+
+<!-- 9 -->
+<h2><span class="n">9</span> LGPD, marca e privacidade</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Rodapé só "Food Guard"</b><div class="how">Role até o rodapé de qualquer página.</div><div class="exp">aparece só "Food Guard" — <b>sem</b> nome do Renan, sem CNPJ.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Política identifica a empresa</b><div class="how">Abra <code>/privacidade</code> e <code>/termos</code>.</div><div class="exp">mostram "Food Guard · CNPJ 60.833.961/0001-73"; a seção "Quem somos" cita o CNPJ.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Zero nome pessoal</b><div class="how">Use Ctrl+F por "Renan" na home, /sobre e num artigo do blog.</div><div class="exp">nenhuma ocorrência.</div></div></div>
+<div class="chk"><div class="box"></div><div><b>WhatsApp correto</b><div class="how">Clique no botão flutuante e no "Fui autuado".</div><div class="exp">abrem o WhatsApp no número oficial.</div></div></div>
+</div>
+
+<!-- 10 -->
+<h2><span class="n">10</span> Compartilhamento e SEO</h2>
+<div class="card">
+<div class="chk"><div class="box"></div><div><b>Imagem ao compartilhar</b><div class="how">Cole o link do preview num chat (WhatsApp/Telegram).</div><div class="exp">aparece o card com a imagem de preview (og-image).</div></div></div>
+<div class="chk"><div class="box"></div><div><b>Sitemap e robots</b><div class="how">Abra <code>/sitemap.xml</code> e <code>/robots.txt</code>.</div><div class="exp">ambos carregam corretamente.</div></div></div>
+</div>
+
+<!-- GO -->
+<h2><span class="n">★</span> Critério de Go-Live</h2>
+<div class="card go">
+<b>Só publique quando TODOS os itens acima estiverem ✓.</b> E, imediatamente antes de publicar:
+<ul>
+<li>Confirmar as variáveis de ambiente também em <b>Production</b> (não só Preview).</li>
+<li>Virar o pagamento de <b>sandbox → produção</b> e configurar o webhook de produção.</li>
+<li><b>Verificar o domínio no Resend</b> (para o relatório chegar nos clientes, não só em você).</li>
+<li>Me dizer <b>"pode publicar"</b> → eu faço o merge → a Vercel publica em <code>foodguard.com.br</code> em 1–2 min.</li>
+</ul>
+<b>Os agentes seguem em simulação</b> (não enviam nada) mesmo em produção, até você mandar ligar.
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Plano de teste final · junho/2026 · Execute no preview. Dúvida em qualquer passo, me chame.</footer>
+</body>
+</html>
