@@ -1,0 +1,83 @@
+CUSTOS DOS AGENTES (ROBÔS) DA FOOD GUARD — EXPLICAÇÃO SIMPLES
+=============================================================
+
+Oi, Renan! Esse texto explica, de forma bem direta e sem termo técnico,
+quanto custa a parte de "robôs" (a gente chama de agentes) que estamos
+montando pra Food Guard — pra você decidir se seguimos por esse caminho.
+
+
+O QUE SÃO ESSES AGENTES (EM UMA FRASE)
+--------------------------------------
+São como funcionários digitais que trabalham sozinhos:
+- Um procura restaurantes/lanchonetes recém-abertos pra oferecer a Food Guard.
+- Outro conversa com quem fez o diagnóstico no nosso site e tira dúvidas.
+- Outro escreve posts pra internet (Instagram, LinkedIn, blog).
+
+Eles ESCREVEM as mensagens. A gente lê e APROVA antes de qualquer coisa ser
+enviada. Nada sai sem a gente ver.
+
+
+POR QUE ISSO TEM UM CUSTO (A PARTE IMPORTANTE)
+----------------------------------------------
+Pra esses robôs "pensarem e escreverem", eles usam uma inteligência
+artificial (a mesma tecnologia por trás do ChatGPT).
+
+E essa tecnologia COBRA POR USO — igual conta de luz ou de água:
+não tem mensalidade fixa, você só paga pelo que usar.
+
+Cada mensagem que o robô escreve custa CENTAVOS. Pra ter uma ideia,
+escrever uma mensagem sai por mais ou menos 15 CENTAVOS (R$ 0,15).
+É barato por mensagem; o que faz a conta subir é a QUANTIDADE.
+
+
+QUANTO CUSTA AGORA, NA FASE DE TESTE
+------------------------------------
+Agora a gente está só TESTANDO — rodando os robôs algumas vezes pra ver
+se escrevem bem e no jeito certo da Food Guard.
+
+Nessa fase de teste, o gasto é QUASE NADA:
+algo entre R$ 5 e R$ 50 no mês inteiro — e provavelmente bem menos.
+Dá pra testar à vontade gastando poucos reais.
+
+
+QUANTO CUSTA PRA MANTER RODANDO DE VERDADE (PRODUÇÃO)
+-----------------------------------------------------
+Quando os robôs estiverem trabalhando pra valer, falando com muitas
+empresas todo mês, existe um custo mensal pra manter a operação no ar.
+Ele tem basicamente duas partes:
+
+1) A inteligência artificial (os robôs escrevendo) — centavos por mensagem.
+2) O WhatsApp — a Meta (dona do WhatsApp) cobra uma taxinha por mensagem
+   enviada para empresas (mais ou menos 30 centavos cada). Curiosamente,
+   ENVIAR a mensagem custa um pouco mais do que o robô ESCREVER ela.
+
+Os outros sistemas que seguram o projeto (o site no ar, o banco de dados,
+o envio de e-mails) cabem nos planos GRATUITOS nesse tamanho — então
+praticamente não pesam na conta.
+
+Juntando tudo, num RITMO MODESTO de começo, manter a operação rodando fica
+em torno de R$ 300 a R$ 600 POR MÊS, no total.
+
+E vale repetir o mais importante: esse valor sobe ou desce conforme a gente
+usa, como uma TORNEIRA. Se abordarmos mais empresas, gasta mais; se menos,
+gasta menos. Não é uma conta fixa cara que cai todo mês sem retorno —
+o robô só gasta quando está trabalhando pra trazer cliente.
+
+(Observação: esse valor é só dos robôs e dos sistemas do projeto. NÃO inclui
+investimento em anúncios pagos, tipo Google ou Instagram — isso é uma
+decisão de marketing separada.)
+
+
+RESUMINDO, PRA DECISÃO
+----------------------
+- TESTAR custa quase nada: poucos reais no mês inteiro (algo entre R$ 5 e
+  R$ 50). Dá pra ver funcionando antes de investir.
+
+- MANTER RODANDO de verdade (produção), num começo modesto: algo em torno
+  de R$ 300 a R$ 600 por mês, no total — e isso cresce ou diminui conforme
+  a gente decidir usar mais ou menos.
+
+- O custo é PROPORCIONAL AO USO e controlável. A ideia é começar pequeno,
+  ver se traz cliente de verdade, e só então aumentar.
+
+Qualquer dúvida, é só falar.
