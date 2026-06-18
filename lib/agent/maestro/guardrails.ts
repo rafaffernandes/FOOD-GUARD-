@@ -37,10 +37,19 @@ export function modoAtual(): Modo {
   return guardrails.modo;
 }
 
-/** Está dentro do horário comercial (BRT, seg–sex não é checado aqui)? */
+/**
+ * Está dentro do horário comercial? Seg–sex, 9h–18h em BRT — exatamente como o
+ * Master Prompt do Maestro define. Converte para o horário local antes de checar
+ * (dia e hora juntos, pra acertar a virada de meia-noite no fuso).
+ */
 export function dentroDoHorario(now: Date = new Date()): boolean {
-  const localHour = (now.getUTCHours() + guardrails.fusoOffset + 24) % 24;
-  return localHour >= guardrails.horario.inicio && localHour < guardrails.horario.fim;
+  const local = new Date(now.getTime() + guardrails.fusoOffset * 3_600_000);
+  const dia = local.getUTCDay(); // 0=domingo … 6=sábado, já em BRT
+  const hora = local.getUTCHours();
+  const diaUtil = dia >= 1 && dia <= 5; // seg–sex
+  return (
+    diaUtil && hora >= guardrails.horario.inicio && hora < guardrails.horario.fim
+  );
 }
 
 /** Canais de contato ativo (sujeitos a horário/limites). Conteúdo/interno não. */
