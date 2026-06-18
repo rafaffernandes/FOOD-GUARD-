@@ -15,16 +15,16 @@ import type { z } from "zod/v4";
  */
 
 /**
- * Modelo por agente. Decisão de negócio: usar SEMPRE o mais barato
- * (Haiku 4.5, US$1/US$5 por 1M) — em teste e em produção. Para subir a
- * qualidade de algum agente depois, troque o id aqui por "claude-sonnet-4-6"
- * (US$3/US$15) ou "claude-opus-4-8" (US$5/US$25); o cliente abaixo já se
- * adapta (Haiku não aceita thinking adaptive nem effort).
+ * Modelo por agente. Decisão do Renan: Sonnet 4.6 — um agente que PENSA antes
+ * de responder (adaptive thinking), com bom equilíbrio custo×qualidade
+ * (US$3/US$15 por 1M). O cliente abaixo envia thinking adaptive + effort para
+ * Sonnet/Opus/Fable; se um dia trocar algum por "claude-haiku-4-5" (US$1/US$5,
+ * sem raciocínio) ele se adapta sozinho.
  */
 export const MODELS = {
-  prospeccao: "claude-haiku-4-5",
-  qualificacao: "claude-haiku-4-5",
-  conteudo: "claude-haiku-4-5",
+  prospeccao: "claude-sonnet-4-6",
+  qualificacao: "claude-sonnet-4-6",
+  conteudo: "claude-sonnet-4-6",
 } as const;
 
 export const anthropicConfigured = Boolean(process.env.ANTHROPIC_API_KEY);
