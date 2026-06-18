@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Custos da máquina de agentes — Food Guard</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--brand50:#ecfdf5;--ink:#0b1f1a;--soft:#33433e;--muted:#6b7a75;
+  --bg:#f6faf8;--sunken:#eef4f1;--danger:#dc2626;--danger50:#fef2f2;--warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;
+  --r:16px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:46px 0 36px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:14px}
+  header.top h1{font-size:28px;margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:720px}
+  main{padding:10px 0 60px}
+  h2{font-size:20px;font-weight:800;margin:32px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:var(--brand2);color:#fff;font-size:14px;font-weight:800;flex-shrink:0}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);padding:16px 20px;margin:12px 0;box-shadow:var(--sh)}
+  .tip{border-left:5px solid var(--info);background:var(--info50)}
+  .win{border-left:5px solid var(--brand2);background:var(--brand50)}
+  .warnote{border-left:5px solid var(--warn);background:var(--warn50)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--sunken);color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.03em}
+  td{padding:8px;border-bottom:1px solid var(--sunken);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+  .big{font-size:15px;font-weight:800;color:var(--brand)}
+  .tot td{background:var(--brand50);font-weight:800}
+  ul{margin:8px 0;padding-left:6px;list-style:none}
+  li{margin:7px 0;padding-left:24px;position:relative}
+  .dot li::before{content:"•";position:absolute;left:6px;color:var(--brand2);font-weight:800}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px}
+  .kpi{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+  .kpi .b{flex:1;min-width:150px;background:#fff;border:1px solid var(--sunken);border-radius:14px;padding:14px 16px;box-shadow:var(--sh)}
+  .kpi .b .v{font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.01em}
+  .kpi .b .l{font-size:12.5px;color:var(--muted);margin-top:2px}
+  footer{border-top:1px solid var(--sunken);padding:20px 0 46px;color:var(--muted);font-size:12px}
+  @media print{body{background:#fff}.card,.kpi .b{box-shadow:none}header.top{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Custos da operação de agentes</span>
+  <h1>Quanto a máquina de agentes vai custar por mês</h1>
+  <p>Levantamento real, com os preços de API puxados hoje e cruzados com o que os agentes consomem no código. Em teste e em produção, em reais — e um simulador por volume no fim.</p>
+</div></header>
+<main class="wrap">
+
+<!-- Premissas -->
+<h2><span class="n">1</span> Premissas (de onde vêm os números)</h2>
+<div class="card tip">
+<ul class="dot">
+<li><b>Modelo dos agentes:</b> <b>Claude Opus 4.8</b> (o mais capaz) — definido em <code>lib/agent/client.ts</code>.</li>
+<li><b>Preço Opus 4.8:</b> <b>US$ 5,00</b> / 1M tokens de <b>entrada</b> · <b>US$ 25,00</b> / 1M de <b>saída</b>. O prompt da marca já vai <b>cacheado</b> (entrada repetida ≈ US$ 0,50/1M).</li>
+<li><b>Câmbio:</b> US$ 1 ≈ <b>R$ 5,08</b> (cotação de 17/jun/2026). A fatura da Anthropic é em dólar.</li>
+<li><b>Por rascunho:</b> ~250 tokens de entrada nova + ~450 cacheados + ~1.000 de saída (texto + raciocínio).</li>
+<li><b>Envio (WhatsApp Cloud API / Meta):</b> mensagem de <b>marketing</b> (prospecção a frio) ≈ <b>US$ 0,0625</b> cada; mensagens dentro da janela de conversa de 24h são bem mais baratas. Cobrança separada da IA.</li>
+</ul>
+</div>
+
+<!-- Custo por unidade -->
+<h2><span class="n">2</span> Custo por rascunho (1 ação de agente)</h2>
+<div class="card">
+<table>
+<tr><th>Modelo</th><th class="r">US$/1M entrada</th><th class="r">US$/1M saída</th><th class="r">~US$/rascunho</th><th class="r">~R$/rascunho</th></tr>
+<tr><td><b>Opus 4.8</b> (atual)</td><td class="r">5,00</td><td class="r">25,00</td><td class="r">0,03–0,05</td><td class="r"><b>0,15–0,26</b></td></tr>
+<tr><td>Sonnet 4.6</td><td class="r">3,00</td><td class="r">15,00</td><td class="r">0,02–0,03</td><td class="r">0,09–0,15</td></tr>
+<tr><td>Haiku 4.5</td><td class="r">1,00</td><td class="r">5,00</td><td class="r">0,006–0,01</td><td class="r">0,03–0,05</td></tr>
+</table>
+<p style="margin:8px 0 0;font-size:13px;color:var(--muted)">O custo é dominado pela <b>saída</b> (texto + raciocínio). Trocar o modelo é a maior alavanca — ver seção 6.</p>
+</div>
+
+<!-- Teste -->
+<h2><span class="n">3</span> 🧪 Fase de TESTE</h2>
+<div class="card win">
+<p style="margin:0 0 6px">Na validação você roda dezenas de chamadas manuais (<code>/api/agents/teste-ia</code>) e alguns crons. Volume baixíssimo, sem envio real.</p>
+<div class="kpi">
+<div class="b"><div class="v">R$ 10–50</div><div class="l">por mês, na fase de teste</div></div>
+<div class="b"><div class="v">~R$ 0,20</div><div class="l">cada bateria dos 3 agentes</div></div>
+</div>
+<p style="margin:6px 0 0;font-size:13px;color:var(--muted)">Não é o que deve te preocupar — testar a máquina inteira custa alguns reais.</p>
+</div>
+
+<!-- Produção -->
+<h2><span class="n">4</span> 🚀 Fase de PRODUÇÃO — o custo por empresa prospectada</h2>
+<div class="card">
+<p style="margin:0 0 6px">Cada empresa abordada gera, em média, <b>~2 toques</b> (cadência D0/D3/D7, máx. 3). Cada toque = <b>1 rascunho</b> (IA) + <b>1 envio</b> (WhatsApp).</p>
+<table>
+<tr><th>Por empresa prospectada</th><th class="r">com Opus 4.8</th><th class="r">com Haiku 4.5</th></tr>
+<tr><td>IA — 2 rascunhos</td><td class="r">~R$ 0,40</td><td class="r">~R$ 0,08</td></tr>
+<tr><td>WhatsApp — 2 mensagens</td><td class="r">~R$ 0,64</td><td class="r">~R$ 0,64</td></tr>
+<tr class="tot"><td>Total por empresa</td><td class="r">~R$ 1,04</td><td class="r">~R$ 0,72</td></tr>
+</table>
+<p style="margin:8px 0 0;font-size:13px;color:var(--muted)">Repare: depois de baratear o modelo, <b>o WhatsApp passa a ser o maior custo</b> por empresa.</p>
+</div>
+
+<!-- Simulador -->
+<h2><span class="n">5</span> 📊 Simulador — "se eu abordar X empresas/mês"</h2>
+<div class="card">
+<table>
+<tr><th>Empresas/mês</th><th class="r">IA (Opus)</th><th class="r">WhatsApp</th><th class="r">Total (Opus)</th><th class="r">Total (Haiku p/ prospecção)</th></tr>
+<tr><td><b>100</b></td><td class="r">R$ 41</td><td class="r">R$ 64</td><td class="r"><b>R$ 105</b></td><td class="r">R$ 72</td></tr>
+<tr><td><b>250</b></td><td class="r">R$ 102</td><td class="r">R$ 159</td><td class="r"><b>R$ 261</b></td><td class="r">R$ 179</td></tr>
+<tr><td><b>500</b></td><td class="r">R$ 203</td><td class="r">R$ 318</td><td class="r"><b>R$ 521</b></td><td class="r">R$ 359</td></tr>
+<tr><td><b>1.000</b></td><td class="r">R$ 406</td><td class="r">R$ 635</td><td class="r"><b>R$ 1.041</b></td><td class="r">R$ 716</td></tr>
+</table>
+<p style="margin:8px 0 0;font-size:13px;color:var(--muted)">+ <b>Qualificação e Conteúdo</b> somam um fixo pequeno por cima: ~<b>R$ 30–60/mês</b> (poucos leads do diagnóstico + ~10 posts/mês). Infra (Vercel/Supabase/Resend) cabe no <b>plano gratuito</b> nesse volume.</p>
+</div>
+
+<!-- Onde está o custo -->
+<h2><span class="n">6</span> Onde o dinheiro vai — e como baixar</h2>
+<div class="card win">
+<p style="margin:0 0 8px"><b>Dois itens dominam:</b> a <b>IA</b> e o <b>WhatsApp</b>, e ambos escalam com o volume de prospecção. As alavancas:</p>
+<ul class="dot">
+<li><b>Trocar o modelo nos agentes de alto volume.</b> Manter <b>Opus na Qualificação</b> (lead quente, conversa que vale dinheiro) e usar <b>Sonnet/Haiku na Prospecção e no Conteúdo</b> (tarefa mais simples, muito volume). Isso derruba a parte de IA em <b>40–80%</b> sem perder qualidade onde importa. É 1 linha em <code>MODELS</code>.</li>
+<li><b>Cache do prompt da marca:</b> já está ligado — a "voz da Food Guard" não é recobrada a cada chamada.</li>
+<li><b>WhatsApp:</b> só a 1ª mensagem (marketing) é cara; respostas dentro da conversa são baratas. Quanto mais o lead responde, menor o custo relativo.</li>
+<li><b>Volume controlado:</b> o número de empresas/mês é uma <b>torneira</b> que você abre conforme o caixa — começa baixo, valida o retorno, escala.</li>
+</ul>
+</div>
+
+<!-- Resumo -->
+<h2><span class="n">★</span> Resumo</h2>
+<div class="card">
+<div class="kpi">
+<div class="b"><div class="v">R$ 10–50</div><div class="l">TESTE / mês</div></div>
+<div class="b"><div class="v">R$ 100–260</div><div class="l">PRODUÇÃO no início (100–250 empresas/mês)</div></div>
+<div class="b"><div class="v">~40–80%</div><div class="l">de economia na IA trocando o modelo</div></div>
+</div>
+<p style="margin:6px 0 0;font-size:13.5px"><b>Recomendação:</b> começar a produção com volume baixo (100–250 empresas/mês) → custo de <b>~R$ 100–260/mês</b>, dominado por WhatsApp + IA. Validar o retorno (quantos viram cliente) antes de abrir a torneira. Testar Sonnet/Haiku na Prospecção assim que a qualidade estiver calibrada.</p>
+</div>
+
+</main>
+<footer class="wrap">
+Food Guard · Custos da operação de agentes · junho/2026 · Câmbio US$1≈R$5,08 (17/jun/2026, fonte Investing.com). Estimativas de token e de preço do WhatsApp são médias — o custo real depende do volume e da taxa de resposta. Não inclui mídia paga (Google/Instagram, ~R$1.000/mês à parte) nem taxas do gateway de pagamento.
+</footer>
+</body>
+</html>
