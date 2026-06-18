@@ -1,5 +1,6 @@
 import { site } from "@/lib/content/site";
 import { MODELS, draftStructured } from "./client";
+import { CONTEUDO_PERSONA } from "./personas";
 import { type ContentDraft, ContentDraftSchema } from "./schemas";
 
 /**
@@ -48,6 +49,7 @@ Diretrizes:
   const ai = await draftStructured({
     model: MODELS.conteudo,
     schema: ContentDraftSchema,
+    system: CONTEUDO_PERSONA,
     task,
     effort: "medium",
     maxTokens: 6000,

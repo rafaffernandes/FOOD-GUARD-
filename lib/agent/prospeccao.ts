@@ -1,5 +1,6 @@
 import { site } from "@/lib/content/site";
 import { MODELS, draftStructured } from "./client";
+import { PROSPECCAO_PERSONA } from "./personas";
 import { type OutreachDraft, OutreachDraftSchema } from "./schemas";
 
 /**
@@ -51,6 +52,7 @@ Diretrizes:
   const ai = await draftStructured({
     model: MODELS.prospeccao,
     schema: OutreachDraftSchema,
+    system: PROSPECCAO_PERSONA,
     task,
     effort: "medium",
   });

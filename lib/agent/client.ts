@@ -50,7 +50,7 @@ REGRAS DE VOZ (obrigatórias):
 - Tom: especialista que tira o medo da fiscalização — direto, acolhedor, sem juridiquês e sem ser alarmista barato.
 - Sempre que houver CTA, direcione ao diagnóstico gratuito (2 minutos) no site.
 - Português do Brasil. Sem emojis em excesso (no máximo 1, e só quando couber).
-- Planos (não cite preço a menos que pedido): Básico, Essencial, Premium — nutricionista responsável é exclusivo do Premium.`;
+- Planos: Básico, Essencial, Premium — nutricionista responsável é exclusivo do Premium. Se você pode ou não citar preço depende da sua persona específica (bloco abaixo).`;
 
 /**
  * Faz uma chamada com saída estruturada (Zod) usando a voz da marca cacheada.
@@ -62,23 +62,35 @@ export async function draftStructured<T extends z.ZodType>(opts: {
   schema: T;
   /** Instrução específica da tarefa (vai no turno do usuário). */
   task: string;
+  /**
+   * Persona/constituição do agente (system prompt específico). Entra como 2º
+   * bloco de system, depois do BRAND_VOICE. Fonte: lib/agent/personas.ts.
+   */
+  system?: string;
   effort?: "low" | "medium" | "high" | "max";
   maxTokens?: number;
 }): Promise<z.infer<T> | null> {
   const anthropic = getAnthropic();
   if (!anthropic) return null;
 
+  // BRAND_VOICE primeiro (cacheia entre todos os agentes); persona depois
+  // (cacheia entre chamadas do mesmo agente). Ambos com cache_control.
+  const system: Anthropic.TextBlockParam[] = [
+    { type: "text", text: BRAND_VOICE, cache_control: { type: "ephemeral" } },
+  ];
+  if (opts.system) {
+    system.push({
+      type: "text",
+      text: opts.system,
+      cache_control: { type: "ephemeral" },
+    });
+  }
+
   const message = await anthropic.messages.parse({
     model: opts.model,
     max_tokens: opts.maxTokens ?? 4000,
     thinking: { type: "adaptive" },
-    system: [
-      {
-        type: "text",
-        text: BRAND_VOICE,
-        cache_control: { type: "ephemeral" },
-      },
-    ],
+    system,
     output_config: {
       effort: opts.effort ?? "medium",
       format: zodOutputFormat(opts.schema),
