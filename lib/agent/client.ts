@@ -15,14 +15,16 @@ import type { z } from "zod/v4";
  */
 
 /**
- * Modelo por agente. Default = Opus 4.8 (mais capaz).
- * Para alto volume/custo, troque o drafting por "claude-sonnet-4-6" e tarefas
- * simples por "claude-haiku-4-5" — é decisão de custo do negócio.
+ * Modelo por agente. Decisão de negócio: usar SEMPRE o mais barato
+ * (Haiku 4.5, US$1/US$5 por 1M) — em teste e em produção. Para subir a
+ * qualidade de algum agente depois, troque o id aqui por "claude-sonnet-4-6"
+ * (US$3/US$15) ou "claude-opus-4-8" (US$5/US$25); o cliente abaixo já se
+ * adapta (Haiku não aceita thinking adaptive nem effort).
  */
 export const MODELS = {
-  prospeccao: "claude-opus-4-8",
-  qualificacao: "claude-opus-4-8",
-  conteudo: "claude-opus-4-8",
+  prospeccao: "claude-haiku-4-5",
+  qualificacao: "claude-haiku-4-5",
+  conteudo: "claude-haiku-4-5",
 } as const;
 
 export const anthropicConfigured = Boolean(process.env.ANTHROPIC_API_KEY);
@@ -86,14 +88,21 @@ export async function draftStructured<T extends z.ZodType>(opts: {
     });
   }
 
+  // Haiku 4.5 (o mais barato) NÃO aceita thinking adaptive nem output_config.effort
+  // — enviá-los retorna 400. Só Opus 4.6+ / Sonnet 4.6 / Fable aceitam. Detecta
+  // pelo id e monta os parâmetros conforme o modelo configurado em MODELS.
+  const aceitaAdaptiveEffort = !opts.model.includes("haiku");
+
   const message = await anthropic.messages.parse({
     model: opts.model,
     max_tokens: opts.maxTokens ?? 4000,
-    thinking: { type: "adaptive" },
     system,
+    ...(aceitaAdaptiveEffort
+      ? { thinking: { type: "adaptive" as const } }
+      : {}),
     output_config: {
-      effort: opts.effort ?? "medium",
       format: zodOutputFormat(opts.schema),
+      ...(aceitaAdaptiveEffort ? { effort: opts.effort ?? "medium" } : {}),
     },
     messages: [{ role: "user", content: opts.task }],
   });
