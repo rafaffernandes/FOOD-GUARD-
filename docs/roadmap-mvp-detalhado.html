@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roadmap detalhado — MVP Food Guard</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--brand50:#ecfdf5;--ink:#0b1f1a;--soft:#33433e;--muted:#6b7a75;
+  --bg:#f6faf8;--sunken:#eef4f1;--danger:#dc2626;--warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;
+  --you:#2563eb;--you50:#eff6ff;--me:#7c3aed;--me50:#f5f3ff;
+  --r:14px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:42px 0 30px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:26px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:760px;font-size:14px}
+  main{padding:8px 0 60px}
+  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px;font-size:12.5px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-weight:700}
+  .p-you{background:var(--you50);color:var(--you);border:1px solid #c7dbff}
+  .p-me{background:var(--me50);color:var(--me);border:1px solid #ddd6fe}
+  .p-opt{background:var(--sunken);color:var(--muted)}
+  .p-stby{background:var(--warn50);color:var(--warn);border:1px solid #fde68a}
+  h2{font-size:19px;font-weight:800;margin:30px 0 4px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:var(--brand2);color:#fff;font-size:14px;font-weight:800;flex-shrink:0}
+  h2 small{font-weight:600;color:var(--muted);font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+  th{text-align:left;padding:8px 10px;background:var(--sunken);color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  td{padding:9px 10px;border-top:1px solid var(--sunken);vertical-align:top}
+  td.c{text-align:center;white-space:nowrap}
+  code{background:var(--sunken);padding:1px 5px;border-radius:4px;font-size:11.5px;font-weight:600}
+  .tag{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:6px}
+  .t-you{background:var(--you50);color:var(--you)}
+  .t-me{background:var(--me50);color:var(--me)}
+  .note{background:var(--info50);border-left:4px solid var(--info);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  .stby{background:var(--warn50);border-left:4px solid var(--warn);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+  @media print{body{background:#fff}table{box-shadow:none}header.top{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Roadmap detalhado · Validação do MVP</span>
+  <h1>Passo a passo — tudo que falta configurar e fazer</h1>
+  <p>Roadmap minucioso, bloco a bloco. Cada linha é uma tarefa real. <b>Azul = você (configurar/contas)</b>, <b>roxo = eu (construir)</b>. Siga de cima pra baixo; o Bloco 1 é a base de tudo.</p>
+</div></header>
+<main class="wrap">
+
+<div class="legend">
+  <span class="pill p-you">VOCÊ — configura / cria contas</span>
+  <span class="pill p-me">EU — construo / pesquiso</span>
+  <span class="pill p-opt">opcional</span>
+  <span class="pill p-stby">standby (v2)</span>
+</div>
+<div class="note">💰 <b>Custo recorrente desta fase = só os R$ 500/mês de tráfego.</b> O resto é trabalho sob demanda, sem API/infra paga. Os agentes autônomos estão em <b>standby</b> (v2).</div>
+
+<!-- BLOCO 1 -->
+<h2><span class="n">1</span> Pôr o site no ar (a base) <small>· sem isto, nada converte</small></h2>
+<table>
+<tr><th>#</th><th>Passo (o que fazer, em detalhe)</th><th>Quem</th><th class="c">Destrava</th></tr>
+<tr><td>1.1</td><td><b>Supabase — criar projeto.</b> Conta em supabase.com → "New project" → guardar a senha do banco.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">salvar leads</td></tr>
+<tr><td>1.2</td><td><b>Supabase — rodar os SQLs.</b> No <b>SQL Editor</b>, colar e rodar (nesta ordem): <code>supabase/schema.sql</code> → <code>supabase/payments.sql</code> → <code>supabase/fase-3-agents.sql</code> (este último evita erro de tabela mais pra frente).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">tabelas</td></tr>
+<tr><td>1.3</td><td><b>Supabase — chaves na Vercel.</b> Project Settings → API → copiar e colar em Settings → Environment Variables (Prod+Preview): <code>NEXT_PUBLIC_SUPABASE_URL</code> e <code>SUPABASE_SERVICE_ROLE_KEY</code> (marcar <b>Sensitive</b>).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">conexão</td></tr>
+<tr><td>1.4</td><td><b>Resend — conta + domínio.</b> resend.com → Domains → adicionar <code>foodguard.com.br</code> → copiar os registros DNS e colar no seu registrador (onde comprou o domínio) → aguardar "Verified".</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">e-mail do relatório</td></tr>
+<tr><td>1.5</td><td><b>Resend — chave na Vercel.</b> API Keys → criar → <code>RESEND_API_KEY</code>; e <code>RESEND_FROM</code> = <code>Food Guard &lt;diagnostico@foodguard.com.br&gt;</code>.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">envio</td></tr>
+<tr><td>1.6</td><td><b>Asaas — virar PRODUÇÃO.</b> No Asaas, pegar a <b>API Key de produção</b> (não a sandbox) → na Vercel: <code>ASAAS_API_KEY</code> (produção), <code>ASAAS_ENV=production</code>, <code>ASAAS_WEBHOOK_TOKEN</code> (uma senha sua).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">cobrar de verdade</td></tr>
+<tr><td>1.7</td><td><b>Asaas — webhook.</b> No painel Asaas, apontar o webhook para <code>https://SEU-DOMINIO/api/webhooks/asaas</code> com o mesmo token do passo 1.6.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">confirmar pagamento</td></tr>
+<tr><td>1.8</td><td><b>Dados de contato e legais.</b> Conferir na Vercel: <code>NEXT_PUBLIC_SITE_URL</code> (URL real), <code>NEXT_PUBLIC_CNPJ</code>, <code>NEXT_PUBLIC_WHATSAPP</code>, <code>NEXT_PUBLIC_CONTACT_EMAIL</code>, <code>NEXT_PUBLIC_LEGAL_NAME</code>.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">rodapé/legal</td></tr>
+<tr><td>1.9</td><td><b>Domínio próprio.</b> Apontar <code>foodguard.com.br</code> pra Vercel (Vercel → Domains + DNS no registrador). <span class="pill p-opt">opcional</span></td><td><span class="tag t-you">VOCÊ</span></td><td class="c">marca</td></tr>
+<tr><td>1.10</td><td><b>Calendly.</b> Se for usar "agendar avaliação": criar evento → <code>NEXT_PUBLIC_CALENDLY_URL</code>. <span class="pill p-opt">opcional</span></td><td><span class="tag t-you">VOCÊ</span></td><td class="c">CTA</td></tr>
+<tr><td>1.11</td><td><b>Teste final do fluxo</b> no preview: diagnóstico → lead salvo no Supabase → e-mail chega (Resend) → pagamento de teste (Asaas).</td><td><span class="tag t-me">EU</span></td><td class="c">garantir</td></tr>
+<tr><td>1.12</td><td><b>QA gate (Playwright MCP):</b> testo o site, dou <b>nota 0–100</b>. ≥90 passa; &lt;90 refaço.</td><td><span class="tag t-me">EU</span></td><td class="c">qualidade</td></tr>
+<tr><td>1.13</td><td><b>Publicar (produção).</b> Push pra <code>main</code> → Vercel publica. <b>Só com o seu "pode publicar".</b></td><td><span class="tag t-me">EU</span></td><td class="c">no ar 🚀</td></tr>
+</table>
+
+<!-- BLOCO 2 -->
+<h2><span class="n">2</span> Painel de conteúdo no site <small>· você publica sozinho</small></h2>
+<table>
+<tr><th>#</th><th>Passo</th><th>Quem</th><th class="c">Pré-requisito</th></tr>
+<tr><td>2.1</td><td><b>Tabela <code>posts</code> no Supabase.</b> Eu escrevo o SQL; você roda no SQL Editor.</td><td><span class="tag t-me">EU</span>+<span class="tag t-you">VOCÊ</span></td><td class="c">Bloco 1</td></tr>
+<tr><td>2.2</td><td><b>Blog lê do banco.</b> O blog passa a mostrar posts da tabela (mantendo os artigos atuais em MDX). Arquivos: <code>lib/blog.ts</code>, <code>app/blog/</code>.</td><td><span class="tag t-me">EU</span></td><td class="c">2.1</td></tr>
+<tr><td>2.3</td><td><b>Mini-painel</b> em <code>/admin/conteudo</code>: criar/editar/publicar post (título, capa, texto, SEO) — você escreve e publica.</td><td><span class="tag t-me">EU</span></td><td class="c">2.2</td></tr>
+<tr><td>2.4</td><td><b>QA gate</b> do painel (nota ≥90) + revisão.</td><td><span class="tag t-me">EU</span></td><td class="c">2.3</td></tr>
+<tr><td>2.5</td><td><b>Você testa:</b> cria e publica 1 post de verdade.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">2.4</td></tr>
+</table>
+
+<!-- BLOCO 3 -->
+<h2><span class="n">3</span> Pesquisa de conteúdo (sub-agente) <small>· 3–4x/semana, sem custo</small></h2>
+<table>
+<tr><th>#</th><th>Passo</th><th>Quem</th><th class="c">Saída</th></tr>
+<tr><td>3.1</td><td><b>Planilha Google.</b> Você cria e me compartilha uma planilha (ou eu entrego como documento até lá).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">repositório</td></tr>
+<tr><td>3.2</td><td><b>1ª rodada de pesquisa.</b> Subagentes em paralelo varrem <b>Reddit + Google Trends + YouTube</b> (mais vistos) nos temas: vigilância sanitária, multas, dark kitchens, consultoria nutricional/alimentar, assessoria p/ restaurantes, bares e lanchonetes.</td><td><span class="tag t-me">EU</span></td><td class="c">relatório</td></tr>
+<tr><td>3.3</td><td><b>Ideias prontas</b> (post · blog · reel TikTok/Instagram · LinkedIn) com <b>humanizer</b> (nada com cara de IA).</td><td><span class="tag t-me">EU</span></td><td class="c">pauta</td></tr>
+<tr><td>3.4</td><td><b>Depósito na planilha</b> 3–4x/semana.</td><td><span class="tag t-me">EU</span></td><td class="c">cadência</td></tr>
+<tr><td>3.5</td><td><b>Você posta</b> (blog pelo painel + Instagram + TikTok + LinkedIn).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">audiência</td></tr>
+</table>
+
+<!-- BLOCO 4 -->
+<h2><span class="n">4</span> Base de leads (APIs gratuitas) <small>· você prospecta manual</small></h2>
+<table>
+<tr><th>#</th><th>Passo</th><th>Quem</th><th class="c">Status</th></tr>
+<tr><td>4.1</td><td><b>Validar APIs grátis</b> de CNPJ recém-aberto (BrasilAPI, Minha Receita, CNPJá, Casa dos Dados, dump da Receita) — eu pesquiso quais servem.</td><td><span class="tag t-me">EU</span></td><td class="c">⏳</td></tr>
+<tr><td>4.2</td><td><b>Você escolhe a fonte</b> (com base na minha pesquisa).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">🔶</td></tr>
+<tr><td>4.3</td><td><b>Ingestão</b> → enche a tabela <code>prospects</code> (food service, Zona Leste, ≤90 dias). Roda sob demanda, sem custo.</td><td><span class="tag t-me">EU</span></td><td class="c">⏳</td></tr>
+<tr><td>4.4</td><td><b>Você prospecta</b> (manda a mensagem manualmente).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">⏳</td></tr>
+<tr><td>4.5</td><td><b>Disparo automático</b> (CNPJ nasce → mensagem). <span class="pill p-stby">standby (v2)</span></td><td><span class="tag t-me">EU</span></td><td class="c">⏸</td></tr>
+</table>
+
+<!-- BLOCO 5 -->
+<h2><span class="n">5</span> Tráfego pago — R$ 500/mês <small>· 3 estratégias</small></h2>
+<table>
+<tr><th>#</th><th>Passo</th><th>Quem</th><th class="c">Verba</th></tr>
+<tr><td>5.1</td><td><b>Playbook das 3 estratégias</b> (palavras-chave, anúncios, segmentação, CPL alvo). Eu entrego pronto.</td><td><span class="tag t-me">EU</span></td><td class="c">—</td></tr>
+<tr><td>5.2</td><td><b>Estratégia 1 — Google Ads Search</b> (intenção quente: "multa vigilância", "alvará sanitário restaurante", "fui autuado"). Você cria a conta Google Ads + billing e sobe a campanha com meu material.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">~R$300</td></tr>
+<tr><td>5.3</td><td><b>Estratégia 2 — Retargeting</b> (quem visitou e não converteu). Pixel/GA já estão no site; eu configuro o público, você sobe.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">~R$100</td></tr>
+<tr><td>5.4</td><td><b>Estratégia 3 — Lead magnet + impulsionamento</b> ("Checklist da vigilância" + impulsionar o melhor post). Eu crio o material; você impulsiona.</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">~R$100</td></tr>
+<tr><td>5.5</td><td><b>Medir CPL</b> (custo por lead) e ajustar onde rende mais.</td><td><span class="tag t-me">EU</span>+<span class="tag t-you">VOCÊ</span></td><td class="c">—</td></tr>
+</table>
+
+<!-- BLOCO 6 -->
+<h2><span class="n">6</span> Funil + ações de conversão <small>· cada uma com revisão + QA</small></h2>
+<table>
+<tr><th>#</th><th>Passo (ação executável)</th><th>Quem</th><th class="c">Área</th></tr>
+<tr><td>6.1</td><td><b>Análise do funil</b> (Home→Diagnóstico→Lead→Resultado→Planos→Checkout) com pontos de queda. Entregável.</td><td><span class="tag t-me">EU</span></td><td class="c">diagnóstico</td></tr>
+<tr><td>6.2</td><td><b>Reduzir fricção</b> do formulário do diagnóstico + barra de progresso.</td><td><span class="tag t-me">EU</span></td><td class="c">site</td></tr>
+<tr><td>6.3</td><td><b>CTA do resultado</b> mais forte + prova social.</td><td><span class="tag t-me">EU</span></td><td class="c">site</td></tr>
+<tr><td>6.4</td><td><b>Sequência de e-mail</b> de follow-up pós-diagnóstico (Resend).</td><td><span class="tag t-me">EU</span></td><td class="c">e-mail</td></tr>
+<tr><td>6.5</td><td><b>Botão de WhatsApp</b> no resultado e no rodapé.</td><td><span class="tag t-me">EU</span></td><td class="c">WhatsApp</td></tr>
+<tr><td>6.6</td><td><b>Ancoragem de preço</b> + garantia + depoimentos na página de planos.</td><td><span class="tag t-me">EU</span></td><td class="c">planos</td></tr>
+<tr><td>6.7</td><td>Cada ação acima passa por <b>etapa de revisão + QA gate ≥90</b> antes de seguir.</td><td><span class="tag t-me">EU</span></td><td class="c">regra</td></tr>
+</table>
+
+<!-- BLOCO 7 -->
+<h2><span class="n">7</span> Método de trabalho (regras permanentes)</h2>
+<table>
+<tr><th>#</th><th>Passo</th><th>Quem</th><th class="c">Quando</th></tr>
+<tr><td>7.1</td><td><b>Conectar o Playwright MCP</b> (pra eu rodar o QA gate automatizado).</td><td><span class="tag t-you">VOCÊ</span></td><td class="c">1x</td></tr>
+<tr><td>7.2</td><td><b>QA gate</b>: nota 0–100 em TODA entrega; ≥90 passa, &lt;90 refaz.</td><td><span class="tag t-me">EU</span></td><td class="c">sempre</td></tr>
+<tr><td>7.3</td><td><b>Humanizer</b>: toda saída revisada pra soar humana — nada com cara de IA.</td><td><span class="tag t-me">EU</span></td><td class="c">sempre</td></tr>
+<tr><td>7.4</td><td><b>Revisão no meio</b> de cada implementação (não só no fim).</td><td><span class="tag t-me">EU</span></td><td class="c">sempre</td></tr>
+</table>
+
+<div class="stby">⏸ <b>Bloco standby (v2):</b> os 3 agentes autônomos (prospecção, qualificação, conteúdo) ficam desligados (<code>AGENTS_MODE=simulacao</code>, sem <code>ANTHROPIC_API_KEY</code>). Retomamos na v2, depois da validação.</div>
+
+<div class="note"><b>Ordem recomendada:</b> Bloco 1 (base) → Blocos 5+6 (tráfego + conversão, em paralelo) → Bloco 2/3 (conteúdo) → Bloco 4 (leads). Bloco 7 (regras) vale o tempo todo.</div>
+
+</main>
+<footer class="wrap">Food Guard · Roadmap detalhado do MVP · junho/2026 · Azul = você · Roxo = eu · Nada vai pra produção sem o seu "pode publicar".</footer>
+</body>
+</html>
