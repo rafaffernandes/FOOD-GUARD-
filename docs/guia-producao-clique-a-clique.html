@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guia de produção — clique a clique</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--ink:#0b1f1a;--muted:#6b7a75;--bg:#f6faf8;--sunken:#eef4f1;
+  --warn:#d97706;--warn50:#fffbeb;--info:#2563eb;--info50:#eff6ff;--danger:#dc2626;--danger50:#fef2f2;
+  --r:14px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:40px 0 28px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:25px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:740px;font-size:14px}
+  main{padding:10px 0 60px}
+  h2{font-size:19px;font-weight:800;margin:34px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:9px;background:var(--brand2);color:#fff;font-size:14px;font-weight:800;flex-shrink:0}
+  h2 small{font-weight:600;color:var(--muted);font-size:13px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:4px 18px 14px;margin:10px 0}
+  ol.steps{margin:10px 0;padding-left:0;list-style:none;counter-reset:s}
+  ol.steps>li{counter-increment:s;position:relative;padding:10px 0 10px 44px;border-top:1px dashed var(--sunken);font-size:14px}
+  ol.steps>li:first-child{border-top:none}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:10px;width:28px;height:28px;border-radius:999px;background:var(--sunken);color:var(--brand);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;font-weight:600;word-break:break-all}
+  kbd{background:#0b1f1a;color:#fff;border-radius:5px;padding:1px 7px;font-size:12px;font-weight:700}
+  .path{color:var(--brand);font-weight:700}
+  .note{background:var(--info50);border-left:4px solid var(--info);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  .warn{background:var(--warn50);border-left:4px solid var(--warn);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  .danger{background:var(--danger50);border-left:4px solid var(--danger);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden}
+  th{text-align:left;padding:8px 10px;background:var(--sunken);color:var(--muted);font-size:11.5px;text-transform:uppercase}
+  td{padding:8px 10px;border-top:1px solid var(--sunken);vertical-align:top}
+  .ok{color:var(--brand);font-weight:800}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Guia de produção · clique a clique</span>
+  <h1>Como pôr Supabase, Resend e Asaas em PRODUÇÃO</h1>
+  <p>As contas já existem e funcionam em teste. Este guia mostra <b>onde entrar, o que clicar e o que copiar/colar</b>, tela por tela. Tudo abaixo foi conferido no código do site (nomes de variáveis, header do webhook, ordem do checkout). Tempo total: ~45–60 min.</p>
+</div></header>
+<main class="wrap">
+
+<div class="warn">⚠️ <b>Antes de tudo — o projeto certo na Vercel.</b> O repositório está conectado a <b>5 projetos</b> na Vercel (cnhl, spil, geuo, pg2k, rafaelfernandesfoodguard). O site oficial é o <b>food-guard-cnhl</b> (https://food-guard-cnhl.vercel.app). <b>Toda variável deste guia vai NESSE projeto.</b> Se colocar em outro, nada funciona. (Depois, se quiser, dá pra apagar os 4 duplicados em Settings → Advanced → Delete Project — opcional.)</div>
+
+<!-- ETAPA 0 -->
+<h2><span class="n">0</span> Como se adiciona variável na Vercel <small>· você vai repetir isso várias vezes</small></h2>
+<div class="card"><ol class="steps">
+<li>Acesse <span class="path">vercel.com</span> → <b>Log in</b> → entre com a conta de sempre (GitHub).</li>
+<li>Na lista de projetos, clique em <b>food-guard-cnhl</b>.</li>
+<li>No menu do topo do projeto, clique em <b>Settings</b> → no menu lateral esquerdo, <b>Environment Variables</b>.</li>
+<li>Em <b>Key</b> digite o nome da variável (ex.: <code>ASAAS_ENV</code>) e em <b>Value</b> o valor. Em <b>Environments</b>, deixe marcado <b>Production</b> e <b>Preview</b>.</li>
+<li>Para chaves secretas (tudo que for API key/token), ative o toggle <b>Sensitive</b> antes de salvar.</li>
+<li>Clique <b>Save</b>. Repita para cada variável.</li>
+<li><b>No final de TUDO</b> (etapas 1–4 concluídas): aba <b>Deployments</b> → primeiro item da lista → botão <b>⋯</b> (à direita) → <b>Redeploy</b> → confirme. <u>Variável nova só vale depois de um redeploy.</u></li>
+</ol></div>
+
+<!-- ETAPA 1 -->
+<h2><span class="n">1</span> Supabase → produção <small>· ~10 min</small></h2>
+<div class="card">
+<p style="font-size:13.5px">O código usa <code>NEXT_PUBLIC_SUPABASE_URL</code> + <code>SUPABASE_SERVICE_ROLE_KEY</code> (verificado em <code>lib/integrations/supabase.ts</code>). Supabase não tem "modo teste/produção" — o mesmo projeto serve, só precisamos garantir as tabelas e as chaves na Vercel.</p>
+<ol class="steps">
+<li>Acesse <span class="path">supabase.com/dashboard</span> → entre → clique no seu projeto.</li>
+<li><b>Conferir as tabelas:</b> menu lateral esquerdo → <b>Table Editor</b> (ícone de tabela) → schema <b>public</b>. Você deve ver: <code>leads</code>, <code>consent_log</code> e <code>payments</code>.</li>
+<li><b>Se faltar alguma:</b> menu lateral → <b>SQL Editor</b> → botão <b>+ New query</b>. Em outra aba, abra o GitHub: <span class="path">github.com/rafaffernandes/FOOD-GUARD- → pasta <code>supabase</code></span> → abra <code>schema.sql</code> → botão <b>Copy raw file</b> (ícone de cópia) → cole no SQL Editor → botão <b>Run</b> (ou <kbd>Ctrl+Enter</kbd>) → deve aparecer "Success".</li>
+<li>Repita o passo 3 para <code>payments.sql</code> e <code>fase-3-agents.sql</code> (nessa ordem).</li>
+<li><b>Pegar as chaves:</b> menu lateral, lá embaixo → <b>Project Settings</b> (engrenagem) → <b>API</b> (em algumas contas aparece como <b>API Keys</b> / Data API).</li>
+<li>Copie o <b>Project URL</b> (formato <code>https://xxxxx.supabase.co</code>) → na Vercel crie <code>NEXT_PUBLIC_SUPABASE_URL</code> com esse valor.</li>
+<li>Na mesma tela, ache a chave <b>service_role</b> (seção "Project API keys"; clique em <b>Reveal</b>/olhinho para mostrar) → copie → na Vercel crie <code>SUPABASE_SERVICE_ROLE_KEY</code> com <b>Sensitive ativado</b>.</li>
+</ol>
+<div class="danger">🔒 Cuidado: existem 2 chaves ali — <b>anon (public)</b> e <b>service_role (secret)</b>. O site usa a <b>service_role</b>. Ela dá acesso total ao banco: nunca cole em outro lugar além da Vercel.</div>
+</div>
+
+<!-- ETAPA 2 -->
+<h2><span class="n">2</span> Resend → produção <small>· ~15 min + espera de DNS</small></h2>
+<div class="card">
+<p style="font-size:13.5px">Em teste o Resend usa <code>onboarding@resend.dev</code>, que <b>só entrega no SEU próprio e-mail</b>. Produção = domínio verificado + remetente próprio (verificado em <code>lib/integrations/resend.ts</code>).</p>
+<ol class="steps">
+<li>Acesse <span class="path">resend.com</span> → <b>Sign in</b> → menu lateral esquerdo → <b>Domains</b>.</li>
+<li>Se <code>foodguard.com.br</code> já aparecer com selo verde <b>Verified</b>, pule para o passo 6.</li>
+<li>Senão: botão <b>Add Domain</b> → digite <code>foodguard.com.br</code> → <b>Add</b>. O Resend mostra uma lista de <b>registros DNS</b> (1 MX, 1 TXT/SPF e 1 TXT/DKIM tipo <code>resend._domainkey</code>). Deixe essa aba aberta.</li>
+<li>Em outra aba, entre no site <b>onde o domínio foi registrado</b> (ex.: Registro.br → "Meus domínios" → foodguard.com.br → <b>Editar zona DNS</b>). Para cada registro do Resend: <b>Nova entrada</b> → copie exatamente <b>Tipo</b>, <b>Nome/Host</b> e <b>Valor</b> → salve.</li>
+<li>Volte ao Resend → botão <b>Verify DNS Records</b>. A verificação leva de minutos a ~1h. Status final: <b>Verified</b> (verde). <i>(Pode seguir as etapas 3 e 4 enquanto espera.)</i></li>
+<li><b>Chave de produção:</b> menu lateral → <b>API Keys</b> → <b>Create API Key</b> → Name: <code>food-guard-producao</code> → Permission: <b>Sending access</b> → <b>Create</b> → copie o valor <code>re_...</code> <u>agora</u> (só aparece uma vez) → na Vercel: <code>RESEND_API_KEY</code> (Sensitive).</li>
+<li>Na Vercel, crie <code>RESEND_FROM</code> com o valor exato: <code>Food Guard &lt;diagnostico@foodguard.com.br&gt;</code> (com o &lt; &gt;). Não precisa criar caixa de e-mail — com o domínio verificado, qualquer endereço @foodguard.com.br envia.</li>
+<li>Opcional: <code>TEAM_NOTIFY_EMAIL</code> = seu Gmail — é onde chegam os avisos internos ("💰 pagamento confirmado", lead quente). Sem ela, o código usa o <code>NEXT_PUBLIC_CONTACT_EMAIL</code>.</li>
+</ol>
+</div>
+
+<!-- ETAPA 3 -->
+<h2><span class="n">3</span> Asaas → produção <small>· ~20 min · a parte mais importante</small></h2>
+<div class="card">
+<p style="font-size:13.5px">Sandbox e produção são <b>dois ambientes separados</b>: <code>sandbox.asaas.com</code> (teste, onde está hoje) e <code>www.asaas.com</code> (dinheiro real). Verificado no código: com <code>ASAAS_ENV=production</code> o site passa a chamar <code>api.asaas.com</code>.</p>
+<ol class="steps">
+<li>Acesse <span class="path">www.asaas.com</span> → <b>Entrar</b> → conta real (não a sandbox).</li>
+<li><b>Conta aprovada?</b> Se o painel ainda pedir "verificação de conta"/envio de documentos (CNPJ, sócio, selfie), complete primeiro — sem aprovação a conta não gera cobranças reais. (Se já usa o Asaas normalmente, já está ok.)</li>
+<li><b>Chave de API de produção:</b> clique no <b>ícone do seu perfil</b> (canto superior direito) → <b>Integrações</b> → aba <b>Chave de API</b> (caminho alternativo: Configurações → Integrações) → <b>Gerar nova chave</b> → dê o nome <code>food-guard-site</code> → copie <u>na hora</u> (só aparece 1 vez; começa com <code>$aact_prod_</code>).</li>
+<li>Na Vercel: <b>edite</b> a variável <code>ASAAS_API_KEY</code> (troque a chave sandbox pela de produção; Sensitive) e <b>edite/crie</b> <code>ASAAS_ENV</code> = <code>production</code> (minúsculo, exatamente assim).</li>
+<li><b>Webhook (confirmação de pagamento):</b> no mesmo menu <b>Integrações</b> → aba <b>Webhooks</b> → <b>Adicionar webhook</b>. Preencha:<br>
+• <b>Nome:</b> Food Guard site<br>
+• <b>URL:</b> <code>https://food-guard-cnhl.vercel.app/api/webhooks/asaas</code><br>
+• <b>E-mail:</b> o seu (avisos de falha)<br>
+• <b>Versão da API:</b> v3<br>
+• <b>Token de autenticação:</b> invente uma senha forte (ex.: 30 caracteres aleatórios) e <b>guarde</b><br>
+• <b>Fila de sincronização:</b> sequencial (padrão) · Status: <b>Ativo</b><br>
+• <b>Eventos:</b> marque os de <b>Cobranças</b> — no mínimo <code>PAYMENT_CONFIRMED</code>, <code>PAYMENT_RECEIVED</code>, <code>PAYMENT_OVERDUE</code>, <code>PAYMENT_REFUNDED</code>, <code>PAYMENT_CHARGEBACK_REQUESTED</code> (pode marcar todos de cobrança; os extras são ignorados sem erro) → <b>Salvar</b>.</li>
+<li>Na Vercel: <code>ASAAS_WEBHOOK_TOKEN</code> = <b>exatamente o token que você digitou</b> no passo 5 (Sensitive). <i>O Asaas manda esse token no header <code>asaas-access-token</code> e o site confere — verificado no código do webhook.</i></li>
+<li><b>Opcional (recomendado) — links de pagamento fixos:</b> no painel → <b>Vendas → Link de pagamento → Criar link</b>. Crie 3 (assinatura mensal recorrente): Básico R$ 1.200 · Essencial R$ 2.200 · Premium R$ 3.200. Copie as 3 URLs e crie na Vercel: <code>ASAAS_PAYMENT_LINK_BASICO</code>, <code>ASAAS_PAYMENT_LINK_ESSENCIAL</code>, <code>ASAAS_PAYMENT_LINK_PREMIUM</code>. <i>Verificado: o site usa esses links antes de tentar a API — você fica no controle do texto/valor pelo painel.</i></li>
+</ol>
+</div>
+
+<!-- ETAPA 4 -->
+<h2><span class="n">4</span> Dados do site <small>· ~5 min</small></h2>
+<div class="card"><ol class="steps">
+<li><code>NEXT_PUBLIC_SITE_URL</code> = <code>https://food-guard-cnhl.vercel.app</code> (sem barra no final; se ativar domínio próprio depois, troque aqui).</li>
+<li><code>NEXT_PUBLIC_WHATSAPP</code> = <code>5511976466553</code> — só dígitos, formato 55+DDD+número. (Esse já é o padrão no código; crie a variável só se o número for outro.)</li>
+<li><code>NEXT_PUBLIC_CONTACT_EMAIL</code> = <code>contato@foodguard.com.br</code> (padrão do código; crie só se for outro).</li>
+<li>Opcional (tráfego pago depois): <code>NEXT_PUBLIC_GA_ID</code> (Google Analytics, formato G-XXXX) e <code>NEXT_PUBLIC_META_PIXEL_ID</code>.</li>
+</ol>
+<div class="note">ℹ️ <b>Não configure</b> <code>ANTHROPIC_API_KEY</code>, <code>AGENTS_MODE</code>, <code>AGENTS_KILL_SWITCH</code> ou <code>CRON_SECRET</code> — são dos agentes autônomos, que ficam em standby (v2). Se <code>AGENTS_MODE</code> já existir, deixe com o valor <code>simulacao</code>.</div>
+</div>
+
+<!-- ETAPA 5 -->
+<h2><span class="n">5</span> Redeploy + teste real <small>· ~10 min</small></h2>
+<div class="card"><ol class="steps">
+<li><b>Redeploy:</b> Vercel → food-guard-cnhl → <b>Deployments</b> → primeiro da lista → <b>⋯</b> → <b>Redeploy</b> → confirme e espere ficar <b>Ready</b>.</li>
+<li><b>Teste do lead:</b> abra o site em aba anônima → faça o diagnóstico completo usando <b>seu e-mail real</b> → confira: (a) no Supabase, <b>Table Editor → leads</b> tem uma linha nova; (b) o e-mail com o relatório chegou (olhe o spam na 1ª vez).</li>
+<li><b>Teste do checkout:</b> vá em <b>/planos</b> → clique em contratar → a página do Asaas deve abrir com o plano e o valor certos. <i>(Agora é dinheiro real — não precisa pagar pra validar a tela.)</i></li>
+<li><b>Teste completo do pagamento (opcional):</b> pague o menor valor via PIX → confira no Supabase a linha em <b>payments</b> + o e-mail "💰 Pagamento confirmado" → depois estorne no painel Asaas (abrir a cobrança → <b>Estornar</b>).</li>
+<li><b>Me avise aqui no chat.</b> Eu rodo o QA gate (nota ≥90) e, com o seu <b>"pode publicar"</b>, subo tudo pra produção na main.</li>
+</ol></div>
+
+<!-- CHECKLIST -->
+<h2><span class="n">✓</span> Conferência final — variáveis na Vercel (food-guard-cnhl)</h2>
+<table>
+<tr><th>Variável</th><th>Valor</th><th>Sensitive</th><th>De onde vem</th></tr>
+<tr><td><code>NEXT_PUBLIC_SUPABASE_URL</code></td><td>https://xxxxx.supabase.co</td><td>—</td><td>Supabase → Settings → API</td></tr>
+<tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td>chave service_role</td><td class="ok">SIM</td><td>Supabase → Settings → API</td></tr>
+<tr><td><code>RESEND_API_KEY</code></td><td>re_...</td><td class="ok">SIM</td><td>Resend → API Keys</td></tr>
+<tr><td><code>RESEND_FROM</code></td><td>Food Guard &lt;diagnostico@foodguard.com.br&gt;</td><td>—</td><td>você define (domínio verificado)</td></tr>
+<tr><td><code>TEAM_NOTIFY_EMAIL</code> <i>(opc.)</i></td><td>seu e-mail</td><td>—</td><td>você define</td></tr>
+<tr><td><code>ASAAS_API_KEY</code></td><td>$aact_prod_...</td><td class="ok">SIM</td><td>Asaas produção → Integrações</td></tr>
+<tr><td><code>ASAAS_ENV</code></td><td>production</td><td>—</td><td>fixo</td></tr>
+<tr><td><code>ASAAS_WEBHOOK_TOKEN</code></td><td>o token que você inventou</td><td class="ok">SIM</td><td>igual ao do painel Asaas</td></tr>
+<tr><td><code>ASAAS_PAYMENT_LINK_*</code> <i>(opc.)</i></td><td>3 URLs dos links</td><td>—</td><td>Asaas → Vendas → Link de pagamento</td></tr>
+<tr><td><code>NEXT_PUBLIC_SITE_URL</code></td><td>https://food-guard-cnhl.vercel.app</td><td>—</td><td>fixo</td></tr>
+</table>
+<div class="note">✅ Depois de preencher tudo: <b>Redeploy</b> (etapa 5.1) e me chame pro teste final.</div>
+
+</main>
+<footer class="wrap">Food Guard · Guia de produção clique-a-clique · Verificado contra o código em <code>lib/integrations/</code> e <code>app/api/webhooks/asaas</code> · Dúvida em qualquer tela: manda print aqui no chat que eu te guio.</footer>
+</body>
+</html>
