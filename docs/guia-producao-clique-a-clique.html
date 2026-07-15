@@ -49,14 +49,34 @@
 
 <!-- ETAPA 0 -->
 <h2><span class="n">0</span> Como se adiciona variável na Vercel <small>· você vai repetir isso várias vezes</small></h2>
-<div class="card"><ol class="steps">
-<li>Acesse <span class="path">vercel.com</span> → <b>Log in</b> → entre com a conta de sempre (GitHub).</li>
-<li>Na lista de projetos, clique em <b>food-guard-cnhl</b>.</li>
-<li>No menu do topo do projeto, clique em <b>Settings</b> → no menu lateral esquerdo, <b>Environment Variables</b>.</li>
-<li>Em <b>Key</b> digite o nome da variável (ex.: <code>ASAAS_ENV</code>) e em <b>Value</b> o valor. Em <b>Environments</b>, deixe marcado <b>Production</b> e <b>Preview</b>.</li>
-<li>Para chaves secretas (tudo que for API key/token), ative o toggle <b>Sensitive</b> antes de salvar.</li>
-<li>Clique <b>Save</b>. Repita para cada variável.</li>
-<li><b>No final de TUDO</b> (etapas 1–4 concluídas): aba <b>Deployments</b> → primeiro item da lista → botão <b>⋯</b> (à direita) → <b>Redeploy</b> → confirme. <u>Variável nova só vale depois de um redeploy.</u></li>
+<div class="card">
+<p style="font-size:13.5px"><b>O que é "variável de ambiente"?</b> É um cofrinho de configurações que o site lê quando liga: as senhas das integrações (Supabase, Resend, Asaas) ficam guardadas ali, fora do código. Você vai criar uma por uma nesse cofrinho.</p>
+<div class="warn">🌎 <b>O painel da Vercel é só em inglês</b> — não tem como mudar pra português. Duas saídas: (a) use a tabelinha de tradução abaixo (tudo que aparece na tela está nela); (b) no Chrome, clique com o <b>botão direito</b> em qualquer parte da página → <b>"Traduzir para o português"</b> — o painel inteiro fica em pt-BR (os passos continuam valendo; só os nomes ficam traduzidos).</div>
+<table>
+<tr><th>O que aparece na tela (inglês)</th><th>O que significa</th></tr>
+<tr><td><b>Log In</b> / Continue with GitHub</td><td>Entrar / Continuar com a conta do GitHub</td></tr>
+<tr><td><b>Settings</b></td><td>Configurações (menu no topo do projeto)</td></tr>
+<tr><td><b>Environment Variables</b></td><td>Variáveis de ambiente (o "cofrinho")</td></tr>
+<tr><td><b>Key</b> / <b>Value</b></td><td>Nome da variável / Valor dela</td></tr>
+<tr><td><b>Environments</b> → Production · Preview · Development</td><td>Onde vale: site oficial · versões de teste · máquina local</td></tr>
+<tr><td><b>Sensitive</b></td><td>Secreta (ninguém consegue ver o valor depois de salvo)</td></tr>
+<tr><td><b>Save</b> / <b>Add Another</b></td><td>Salvar / Adicionar outra</td></tr>
+<tr><td><b>Deployments</b> / <b>Redeploy</b> / <b>Ready</b></td><td>Publicações / Republicar / Pronto (bolinha verde)</td></tr>
+<tr><td><b>Edit</b> / <b>Delete</b> (no menu ⋯)</td><td>Editar / Excluir uma variável já criada</td></tr>
+</table>
+<ol class="steps">
+<li>Abra <span class="path">vercel.com</span> → canto superior direito, botão <b>Log In</b> (Entrar) → <b>Continue with GitHub</b> (Continuar com GitHub) → autorize se pedir.</li>
+<li>Você cai numa tela com <b>cards dos projetos</b> (retângulos com os nomes). Ache o card <b>food-guard-cnhl</b> e clique no nome dele. ⚠️ Tem 5 parecidos — é o <b>cnhl</b>.</li>
+<li>Abriu a página do projeto. No <b>topo</b> tem um menu horizontal: <i>Overview · Deployments · Analytics · … · Settings</i>. Clique em <b>Settings</b> (Configurações — é o último, à direita).</li>
+<li>Apareceu uma lista no <b>lado esquerdo</b> (General, Domains, …). Clique em <b>Environment Variables</b> (Variáveis de ambiente — 3º item, aproximadamente).</li>
+<li>No alto da tela tem um <b>formulário de criar variável</b> com dois campos lado a lado:<br>
+• <b>Key</b> (Nome): digite o nome EXATAMENTE como está neste guia — maiúsculas, com underline <code>_</code>, sem espaço. Ex.: <code>ASAAS_ENV</code><br>
+• <b>Value</b> (Valor): cole o valor (a chave que você copiou, ou o texto indicado). Sem espaço sobrando no começo/fim.</li>
+<li>Logo abaixo, em <b>Environments</b>, há 3 caixinhas: <b>Production</b>, <b>Preview</b>, <b>Development</b>. Deixe pelo menos <b>Production</b> e <b>Preview</b> marcadas (se as 3 já vierem marcadas, pode deixar assim).</li>
+<li>Se a variável for senha/chave (tudo que este guia marcar como <b>Sensitive</b>): ligue a chavinha <b>Sensitive</b> (fica preta/azul quando ligada). Depois de salvar, nem você vê mais o valor — se errar, é só substituir.</li>
+<li>Clique no botão preto <b>Save</b> (Salvar). A variável aparece na <b>lista abaixo do formulário</b>. Repita os passos 5–8 pra cada variável do guia.</li>
+<li><b>Errou algo?</b> Na lista, ache a variável → botão <b>⋯</b> no fim da linha → <b>Edit</b> (Editar) → corrija → <b>Save</b>.</li>
+<li><b>No final de TUDO</b> (etapas 1–4 do guia concluídas): menu do topo → <b>Deployments</b> (Publicações) → a <b>primeira linha</b> da lista (a mais recente) → botão <b>⋯</b> bem à direita da linha → <b>Redeploy</b> (Republicar) → na janelinha que abre, confirme clicando em <b>Redeploy</b> de novo → aguarde ~2 min até o status <b>Ready</b> (bolinha verde). <u>Variável nova só passa a valer depois desse Redeploy.</u></li>
 </ol></div>
 
 <!-- ETAPA 1 -->
