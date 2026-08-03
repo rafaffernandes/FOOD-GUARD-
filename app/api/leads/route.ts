@@ -3,9 +3,37 @@ import { z } from "zod";
 import { draftLeadFollowUp } from "@/lib/agent/followup";
 import { saveLeadActivity } from "@/lib/agent/store";
 import { computeDiagnostic } from "@/lib/diagnostic/engine";
+import { questions } from "@/lib/diagnostic/questions";
 import { notifyTeam, sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
+
+/**
+ * Respostas: toda pergunta precisa vir com um id de opção que existe.
+ * O motor trata resposta desconhecida como risco 0, então sem esta validação
+ * um payload incompleto viraria "score 100 / risco baixo" — o falso negativo
+ * mais caro possível num diagnóstico de conformidade.
+ */
+const answersSchema = z
+  .record(z.string())
+  .superRefine((answers, ctx) => {
+    for (const q of questions) {
+      const optionId = answers[q.id];
+      if (!optionId) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Resposta ausente para "${q.id}"`,
+          path: [q.id],
+        });
+      } else if (!q.options.some((o) => o.id === optionId)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Opção inválida para "${q.id}": ${optionId}`,
+          path: [q.id],
+        });
+      }
+    }
+  });
 
 const schema = z.object({
   name: z.string().min(2),
@@ -15,7 +43,7 @@ const schema = z.object({
   role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"]),
   consent: z.literal(true),
   whatsappOptin: z.boolean().optional(),
-  answers: z.record(z.string()),
+  answers: answersSchema,
   utm: z.record(z.string()).optional(),
 });
 
