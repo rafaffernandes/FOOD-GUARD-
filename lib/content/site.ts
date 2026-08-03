@@ -7,7 +7,8 @@ export const site = {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
     "http://localhost:3000",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || "5511976466553",
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguard.com.br",
+  email:
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contato@foodguardassessoria.com.br",
   city: "São Paulo · Grande SP",
   /** Nome público (fantasia) exibido no site. A razão social (= nome da pessoa,
    * por ser empresário individual) NUNCA aparece no front. O CNPJ é exibido

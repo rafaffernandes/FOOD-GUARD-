@@ -72,7 +72,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div>Diagnóstico gratuito em 2 minutos</div>
-          <div style={{ fontWeight: 700 }}>foodguard.com.br</div>
+          <div style={{ fontWeight: 700 }}>foodguardassessoria.com.br</div>
         </div>
       </div>
     ),
