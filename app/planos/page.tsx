@@ -13,7 +13,7 @@ import { formatBRL } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Planos e preços",
   description:
-    "Três planos de consultoria nutricional para food service: Básico (R$ 1.200), Essencial (R$ 2.200) e Premium (R$ 3.200).",
+    "Três planos de consultoria nutricional para food service: Básico (R$ 1.200), Essencial (R$ 2.300) e Premium (R$ 3.400).",
 };
 
 const planFaqs = [

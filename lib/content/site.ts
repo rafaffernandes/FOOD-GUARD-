@@ -29,6 +29,9 @@ export const site = {
   regulations: ["RDC 216/2004 (Anvisa)", "Portaria 2.619/2011"],
 } as const;
 
+export const docusignUrl =
+  process.env.NEXT_PUBLIC_DOCUSIGN_URL || "";
+
 export const whatsappLink = (text?: string) =>
   `https://wa.me/${site.whatsapp}${
     text ? `?text=${encodeURIComponent(text)}` : ""

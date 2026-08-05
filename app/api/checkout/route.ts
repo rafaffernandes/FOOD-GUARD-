@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createCheckout } from "@/lib/integrations/asaas";
+import { getIp, rateLimit } from "@/lib/rate-limit";
 
 const schema = z.object({
   planId: z.enum(["basico", "essencial", "premium"]),
 });
 
 export async function POST(request: Request) {
+  const { allowed } = rateLimit(`checkout:${getIp(request)}`, 10, 60 * 1000);
+  if (!allowed) {
+    return NextResponse.json(
+      { ok: false, error: "Muitas tentativas. Tente novamente em instantes." },
+      { status: 429 },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -25,7 +34,7 @@ export async function POST(request: Request) {
   const result = await createCheckout(parsed.data.planId);
   if (!result.ok) {
     return NextResponse.json(
-      { ok: false, error: result.error ?? "Falha no checkout" },
+      { ok: false, error: "Falha no checkout" },
       { status: 502 },
     );
   }
