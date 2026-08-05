@@ -1,18 +1,26 @@
 import { plans, type PlanId } from "@/lib/content/plans";
 
-const apiKey = process.env.ASAAS_API_KEY;
-const env = process.env.ASAAS_ENV === "production" ? "production" : "sandbox";
-
-const STATIC_LINKS: Record<PlanId, string | undefined> = {
-  basico: process.env.ASAAS_PAYMENT_LINK_BASICO,
-  essencial: process.env.ASAAS_PAYMENT_LINK_ESSENCIAL,
-  premium: process.env.ASAAS_PAYMENT_LINK_PREMIUM,
-};
-
-const API_BASE =
-  env === "production"
-    ? "https://api.asaas.com/v3"
-    : "https://api-sandbox.asaas.com/v3";
+/**
+ * Lê a configuração a cada chamada, e não uma vez no carregamento do módulo.
+ * Assim o valor vem sempre do ambiente em execução — trocar uma variável na
+ * Vercel passa a valer no próximo deploy sem depender de rebuild do bundle.
+ */
+function readConfig() {
+  const apiKey = process.env.ASAAS_API_KEY?.trim() || undefined;
+  const production = process.env.ASAAS_ENV?.trim().toLowerCase() === "production";
+  return {
+    apiKey,
+    production,
+    apiBase: production
+      ? "https://api.asaas.com/v3"
+      : "https://api-sandbox.asaas.com/v3",
+    staticLinks: {
+      basico: process.env.ASAAS_PAYMENT_LINK_BASICO?.trim() || undefined,
+      essencial: process.env.ASAAS_PAYMENT_LINK_ESSENCIAL?.trim() || undefined,
+      premium: process.env.ASAAS_PAYMENT_LINK_PREMIUM?.trim() || undefined,
+    } as Record<PlanId, string | undefined>,
+  };
+}
 
 export interface CheckoutResult {
   ok: boolean;
@@ -29,14 +37,19 @@ export async function createCheckout(planId: PlanId): Promise<CheckoutResult> {
   const plan = plans.find((p) => p.id === planId);
   if (!plan) return { ok: false, error: "Plano inválido" };
 
+  const { apiKey, production, apiBase, staticLinks } = readConfig();
+
   // 1. Link de pagamento estático configurado por env.
-  const staticLink = STATIC_LINKS[planId];
+  const staticLink = staticLinks[planId];
   if (staticLink) return { ok: true, url: staticLink };
 
   // 2. API Asaas (cria um payment link recorrente).
   if (apiKey) {
+    console.info(
+      `[asaas] criando cobrança p/ ${plan.name} — ambiente ${production ? "producao" : "sandbox"}`,
+    );
     try {
-      const res = await fetch(`${API_BASE}/paymentLinks`, {
+      const res = await fetch(`${apiBase}/paymentLinks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,6 +76,8 @@ export async function createCheckout(planId: PlanId): Promise<CheckoutResult> {
   }
 
   // 3. Degradação graciosa (modo dev).
-  console.info(`[dev] Asaas não configurado — checkout simulado p/ ${plan.name}`);
+  console.info(
+    `[dev] ASAAS_API_KEY ausente no ambiente — checkout simulado p/ ${plan.name}`,
+  );
   return { ok: true, url: "#", devMode: true };
 }
