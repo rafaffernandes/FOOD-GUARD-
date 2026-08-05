@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plano de lançamento — Food Guard</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--ink:#0b1f1a;--muted:#6b7a75;--bg:#f6faf8;--sunken:#eef4f1;
+  --warn:#b45309;--warn50:#fffbeb;--info:#1d4ed8;--info50:#eff6ff;--ok:#047857;--ok50:#ecfdf5;
+  --r:14px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:40px 0 28px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:25px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:720px;font-size:14px}
+  main{padding:10px 0 60px}
+  h2{font-size:19px;font-weight:800;margin:34px 0 8px}
+  h3{font-size:15.5px;font-weight:800;margin:24px 0 6px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin:12px 0}
+  .copy{background:#fff;border:2px dashed var(--brand2);border-radius:var(--r);padding:16px 18px;margin:12px 0;white-space:pre-wrap;font-size:14.5px;line-height:1.7}
+  .copy .tag{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;white-space:normal}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden}
+  th{text-align:left;padding:9px 11px;background:var(--sunken);color:var(--muted);font-size:11.5px;text-transform:uppercase}
+  td{padding:10px 11px;border-top:1px solid var(--sunken);vertical-align:top}
+  .warn{background:var(--warn50);border-left:4px solid var(--warn);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13.5px}
+  .info{background:var(--info50);border-left:4px solid var(--info);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13.5px}
+  .ok{background:var(--ok50);border-left:4px solid var(--ok);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13.5px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+  ul{padding-left:20px}
+  li{margin:5px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Plano de lançamento · agosto/2026</span>
+  <h1>Como divulgar agora que o site está no ar</h1>
+  <p>O plano de marketing que já existe no repositório cobre aquisição de longo prazo. Este aqui cobre as próximas quatro semanas: tirar o site do anonimato, conseguir os primeiros testes reais e as primeiras conversas de venda.</p>
+</div></header>
+<main class="wrap">
+
+<div class="warn"><b>Antes de divulgar para qualquer estranho:</b> faça o teste de pagamento real (contratar um plano, pagar via PIX, conferir se o aviso chega, estornar). É a única peça do sistema que ainda não foi validada de ponta a ponta. Divulgar antes disso significa arriscar que o primeiro cliente pagante seja o seu teste — e que você não fique sabendo do pagamento.</div>
+
+<div class="info"><b>Divergência de preço encontrada.</b> O <code>CLAUDE.md</code> diz Básico 1.200 / Essencial 2.200 / Premium 3.200, mas o código (<code>lib/content/plans.ts</code>, que é a fonte da verdade e alimenta o site) tem <b>1.200 / 2.300 / 3.400</b>. Usei os valores do código em todo o material. Se os corretos forem os outros, me avise que eu ajusto site e textos juntos.</div>
+
+<h2>A ordem importa</h2>
+<p>A tentação é divulgar para todo mundo de uma vez. Não faça isso. O primeiro público deve ser o mais tolerante a erro, porque erro vai aparecer. Depois de corrigir o que os amigos acharem, você divulga para quem importa.</p>
+
+<table>
+<tr><th>Semana</th><th>Público</th><th>Objetivo</th></tr>
+<tr><td><b>1</b></td><td>Amigos e conhecidos</td><td>Achar bugs e travas de usabilidade sem queimar filme</td></tr>
+<tr><td><b>2</b></td><td>Sua rede profissional (LinkedIn)</td><td>Credibilidade e primeiras indicações</td></tr>
+<tr><td><b>3</b></td><td>Busca orgânica (blog)</td><td>Começar a aparecer para quem procura solução</td></tr>
+<tr><td><b>4</b></td><td>Tráfego pago (R$ 500)</td><td>Volume controlado, com o funil já testado</td></tr>
+</table>
+
+<h2>Semana 1 — amigos testando</h2>
+<p>Objetivo aqui não é vender. É descobrir onde as pessoas travam. Mande para 15 ou 20 pessoas, individualmente. Mensagem em grupo tem taxa de resposta baixa e ninguém se sente responsável por responder.</p>
+
+<div class="copy"><span class="tag">Copie e cole no WhatsApp — mande individual, não em grupo</span>Oi [nome], tudo bem?
+
+Terminei um projeto que tô tocando e queria muito sua opinião antes de mostrar pra cliente.
+
+É um site de consultoria pra restaurante e cozinha industrial — a parte chata de vigilância sanitária, documentação, nutricionista responsável. Tem um diagnóstico de 2 minutos que mostra o risco da operação.
+
+foodguardassessoria.com.br
+
+Faz o diagnóstico como se fosse dono de um restaurante (pode inventar as respostas) e me fala:
+
+1. Travou em alguma parte?
+2. Ficou claro o que a gente faz?
+3. Se você fosse dono de restaurante, pediria orçamento?
+
+Pode ser sincero mesmo, principalmente se achar ruim. É pra isso que tô mandando pra você e não pro cliente 😅
+
+Valeu!</div>
+
+<div class="card">
+<h3>Por que essa mensagem funciona</h3>
+<ul>
+<li><b>Pede opinião, não favor.</b> As pessoas gostam de ser consultadas e resistem a "dar uma força".</li>
+<li><b>Três perguntas objetivas.</b> Sem elas, a resposta é "ficou legal!", que não serve para nada.</li>
+<li><b>Autoriza a crítica.</b> A frase sobre ser sincero é o que separa retorno útil de gentileza.</li>
+<li><b>Diz o que fazer.</b> "Dá uma olhada" gera visita de 10 segundos. "Faz o diagnóstico" gera teste de verdade.</li>
+</ul>
+<p><b>Anote as respostas num lugar só.</b> Se três pessoas travarem no mesmo ponto, isso não é opinião, é bug de usabilidade. Corrija antes da semana 2.</p>
+</div>
+
+<h2>Semana 2 — LinkedIn</h2>
+<p>O ângulo aqui é o que você construiu e como. Público de LinkedIn responde a processo e número, não a anúncio.</p>
+
+<div class="copy"><span class="tag">Copie e cole no LinkedIn — ajuste os trechos entre colchetes</span>Coloquei no ar o Food Guard, e o processo me surpreendeu mais que o resultado.
+
+É uma consultoria de conformidade sanitária para food service. Restaurante, padaria, dark kitchen — todo mundo que trabalha com alimento e precisa responder à vigilância. O site tem um diagnóstico gratuito de 2 minutos que estima o risco da operação e mostra onde estão as brechas.
+
+O que me fez escrever esse post não foi o produto. Foi como ele foi construído.
+
+Escrevi o sistema inteiro trabalhando com IA. Não "usei IA para gerar uns textos" — construí o produto inteiro assim: o motor de diagnóstico, a integração com o banco, o pagamento recorrente, o disparo de relatório por e-mail. Eu decidindo o que fazer e por quê, a IA executando e me questionando quando eu errava.
+
+Três coisas que aprendi no caminho:
+
+A IA não substitui saber o que você quer. Nas horas em que eu não sabia explicar o problema, ela me entregava soluções bonitas para a pergunta errada. O gargalo continua sendo clareza.
+
+Ela pega erros que eu não pegaria. No meio do projeto, uma revisão de segurança encontrou rotas internas do sistema que estavam abertas — qualquer pessoa poderia acessar. Eu jamais teria olhado ali.
+
+E o "quase pronto" mente. Do site funcionando até o site cobrando de verdade foram vários dias de detalhe: um campo que a API de pagamento exigia e ninguém documentava direito, um domínio apontando para o projeto errado, variável de ambiente que parecia certa e não estava.
+
+[OPCIONAL — coloque aqui uma frase sua sobre por que entrou nesse mercado. Ex: "Entrei nesse mercado porque vi de perto um restaurante fechar por causa de multa que dava pra evitar." Isso conecta mais que qualquer descrição de produto.]
+
+Se você tem restaurante, ou conhece alguém que tem, o diagnóstico é gratuito e leva 2 minutos: foodguardassessoria.com.br
+
+Aceito crítica do site, do texto e do modelo de negócio. De preferência nessa ordem.
+
+#foodservice #vigilanciasanitaria #restaurantes #IA</div>
+
+<div class="card">
+<h3>Como usar</h3>
+<ul>
+<li><b>Preencha o trecho entre colchetes.</b> É o pedaço mais importante do post. História pessoal é o que faz alguém parar de rolar a tela.</li>
+<li><b>Poste terça, quarta ou quinta, entre 8h e 10h.</b> É quando o LinkedIn brasileiro tem mais gente ativa.</li>
+<li><b>Responda todos os comentários nas duas primeiras horas.</b> Isso empurra o alcance mais do que qualquer coisa que você escreva no post.</li>
+<li><b>Não edite o post depois de publicado.</b> A plataforma reduz a distribuição de post editado.</li>
+</ul>
+</div>
+
+<h2>Semana 3 — blog e busca orgânica</h2>
+<p>Escrevi três artigos novos, já no repositório e prontos para publicar:</p>
+<table>
+<tr><th>Artigo</th><th>Para quem busca</th></tr>
+<tr><td><b>Quanto custa uma multa da vigilância sanitária?</b></td><td>Quem tem medo do custo — a busca de maior volume e maior dor do setor</td></tr>
+<tr><td><b>Manual de Boas Práticas e POPs: o que são</b></td><td>Quem já sabe que precisa e não sabe como fazer. Intenção alta de contratação</td></tr>
+<tr><td><b>O que a vigilância olha primeiro: checklist dos 8 itens</b></td><td>Quem quer se preparar. É o mais compartilhável dos três</td></tr>
+</table>
+<p>Cada um termina com chamada para o diagnóstico. Os três seguem a voz da marca definida no projeto: nutricionista responsável (nunca "RT"), RDC 216/2004 e Portaria 2.619/2011 como base legal.</p>
+
+<div class="card">
+<h3>O que fazer com eles</h3>
+<ul>
+<li><b>Publique um por semana</b>, não os três de uma vez. Publicação constante pesa mais para o Google que volume concentrado.</li>
+<li><b>Recorte cada artigo em 3 posts de rede social.</b> O checklist dos 8 itens vira carrossel de Instagram quase sem trabalho.</li>
+<li><b>Mande o checklist para os grupos de WhatsApp de donos de restaurante</b> que você participa. Conteúdo útil circula; anúncio, não.</li>
+</ul>
+<p>Resultado de SEO demora de 3 a 6 meses. Não meça essa semana. O ganho imediato dos artigos é ter material para compartilhar sem parecer que está vendendo.</p>
+</div>
+
+<h2>Semana 4 — os R$ 500 de tráfego</h2>
+<p>Só entre aqui depois que o funil estiver testado pelos amigos e o pagamento validado. Anúncio para site com trava é dinheiro comprando frustração.</p>
+<table>
+<tr><th>Onde</th><th>Verba</th><th>Por quê</th></tr>
+<tr><td><b>Google Ads — busca</b></td><td>R$ 300</td><td>Quem pesquisa "multa vigilância sanitária" ou "alvará sanitário restaurante" tem problema agora. É a intenção mais quente que existe</td></tr>
+<tr><td><b>Retargeting</b></td><td>R$ 100</td><td>Quem visitou e não fez o diagnóstico. Custo baixo, público já aquecido</td></tr>
+<tr><td><b>Impulsionar o melhor post</b></td><td>R$ 100</td><td>Pegue o post orgânico com mais engajamento e coloque verba. Nunca crie anúncio do zero antes de saber o que funciona</td></tr>
+</table>
+<p>O plano de marketing completo, com as palavras-chave e a estrutura de campanha, está em <code>docs/marketing/plano-marketing.md</code>.</p>
+
+<h2>O que medir</h2>
+<p>Quatro números bastam nas primeiras semanas. Anote toda sexta:</p>
+<table>
+<tr><th>Número</th><th>Onde ver</th><th>O que indica</th></tr>
+<tr><td>Visitas no site</td><td>Google Analytics</td><td>Se a divulgação está chegando em alguém</td></tr>
+<tr><td>Diagnósticos concluídos</td><td>Supabase, tabela <code>leads</code></td><td>Se o site convence a pessoa a agir</td></tr>
+<tr><td>Conversas iniciadas</td><td>WhatsApp</td><td>Se o relatório gera interesse real</td></tr>
+<tr><td>Propostas enviadas</td><td>Você</td><td>Se a conversa vira negócio</td></tr>
+</table>
+<div class="ok"><b>A conta que importa:</b> visitas ÷ diagnósticos mostra se o site convence. Diagnósticos ÷ conversas mostra se o relatório convence. Se o primeiro número for ruim, o problema está na página inicial. Se for o segundo, está no relatório. Sem separar os dois, você fica mexendo no lugar errado.</div>
+
+<h2>O que não fazer</h2>
+<div class="card">
+<ul>
+<li><b>Não compre lista de e-mail nem dispare para CNPJ sem consentimento.</b> Além de queimar a reputação do domínio que acabamos de verificar no Resend, é problema com a LGPD — justo você, que vende conformidade.</li>
+<li><b>Não anuncie antes de validar o pagamento.</b> Já falei no começo, mas vale repetir: é o único ponto do sistema ainda não testado de verdade.</li>
+<li><b>Não poste todo dia no começo.</b> Constância de duas vezes por semana por três meses vale mais que sete posts numa semana e silêncio depois.</li>
+<li><b>Não mude a mensagem a cada semana.</b> Você vai enjoar do seu próprio texto muito antes do mercado ouvi-lo pela primeira vez.</li>
+</ul>
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Plano de lançamento · agosto/2026 · Complementa o plano de aquisição em docs/marketing/plano-marketing.md · Preços conforme lib/content/plans.ts: Básico R$ 1.200 · Essencial R$ 2.300 · Premium R$ 3.400</footer>
+</body>
+</html>
