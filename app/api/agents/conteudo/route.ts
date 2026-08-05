@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
+import { requireCronSecret } from "@/lib/api-auth";
 import { draftContent } from "@/lib/agent/conteudo";
 import { saveContentDraft } from "@/lib/agent/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
-
-const CRON_SECRET = process.env.CRON_SECRET;
 
 /**
  * Cron do Agente de Conteúdo (vercel.json: seg e qui).
@@ -40,12 +39,8 @@ function pautaDaSemana(): string {
 }
 
 export async function GET(request: Request) {
-  if (CRON_SECRET) {
-    const auth = request.headers.get("authorization");
-    if (auth !== `Bearer ${CRON_SECRET}`) {
-      return NextResponse.json({ ok: false }, { status: 401 });
-    }
-  }
+  const bloqueio = requireCronSecret(request);
+  if (bloqueio) return bloqueio;
 
   const topic = pautaDaSemana();
   const results: { platform: string; saved: boolean; aiGenerated: boolean }[] = [];

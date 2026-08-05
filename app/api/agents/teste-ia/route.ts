@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { requireCronSecret } from "@/lib/api-auth";
 import { anthropicConfigured } from "@/lib/agent/client";
 import { draftContent } from "@/lib/agent/conteudo";
 import { draftLeadFollowUp } from "@/lib/agent/followup";
@@ -8,8 +9,6 @@ import type { LeadPayload } from "@/lib/integrations/types";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 120;
-
-const CRON_SECRET = process.env.CRON_SECRET;
 
 const isoDaysAgo = (d: number) =>
   new Date(Date.now() - d * 86_400_000).toISOString().slice(0, 10);
@@ -53,12 +52,8 @@ const LEAD_MOCK: LeadPayload = {
  * do Claude (true) ou do fallback determinístico (false).
  */
 export async function GET(request: Request) {
-  if (CRON_SECRET) {
-    const auth = request.headers.get("authorization");
-    if (auth !== `Bearer ${CRON_SECRET}`) {
-      return NextResponse.json({ ok: false }, { status: 401 });
-    }
-  }
+  const bloqueio = requireCronSecret(request);
+  if (bloqueio) return bloqueio;
 
   try {
     const [prospeccao, qualificacao, conteudo] = await Promise.all([

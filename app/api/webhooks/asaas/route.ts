@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+import { requireAsaasToken } from "@/lib/api-auth";
 import { notifyTeam } from "@/lib/integrations/resend";
 
-const WEBHOOK_TOKEN = process.env.ASAAS_WEBHOOK_TOKEN;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -36,12 +36,8 @@ interface AsaasEvent {
  * Sempre responde 200 rápido (o Asaas re-tenta em caso de erro).
  */
 export async function POST(request: Request) {
-  if (WEBHOOK_TOKEN) {
-    const token = request.headers.get("asaas-access-token");
-    if (token !== WEBHOOK_TOKEN) {
-      return NextResponse.json({ ok: false }, { status: 401 });
-    }
-  }
+  const bloqueio = requireAsaasToken(request);
+  if (bloqueio) return bloqueio;
 
   let event: AsaasEvent;
   try {
