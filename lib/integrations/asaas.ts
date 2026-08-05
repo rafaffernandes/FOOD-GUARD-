@@ -62,6 +62,10 @@ export async function createCheckout(planId: PlanId): Promise<CheckoutResult> {
           subscriptionCycle: "MONTHLY",
           value: plan.price,
           description: `Assinatura mensal do plano ${plan.name}.`,
+          // Obrigatório pelo Asaas: prazo em dias úteis para pagar cada
+          // cobrança. Cinco dias dão folga para o financeiro do cliente sem
+          // arrastar o início do serviço.
+          dueDateLimitDays: 5,
         }),
       });
       const data = (await res.json()) as {
