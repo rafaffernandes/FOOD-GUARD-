@@ -35,20 +35,33 @@ componentes ou tokens.
 
 Este projeto vive em `rafaffernandes/FOOD-GUARD-`. A `main` é a branch de
 produção e a Vercel publica automaticamente em
-**https://food-guard-cnhl.vercel.app/**.
+**https://foodguardassessoria.com.br/** (o endereço oficial; o
+`food-guard-cnhl.vercel.app` continua valendo como alternativo).
+
+> **Atenção — a conta tem ~8 projetos Vercel do mesmo repositório.** O oficial é
+> o **`food-guard-cnhl`**: é o único com as variáveis de ambiente e o dono do
+> domínio próprio. Configurar variável em outro projeto não surte efeito algum —
+> já custou horas de investigação uma vez.
 
 1. **Trabalhe em uma branch de feature** — nunca empurre direto pra `main` sem
-   ter sido pedido. Branch ativa atual: `claude/company-website-design-CwX8o`.
+   ter sido pedido. Branch ativa atual: `claude/charming-allen-Nc7aL`.
 2. **Após cada bloco de mudança:** `npm run build` + `npm run lint`.
 3. **Para publicar:** commit na branch de feature e dê push duplo — primeiro na
    feature, depois na `main` (`git push origin claude/...:main`). A Vercel
    detecta o commit em `main` e publica em 1–2 min.
-4. **NÃO** tente abrir túneis públicos (ngrok, localtunnel) — o sandbox tem
-   allowlist de rede e bloqueia. O link de teste é sempre o domínio da Vercel
-   acima.
-5. **Quando o usuário pedir "manda o link":** entregue
-   `https://food-guard-cnhl.vercel.app/` e instrua hard refresh
+4. **Variável nova só vale depois de Redeploy** (Implantações → ⋯ → Redeploy →
+   Produção). Salvar na Vercel não basta.
+5. **NÃO** tente abrir túneis públicos (ngrok, localtunnel) — o sandbox tem
+   allowlist de rede e bloqueia. O link de teste é sempre o domínio acima.
+6. **Quando o usuário pedir "manda o link":** entregue
+   `https://foodguardassessoria.com.br/` e instrua hard refresh
    (`Ctrl+Shift+R`) ou aba anônima. Não tente expor `localhost`.
+
+### Integrações em produção (agosto/2026)
+
+Supabase, Resend (domínio verificado) e Asaas **produção** estão ligados e
+testados. Os três agentes seguem em **standby**: o `vercel.json` está sem o
+bloco `crons` de propósito — devolvê-lo é o que religa a automação na v2.
 
 ---
 
