@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Status e reta final — Food Guard</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--ink:#0b1f1a;--muted:#6b7a75;--bg:#f6faf8;--sunken:#eef4f1;
+  --ok:#059669;--ok50:#ecfdf5;--warn:#d97706;--warn50:#fffbeb;--danger:#dc2626;--danger50:#fef2f2;--info:#2563eb;--info50:#eff6ff;
+  --r:14px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:940px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:38px 0 26px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:24px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:720px;font-size:14px}
+  main{padding:10px 0 60px}
+  h2{font-size:18px;font-weight:800;margin:32px 0 6px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border-radius:8px;background:var(--brand2);color:#fff;font-size:13px;font-weight:800;flex-shrink:0}
+  h2 small{font-weight:600;color:var(--muted);font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+  th{text-align:left;padding:9px 11px;background:var(--sunken);color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  td{padding:10px 11px;border-top:1px solid var(--sunken);vertical-align:top}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12px;font-weight:600;word-break:break-all}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:800;font-size:11px;white-space:nowrap}
+  .p-ok{background:var(--ok50);color:var(--ok);border:1px solid #a7f3d0}
+  .p-falta{background:var(--danger50);color:var(--danger);border:1px solid #fecaca}
+  .p-meio{background:var(--warn50);color:var(--warn);border:1px solid #fde68a}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:4px 18px 14px;margin:10px 0}
+  ol.steps{margin:10px 0;padding-left:0;list-style:none;counter-reset:s}
+  ol.steps>li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-top:1px dashed var(--sunken);font-size:14px}
+  ol.steps>li:first-child{border-top:none}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:10px;width:27px;height:27px;border-radius:999px;background:var(--sunken);color:var(--brand);font-weight:800;font-size:12.5px;display:flex;align-items:center;justify-content:center}
+  .note{background:var(--info50);border-left:4px solid var(--info);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  .danger{background:var(--danger50);border-left:4px solid var(--danger);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  .okbox{background:var(--ok50);border-left:4px solid var(--ok);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:13px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Status verificado · Reta final</span>
+  <h1>O que já está pronto e os 6 passos que faltam</h1>
+  <p>Estado real, conferido por mim: consultei o DNS ao vivo, rodei o site localmente com os 3 cenários do diagnóstico e li o código das integrações. O que está marcado como pronto foi testado, não presumido.</p>
+</div></header>
+<main class="wrap">
+
+<!-- CONCLUIDO -->
+<h2><span class="n">✓</span> Já concluído <small>· verificado</small></h2>
+<table>
+<tr><th>Item</th><th>Status</th><th>Como sei que está pronto</th></tr>
+<tr><td><b>Supabase — tabelas</b></td><td><span class="pill p-ok">PRONTO</span></td><td>O SQL rodou com "Success. No rows returned". Criou <code>leads</code>, <code>consent_log</code>, <code>payments</code> + as 4 tabelas de agentes (v2).</td></tr>
+<tr><td><b>Supabase — chaves na Vercel</b></td><td><span class="pill p-ok">PRONTO</span></td><td><code>NEXT_PUBLIC_SUPABASE_URL</code> e <code>SUPABASE_SERVICE_ROLE_KEY</code> preenchidas com o projeto <code>jawkmbwmwbtixbsbiplb</code>.</td></tr>
+<tr><td><b>Resend — conta e chave</b></td><td><span class="pill p-ok">PRONTO</span></td><td>Domínio <code>foodguardassessoria.com.br</code> adicionado; API key criada.</td></tr>
+<tr><td><b>Resend — 2 dos 3 DNS</b></td><td><span class="pill p-ok">PRONTO</span></td><td>Consultei ao vivo: <code>send</code> (MX) e <code>send</code> (TXT/SPF) publicados. Li o conteúdo do SPF: <code>v=spf1 include:amazonses.com ~all</code>.</td></tr>
+<tr><td><b>Asaas — integração funciona</b></td><td><span class="pill p-meio">MEIO</span></td><td>O site gerou um link de cobrança de verdade — a chave é válida e o código está certo. <b>Mas o link saiu em sandbox</b> (ver passo 2).</td></tr>
+<tr><td><b>Código — domínio corrigido</b></td><td><span class="pill p-ok">PRONTO</span></td><td>Estava <code>foodguard.com.br</code> no código; troquei para <code>foodguardassessoria.com.br</code> no e-mail padrão e na imagem de preview. Commit <code>8ee2a64</code>.</td></tr>
+<tr><td><b>Código — furo no diagnóstico</b></td><td><span class="pill p-ok">PRONTO</span></td><td>Achei testando: respostas vazias/inválidas davam "score 100 / risco baixo" e o lead recebia relatório dizendo que estava tudo bem. Corrigido e retestado. Commit <code>c6d4d18</code>.</td></tr>
+<tr><td><b>Motor do diagnóstico</b></td><td><span class="pill p-ok">TESTADO</span></td><td>Rodei os 3 cenários no servidor local: alto risco → 15/crítico/premium · médio → 58/médio/essencial · baixo → 85/baixo/básico. Build e lint limpos.</td></tr>
+</table>
+
+<!-- O QUE FALTA -->
+<h2><span class="n">!</span> O que falta <small>· 6 passos</small></h2>
+<table>
+<tr><th>#</th><th>O que falta</th><th>Por que trava o go-live</th></tr>
+<tr><td>1</td><td><b>DKIM do Resend</b> <span class="pill p-falta">FALTA</span></td><td>Sem ele o domínio nunca fica "Verified" e <b>o e-mail do relatório não sai</b>. Consultei agora: o registro não existe na zona.</td></tr>
+<tr><td>2</td><td><b>Asaas em produção</b> <span class="pill p-falta">FALTA</span></td><td>O checkout está gerando link de <b>sandbox</b> — ninguém consegue pagar de verdade, o dinheiro não entra na conta.</td></tr>
+<tr><td>3</td><td><b>Webhook do Asaas</b> <span class="pill p-falta">CONFERIR</span></td><td>É o que avisa o site quando o cliente paga. Sem ele, você não recebe o alerta e o pagamento não fica registrado.</td></tr>
+<tr><td>4</td><td><b>3 variáveis do site</b> <span class="pill p-falta">FALTA</span></td><td>E-mail remetente e endereço do site ainda apontam para o domínio antigo.</td></tr>
+<tr><td>5</td><td><b>Redeploy</b> <span class="pill p-falta">FALTA</span></td><td>Nada do que você configurou vale antes disso.</td></tr>
+<tr><td>6</td><td><b>Teste final + publicar</b> <span class="pill p-falta">FALTA</span></td><td>Último passo: conferir tudo ponta a ponta e subir para produção.</td></tr>
+</table>
+
+<!-- PASSO 1 -->
+<h2><span class="n">1</span> Criar o registro DKIM <small>· Registro.br · ~10 min</small></h2>
+<div class="card">
+<div class="note">🔍 <b>O que eu descobri:</b> os outros dois registros do mesmo lote já publicaram há tempos, mas o <code>resend._domainkey</code> retorna "esse nome não existe". Ou seja: <b>não é demora de propagação — ele não chegou a ser salvo.</b> A causa mais provável é o tamanho: o valor DKIM tem cerca de 400 caracteres, e um registro TXT só aceita blocos de 255. O Registro.br costuma recusar, às vezes sem avisar direito.</div>
+<ol class="steps">
+<li>No <b>Resend</b> → Domains → clique no domínio → seção <b>DKIM</b>. Passe o mouse sobre o valor e use o <b>ícone de copiar</b> (nunca selecione com o mouse — o texto na tela vem cortado).</li>
+<li>No <b>Registro.br</b> → seu domínio → <b>Configurar zona DNS</b> → <b>+ Nova entrada</b>.</li>
+<li>Preencha: <b>Nome</b> = <code>resend._domainkey</code> · <b>Tipo</b> = <code>TXT</code> · <b>Dados</b> = o valor copiado.</li>
+<li><b>Se der erro ou não salvar</b> (é o esperado, pelo tamanho): quebre o valor em duas partes entre aspas, sem espaço nem quebra de linha dentro de cada aspas:<br>
+<code>"p=MIGfMA...primeira_metade" "segunda_metade...IDAQAB"</code><br>
+Isso é o jeito padrão de registrar um TXT longo, e o Resend lê normalmente.</li>
+<li>Salve → volte no Resend → <b>"I've added the records"</b>.</li>
+<li><b>Me peça "verifica o DNS"</b> — eu consulto daqui em segundos e confirmo se publicou, sem você precisar ficar recarregando a página.</li>
+</ol>
+</div>
+
+<!-- PASSO 2 -->
+<h2><span class="n">2</span> Tirar o Asaas do sandbox <small>· o mais importante</small></h2>
+<div class="card">
+<div class="danger">💸 <b>O que o seu link revelou:</b> ele começa com <code>sandbox.asaas.com</code> — ambiente de simulação. Em produção começaria com <code>www.asaas.com</code>. A integração funciona (isso é ótimo), mas está apontando para o lugar errado.</div>
+<p style="font-size:13.5px"><b>Por que:</b> li o código (<code>lib/integrations/asaas.ts</code>) e ele usa <b>primeiro</b> um link fixo, se existir; <b>só depois</b> chama a API. Então há duas causas possíveis — cheque na ordem:</p>
+<ol class="steps">
+<li><b>Causa mais provável — links fixos de sandbox.</b> Na Vercel → Environment Variables → busque por <code>ASAAS_PAYMENT_LINK</code>. Se aparecerem <code>_BASICO</code>, <code>_ESSENCIAL</code>, <code>_PREMIUM</code>, abra cada uma (⋯ → Edit) e veja se o valor contém a palavra <b>sandbox</b>.<br>
+<b>Se contiver, escolha um caminho:</b><br>
+&nbsp;&nbsp;• <b>Simples:</b> <b>apague as três</b> (⋯ → Delete). Sem elas, o site cria a cobrança pela API automaticamente, já em produção.<br>
+&nbsp;&nbsp;• <b>Controlado:</b> crie 3 links novos em <b>www.asaas.com</b> → Vendas → Link de pagamento (Básico R$ 1.200 · Essencial R$ 2.200 · Premium R$ 3.200, assinatura mensal) e substitua os valores.</li>
+<li><b>Confira o ambiente.</b> <code>ASAAS_ENV</code> tem que ser exatamente <code>production</code> — tudo minúsculo, sem espaço antes ou depois.</li>
+<li><b>Confira a chave.</b> <code>ASAAS_API_KEY</code> tem que ser a de produção. A de produção começa com <code>$aact_prod_</code>; se começar diferente, ainda é a de sandbox — pegue a certa em <b>www.asaas.com</b> → ícone de perfil → Integrações → Chave de API.</li>
+</ol>
+</div>
+
+<!-- PASSO 3 -->
+<h2><span class="n">3</span> Cadastrar o webhook do Asaas <small>· ~5 min</small></h2>
+<div class="card">
+<p style="font-size:13.5px">É o aviso automático que o Asaas manda pro site quando alguém paga. Sem ele o pagamento acontece, mas você não é avisado e nada fica registrado no banco. <b>Você ainda não me confirmou se fez essa parte</b> — se já fez, é só conferir os campos.</p>
+<ol class="steps">
+<li>Em <b>www.asaas.com</b> → ícone de perfil → <b>Integrações</b> → aba <b>Webhooks</b> → <b>Adicionar webhook</b>.</li>
+<li><b>URL:</b> <code>https://food-guard-cnhl.vercel.app/api/webhooks/asaas</code></li>
+<li><b>Token de autenticação:</b> invente uma senha forte e <b>guarde</b>. Versão da API: <b>v3</b>. Status: <b>Ativo</b>.</li>
+<li><b>Eventos:</b> marque os de Cobrança — no mínimo <code>PAYMENT_CONFIRMED</code>, <code>PAYMENT_RECEIVED</code>, <code>PAYMENT_OVERDUE</code>, <code>PAYMENT_REFUNDED</code>, <code>PAYMENT_CHARGEBACK_REQUESTED</code>. Pode marcar todos os de cobrança — os extras são ignorados sem erro.</li>
+<li>Na Vercel: <code>ASAAS_WEBHOOK_TOKEN</code> = <b>exatamente</b> o token do passo 3 (Sensitive ligado). Se os dois não forem idênticos, o site recusa o aviso. <i>(Confirmei no código: o Asaas envia no cabeçalho <code>asaas-access-token</code> e o site compara.)</i></li>
+</ol>
+</div>
+
+<!-- PASSO 4 -->
+<h2><span class="n">4</span> Ajustar 3 variáveis <small>· ~3 min · por causa do domínio</small></h2>
+<div class="card">
+<p style="font-size:13.5px">Descobri no meio do caminho que o domínio real é <b>foodguardassessoria.com.br</b> (eu vinha usando <code>foodguard.com.br</code>). Já corrigi no código; falta corrigir nas variáveis. Lembre-se: se a variável já existir, é <b>⋯ → Edit</b>, não criar de novo.</p>
+<table>
+<tr><th>Variável</th><th>Valor correto</th></tr>
+<tr><td><code>RESEND_FROM</code></td><td><code>Food Guard &lt;diagnostico@foodguardassessoria.com.br&gt;</code></td></tr>
+<tr><td><code>NEXT_PUBLIC_CONTACT_EMAIL</code></td><td><code>contato@foodguardassessoria.com.br</code></td></tr>
+<tr><td><code>NEXT_PUBLIC_SITE_URL</code></td><td><code>https://food-guard-cnhl.vercel.app</code> (sem barra no fim)</td></tr>
+<tr><td><code>TEAM_NOTIFY_EMAIL</code> <i>(opcional)</i></td><td>seu e-mail pessoal — é onde chegam os avisos de "pagamento confirmado" e lead quente</td></tr>
+</table>
+</div>
+
+<!-- PASSO 5 -->
+<h2><span class="n">5</span> Redeploy <small>· 2 min · obrigatório</small></h2>
+<div class="card"><ol class="steps">
+<li>Vercel → projeto <b>food-guard-cnhl</b> → menu do topo → <b>Deployments</b>.</li>
+<li>Primeira linha da lista → botão <b>⋯</b> na ponta direita → <b>Redeploy</b> → confirme na janelinha.</li>
+<li>Espere o status virar <b>Ready</b> (bolinha verde), ~2 min.</li>
+</ol>
+<div class="note">⚠️ Sem esse passo, <b>nenhuma</b> variável que você mexeu nos passos 2, 3 e 4 vale. É o erro mais comum.</div>
+</div>
+
+<!-- PASSO 6 -->
+<h2><span class="n">6</span> Teste final e publicação <small>· ~10 min</small></h2>
+<div class="card">
+<p style="font-size:13.5px"><b>Esse teste precisa ser seu:</b> a rede deste ambiente bloqueia o acesso ao site publicado (a tentativa volta com erro 403 no proxy), então eu não consigo abrir a página de fora. Já testei tudo o que dava localmente.</p>
+<ol class="steps">
+<li><b>Checkout.</b> Aba anônima → <code>/planos</code> → clique em contratar. <b>O link tem que abrir em <code>www.asaas.com</code>, sem a palavra "sandbox".</b> Me mande o novo link que eu confirmo na hora.</li>
+<li><b>Lead + e-mail.</b> Faça o diagnóstico completo com o seu e-mail real. Confira: (a) apareceu uma linha nova em <b>leads</b> no Supabase; (b) o e-mail com o relatório chegou (olhe o spam na primeira vez). <i>O item (b) só funciona depois que o DKIM estiver verificado.</i></li>
+<li><b>Pagamento de verdade (opcional, mas é o teste definitivo).</b> Pague o menor valor via PIX → confira se apareceu linha em <b>payments</b> no Supabase e se chegou o e-mail "Pagamento confirmado" → depois estorne no painel do Asaas.</li>
+<li><b>Me chame.</b> Eu rodo a conferência final e, com o seu "pode publicar", subo para a <code>main</code> — a Vercel publica em 1–2 min.</li>
+</ol>
+</div>
+
+<div class="okbox">📌 <b>Ordem sugerida:</b> passo 2 (Asaas) → 3 (webhook) → 4 (variáveis) → 5 (redeploy) → 6 (teste do checkout). O passo 1 (DKIM) pode ser feito em paralelo, já que só afeta o e-mail.</div>
+
+</main>
+<footer class="wrap">Food Guard · Status verificado em agosto/2026 · DNS consultado ao vivo, fluxo testado localmente, código das integrações lido · Nada vai para produção sem o seu "pode publicar".</footer>
+</body>
+</html>
