@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Varredura de QA e segurança — Food Guard</title>
+<style>
+  :root{--brand:#047857;--brand2:#059669;--ink:#0b1f1a;--muted:#6b7a75;--bg:#f6faf8;--sunken:#eef4f1;
+  --crit:#b91c1c;--crit50:#fef2f2;--alto:#c2410c;--alto50:#fff7ed;--med:#a16207;--med50:#fefce8;
+  --ok:#047857;--ok50:#ecfdf5;--info:#1d4ed8;--info50:#eff6ff;
+  --r:14px;--sh:0 1px 3px rgba(11,31,26,.06),0 8px 24px rgba(11,31,26,.06)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,#022c22,var(--brand));color:#fff;padding:38px 0 26px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:24px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d1fae5;max-width:730px;font-size:14px}
+  main{padding:10px 0 60px}
+  h2{font-size:18px;font-weight:800;margin:32px 0 8px}
+  h3{font-size:15px;font-weight:800;margin:22px 0 4px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin:12px 0}
+  .card.crit{border-left:5px solid var(--crit)}
+  .card.alto{border-left:5px solid var(--alto)}
+  .card.med{border-left:5px solid var(--med)}
+  .card.ok{border-left:5px solid var(--ok)}
+  .sev{display:inline-block;padding:2px 10px;border-radius:999px;font-weight:800;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+  .s-crit{background:var(--crit50);color:var(--crit);border:1px solid #fecaca}
+  .s-alto{background:var(--alto50);color:var(--alto);border:1px solid #fed7aa}
+  .s-med{background:var(--med50);color:var(--med);border:1px solid #fde68a}
+  .s-ok{background:var(--ok50);color:var(--ok);border:1px solid #a7f3d0}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;font-weight:600;word-break:break-word}
+  pre{background:#0b1f1a;color:#d1fae5;padding:12px 14px;border-radius:10px;overflow-x:auto;font-size:12.5px;line-height:1.5}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden}
+  th{text-align:left;padding:9px 11px;background:var(--sunken);color:var(--muted);font-size:11.5px;text-transform:uppercase}
+  td{padding:9px 11px;border-top:1px solid var(--sunken);vertical-align:top}
+  .lbl{font-weight:700;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.03em;margin-top:10px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+  .resumo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+  .tile{background:#fff;border:1px solid var(--sunken);border-radius:12px;padding:12px 14px;box-shadow:var(--sh)}
+  .tile .n{font-size:24px;font-weight:800;line-height:1}
+  .tile .t{font-size:12px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Varredura de QA e segurança · agosto/2026</span>
+  <h1>Relatório da varredura completa</h1>
+  <p>Revisão do código de produção: superfície de API, autenticação, dados pessoais, dependências e lógica de negócio. Cada achado foi verificado executando o código — não por leitura apenas.</p>
+</div></header>
+<main class="wrap">
+
+<div class="resumo">
+  <div class="tile"><div class="n" style="color:var(--crit)">1</div><div class="t">Crítico<br><b>corrigido</b></div></div>
+  <div class="tile"><div class="n" style="color:var(--alto)">1</div><div class="t">Alto<br><b>corrigido</b></div></div>
+  <div class="tile"><div class="n" style="color:var(--med)">2</div><div class="t">Médio<br>1 corrigido</div></div>
+  <div class="tile"><div class="n" style="color:var(--ok)">12</div><div class="t">Controles<br>verificados OK</div></div>
+</div>
+
+<h2>🔴 Crítico — rotas internas abertas a qualquer um</h2>
+<div class="card crit">
+<span class="sev s-crit">Corrigido</span> &nbsp; <b>commit <code>e1a2c97</code></b>
+
+<div class="lbl">O que estava errado</div>
+<p>As quatro rotas <code>/api/agents/*</code> e o webhook do Asaas só exigiam credencial <b>quando a variável de ambiente existia</b>:</p>
+<pre>if (CRON_SECRET) {           // ← sem a variável, nada é checado
+  if (auth !== `Bearer ${CRON_SECRET}`) return 401;
+}
+// ...segue e executa</pre>
+<p>Ou seja: a proteção sumia justamente no ambiente onde alguém esqueceu de configurar. É o oposto do que o <code>middleware.ts</code> do <code>/admin</code> já fazia certo (sem credenciais, devolve 503 e não deixa passar).</p>
+
+<div class="lbl">Por que isso importava na sua produção</div>
+<p><b>O <code>CRON_SECRET</code> não está configurado</b> — eu mesmo recomendei não configurá-lo, por serem "coisas dos agentes em standby". Consequência concreta: <code>/api/agents/prospeccao</code> e <code>/api/agents/conteudo</code> estavam acessíveis publicamente e <b>gravam no banco</b> (<code>outreach_drafts</code>, <code>content_drafts</code>) e <b>alteram o status dos prospects</b>. Qualquer pessoa que descobrisse o endereço poderia inflar essas tabelas em série.</p>
+<p>E havia uma bomba-relógio: no dia em que a <code>ANTHROPIC_API_KEY</code> fosse ligada na v2, cada chamada dessas rotas passaria a consumir IA paga — uma torneira de custo aberta para terceiros.</p>
+
+<div class="lbl">O que mudou</div>
+<p>Criei <code>lib/api-auth.ts</code> com a regra de <b>falhar fechando</b>, aplicada nas cinco rotas. Sem segredo configurado a rota responde 503 e não executa nada.</p>
+<table>
+<tr><th>Cenário</th><th>Antes</th><th>Agora</th></tr>
+<tr><td>Sem segredo configurado</td><td>200 — executava 😱</td><td><b>503</b> — bloqueado</td></tr>
+<tr><td>Com segredo, credencial errada</td><td>401</td><td><b>401</b></td></tr>
+<tr><td>Com credencial correta</td><td>200</td><td><b>200</b></td></tr>
+</table>
+<p>Os três cenários foram testados de verdade, subindo o servidor localmente com e sem as variáveis.</p>
+</div>
+
+<h2>🟠 Alto — webhook aceitaria pagamento forjado</h2>
+<div class="card alto">
+<span class="sev s-alto">Corrigido</span> &nbsp; <b>mesmo commit</b>
+
+<p>O <code>/api/webhooks/asaas</code> tinha o mesmo padrão. Como o <code>ASAAS_WEBHOOK_TOKEN</code> <b>está</b> configurado hoje, ele estava protegido — mas bastava alguém apagar essa variável (ou recriá-la com nome errado, o que quase aconteceu com a do plano Básico) para o endereço ficar aberto.</p>
+<p><b>O que um atacante conseguiria:</b> enviar um <code>PAYMENT_CONFIRMED</code> falso e, com isso, gravar pagamentos inexistentes na tabela <code>payments</code> e disparar o e-mail "💰 Pagamento confirmado" para você. Não move dinheiro, mas envenena seu controle financeiro e sua confiança nos avisos.</p>
+<p>Agora, sem o token configurado, o webhook responde 503 em vez de aceitar qualquer coisa.</p>
+<p><b>⚠️ Atenção prática:</b> o webhook depende do <code>ASAAS_WEBHOOK_TOKEN</code> estar presente. Se ele for removido da Vercel, as notificações do Asaas param (503) em vez de passar batido — é o comportamento desejado, mas é bom saber para não estranhar.</p>
+</div>
+
+<h2>🟡 Médios</h2>
+
+<div class="card med">
+<h3>Vazamento de memória no limitador de requisições</h3>
+<span class="sev s-med">Corrigido</span> &nbsp; <b>commit <code>e1a2c97</code></b>
+<p>O <code>lib/rate-limit.ts</code> guarda uma entrada por IP num <code>Map</code>, mas <b>nunca removia as expiradas</b>. Cada visitante novo somava uma entrada permanente. Numa instância de vida longa, o consumo de memória só cresce.</p>
+<p>Agora, ao passar de 10 mil chaves, faz uma faxina removendo as janelas vencidas.</p>
+</div>
+
+<div class="card med">
+<h3>Dependências com falhas conhecidas</h3>
+<span class="sev s-med">Parcial</span> &nbsp; <b>commit <code>4145ffd</code></b>
+<p>O <code>npm audit</code> apontava <b>4 falhas de severidade alta</b>. Apliquei a correção segura, que resolveu <b>2 delas</b> (postcss — leitura arbitrária de arquivos <code>.map</code>). Build e lint seguem limpos.</p>
+<p><b>As outras 2 continuam:</b> vêm do <code>sharp</code>, que é dependência do próprio Next.js, e só saem atualizando para o <b>Next 16</b> — uma mudança de versão maior, com risco de quebrar coisas.</p>
+<p><b>Recomendação:</b> não fazer agora. O <code>sharp</code> processa imagens, e o site não recebe imagens de usuários (o visual é CSS e SVG), então a exposição real é baixa. Vale agendar o upgrade do Next como tarefa própria, com tempo para testar.</p>
+</div>
+
+<h2>🟢 Pontos de atenção — sem ação necessária</h2>
+<div class="card">
+<h3>Limitador de requisições é por instância</h3>
+<p>O controle vive na memória de cada instância serverless. Com várias instâncias ativas, o limite real fica multiplicado. Protege contra abuso casual, mas não contra um ataque coordenado. Para o volume atual está adequado; se o tráfego crescer, o caminho é um limitador compartilhado (Upstash/Redis).</p>
+
+<h3>CSP permite <code>unsafe-inline</code> em scripts</h3>
+<p>Necessário para o Next.js (JSON-LD embutido) e para Google Analytics/Meta Pixel. É o trade-off padrão de quem usa essas ferramentas — o comentário no <code>next.config.mjs</code> já registra o motivo. Eliminar exigiria nonces por requisição, complexidade que não se paga aqui.</p>
+
+<h3>Dados externos entram no prompt dos agentes</h3>
+<p>Em <code>lib/agent/prospeccao.ts</code>, dados do prospect (que virão de APIs públicas de CNPJ) são inseridos no prompt via <code>JSON.stringify</code>. Um nome de empresa malicioso poderia, em tese, tentar influenciar o texto gerado. <b>Risco baixo hoje</b>: os agentes estão em standby, e todo rascunho passa por aprovação humana antes de sair. Vale revisar quando ligar a v2.</p>
+</div>
+
+<h2>✅ O que está correto — 12 controles verificados</h2>
+<table>
+<tr><th>Controle</th><th>Situação</th></tr>
+<tr><td><b>Segredos no repositório</b></td><td>Nenhuma chave real commitada. <code>.env</code> fora do versionamento, <code>.gitignore</code> correto.</td></tr>
+<tr><td><b>Row Level Security</b></td><td>Ativo nas 7 tabelas, sem políticas públicas — o banco só é acessível pelo servidor.</td></tr>
+<tr><td><b>Painel /admin</b></td><td>Basic Auth com comparação de tempo constante (resistente a timing attack), 503 se não configurado, sem cache.</td></tr>
+<tr><td><b>Chave do banco</b></td><td>A <code>service_role</code> só aparece no servidor. Nenhuma variável <code>NEXT_PUBLIC_</code> carrega segredo.</td></tr>
+<tr><td><b>Validação de entrada</b></td><td>Zod em <code>/api/leads</code> e <code>/api/checkout</code>, incluindo a validação das respostas que corrigi hoje.</td></tr>
+<tr><td><b>Score no servidor</b></td><td>Recalculado no back-end; o cliente não consegue forjar o resultado do diagnóstico.</td></tr>
+<tr><td><b>Rate limiting</b></td><td>5 requisições/10 min em <code>/leads</code>; 10/min em <code>/checkout</code>.</td></tr>
+<tr><td><b>LGPD — consentimento</b></td><td>Obrigatório no schema (<code>z.literal(true)</code>): sem aceite, o lead é recusado.</td></tr>
+<tr><td><b>LGPD — trilha de auditoria</b></td><td><code>consent_log</code> gravado a cada aceite, com trigger que <b>impede alteração e exclusão</b>.</td></tr>
+<tr><td><b>Cabeçalhos HTTP</b></td><td>CSP, HSTS com preload, <code>X-Frame-Options: DENY</code>, <code>nosniff</code>, Referrer-Policy.</td></tr>
+<tr><td><b>Dados pessoais em log</b></td><td>Nenhum e-mail, telefone ou nome vai para os registros — só score e plano.</td></tr>
+<tr><td><b>Erros para o cliente</b></td><td>Mensagens genéricas; detalhes ficam só no log do servidor.</td></tr>
+</table>
+
+<h2>Recomendações — o que fazer a seguir</h2>
+<div class="card">
+<table>
+<tr><th>#</th><th>Ação</th><th>Quando</th></tr>
+<tr><td>1</td><td><b>Publicar estas correções</b> na <code>main</code> — as rotas seguem abertas em produção até lá</td><td>agora</td></tr>
+<tr><td>2</td><td><b>Trocar o token do webhook</b> — passou pelo chat durante a configuração</td><td>esta semana</td></tr>
+<tr><td>3</td><td><b>Apagar os ~7 projetos Vercel duplicados</b> — um deles já serviu o site errado, e cada um é uma cópia do código com configuração diferente</td><td>esta semana</td></tr>
+<tr><td>4</td><td><b>Definir <code>ADMIN_USER</code> e <code>ADMIN_PASSWORD</code></b> se for usar o painel <code>/admin</code> — hoje ele responde 503</td><td>quando precisar</td></tr>
+<tr><td>5</td><td><b>Configurar <code>CRON_SECRET</code></b> — obrigatório antes de religar os agentes na v2</td><td>na v2</td></tr>
+<tr><td>6</td><td><b>Avaliar o upgrade para Next 16</b> — resolve as 2 falhas restantes do sharp</td><td>sem pressa</td></tr>
+</table>
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Varredura de QA e segurança · agosto/2026 · Achados verificados executando o código, não só por leitura. Correções em <code>e1a2c97</code> e <code>4145ffd</code>, ainda na branch de trabalho.</footer>
+</body>
+</html>
