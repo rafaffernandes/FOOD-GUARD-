@@ -30,12 +30,27 @@ export function PlanCheckoutButton({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ planId }),
       });
-      const data = (await res.json()) as { url?: string };
+      const data = (await res.json()) as {
+        url?: string;
+        devMode?: boolean;
+        error?: string;
+      };
+
       if (data.url && data.url !== "#") {
         window.location.href = data.url;
-      } else {
+        return;
+      }
+
+      // Sem URL: distingue "ainda não configurado" de "a cobrança falhou".
+      // Tratar os dois como o mesmo caso esconde falhas reais do pagamento.
+      if (data.devMode) {
         alert(
           "Checkout em modo demonstração. Conecte o Asaas (.env) para ativar o pagamento real.",
+        );
+      } else {
+        console.error("[checkout] falha:", res.status, data.error);
+        alert(
+          "Não foi possível abrir o pagamento agora. Tente de novo em instantes — ou fale com a gente no WhatsApp que a gente resolve na hora.",
         );
       }
     } finally {

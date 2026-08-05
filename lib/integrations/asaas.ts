@@ -64,9 +64,18 @@ export async function createCheckout(planId: PlanId): Promise<CheckoutResult> {
           description: `Assinatura mensal do plano ${plan.name}.`,
         }),
       });
-      const data = (await res.json()) as { url?: string; errors?: unknown };
+      const data = (await res.json()) as {
+        url?: string;
+        errors?: { code?: string; description?: string }[];
+      };
       if (res.ok && data.url) return { ok: true, url: data.url };
-      console.error("[asaas] resposta inesperada:", data);
+
+      // O Asaas devolve o motivo em errors[].description — é o que interessa
+      // para saber o que corrigir, então vai para o log em texto plano.
+      const motivo =
+        data.errors?.map((e) => `${e.code}: ${e.description}`).join(" | ") ??
+        JSON.stringify(data);
+      console.error(`[asaas] recusou a cobrança (HTTP ${res.status}) — ${motivo}`);
       return { ok: false, error: "Falha ao criar checkout no Asaas" };
     } catch (err) {
       const message = err instanceof Error ? err.message : "erro desconhecido";
