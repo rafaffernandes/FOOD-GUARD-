@@ -40,6 +40,11 @@ export const metadata: Metadata = {
     description: site.description,
   },
   robots: { index: true, follow: true },
+  // Comprova a posse do domínio no Google Search Console. Só serve para
+  // verificação — não muda como o site é indexado.
+  verification: {
+    google: "nc2Tw00JR5ldbq-pm2Lkht98J3UxrqisgGLh713fCOU",
+  },
 };
 
 export default function RootLayout({
