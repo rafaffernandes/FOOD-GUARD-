@@ -82,5 +82,11 @@ export const photos = {
       1200,
       630,
     ),
+    // Cozinha profissional em operação — abre o artigo sobre custo de multa
+    "quanto-custa-multa-vigilancia-sanitaria": u(
+      "photo-1581299894007-aaa50297cf16",
+      1200,
+      630,
+    ),
   } as Record<string, string>,
 };
