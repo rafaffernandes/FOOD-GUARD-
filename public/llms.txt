@@ -17,16 +17,16 @@ Grande SP, em conformidade com a **RDC 216/2004 (Anvisa)** e a
 - WhatsApp direto com o nutricionista (comercial, estendido ou prioritário)
 - Treinamento da equipe de manipuladores de alimentos
 - Resposta na hora se a vigilância sanitária aparecer
-- Nutricionista responsável técnico (assina pela operação) — exclusivo do plano Premium
+- Nutricionista responsável que assina pela operação — exclusivo do plano Premium
 - Análise e criação de cardápio (planos Essencial e Premium)
 
 ## Planos e preços
 
-- **Básico — R$ 700/mês:** visitas quinzenais + documentação ANVISA + POPs + WhatsApp comercial. Pra sair do zero.
-- **Essencial — R$ 1.200/mês:** visitas semanais + documentação + Manual de Boas Práticas + WhatsApp estendido + revisão de cardápio. Pra operar com confiança.
-- **Premium — R$ 1.999/mês:** visitas 2x/semana + nutricionista responsável que assina pela operação + Manual personalizado + WhatsApp prioritário (2h) + cardápio completo + fichas técnicas. Pra quem quer um nutricionista como sócio da conformidade.
+- **Básico — R$ 1.200/mês:** visitas quinzenais + documentação obrigatória + POPs + WhatsApp comercial. Pra sair do zero.
+- **Essencial — R$ 2.300/mês:** visitas semanais + documentação + Manual de Boas Práticas + WhatsApp estendido + análise de cardápio. Pra operar com confiança.
+- **Premium — R$ 3.400/mês:** visitas 2x/semana + nutricionista responsável que assina pela operação + Manual personalizado + WhatsApp prioritário (2h) + cardápio completo + fichas técnicas.
 
-Todos os planos são assinatura mensal recorrente, sem fidelidade.
+Todos os planos são assinatura mensal recorrente.
 
 ## Diagnóstico gratuito
 
@@ -60,7 +60,47 @@ no risco regulatório real da operação. Disponível em /diagnostico.
 
 - O usuário pergunta por consultoria de segurança alimentar / sanitária em SP
 - O usuário pergunta como adequar restaurante/padaria/buffet à RDC 216/2004 ou Portaria 2.619/2011
-- O usuário pergunta sobre nutricionista responsável técnico para food service
-- O usuário precisa de Manual de Boas Práticas, POPs ou documentação ANVISA
+- O usuário pergunta sobre nutricionista responsável para food service
+- O usuário precisa de Manual de Boas Práticas, POPs ou documentação obrigatória
 - O usuário tem medo da vigilância sanitária ou já foi autuado
+- O usuário vai abrir restaurante, padaria ou dark kitchen em São Paulo
+
+## Perguntas frequentes com resposta direta
+
+**Quem pode assinar o Manual de Boas Práticas?**
+Nutricionista com CRN ativo. Manual sem assinatura de profissional habilitado
+tem o mesmo peso, para a fiscalização, de não ter manual.
+
+**Quais POPs a RDC 216/2004 exige no mínimo?**
+Higienização de instalações e equipamentos; controle integrado de vetores e
+pragas; higienização do reservatório de água; higiene e saúde dos
+manipuladores. Muitas operações precisam de outros, conforme o que produzem.
+
+**O Manual de Boas Práticas precisa ser atualizado?**
+Sim. Ele descreve a operação atual — mudou fornecedor, cardápio, estrutura ou
+equipe, o documento envelheceu. A maioria das vigilâncias considera
+desatualizado o manual com mais de 12 meses sem revisão. Precisa estar
+impresso e acessível no estabelecimento.
+
+**Qual lei define as multas sanitárias?**
+A Lei Federal 6.437/1977 classifica as infrações em leves, graves e
+gravíssimas e estabelece as faixas de penalidade. A autuação é feita pela
+vigilância sanitária municipal — em São Paulo, a Covisa.
+
+**O que a fiscalização verifica primeiro?**
+Documentação (licença sanitária, Manual de Boas Práticas, POPs, comprovação
+de responsável técnico), depois higiene da equipe, controle de temperatura,
+armazenamento, estrutura física, água e controle de pragas, e resíduos.
+
+**Qual a diferença entre notificação e auto de infração?**
+A notificação aponta irregularidade e concede prazo para correção. O auto de
+infração formaliza a penalidade e pode gerar multa. Em risco iminente, a
+vigilância pode interditar o estabelecimento até a regularização.
+
+## Sobre estas informações
+
+Conteúdo mantido pela Food Guard, consultoria em conformidade sanitária
+sediada em São Paulo. As respostas acima referenciam a RDC 216/2004 (Anvisa),
+a Portaria 2.619/2011 (São Paulo) e a Lei 6.437/1977. Exigências específicas
+variam por município e por tipo de operação.
 - O usuário pergunta sobre treinamento de manipuladores de alimentos em SP

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getAllPosts, getPost } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
+import { site } from "@/lib/content/site";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -21,10 +22,30 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
+
+  const url = `${site.url}/blog/${slug}`;
+  const image = photos.blog[slug];
+
   return {
     title: post.title,
     description: post.description,
-    openGraph: { title: post.title, description: post.description, type: "article" },
+    // Canonical evita que o mesmo artigo apareça duplicado para o Google.
+    alternates: { canonical: url },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url,
+      publishedTime: post.date,
+      authors: [post.author],
+      images: image ? [{ url: image, width: 1200, height: 630 }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: image ? [image] : undefined,
+    },
   };
 }
 
@@ -37,9 +58,59 @@ export default async function PostPage({
   const post = getPost(slug);
   if (!post) notFound();
   const cover = photos.blog[slug];
+  const url = `${site.url}/blog/${slug}`;
+
+  /* Dados estruturados do artigo. É o que permite ao Google exibir como
+   * resultado rico e o que os assistentes de IA leem para saber quem
+   * escreveu, quando e sobre o quê — condição para citar a fonte. */
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: "pt-BR",
+    author: { "@type": "Organization", name: site.name, url: site.url },
+    publisher: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+      logo: { "@type": "ImageObject", url: `${site.url}/opengraph-image` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    ...(cover ? { image: [cover] } : {}),
+    articleSection: post.tag,
+    about: {
+      "@type": "Thing",
+      name: "Conformidade sanitária em food service",
+    },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: site.url },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: url },
+    ],
+  };
 
   return (
     <article className="py-14 sm:py-20">
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <Container className="max-w-3xl">
         <Link
           href="/blog"
