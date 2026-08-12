@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ranquear no Google e ser citado pelas IAs</title>
+<style>
+  :root{--azul:#0F2947;--azul2:#14375F;--verde:#8CC63F;--verde2:#5E9A1E;--ink:#0b1f1a;--muted:#6b7a75;
+  --bg:#f4f7fa;--sunken:#e3eaf1;--ok:#047857;--ok50:#ecfdf5;--warn:#b45309;--warn50:#fffbeb;
+  --crit:#b91c1c;--crit50:#fef2f2;--r:14px;--sh:0 1px 3px rgba(15,41,71,.06),0 8px 24px rgba(15,41,71,.07)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,var(--azul),var(--azul2));color:#fff;padding:40px 0 28px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(140,198,63,.2);color:var(--verde);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:25px;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#cfe3f5;max-width:720px;font-size:14px}
+  main{padding:10px 0 60px}
+  h2{font-size:19px;font-weight:800;margin:34px 0 8px;color:var(--azul2)}
+  h3{font-size:15.5px;font-weight:800;margin:22px 0 6px}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:16px 18px;margin:12px 0}
+  .card.ok{border-left:5px solid var(--ok)}
+  .card.warn{border-left:5px solid var(--warn)}
+  .card.crit{border-left:5px solid var(--crit)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden}
+  th{text-align:left;padding:9px 11px;background:var(--sunken);color:var(--azul2);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  td{padding:10px 11px;border-top:1px solid var(--sunken);vertical-align:top}
+  code{background:var(--sunken);padding:1px 6px;border-radius:5px;font-size:12.5px;font-weight:600;word-break:break-word}
+  .pill{display:inline-block;padding:2px 9px;border-radius:999px;font-weight:800;font-size:11px;white-space:nowrap}
+  .p-ok{background:var(--ok50);color:var(--ok);border:1px solid #a7f3d0}
+  .p-voce{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+  .p-falta{background:var(--crit50);color:var(--crit);border:1px solid #fecaca}
+  .warn{background:var(--warn50);border-left:4px solid var(--warn);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13.5px}
+  .ok{background:var(--ok50);border-left:4px solid var(--ok);border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13.5px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+  ul{padding-left:20px} li{margin:6px 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · SEO e presença em assistentes de IA</span>
+  <h1>Ranquear no Google e ser citado pelas IAs</h1>
+  <p>Duas coisas diferentes, com técnicas que se sobrepõem em parte. O site já tinha uma base melhor que a média — abaixo está o que encontrei, o que corrigi e o que depende de você.</p>
+</div></header>
+<main class="wrap">
+
+<div class="card crit">
+<h3>O problema mais grave que encontrei</h3>
+<p>O arquivo <code>llms.txt</code> — que existe justamente para ser lido por ChatGPT, Claude, Perplexity e Gemini — anunciava <b>preços que não existem mais</b>:</p>
+<table>
+<tr><th>Plano</th><th>No arquivo</th><th>Preço real</th></tr>
+<tr><td>Básico</td><td>R$ 700</td><td><b>R$ 1.200</b></td></tr>
+<tr><td>Essencial</td><td>R$ 1.200</td><td><b>R$ 2.300</b></td></tr>
+<tr><td>Premium</td><td>R$ 1.999</td><td><b>R$ 3.400</b></td></tr>
+</table>
+<p>Qualquer IA que recomendasse a Food Guard estaria citando valores errados, criando expectativa que a conversa de venda teria que desmentir. <b>Corrigido.</b></p>
+</div>
+
+<h2>O que o site já tinha de bom</h2>
+<div class="card ok">
+<table>
+<tr><th>Item</th><th>Situação</th></tr>
+<tr><td><code>robots.txt</code> liberando bots de IA</td><td><span class="pill p-ok">OK</span> GPTBot, ClaudeBot, PerplexityBot, Google-Extended e mais 13, nomeados um a um</td></tr>
+<tr><td><code>llms.txt</code></td><td><span class="pill p-ok">OK</span> poucos sites brasileiros têm</td></tr>
+<tr><td>Sitemap</td><td><span class="pill p-ok">OK</span> inclui os artigos automaticamente</td></tr>
+<tr><td>Dados estruturados da empresa</td><td><span class="pill p-ok">OK</span> Organization, ProfessionalService, WebSite</td></tr>
+<tr><td>FAQ estruturado</td><td><span class="pill p-ok">OK</span> home e planos com FAQPage</td></tr>
+<tr><td>Metadata por página</td><td><span class="pill p-ok">OK</span> todas as páginas têm título e descrição próprios</td></tr>
+</table>
+</div>
+
+<h2>O que corrigi agora</h2>
+<div class="card">
+<table>
+<tr><th>Correção</th><th>Por que importa</th></tr>
+<tr><td><b>Preços no <code>llms.txt</code></b></td><td>IA citando preço errado é pior que IA não citando</td></tr>
+<tr><td><b>BlogPosting nos artigos</b></td><td>Sem isso o Google não trata como artigo e as IAs não sabem autoria, data nem tema — condição para citarem a fonte</td></tr>
+<tr><td><b>BreadcrumbList</b></td><td>Mostra a hierarquia do site nos resultados de busca</td></tr>
+<tr><td><b>Canonical por artigo</b></td><td>Evita que o Google veja conteúdo duplicado</td></tr>
+<tr><td><b>Imagem de compartilhamento por artigo</b></td><td>Antes todos usavam a mesma; agora cada um tem a própria no WhatsApp e redes</td></tr>
+<tr><td><b>Bloco de perguntas e respostas no <code>llms.txt</code></b></td><td>Resposta curta, direta e referenciada é o formato que os assistentes copiam</td></tr>
+</table>
+</div>
+
+<h2>O que faz uma IA citar você</h2>
+<div class="card">
+<p>Assistentes não "indexam" como buscador. Eles buscam, leem e resumem — e citam quem responde de forma <b>direta, específica e verificável</b>.</p>
+<table>
+<tr><th>O que a IA prefere</th><th>O que ela ignora</th></tr>
+<tr><td>"A RDC 216/2004 exige, no mínimo, POPs para higienização de instalações, controle de pragas, higienização do reservatório e higiene dos manipuladores."</td><td>"Cuidamos de toda a documentação necessária para sua operação estar em dia."</td></tr>
+<tr><td>Número, artigo de lei, prazo, órgão nomeado</td><td>Adjetivo, promessa, linguagem de venda</td></tr>
+<tr><td>Pergunta como título e resposta no primeiro parágrafo</td><td>Texto que só chega ao ponto no meio</td></tr>
+</table>
+<p>É por isso que seu artigo sobre multa tem chance real de ser citado: ele nomeia a Lei 6.437/1977, cita a Covisa e traz uma conta concreta. Continue escrevendo assim.</p>
+</div>
+
+<h2>O que depende de você</h2>
+
+<div class="card">
+<h3><span class="pill p-voce">VOCÊ</span> 1. Google Search Console — faça hoje</h3>
+<p>Sem isso o Google demora muito mais para descobrir o site, e você fica sem saber por quais termos aparece.</p>
+<ul>
+<li>Acesse <code>search.google.com/search-console</code> e adicione <code>foodguardassessoria.com.br</code></li>
+<li>A verificação por DNS é a mais simples: ele dá um registro TXT para colar no Registro.br, igual fizemos com o Resend</li>
+<li>Depois de verificar, envie o sitemap: <code>foodguardassessoria.com.br/sitemap.xml</code></li>
+<li>Peça indexação manual da home e do artigo em "Inspeção de URL"</li>
+</ul>
+</div>
+
+<div class="card">
+<h3><span class="pill p-voce">VOCÊ</span> 2. Perfil da Empresa no Google — o maior retorno para busca local</h3>
+<p>Quem procura "consultoria vigilância sanitária São Paulo" vê primeiro o mapa, não os sites. Sem perfil, você não existe nessa parte da tela — que é a mais clicada.</p>
+<ul>
+<li>Crie em <code>business.google.com</code> com o nome exato <b>Food Guard Assessoria</b></li>
+<li>Categoria sugerida: consultor de negócios ou serviço de consultoria</li>
+<li>Marque como <b>área de atendimento</b> (São Paulo e Grande SP) se não atende no endereço</li>
+<li>Preencha tudo: descrição, serviços, horário, telefone, site</li>
+<li><b>Peça avaliação aos clientes que você já atendeu.</b> Avaliação é o fator que mais move posição no mapa</li>
+</ul>
+</div>
+
+<div class="card">
+<h3><span class="pill p-voce">VOCÊ</span> 3. Citações da marca fora do site</h3>
+<p>As IAs confiam mais em quem é mencionado em outros lugares. Um site que só fala de si mesmo tem pouco peso.</p>
+<ul>
+<li>Cadastre a empresa em listas do setor de food service e em associações do ramo</li>
+<li>Responda dúvidas em grupos e fóruns de donos de restaurante — sem vender, respondendo de verdade</li>
+<li>Ofereça artigo para portais de gastronomia e gestão de restaurantes</li>
+<li>Se der entrevista ou participar de podcast, peça o link para o site</li>
+</ul>
+<p>Não precisa ser muito. Cinco ou seis menções em lugares legítimos já mudam como os assistentes tratam a marca.</p>
+</div>
+
+<div class="card">
+<h3><span class="pill p-voce">VOCÊ</span> 4. Constância no blog</h3>
+<p>É o fator com maior retorno no médio prazo, e o único que depende só de você.</p>
+<ul>
+<li><b>Um artigo a cada duas semanas</b> vale mais que cinco de uma vez e nada por três meses</li>
+<li>Escreva no formato que você já usou: pergunta no título, resposta objetiva, números concretos</li>
+<li>Cite lei, órgão e prazo sempre que puder — é o que faz a IA usar você como fonte</li>
+<li>Os dois rascunhos em <code>docs/rascunhos-blog/</code> estão prontos para você reescrever no seu tom</li>
+</ul>
+</div>
+
+<h2>Expectativa de tempo</h2>
+<table>
+<tr><th>Prazo</th><th>O que esperar</th></tr>
+<tr><td><b>1 a 2 semanas</b></td><td>Google indexa as páginas. Buscar por "Food Guard Assessoria" já encontra o site</td></tr>
+<tr><td><b>1 a 2 meses</b></td><td>Perfil da Empresa aparece em buscas locais. Primeiras posições em termos de cauda longa</td></tr>
+<tr><td><b>3 a 6 meses</b></td><td>Artigos começam a ranquear para termos disputados como "multa vigilância sanitária"</td></tr>
+<tr><td><b>6 meses ou mais</b></td><td>Citações em respostas de IA. Depende de volume de conteúdo e menções externas</td></tr>
+</table>
+
+<div class="warn"><b>Sobre prazo:</b> quem promete primeira página em 30 dias está vendendo ilusão ou comprando link — o segundo tem risco de penalização do Google. O caminho real é conteúdo bom e constante, e não tem atalho.</div>
+
+<h2>Como saber se está funcionando</h2>
+<div class="card">
+<ul>
+<li><b>Search Console</b> — quantas buscas mostraram seu site e quantas geraram clique. É a fonte mais confiável</li>
+<li><b>Pergunte às IAs</b> — a cada mês, pergunte ao ChatGPT e ao Perplexity: <i>"quem faz consultoria de vigilância sanitária para restaurantes em São Paulo?"</i>. Anote se a Food Guard aparece</li>
+<li><b>Busque seu nome</b> — "Food Guard Assessoria" no Google deve trazer site, Instagram e LinkedIn nos primeiros lugares</li>
+<li><b>Supabase</b> — diagnósticos com <code>utm_source</code> vazio geralmente vêm de busca orgânica</li>
+</ul>
+</div>
+
+<div class="ok"><b>Ordem sugerida:</b> Search Console hoje (10 minutos), Perfil da Empresa esta semana (30 minutos), e a partir daí um artigo a cada duas semanas. As citações externas vêm com o tempo, conforme você aparece.</div>
+
+</main>
+<footer class="wrap">Food Guard · SEO e presença em IA · agosto/2026 · Correções técnicas já aplicadas no código; o restante depende de execução fora do site.</footer>
+</body>
+</html>
