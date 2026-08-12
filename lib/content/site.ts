@@ -17,8 +17,8 @@ export const site = {
   cnpj: "60.833.961/0001-73",
   social: {
     instagram: {
-      handle: "@foodguard.assessoria",
-      url: "https://instagram.com/foodguard.assessoria",
+      handle: "@foodguardassessoria",
+      url: "https://www.instagram.com/foodguardassessoria/",
     },
     linkedin: {
       handle: "foodguardassessoria",
