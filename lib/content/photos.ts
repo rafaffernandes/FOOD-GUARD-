@@ -8,6 +8,10 @@ const u = (id: string, w = 1600, h?: number) =>
     h ? `&h=${h}` : ""
   }`;
 
+/** Pexels License — livre para uso comercial, sem atribuição obrigatória. */
+const px = (id: number, w = 1200) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+
 export const photos = {
   // Hero — chef com prancheta em cozinha profissional (Pádua, Itália)
   hero: {
@@ -82,11 +86,7 @@ export const photos = {
       1200,
       630,
     ),
-    // Cozinha profissional em operação — abre o artigo sobre custo de multa
-    "quanto-custa-multa-vigilancia-sanitaria": u(
-      "photo-1581299894007-aaa50297cf16",
-      1200,
-      630,
-    ),
+    // Mãos preenchendo formulário — abre o artigo sobre custo de multa (Pexels)
+    "quanto-custa-multa-vigilancia-sanitaria": px(7362882, 1200),
   } as Record<string, string>,
 };

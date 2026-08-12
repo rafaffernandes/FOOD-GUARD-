@@ -42,7 +42,10 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "images.pexels.com" },
+    ],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
@@ -53,7 +56,7 @@ const nextConfig = {
       // Next.js precisa de unsafe-inline para scripts JSON-LD e GA embutidos
       "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://images.unsplash.com https://www.facebook.com",
+      "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://www.facebook.com",
       "font-src 'self'",
       "connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://www.facebook.com https://api.asaas.com https://api-sandbox.asaas.com",
       "frame-src https://sandbox.asaas.com https://www.asaas.com",
