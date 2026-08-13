@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manual de prospecção — Food Guard</title>
+<style>
+  :root{--azul:#0F2947;--azul2:#14375F;--verde:#8CC63F;--verde2:#5E9A1E;--ink:#0b1f1a;--muted:#6b7a75;
+  --bg:#f4f7fa;--sunken:#e3eaf1;--ok:#047857;--ok50:#ecfdf5;--warn:#b45309;--warn50:#fffbeb;
+  --crit:#b91c1c;--crit50:#fef2f2;--dest:#1d4ed8;--dest50:#eff6ff;
+  --r:14px;--sh:0 1px 3px rgba(15,41,71,.06),0 8px 24px rgba(15,41,71,.07)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.68}
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  header.top{background:linear-gradient(160deg,var(--azul),var(--azul2));color:#fff;padding:42px 0 30px}
+  .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(140,198,63,.2);color:var(--verde);padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  header.top h1{font-size:26px;margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
+  header.top p{margin:0;color:#cfe3f5;max-width:740px;font-size:14.5px}
+  main{padding:12px 0 60px}
+  h2{font-size:20px;font-weight:800;margin:38px 0 8px;color:var(--azul2);border-bottom:3px solid var(--verde);padding-bottom:7px}
+  h3{font-size:16px;font-weight:800;margin:24px 0 6px}
+  h4{font-size:14px;font-weight:800;margin:18px 0 4px;color:var(--azul2)}
+  .card{background:#fff;border:1px solid var(--sunken);border-radius:var(--r);box-shadow:var(--sh);padding:17px 20px;margin:13px 0}
+  .card.ok{border-left:5px solid var(--ok)}
+  .card.warn{border-left:5px solid var(--warn)}
+  .card.crit{border-left:5px solid var(--crit)}
+  .card.dest{border-left:5px solid var(--dest)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:11px 0;background:#fff;border:1px solid var(--sunken);border-radius:var(--r);overflow:hidden}
+  th{text-align:left;padding:9px 11px;background:var(--sunken);color:var(--azul2);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+  td{padding:10px 11px;border-top:1px solid var(--sunken);vertical-align:top}
+  code{background:var(--sunken);padding:2px 7px;border-radius:5px;font-size:12.5px;font-weight:700}
+  .copy{background:#fff;border:2px dashed var(--verde2);border-radius:12px;padding:15px 17px;margin:11px 0;
+    white-space:pre-wrap;font-size:14px;line-height:1.7}
+  .copy .tag{display:block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--verde2);margin-bottom:9px;white-space:normal}
+  .warn{background:var(--warn50);border-left:4px solid var(--warn);border-radius:10px;padding:12px 15px;margin:13px 0;font-size:13.5px}
+  .ok{background:var(--ok50);border-left:4px solid var(--ok);border-radius:10px;padding:12px 15px;margin:13px 0;font-size:13.5px}
+  .crit{background:var(--crit50);border-left:4px solid var(--crit);border-radius:10px;padding:12px 15px;margin:13px 0;font-size:13.5px}
+  .dest{background:var(--dest50);border-left:4px solid var(--dest);border-radius:10px;padding:12px 15px;margin:13px 0;font-size:13.5px}
+  .obj{background:#fff;border:1px solid var(--sunken);border-radius:12px;padding:14px 16px;margin:10px 0;box-shadow:var(--sh)}
+  .obj .q{font-weight:800;font-size:15px;color:var(--crit);margin-bottom:7px}
+  .obj .a{font-size:14px;line-height:1.7}
+  .obj .pq{font-size:12.5px;color:var(--muted);margin-top:9px;border-top:1px dashed var(--sunken);padding-top:7px}
+  footer{border-top:1px solid var(--sunken);padding:18px 0 44px;color:var(--muted);font-size:12px}
+  ul{padding-left:20px} li{margin:6px 0}
+  .num{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border-radius:8px;
+    background:var(--verde);color:var(--azul);font-weight:800;font-size:14px;margin-right:8px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <span class="badge">Food Guard · Manual operacional de prospecção</span>
+  <h1>Manual de prospecção</h1>
+  <p>Feito para ser executado, não lido uma vez. Traz onde buscar, como filtrar, o que dizer em cada situação, como responder às objeções e a rotina de uma hora por dia.</p>
+</div></header>
+<main class="wrap">
+
+<h2>Parte 1 · Onde encontrar os prospects</h2>
+
+<div class="card ok">
+<h3>Fonte 1 — Google Maps <span style="font-weight:400;font-size:13px;color:var(--muted)">(a melhor, e de graça)</span></h3>
+<p>É a fonte mais rica porque traz o telefone, o endereço, as fotos da operação e — o mais valioso — <b>as avaliações dos clientes</b>, que revelam problemas reais.</p>
+<h4>Como fazer</h4>
+<ul>
+<li>Abra o Google Maps e busque: <code>restaurante Tatuapé</code>, depois <code>restaurante Penha</code>, <code>padaria Itaquera</code>, e assim por diante</li>
+<li>Trabalhe <b>um bairro por vez</b>. Zona Leste primeiro, que é o seu foco</li>
+<li>Para cada resultado, anote: nome, telefone, endereço, nota, quantidade de avaliações</li>
+<li>Uma hora de trabalho rende de 40 a 50 estabelecimentos</li>
+</ul>
+<div class="dest"><b>O truque que ninguém usa:</b> leia as avaliações de 1 e 2 estrelas. Reclamação de "estava sujo", "passei mal", "achei cabelo na comida" é sinal claro de problema sanitário. Esse prospect tem dor real, e a sua abordagem pode ser específica.</div>
+</div>
+
+<div class="card">
+<h3>Fonte 2 — CNPJs recém-abertos</h3>
+<p>Quem abriu há menos de 6 meses é o melhor prospect que existe: ainda está estruturando, tem orçamento de montagem e a vigilância costuma visitar nos primeiros meses.</p>
+<h4>Onde consultar, de graça</h4>
+<table>
+<tr><th>Fonte</th><th>Como usar</th></tr>
+<tr><td><b>Casa dos Dados</b><br><code>casadosdados.com.br</code></td><td>Busca por CNAE + cidade + data de abertura. A mais fácil de usar sem programar</td></tr>
+<tr><td><b>CNPJá</b><br><code>cnpja.com</code></td><td>API com faixa gratuita. Boa se você quiser automatizar depois</td></tr>
+<tr><td><b>BrasilAPI</b><br><code>brasilapi.com.br</code></td><td>Consulta CNPJ individual, gratuita e sem cadastro</td></tr>
+<tr><td><b>Dados abertos da Receita</b></td><td>Base completa e gratuita. Dá trabalho, mas é a fonte definitiva</td></tr>
+</table>
+
+<h4>Os CNAEs que interessam</h4>
+<table>
+<tr><th>Código</th><th>Atividade</th><th>Prioridade</th></tr>
+<tr><td><code>5611-2/01</code></td><td>Restaurantes e similares</td><td><b>Alta</b></td></tr>
+<tr><td><code>5611-2/03</code></td><td>Lanchonetes, casas de chá e sucos</td><td><b>Alta</b></td></tr>
+<tr><td><code>1091-1/02</code></td><td>Padaria e confeitaria com produção própria</td><td><b>Alta</b></td></tr>
+<tr><td><code>5620-1/01</code></td><td>Alimentos preparados para empresas (refeição coletiva)</td><td><b>Altíssima</b> — risco sanitário maior, ticket maior</td></tr>
+<tr><td><code>5620-1/02</code></td><td>Alimentação para eventos e bufê</td><td>Alta</td></tr>
+<tr><td><code>5620-1/03</code></td><td>Cantinas — alimentação privativa</td><td><b>Altíssima</b> — costuma atender escola</td></tr>
+<tr><td><code>5620-1/04</code></td><td>Preparados para consumo domiciliar (inclui dark kitchen)</td><td>Alta</td></tr>
+<tr><td><code>5611-2/04</code> e <code>/05</code></td><td>Bares, com e sem entretenimento</td><td>Média</td></tr>
+<tr><td><code>4721-1/02</code></td><td>Padaria com predominância de revenda</td><td>Média</td></tr>
+</table>
+<div class="ok"><b>Comece pelos de altíssima prioridade.</b> Refeição coletiva e cantina lidam com público vulnerável — escola, hospital, empresa. A fiscalização é mais rigorosa, a dor é maior e o ticket que suportam é maior.</div>
+</div>
+
+<h2>Parte 2 · Como qualificar antes de abordar</h2>
+<div class="card">
+<p>Abordar todo mundo igual desperdiça seu tempo e queima lista. Cinco minutos olhando o prospect mudam completamente a taxa de resposta.</p>
+<table>
+<tr><th>Sinal</th><th>O que indica</th><th>Prioridade</th></tr>
+<tr><td>Abriu há menos de 6 meses</td><td>Está estruturando, tem orçamento, vigilância vai visitar</td><td>🔥 Máxima</td></tr>
+<tr><td>Avaliação reclamando de higiene</td><td>Problema real e visível</td><td>🔥 Máxima</td></tr>
+<tr><td>Refeição coletiva, cantina ou escola</td><td>Fiscalização rigorosa, exigência de responsável técnico</td><td>🔥 Máxima</td></tr>
+<tr><td>Várias unidades</td><td>Ticket maior, dor multiplicada</td><td>Alta</td></tr>
+<tr><td>Cozinha aparecendo nas fotos</td><td>Dá para avaliar a operação antes de falar</td><td>Alta</td></tr>
+<tr><td>Nota abaixo de 4,0</td><td>Operação com problemas em geral</td><td>Média</td></tr>
+<tr><td>Rede grande ou franquia conhecida</td><td>Já tem estrutura própria ou decisão é centralizada</td><td>❄️ Baixa — pule</td></tr>
+</table>
+</div>
+
+<h2>Parte 3 · As abordagens</h2>
+
+<div class="crit"><b>Regra que define tudo:</b> a mensagem precisa falar da operação <b>dele</b>, não de você. Mensagem que começa com "somos uma empresa especializada" é ignorada. Mensagem que começa com algo específico do negócio dele é lida até o fim.</div>
+
+<h3>Situação A — abriu recentemente</h3>
+<div class="copy"><span class="tag">WhatsApp · o melhor cenário</span>Oi, tudo bem? Falo com o responsável pelo [NOME]?
+
+Sou nutricionista e trabalho com adequação sanitária pra food service aqui em São Paulo.
+
+Vi que vocês abriram há pouco. Nos primeiros meses a vigilância costuma passar, e muita gente não sabe que a RDC 216 já se aplica desde o primeiro dia de funcionamento.
+
+Montei um diagnóstico rápido, de 2 minutos, que mostra onde a operação tá exposta:
+foodguardassessoria.com.br/diagnostico
+
+É gratuito e sem pegadinha. Se fizer sentido depois a gente conversa, se não fizer, tudo certo também.</div>
+
+<h3>Situação B — avaliação reclamando de higiene</h3>
+<div class="copy"><span class="tag">WhatsApp · use com cuidado, sem constranger</span>Oi, tudo bem? Falo com o responsável pelo [NOME]?
+
+Sou nutricionista, trabalho com adequação sanitária pra restaurante aqui em SP.
+
+Tô entrando em contato porque vi um comentário recente de cliente sobre limpeza. Isso costuma ser mais fácil de resolver do que parece — e vale resolver antes que vire questão com a vigilância.
+
+Tenho um diagnóstico gratuito de 2 minutos que aponta onde tá o risco:
+foodguardassessoria.com.br/diagnostico
+
+Qualquer coisa tô à disposição.</div>
+<div class="warn"><b>Cuidado aqui:</b> não mencione a avaliação de forma que soe como ameaça ou exposição. O tom é de quem quer ajudar, não de quem encontrou um podre. Se ficar em dúvida, use a abordagem C.</div>
+
+<h3>Situação C — operação estabelecida, sem sinal claro</h3>
+<div class="copy"><span class="tag">WhatsApp · a mais neutra</span>Oi, tudo bem? Falo com o responsável pelo [NOME]?
+
+Sou nutricionista e faço adequação sanitária pra food service em São Paulo.
+
+Pergunta rápida: vocês têm nutricionista responsável acompanhando a operação e o Manual de Boas Práticas atualizado?
+
+Pergunto porque são os dois primeiros itens que a vigilância pede numa fiscalização, e é onde a maioria das operações tropeça.
+
+Se quiser um retrato rápido, tem um diagnóstico gratuito de 2 minutos aqui:
+foodguardassessoria.com.br/diagnostico</div>
+<div class="ok"><b>Por que esta funciona:</b> termina com uma pergunta simples de responder. Muita gente responde só "temos sim" ou "não temos" — e qualquer uma das duas abre a conversa.</div>
+
+<h3>Situação D — refeição coletiva, cantina ou escola</h3>
+<div class="copy"><span class="tag">WhatsApp · ticket mais alto, tom mais formal</span>Bom dia, tudo bem? Falo com o responsável pela [NOME]?
+
+Sou nutricionista e atendo operações de alimentação coletiva em São Paulo.
+
+Como vocês servem [escola/empresa/hospital], a exigência de nutricionista responsável e de documentação é mais rigorosa — e a fiscalização costuma ser mais frequente que em restaurante comum.
+
+Trabalho com acompanhamento continuado: documentação, treinamento de equipe e responsabilidade técnica assinada.
+
+Se fizer sentido conversar, tenho disponibilidade essa semana. E tem um diagnóstico gratuito de 2 minutos que dá um primeiro retrato:
+foodguardassessoria.com.br/diagnostico</div>
+
+<h2>Parte 4 · O follow-up</h2>
+<div class="card">
+<p><b>80% das vendas acontecem depois do quinto contato, e 80% das pessoas desistem antes do terceiro.</b> É aqui que a maioria perde dinheiro.</p>
+<table>
+<tr><th>Quando</th><th>O que mandar</th></tr>
+<tr><td><b>Dia 3</b></td><td>Conteúdo útil, sem cobrar resposta</td></tr>
+<tr><td><b>Dia 10</b></td><td>Outro ângulo do problema</td></tr>
+<tr><td><b>Dia 21</b></td><td>A mensagem de encerramento</td></tr>
+</table>
+
+<h4>Follow-up 1 — dia 3</h4>
+<div class="copy">Oi! Sei que a correria é grande aí.
+
+Escrevi um artigo sobre quanto custa de fato uma multa da vigilância — e por que a interdição costuma sair mais cara que a multa em si:
+
+foodguardassessoria.com.br/blog/quanto-custa-multa-vigilancia-sanitaria
+
+Se quiser trocar uma ideia depois, tô por aqui.</div>
+
+<h4>Follow-up 2 — dia 10</h4>
+<div class="copy">Oi, tudo bem?
+
+Uma coisa que vejo muito: operação que tem nutricionista no contrato, mas que não acompanha de verdade. Na hora da fiscalização, isso não protege — o fiscal pergunta quando foi a última visita, e se ninguém souber responder, o vínculo formal não vale.
+
+Se quiser que eu dê uma olhada na sua situação, é rápido e não custa nada.</div>
+
+<h4>Follow-up 3 — dia 21, o encerramento</h4>
+<div class="copy">Oi! Vou parar de te incomodar 😄
+
+Se em algum momento a vigilância aparecer ou você quiser organizar a documentação, é só me chamar. Fico à disposição.
+
+Sucesso com o [NOME]!</div>
+<div class="ok"><b>Esta última costuma ser a que mais responde.</b> Tira a pressão e mostra que você não é robô de disparo. Muita gente responde justamente aqui.</div>
+</div>
+
+<h2>Parte 5 · Objeções</h2>
+
+<div class="obj">
+<div class="q">"Já tenho nutricionista."</div>
+<div class="a">Que bom! E ele acompanha a operação de perto ou é mais no papel mesmo? Pergunto porque a vigilância tem olhado bastante isso — o fiscal pergunta quando foi a última visita, e se não houver registro, o vínculo formal acaba não protegendo.</div>
+<div class="pq">Não confronta e ainda planta a dúvida certa. Boa parte dos "já tenho" é vínculo formal sem acompanhamento — e o próprio dono sabe disso.</div>
+</div>
+
+<div class="obj">
+<div class="q">"Tá caro."</div>
+<div class="a">Entendo. Deixa eu colocar de outro jeito: uma semana de interdição num restaurante que fatura R$ 80 mil representa mais de R$ 18 mil que não entram, sem contar a multa e a adequação de emergência. O acompanhamento custa R$ 1.200 por mês. A conta costuma fechar antes do primeiro problema.<br><br>Mas se não for o momento, sem problema. Posso te mandar o checklist gratuito pra você mesmo conferir a operação?</div>
+<div class="pq">Reenquadra o preço como comparação de risco, e sai oferecendo valor em vez de insistir. Quem recebe o checklist costuma voltar depois.</div>
+</div>
+
+<div class="obj">
+<div class="q">"Nunca tive problema com a vigilância."</div>
+<div class="a">Isso é bom sinal. Só que a vigilância trabalha por amostragem e por denúncia — quem nunca foi visitado costuma ser o próximo da fila, e aí a visita chega sem aviso. A ideia é justamente estar pronto antes, não correr depois.</div>
+<div class="pq">Não desqualifica a experiência dele, mas mostra que ausência de fiscalização não é ausência de risco.</div>
+</div>
+
+<div class="obj">
+<div class="q">"Vou pensar / me manda material."</div>
+<div class="a">Claro! Te mando o diagnóstico, são 2 minutos e já dá um retrato da situação: foodguardassessoria.com.br/diagnostico<br><br>Te chamo na semana que vem pra saber o que achou, pode ser?</div>
+<div class="pq">Nunca deixe o "vou pensar" sem data. Marcar o próximo contato na hora é o que diferencia follow-up de esperança.</div>
+</div>
+
+<div class="obj">
+<div class="q">"Quem é você? Como conseguiu meu contato?"</div>
+<div class="a">Seu contato tá público no Google Maps. Sou nutricionista e trabalho com adequação sanitária pra food service aqui em SP — o site é foodguardassessoria.com.br, tem tudo lá.<br><br>Se preferir não receber mensagens, é só falar que eu tiro da lista na hora.</div>
+<div class="pq">Transparência total encerra a desconfiança. E oferecer a saída é obrigação sua sob a LGPD — respeite na hora e registre.</div>
+</div>
+
+<h2>Parte 6 · A rotina</h2>
+<div class="card dest">
+<h3>Uma hora por dia. Só isso.</h3>
+<table>
+<tr><th>Horário</th><th>O que fazer</th></tr>
+<tr><td><b>9h às 10h</b><br><i>ou 15h às 16h</i></td><td>10 abordagens novas + responder quem respondeu + follow-ups do dia</td></tr>
+</table>
+<div class="crit"><b>Nunca aborde entre 11h e 15h nem entre 19h e 22h.</b> É almoço e jantar — o dono está na operação, sua mensagem chega no pior momento e vira irritação. Esse detalhe sozinho muda a taxa de resposta.</div>
+
+<h3>A semana</h3>
+<table>
+<tr><th>Dia</th><th>Foco</th></tr>
+<tr><td><b>Segunda</b></td><td>Montar a lista da semana (50 prospects) + 10 abordagens</td></tr>
+<tr><td><b>Terça a quinta</b></td><td>10 abordagens por dia + follow-ups</td></tr>
+<tr><td><b>Sexta</b></td><td>10 abordagens + revisar números da semana + agendar reuniões</td></tr>
+</table>
+
+<h3>Os números que você deve esperar</h3>
+<table>
+<tr><th>Etapa</th><th>Por semana</th><th>Por mês</th></tr>
+<tr><td>Abordagens</td><td>50</td><td>200</td></tr>
+<tr><td>Respostas (10 a 20%)</td><td>5 a 10</td><td>20 a 40</td></tr>
+<tr><td>Conversas reais</td><td>2 a 4</td><td>8 a 16</td></tr>
+<tr><td>Propostas</td><td>1 a 2</td><td>4 a 8</td></tr>
+<tr><td><b>Clientes fechados</b></td><td>—</td><td><b>1 a 3</b></td></tr>
+</table>
+<div class="ok"><b>Um a três clientes por mês</b> em plano Essencial significa de R$ 2.300 a R$ 6.900 mensais recorrentes — que se acumulam mês a mês. Em seis meses de constância, isso vira algo entre R$ 14 mil e R$ 41 mil por mês.</div>
+</div>
+
+<h2>Parte 7 · Onde registrar</h2>
+<div class="card">
+<p>Sem registro você perde o follow-up, e o follow-up é onde está o dinheiro. Duas opções:</p>
+<h4>Planilha (comece por aqui)</h4>
+<p>Colunas: <code>nome</code> · <code>telefone</code> · <code>bairro</code> · <code>tipo</code> · <code>origem</code> · <code>data 1º contato</code> · <code>situação</code> · <code>próximo contato</code> · <code>observações</code></p>
+<p>Situações: <code>novo</code> → <code>abordado</code> → <code>respondeu</code> → <code>conversa</code> → <code>proposta</code> → <code>cliente</code> ou <code>descartado</code></p>
+
+<h4>O banco do site</h4>
+<p>Já existe a tabela <code>prospects</code> no Supabase, com os campos certos (CNPJ, nome, CNAE, bairro, data de abertura, status, opt-out). Se quiser, dá para montar uma tela simples de prospecção dentro do <code>/admin</code>: lista, filtro por situação, botão de WhatsApp e registro do follow-up. É meio dia de trabalho — me avise se fizer sentido.</p>
+</div>
+
+<h2>Parte 8 · LGPD, sem susto</h2>
+<div class="card warn">
+<p>Você vende conformidade. Sua prospecção precisa ser exemplar — e é perfeitamente possível.</p>
+<table>
+<tr><th>Pode</th><th>Não pode</th></tr>
+<tr><td>Contatar empresa por dado público (Google Maps, CNPJ)</td><td>Comprar lista de contatos</td></tr>
+<tr><td>Abordagem individual e personalizada</td><td>Disparo automatizado em massa</td></tr>
+<tr><td>Oferecer serviço com interesse legítimo B2B</td><td>Insistir depois de pedirem para parar</td></tr>
+<tr><td>Registrar quem pediu para não ser contatado</td><td>Ignorar pedido de exclusão</td></tr>
+</table>
+<div class="crit"><b>A regra inegociável:</b> se pedirem para parar, pare na hora e registre. Uma coluna "opt-out" na sua planilha resolve. Além de ser lei, é o mínimo de coerência com o que você vende.</div>
+</div>
+
+<h2>Os primeiros 7 dias</h2>
+<div class="card ok">
+<table>
+<tr><th>Dia</th><th>Tarefa</th><th>Tempo</th></tr>
+<tr><td><b>1</b></td><td>Criar a planilha + ligar para os 6 clientes atuais pedindo indicação</td><td>2h</td></tr>
+<tr><td><b>2</b></td><td>Montar lista de 50 restaurantes no Google Maps (Tatuapé, Penha, Itaquera)</td><td>1h30</td></tr>
+<tr><td><b>3</b></td><td>10 primeiras abordagens · ajustar o texto conforme as respostas</td><td>1h</td></tr>
+<tr><td><b>4</b></td><td>10 abordagens + abordar 3 contadores de restaurante</td><td>1h30</td></tr>
+<tr><td><b>5</b></td><td>10 abordagens + entrar em 2 grupos de donos de restaurante</td><td>1h</td></tr>
+<tr><td><b>6</b></td><td>10 abordagens + follow-ups do dia 3</td><td>1h</td></tr>
+<tr><td><b>7</b></td><td>Revisar: quantos responderam, o que funcionou, o que ajustar</td><td>30min</td></tr>
+</table>
+<p><b>Ao fim da semana:</b> 50 abordagens feitas, 5 a 10 respostas, 2 a 4 conversas em andamento. E, o mais importante, você vai ter descoberto qual abordagem funciona melhor com o seu público — que é uma informação que nenhum plano pode te dar antes de você tentar.</p>
+</div>
+
+</main>
+<footer class="wrap">Food Guard · Manual de prospecção · agosto/2026 · Complementa a estratégia em docs/marketing/estrategia-primeiros-clientes.html</footer>
+</body>
+</html>
