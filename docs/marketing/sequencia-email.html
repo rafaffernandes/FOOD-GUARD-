@@ -65,6 +65,38 @@ O Resend manda <b>3.000 e-mails por mês de graça</b>, com limite de 100 por di
 
 <div class="crit"><b>Três listas separadas, nunca uma só.</b> Quem fez o diagnóstico, quem baixou o checklist e os contadores parceiros recebem coisas diferentes. Mandar a mesma mensagem para os três é o jeito mais rápido de perder os três.</div>
 
+<h2>Dá para deixar automático?</h2>
+
+<div class="ok">
+<b>Dá — e custa R$ 0 por mês.</b> O que encarecia os agentes era a API da Claude, ou seja, a IA escrevendo texto a cada execução. O envio automático de e-mail não usa IA nenhuma: ele lê algumas linhas no Supabase, decide quem venceu o prazo e chama o Resend. Os dois já estão no plano gratuito, e o agendamento da Vercel no plano Hobby também é grátis — roda uma vez por dia, que é exatamente a granularidade da sequência.<br><br>
+Ou seja: <b>manter os agentes desligados e ter a sequência automática não são decisões conflitantes.</b> São coisas diferentes, e só uma delas custa dinheiro.
+</div>
+
+<h3 style="font-size:15.5px;font-weight:800;margin:22px 0 6px">Três dos cinco dá para automatizar</h3>
+<table>
+<tr><th>E-mail</th><th>Automático?</th><th>Por quê</th></tr>
+<tr><td><b>1 dia</b> · Os 3 erros</td><td style="color:var(--ok);font-weight:700">Sim</td><td>Só precisa do nome e do estabelecimento, que já estão salvos</td></tr>
+<tr><td><b>3 dias</b> · A recomendação que mais pesou</td><td style="color:var(--ok);font-weight:700">Sim</td><td>A recomendação sai do próprio diagnóstico — o motor já calcula qual área pesou mais</td></tr>
+<tr><td><b>7 dias</b> · Visita Diagnóstica</td><td style="color:var(--ok);font-weight:700">Sim</td><td>Só precisa do nome. <b>É o e-mail que converte</b>, e é o que mais sofre quando o envio é manual</td></tr>
+<tr><td><b>14 dias</b> · Prova social</td><td style="color:var(--warn);font-weight:700">Não</td><td>Depende de um caso real que ainda não existe. Fica manual até a primeira visita</td></tr>
+<tr><td><b>A cada 15 dias</b> · Newsletter</td><td style="color:var(--warn);font-weight:700">Não</td><td>Depende do artigo da quinzena. Continua manual sempre</td></tr>
+</table>
+
+<h3 style="font-size:15.5px;font-weight:800;margin:22px 0 6px">O que precisa existir antes</h3>
+<div class="card">
+<ol>
+<li><b>Uma tabela de log no Supabase.</b> É ela que impede o mesmo e-mail de sair duas vezes para a mesma pessoa. Uma chave única por lead e e-mail resolve, mesmo se o agendador rodar duas vezes no mesmo dia.</li>
+<li><b>Link de descadastro.</b> Hoje não existe nenhum em nenhum e-mail. É exigência da LGPD e é o que mantém a entrega boa — lista sem saída vira lista marcada como spam.</li>
+<li><b>A variável <code>CRON_SECRET</code> na Vercel.</b> A autenticação já está pronta no código (<code>requireCronSecret</code>), e ela falha fechada: sem o segredo, a rota recusa em vez de abrir.</li>
+<li><b>Devolver o bloco <code>crons</code> ao <code>vercel.json</code></b>, com a rota de e-mail e só ela. Os três agentes continuam fora do arquivo e continuam custando zero.</li>
+</ol>
+</div>
+
+<div class="warn">
+<b>Pendente antes de qualquer coisa: o layout.</b> Hoje o único e-mail que existe é o relatório do diagnóstico, com HTML próprio. Os da sequência precisam de um modelo, e a recomendação é ir no simples de propósito — nome no topo, texto, um botão só, assinatura com nome e CRN, rodapé com descadastro. Nada além disso.<br><br>
+O motivo não é economia de trabalho: e-mail que <b>parece escrito por uma pessoa é respondido</b>; e-mail que parece newsletter é ignorado e ainda cai na aba de Promoções. Os e-mails de 1, 3 e 7 dias existem para começar conversa, não para impressionar.
+</div>
+
 <h2>Os textos, prontos para copiar</h2>
 
 <div class="mail">
@@ -158,7 +190,8 @@ Se não quiser mais receber, o link de descadastro está no rodapé. Sem ressent
 </ul>
 </div>
 
-<div class="ok"><b>Onde o texto vive no código.</b> Os cinco e-mails estão em <code>lib/content/email-sequence.ts</code>, estruturados com assunto, pré-cabeçalho, corpo e botão. Quando um dia fizer sentido automatizar, o conteúdo já está pronto e é só ligar o agendador — mas <b>nada disso é necessário agora</b>: envio manual resolve bem nesse volume.</div>
+<div class="ok"><b>Onde o texto vive no código.</b> Os cinco e-mails estão em <code>lib/content/email-sequence.ts</code>, estruturados com assunto, pré-cabeçalho, corpo e botão — separados da apresentação, como todo o resto do conteúdo do projeto. É o mesmo arquivo que o envio automático vai ler quando o layout estiver definido, então o texto não precisa ser escrito duas vezes.<br><br>
+<b>Enquanto isso, envio manual.</b> Com dez a vinte leads por mês, vinte minutos na segunda-feira dão conta — e tem uma vantagem real: mandando à mão nas primeiras semanas você descobre qual dos cinco e-mails faz a pessoa responder, antes de congelar isso numa automação.</div>
 
 </main>
 <footer class="wrap">Food Guard · Sequência de e-mail pós-diagnóstico · Textos prontos para envio manual via Resend ou do próprio e-mail da empresa</footer>
