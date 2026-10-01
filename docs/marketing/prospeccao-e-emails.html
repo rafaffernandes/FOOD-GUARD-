@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Plano de prospecção e modelos de e-mail — Food Guard</title>
+<style>
+  @page { size: A4; margin: 15mm 13mm 16mm; }
+  :root{--azul:#0F2947;--azul2:#17395E;--verde:#8CC63F;--verde2:#4F7D16;
+        --ink:#1F2E3D;--muted:#5B6B7A;--line:#DCE5ED;--soft:#F2F6FA;--warn:#B85A14;--warn50:#FFF7ED}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+       color:var(--ink);font-size:10pt;line-height:1.5}
+
+  /* capa */
+  .capa{height:264mm;display:flex;flex-direction:column;justify-content:space-between;
+        background:var(--azul);color:#fff;padding:20mm 16mm;page-break-after:always}
+  .marca{font-size:9pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--verde)}
+  .regua{width:34mm;height:1.4mm;background:var(--verde);margin-top:4mm}
+  .capa h1{font-size:28pt;line-height:1.14;font-weight:800;letter-spacing:-.5pt;margin:0 0 6mm}
+  .capa .sub{font-size:11.5pt;line-height:1.55;color:#C6D7E6;max-width:140mm;margin:0}
+  .capa .idx{font-size:9.5pt;color:#8FA8BF;line-height:1.75}
+  .capa .idx b{color:var(--verde)}
+
+  h2{font-size:13pt;font-weight:800;color:#fff;background:var(--azul2);
+     padding:3mm 5mm;border-radius:2mm;margin:0 0 4mm;page-break-after:avoid}
+  h2 span{color:var(--verde)}
+  h3{font-size:11pt;font-weight:800;color:var(--azul);margin:6mm 0 2mm;page-break-after:avoid}
+  section{page-break-inside:avoid;margin:0 0 7mm}
+  .nova{page-break-before:always}
+  p{margin:0 0 3mm}
+  .intro{background:var(--soft);border-left:1.2mm solid var(--verde);border-radius:2mm;
+         padding:3.5mm 5mm;margin:0 0 5mm;font-size:9.5pt;color:var(--muted)}
+  .intro b{color:var(--ink)}
+  .alerta{background:var(--warn50);border-left:1.2mm solid var(--warn);border-radius:2mm;
+          padding:3.5mm 5mm;margin:3mm 0;font-size:9.3pt;color:#7A3A05}
+
+  table{width:100%;border-collapse:collapse;font-size:9pt;margin:3mm 0}
+  th{text-align:left;padding:2.4mm 3mm;background:var(--azul);color:#fff;font-size:8.2pt;
+     text-transform:uppercase;letter-spacing:.04em}
+  td{padding:2.4mm 3mm;border-bottom:.2mm solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:var(--soft)}
+
+  /* funil */
+  .funil{display:flex;flex-direction:column;align-items:center;gap:1.6mm;margin:4mm 0}
+  .funil div{border-radius:1.6mm;padding:2.4mm 4mm;text-align:center;font-size:9.5pt;color:#fff}
+  .funil b{font-size:11pt}
+
+  /* whats */
+  .whats{background:#E7F3DC;border:.25mm solid #B9D98C;border-radius:3mm;padding:4mm 5mm;
+         margin:3mm 0;font-size:9.4pt;line-height:1.62;white-space:pre-wrap}
+  .rotulo{font-size:8.4pt;font-weight:800;text-transform:uppercase;letter-spacing:.08em;
+          color:var(--verde2);margin:4mm 0 1mm}
+
+  /* modelo de e-mail */
+  .mail{border:.3mm solid var(--line);border-radius:3mm;overflow:hidden;margin:3mm 0 5mm;
+        page-break-inside:avoid;box-shadow:0 1mm 3mm rgba(15,41,71,.07)}
+  .mail .assunto{background:var(--soft);padding:2.6mm 5mm;font-size:8.8pt;color:var(--muted);
+                 border-bottom:.2mm solid var(--line)}
+  .mail .assunto b{color:var(--ink);font-size:9.4pt}
+  .mail .topo{background:var(--azul);padding:4.5mm 5mm 3.5mm}
+  .mail .topo .wm{font-size:10pt;font-weight:800;letter-spacing:.16em;color:#fff;text-transform:uppercase}
+  .mail .topo .wm span{color:var(--verde)}
+  .mail .barra{height:1.1mm;background:var(--verde)}
+  .mail .corpo{background:#fff;padding:6mm 7mm;font-size:9.6pt;line-height:1.62}
+  .mail .corpo p{margin:0 0 3.4mm}
+  .mail .corpo b{color:var(--azul)}
+  .btn{display:inline-block;background:var(--verde);color:var(--azul);font-weight:800;
+       font-size:9.4pt;padding:3mm 7mm;border-radius:2mm;margin:1mm 0 3mm}
+  .assina{border-top:.2mm solid var(--line);padding-top:3.5mm;margin-top:1mm;font-size:9pt;color:var(--muted);line-height:1.5}
+  .assina b{color:var(--azul)}
+  .mail .rodape{background:var(--soft);padding:3.5mm 7mm;font-size:7.8pt;color:#8794A1;line-height:1.5;
+                border-top:.2mm solid var(--line)}
+  .mail .rodape u{color:var(--verde2)}
+  .nota{font-size:8.8pt;color:var(--muted);background:var(--soft);border-radius:2mm;
+        padding:2.6mm 4mm;margin:-2mm 0 5mm;line-height:1.5}
+  .nota b{color:var(--ink)}
+  .ph{background:#FFF1DC;color:#7A3A05;padding:0 1mm;border-radius:.8mm;font-weight:700}
+
+  .final{page-break-before:always;background:var(--azul);color:#fff;border-radius:3mm;padding:11mm}
+  .final h3{font-size:16pt;color:#fff;margin:0 0 4mm}
+  .final p{color:#C6D7E6;font-size:10.2pt;line-height:1.6}
+  .final .destaque{background:var(--verde);color:var(--azul);border-radius:2mm;padding:4.5mm 5mm;
+                   font-size:10pt;line-height:1.55;font-weight:600;margin:4mm 0 0}
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <div><div class="marca">Food Guard Assessoria</div><div class="regua"></div></div>
+  <div>
+    <h1>Plano de prospecção<br>e modelos de e-mail</h1>
+    <p class="sub">Todo o caminho do primeiro contato até o contrato recorrente: quem aborda, quando, por qual canal, com qual texto — e o que sai por e-mail depois que a Visita Diagnóstica é paga.</p>
+  </div>
+  <div class="idx">
+    <b>1.</b> O funil, em uma página &nbsp;·&nbsp; <b>2.</b> Plano de prospecção<br>
+    <b>3.</b> Mensagens de WhatsApp &nbsp;·&nbsp; <b>4.</b> O modelo de e-mail<br>
+    <b>5.</b> A sequência pós-diagnóstico &nbsp;·&nbsp; <b>6.</b> Depois que a visita é paga<br><br>
+    Outubro de 2026 · foodguardassessoria.com.br
+  </div>
+</div>
+
+<section>
+<h2><span>1 ·</span> O funil, em uma página</h2>
+<div class="intro">Cada faixa abaixo é um passo do cliente. À direita de cada uma está <b>o que a Food Guard envia</b> naquele momento, e qual seção deste documento traz o texto.</div>
+<div class="funil">
+  <div style="width:100%;background:#0F2947">Lista fria qualificada &nbsp;·&nbsp; <b>WhatsApp de abordagem</b> &nbsp;·&nbsp; seção 3.1</div>
+  <div style="width:88%;background:#1C456E">Sem resposta em 72h &nbsp;·&nbsp; <b>WhatsApp de follow-up</b> &nbsp;·&nbsp; seção 3.2</div>
+  <div style="width:76%;background:#2A5B8C">Fez o diagnóstico &nbsp;·&nbsp; <b>relatório automático</b> &nbsp;·&nbsp; já no ar</div>
+  <div style="width:64%;background:#3870A8">Virou lead &nbsp;·&nbsp; <b>e-mails de 1, 3 e 7 dias</b> &nbsp;·&nbsp; seção 5</div>
+  <div style="width:52%;background:#8CC63F;color:#0F2947">Aceitou a visita &nbsp;·&nbsp; <b>link de pagamento</b> &nbsp;·&nbsp; seção 3.4</div>
+  <div style="width:44%;background:#6FA32B">Pagou &nbsp;·&nbsp; <b>confirmação, agenda e lembrete</b> &nbsp;·&nbsp; seção 6</div>
+  <div style="width:36%;background:#4F7D16">Recebeu o relatório &nbsp;·&nbsp; <b>proposta do plano</b> &nbsp;·&nbsp; seção 6.5</div>
+</div>
+<div class="alerta"><b>O ponto de vazamento está na quarta faixa.</b> Hoje quem vira lead recebe o relatório e nunca mais nada. As seções 5 e 6 existem para fechar esse buraco.</div>
+</section>
+
+<section class="nova">
+<h2><span>2 ·</span> Plano de prospecção</h2>
+<table>
+<tr><th style="width:21%">Canal</th><th style="width:16%">Quem assina</th><th style="width:19%">Quando</th><th style="width:14%">Volume</th><th style="width:30%">O que envia</th></tr>
+<tr><td><b>WhatsApp frio</b></td><td>Renan, ou Rafael em nome da assessoria</td><td>9h às 10h, de segunda a sexta</td><td>20 por dia</td><td>Mensagem 3.1, adaptada ao tipo de operação da casa</td></tr>
+<tr><td><b>Follow-up</b></td><td>Quem abordou</td><td>72h depois, uma única vez</td><td>—</td><td>Mensagem 3.2. Sem resposta depois dela, encerra</td></tr>
+<tr><td><b>Contador parceiro</b></td><td>Renan</td><td>Semanas 3 e 4</td><td>10 escritórios</td><td>Mensagem 3.3 e visita presencial com material impresso</td></tr>
+<tr><td><b>Porta a porta</b></td><td>Renan</td><td>Semana 6, 9h às 10h30</td><td>20 casas</td><td>Conversa presencial e o checklist impresso</td></tr>
+<tr><td><b>Sequência por e-mail</b></td><td>Food Guard</td><td>1, 3 e 7 dias após o diagnóstico</td><td>Todo lead</td><td>E-mails da seção 5</td></tr>
+<tr><td><b>Pós-pagamento</b></td><td>Renan</td><td>Do pagamento até 7 dias após o relatório</td><td>Cada visita</td><td>E-mails da seção 6</td></tr>
+</table>
+
+<h3>As três regras que mais mudam a taxa de resposta</h3>
+<table>
+<tr><th style="width:34%">Regra</th><th style="width:66%">Por quê</th></tr>
+<tr><td><b>Nunca entre 11h e 15h, nem entre 19h e 22h</b></td><td>É almoço e jantar. A mensagem chega no pior momento possível e vira irritação em vez de oportunidade</td></tr>
+<tr><td><b>Citar o tipo de operação na terceira linha</b></td><td>“Vocês trabalham com buffet” prova que não é disparo em massa. É o que separa resposta de bloqueio</td></tr>
+<tr><td><b>Nunca mencionar a nota do Google</b></td><td>Soa como crítica pública ao negócio dele. Fecha a porta na hora, mesmo quando a observação é correta</td></tr>
+</table>
+</section>
+
+<section class="nova">
+<h2><span>3 ·</span> Mensagens de WhatsApp</h2>
+<div class="intro">WhatsApp é conversa, não peça de design — por isso aqui é texto puro. Os trechos em <span class="ph">destaque</span> são preenchidos a cada envio.</div>
+
+<p class="rotulo">3.1 · Abordagem fria — versão do Renan</p>
+<div class="whats">Oi, tudo bem? Falo com o responsável pelo <span class="ph">nome da casa</span>?
+
+Sou nutricionista e trabalho com adequação sanitária para food service aqui em São Paulo.
+
+Entrei em contato porque vocês trabalham com <span class="ph">buffet / pescado cru / por quilo</span>, que é o formato que a vigilância olha com mais rigor.
+
+Tenho um diagnóstico rápido, de 2 minutos, que mostra onde a operação está exposta:
+foodguardassessoria.com.br/diagnostico
+
+É gratuito. Se fizer sentido depois, a gente conversa.</div>
+
+<p class="rotulo">3.2 · Follow-up, 72 horas depois</p>
+<div class="whats">Oi, <span class="ph">nome</span>! Só passando aqui de novo, caso a mensagem tenha se perdido na correria.
+
+O diagnóstico leva 2 minutos e não tem compromisso nenhum — muita gente faz só para saber como está.
+
+Se não for o momento, sem problema. Qualquer coisa estou por aqui.</div>
+<div class="alerta"><b>Uma única vez.</b> Quem manda três cobranças seguidas é bloqueado, e um número bloqueado prejudica os próximos envios.</div>
+
+<p class="rotulo">3.3 · Abordagem ao contador</p>
+<div class="whats">Oi, <span class="ph">nome</span>, tudo bem? Sou o Renan, nutricionista da Food Guard.
+
+Procurei vocês porque atendemos restaurantes na Zona Leste com adequação sanitária — alvará, Manual de Boas Práticas, POPs e responsabilidade técnica.
+
+Imagino que seus clientes de food service perguntem sobre isso de vez em quando. Nós pagamos 15% recorrente por indicação que fecha, ou R$ 500 fixos — o que o escritório preferir.
+
+Posso passar aí para um café essa semana e explicar em 15 minutos?</div>
+
+<p class="rotulo">3.4 · Quando a pessoa aceita a visita — o envio do link</p>
+<div class="whats">Perfeito, <span class="ph">nome</span>!
+
+A Visita Diagnóstica são 2 horas na sua cozinha, com checklist de 80 itens. Em 48 horas você recebe o relatório com tudo fotografado e o plano de ação na ordem de prioridade.
+
+São R$ 490, pagamento único. E se você fechar um dos planos mensais em até 30 dias, esse valor é abatido da primeira mensalidade.
+
+Segue o link: <span class="ph">link do Asaas</span>
+
+Assim que o pagamento confirmar, te mando as datas disponíveis para você escolher.</div>
+<div class="alerta"><b>A última linha é a mais importante.</b> Ela deixa claro, sem soar como cobrança, que a data só é reservada depois do pagamento.</div>
+</section>
+
+<section class="nova">
+<h2><span>4 ·</span> O modelo de e-mail Food Guard</h2>
+<div class="intro">Um modelo só, usado em todos os e-mails. <b>Deliberadamente simples:</b> e-mail que parece escrito por uma pessoa é respondido; e-mail que parece newsletter é ignorado e ainda cai na aba de Promoções. Cinco partes fixas, nada além delas.</div>
+
+<div class="mail">
+  <div class="assunto">Assunto: <b>uma frase em minúscula, sem emoji e sem CAPS</b><br>Pré-cabeçalho: a linha que aparece ao lado do assunto na caixa de entrada</div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div>
+  <div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <b>primeiro nome</b>.</p>
+    <p>Corpo em parágrafos curtos, no máximo quatro ou cinco. Nada de coluna dupla, nada de banner, nada de imagem decorativa — tudo isso é sinal de e-mail de massa para o filtro de spam.</p>
+    <p><b>Negrito</b> só no que realmente importa, uma ou duas vezes por e-mail.</p>
+    <span class="btn">Um botão só, e nunca dois</span>
+    <div class="assina">
+      <b>Renan <span class="ph">sobrenome</span></b><br>
+      Nutricionista · CRN-3 <span class="ph">número</span><br>
+      Food Guard Assessoria · <span class="ph">(11) 9XXXX-XXXX</span>
+    </div>
+  </div>
+  <div class="rodape">
+    Food Guard Assessoria · <span class="ph">CNPJ</span> · São Paulo, SP<br>
+    Você recebe este e-mail porque fez o diagnóstico gratuito no nosso site. <u>Não quero mais receber</u>.
+  </div>
+</div>
+<div class="nota"><b>As cinco partes:</b> faixa azul com a marca, régua verde, corpo em texto, assinatura com nome e CRN, rodapé com CNPJ e descadastro. <b>O descadastro não é opcional</b> — é exigência da LGPD e é o que mantém a entrega boa. Lista sem saída vira lista marcada como spam.</div>
+</section>
+
+<section class="nova">
+<h2><span>5 ·</span> A sequência pós-diagnóstico</h2>
+<div class="intro">Sai depois do relatório automático, que já funciona. São estes três que hoje não existem — e é onde o funil vaza.</div>
+
+<div class="mail">
+  <div class="assunto">1 dia depois · Assunto: <b>os 3 erros que mais derrubam uma cozinha na fiscalização</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>.</p>
+    <p>Ontem você fez o diagnóstico da <span class="ph">estabelecimento</span>. Hoje queria te contar uma coisa que surpreende quase todo mundo: os três motivos mais comuns de autuação não têm nada a ver com a cozinha estar suja.</p>
+    <p><b>1. Falta registro de temperatura.</b> O equipamento funciona, a comida está na temperatura certa, mas ninguém anota. Para a fiscalização, o que não foi registrado não aconteceu.</p>
+    <p><b>2. O Manual de Boas Práticas não está assinado.</b> Muita casa tem um manual genérico baixado da internet, sem data e sem assinatura do responsável. Nesse estado ele não vale nada.</p>
+    <p><b>3. A capacitação não tem comprovante.</b> O treinamento aconteceu, mas não há lista de presença nem carga horária. Sem papel, não houve treinamento.</p>
+    <p>Os três se resolvem com organização, não com obra. É por isso que adequação quase sempre custa menos do que o dono imagina.</p>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP · <u>Não quero mais receber</u></div>
+</div>
+<div class="nota"><b>Sem botão, de propósito.</b> Este e-mail não vende nada — ele prova que entendemos a operação. Pedir algo aqui queima o efeito.</div>
+
+<div class="mail">
+  <div class="assunto">3 dias depois · Assunto: <b>sobre o ponto que mais pesou no seu diagnóstico</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>.</p>
+    <p>No seu diagnóstico, a recomendação que mais pesou foi esta:</p>
+    <p><b><span class="ph">a maior lacuna, vinda do próprio diagnóstico</span></b></p>
+    <p>Não é incomum — aparece na maioria das operações que avaliamos. Separei um material que explica esse ponto com calma: o que a norma exige, o que a fiscalização pede para ver e o que dá para resolver sem parar a operação.</p>
+    <p>Não tem nada para comprar nessa leitura.</p>
+    <span class="btn">Ler o material</span>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP · <u>Não quero mais receber</u></div>
+</div>
+
+<div class="mail">
+  <div class="assunto">7 dias depois · Assunto: <b>dá para mapear sua cozinha inteira em duas horas</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>.</p>
+    <p>O diagnóstico online dá um retrato geral, mas tem um limite: responde cinco perguntas e não entra na sua cozinha.</p>
+    <p>A <b>Visita Diagnóstica</b> resolve isso. São duas horas na operação, com checklist de 80 itens da RDC 216/2004 e da Portaria 2.619/2011. Em 48 horas você recebe o relatório com cada não conformidade fotografada e o plano de ação na ordem em que deve ser resolvido.</p>
+    <p><b>São R$ 490, pagamento único.</b> Se você seguir com um dos planos mensais em até 30 dias, esse valor é creditado na primeira mensalidade. O relatório é seu de qualquer forma.</p>
+    <span class="btn">Quero agendar a visita</span>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP · <u>Não quero mais receber</u></div>
+</div>
+<div class="nota"><b>Este é o e-mail que converte.</b> É o único da sequência com oferta, e vem depois de dois que não pediram nada. Essa ordem não é detalhe — é o que faz ele funcionar.</div>
+</section>
+
+<section class="nova">
+<h2><span>6 ·</span> Depois que a visita é paga</h2>
+<div class="intro">O Asaas manda o recibo sozinho. <b>O que ele não manda é a Food Guard dizendo o que acontece agora</b> — e é esse silêncio entre o pagamento e a visita que gera o arrependimento. Cinco e-mails fecham o ciclo.</div>
+
+<div class="mail">
+  <div class="assunto">Assim que o pagamento confirma · Assunto: <b>pagamento confirmado — vamos marcar sua visita</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>. Pagamento confirmado, obrigado pela confiança.</p>
+    <p>Agora é marcar a data. A visita leva <b>cerca de duas horas</b> e funciona melhor fora do horário de pico — normalmente entre <b>15h e 17h</b>, quando a cozinha já saiu do almoço e ainda não entrou no jantar.</p>
+    <p>Tenho estas datas abertas: <span class="ph">três opções de dia e horário</span></p>
+    <p>É só responder com a que funciona melhor para vocês. Se nenhuma servir, me diga qual seria o ideal que eu ajusto.</p>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span><br>Food Guard Assessoria · <span class="ph">(11) 9XXXX-XXXX</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP</div>
+</div>
+<div class="nota"><b>Transacional, não marketing.</b> Este e-mail e os três seguintes não levam descadastro: são parte do serviço que a pessoa comprou.</div>
+
+<div class="mail">
+  <div class="assunto">Quando a data é confirmada · Assunto: <b>visita marcada para <span class="ph">dia</span> — o que separar</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>. Confirmado: <b><span class="ph">dia e horário</span></b>, na <span class="ph">endereço</span>.</p>
+    <p>Para a visita render, vale deixar à mão o que existir destes itens. Se não existir, melhor ainda — já é informação para o relatório:</p>
+    <p>• Manual de Boas Práticas e POPs<br>
+       • Alvará ou licença sanitária<br>
+       • Último certificado de dedetização<br>
+       • Laudo de potabilidade da água<br>
+       • Comprovantes de treinamento da equipe<br>
+       • Planilhas de controle de temperatura</p>
+    <p><b>Quem precisa estar:</b> você ou quem responde pela cozinha. Não precisa parar a operação — na verdade é melhor que eu veja a cozinha funcionando.</p>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP</div>
+</div>
+<div class="nota"><b>A lista faz dois trabalhos.</b> Torna a visita mais produtiva e, antes disso, já mostra ao dono quanta coisa ele não tem — o que prepara o terreno para o relatório.</div>
+
+<div class="mail">
+  <div class="assunto">Véspera, por WhatsApp · Assunto: — (mensagem curta, não e-mail)</div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>! Passando para confirmar nossa visita amanhã, <span class="ph">dia</span> às <span class="ph">hora</span>.</p>
+    <p>Está de pé? Qualquer imprevisto, me avisa que a gente remarca sem problema.</p>
+    <div class="assina"><b>Renan</b> · Food Guard</div>
+  </div>
+  <div class="rodape">Esta confirmação vai por WhatsApp, não por e-mail — tem muito mais chance de ser lida na véspera</div>
+</div>
+
+<div class="mail">
+  <div class="assunto">48h após a visita · Assunto: <b>seu relatório ficou pronto</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>. Segue o relatório da <span class="ph">estabelecimento</span>, em anexo.</p>
+    <p>Encontrei <b><span class="ph">número</span> não conformidades</b>. Antes de você abrir e levar um susto: isso está dentro da média do que vejo, e a maior parte se resolve com organização, não com obra.</p>
+    <p>O relatório está em ordem de prioridade. <b>As <span class="ph">três</span> primeiras são as que te expõem de verdade</b> numa fiscalização — se você só fizer essas, já muda bastante.</p>
+    <p>Fique à vontade para me ligar se quiser que eu explique qualquer item. Está incluído.</p>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span><br>Food Guard Assessoria · <span class="ph">(11) 9XXXX-XXXX</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP</div>
+</div>
+<div class="nota"><b>A segunda frase evita o maior risco deste e-mail:</b> o dono abrir, ver trinta itens, se sentir julgado e nunca mais responder. Antecipar o susto desarma ele.</div>
+
+<div class="mail">
+  <div class="assunto">7 dias após o relatório · Assunto: <b>como ficou a lista do relatório?</b></div>
+  <div class="topo"><div class="wm">Food<span>Guard</span></div></div><div class="barra"></div>
+  <div class="corpo">
+    <p>Oi, <span class="ph">nome</span>. Passou uma semana do relatório — conseguiu avançar em alguma coisa?</p>
+    <p>Pergunto porque o que eu vejo acontecer é quase sempre o mesmo: as duas ou três primeiras saem rápido, e aí a operação engole o resto. Não é falta de vontade, é falta de alguém acompanhando.</p>
+    <p>É exatamente para isso que existem os planos mensais: eu volto periodicamente, cuido da documentação e assumo a responsabilidade técnica. <b>Os R$ 490 da visita são creditados na primeira mensalidade</b>, e esse crédito vale até <span class="ph">data, 30 dias após a visita</span>.</p>
+    <p>Quer que eu te mostre qual plano faz sentido para o tamanho da <span class="ph">estabelecimento</span>?</p>
+    <span class="btn">Ver os planos</span>
+    <div class="assina"><b>Renan <span class="ph">sobrenome</span></b><br>Nutricionista · CRN-3 <span class="ph">número</span></div>
+  </div>
+  <div class="rodape">Food Guard Assessoria · São Paulo, SP · <u>Não quero mais receber</u></div>
+</div>
+<div class="nota"><b>É aqui que o recorrente se decide.</b> A data do crédito dá prazo à conversa sem precisar inventar urgência. E a pergunta do fim é aberta: pede permissão para mostrar, não pede para fechar.</div>
+</section>
+
+<div class="final">
+  <h3>Onde cada peça fica</h3>
+  <p><b>Textos de WhatsApp:</b> seções 3.1 a 3.4 deste documento. Copiar e adaptar a cada envio.</p>
+  <p><b>Sequência pós-diagnóstico:</b> o conteúdo vive em <code style="color:#8CC63F">lib/content/email-sequence.ts</code>, separado da apresentação. O layout da seção 4 ainda precisa virar código.</p>
+  <p><b>E-mails pós-pagamento:</b> envio manual, sempre. São poucos por mês, cada um tem informação específica da visita, e automatizar isso só faria sentido com volume muito maior.</p>
+  <div class="destaque">Antes de qualquer envio: o <b>link de descadastro ainda não existe</b> em nenhum e-mail da Food Guard. É exigência da LGPD e é o que mantém a entrega boa. É o primeiro item a resolver.</div>
+</div>
+
+</body>
+</html>
