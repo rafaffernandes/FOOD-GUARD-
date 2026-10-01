@@ -44,7 +44,7 @@ Motivos: ${q.reasons.join("; ")}.
 Diretrizes:
 - Use o canal "${q.channel}". Tom adequado ao tier (A = urgência de cuidado, prepara terreno pro nutricionista ligar; C = nutrição leve).
 - Saudação personalizada com os dados do diagnóstico; confirme/aprofunde a dor ligada ao gap principal, sem alarmismo.
-- Ao explicar o plano recomendado você PODE citar a faixa pública (R$ 1.200 a R$ 3.200/mês), sempre remetendo a definição à conversa com o nutricionista. Não feche nem negocie; não agende sozinho — só conecta.
+- Ao explicar o plano recomendado você PODE citar a faixa pública (R$ 1.200 a R$ 3.400/mês), sempre remetendo a definição à conversa com o nutricionista. Não feche nem negocie; não agende sozinho — só conecta.
 - CTA proporcional (A/B: convidar para a conversa com o nutricionista; C: oferecer conteúdo).
 - Curto e humano. "rationale": 1 frase do porquê para quem aprova.`;
 

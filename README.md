@@ -52,8 +52,8 @@ vale 0–20 pontos (mais pontos = mais conformidade = menor risco).
 
 | Score  | Risco    | Plano recomendado        |
 | ------ | -------- | ------------------------ |
-| 0–44   | Alto     | Premium (R$ 3.200/mês)   |
-| 45–69  | Médio    | Essencial (R$ 2.200/mês) |
+| 0–44   | Alto     | Premium (R$ 3.400/mês)   |
+| 45–69  | Médio    | Essencial (R$ 2.300/mês) |
 | 70–100 | Baixo    | Básico (R$ 1.200/mês)    |
 
 O score é **recalculado no servidor** (`app/api/leads`) — o cliente não é fonte

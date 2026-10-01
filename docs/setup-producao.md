@@ -104,7 +104,7 @@ Há **dois modos** — o código tenta link estático primeiro, depois a API
 
 ### Modo A — Links de pagamento estáticos (mais simples)
 1. No Asaas: **Cobranças → Link de pagamento** → crie 3 links recorrentes:
-   - **Básico R$ 1.200/mês** · **Essencial R$ 2.200/mês** · **Premium R$ 3.200/mês**
+   - **Básico R$ 1.200/mês** · **Essencial R$ 2.300/mês** · **Premium R$ 3.400/mês**
    - ⚠️ Use **exatamente** os preços de `lib/content/plans.ts`.
 2. Cole as URLs:
 

@@ -6,7 +6,7 @@ saudável. Todos os valores em BRL/mês, salvo indicação.
 > **Como usar:** ajuste os campos em **Premissas**. Os blocos abaixo
 > recalculam mentalmente — quando virar planilha, cada linha é uma fórmula.
 > **Preços oficiais** (fonte da verdade: `lib/content/plans.ts`):
-> Básico R$ 1.200 · Essencial R$ 2.200 · Premium R$ 3.200.
+> Básico R$ 1.200 · Essencial R$ 2.300 · Premium R$ 3.400.
 
 ---
 
@@ -16,14 +16,14 @@ saudável. Todos os valores em BRL/mês, salvo indicação.
 |---|---|---|
 | Mix de planos (Básico/Essencial/Premium) | 20% / 55% / 25% | hipótese — ajustar após 10 vendas |
 | Preço Básico | R$ 1.200 | recorrente |
-| Preço Essencial | R$ 2.200 | recorrente |
-| Preço Premium | R$ 3.200 | recorrente |
-| **Ticket médio ponderado (ARPU)** | **R$ 2.250** | 0,2·1.200 + 0,55·2.200 + 0,25·3.200 |
-| Custo variável por cliente (nutricionista PJ + Asaas + tooling) | R$ 680 | ~30% do ARPU |
-| **Margem bruta por cliente** | **R$ 1.570** | 70% |
+| Preço Essencial | R$ 2.300 | recorrente |
+| Preço Premium | R$ 3.400 | recorrente |
+| **Ticket médio ponderado (ARPU)** | **R$ 2.355** | 0,2·1.200 + 0,55·2.300 + 0,25·3.400 |
+| Custo variável por cliente (nutricionista PJ + Asaas + tooling) | R$ 707 | ~30% do ARPU |
+| **Margem bruta por cliente** | **R$ 1.648** | 70% |
 | Churn mensal | 4% | meta — consultoria recorrente bem entregue |
 | **Lifetime (1/churn)** | **25 meses** | |
-| **LTV (margem × lifetime)** | **R$ 39.250** | |
+| **LTV (margem × lifetime)** | **R$ 41.200** | |
 
 ---
 
@@ -63,11 +63,11 @@ CAC = custo por cliente fechado = CPL ÷ taxa lead→cliente.
 
 | Métrica | Cálculo | Resultado | Saúde |
 |---|---|---|---|
-| Payback (meses pra recuperar CAC) | CAC ÷ margem bruta = 1.500 ÷ 1.570 | **~1,0 mês** | ✅ excelente |
-| LTV / CAC | 39.250 ÷ 1.500 | **26x** | ✅ acima de 3x já é bom |
-| % do 1º mês pra cobrir CAC | 1.500 ÷ 2.250 | **67%** | ✅ não queima caixa |
+| Payback (meses pra recuperar CAC) | CAC ÷ margem bruta = 1.500 ÷ 1.648 | **~0,9 mês** | ✅ excelente |
+| LTV / CAC | 41.200 ÷ 1.500 | **27x** | ✅ acima de 3x já é bom |
+| % do 1º mês pra cobrir CAC | 1.500 ÷ 2.355 | **64%** | ✅ não queima caixa |
 
-> Mesmo se CAC dobrar pra R$ 3.000, LTV/CAC = 13x — ainda saudável. O modelo
+> Mesmo se CAC dobrar pra R$ 3.000, LTV/CAC = 14x — ainda saudável. O modelo
 > aguenta erro de mira em ads.
 
 ---
@@ -76,12 +76,12 @@ CAC = custo por cliente fechado = CPL ÷ taxa lead→cliente.
 
 | Cenário | Ads/mês | Leads (CPL R$ 50) | Clientes novos (7% conv) | MRR adicionado | Margem nova/mês |
 |---|---|---|---|---|---|
-| Validação | R$ 1.500 | 30 | 2 | R$ 4.500 | R$ 3.140 |
-| Tração | R$ 3.000 | 60 | 4 | R$ 9.000 | R$ 6.280 |
-| Escala | R$ 6.000 | 120 | 8 | R$ 18.000 | R$ 12.560 |
-| Agressivo | R$ 12.000 | 240 | 16 | R$ 36.000 | R$ 25.120 |
+| Validação | R$ 1.500 | 30 | 2 | R$ 4.710 | R$ 3.296 |
+| Tração | R$ 3.000 | 60 | 4 | R$ 9.420 | R$ 6.592 |
+| Escala | R$ 5.900 | 120 | 8 | R$ 18.840 | R$ 13.184 |
+| Agressivo | R$ 12.000 | 240 | 16 | R$ 37.680 | R$ 26.368 |
 
-**Leitura:** cada R$ 1.500 em ads, em regime saudável, traz ~R$ 4.500 de MRR
+**Leitura:** cada R$ 1.500 em ads, em regime saudável, traz ~R$ 4.700 de MRR
 novo. Como é recorrente, o ROI explode no mês 2 em diante.
 
 ---
@@ -91,13 +91,13 @@ novo. Como é recorrente, o ROI explode no mês 2 em diante.
 | Linha | Validação | Tração | Escala |
 |---|---|---|---|
 | Infra (Vercel/Supabase/Resend/domínio) | R$ 4 | R$ 250 | R$ 360 |
-| Ads | R$ 1.500 | R$ 3.000 | R$ 6.000 |
+| Ads | R$ 1.500 | R$ 3.000 | R$ 5.900 |
 | Gestor de tráfego | — | R$ 1.800 | R$ 2.500 |
 | Claude Code (dev contínuo) | R$ 550 | R$ 800 | R$ 1.100 |
 | IA operacional (qualificação WhatsApp) | — | R$ 100 | R$ 300 |
 | **Total custo fixo + ads** | **R$ 2.054** | **R$ 5.950** | **R$ 10.260** |
-| Clientes ativos pra empatar (÷ R$ 1.570 margem) | 2 | 4 | 7 |
-| **MRR de breakeven** | R$ 4.500 | R$ 9.000 | R$ 15.750 |
+| Clientes ativos pra empatar (÷ R$ 1.648 margem) | 2 | 4 | 7 |
+| **MRR de breakeven** | R$ 4.710 | R$ 9.420 | R$ 16.485 |
 
 ---
 
@@ -105,11 +105,11 @@ novo. Como é recorrente, o ROI explode no mês 2 em diante.
 
 | Mês | Foco | Budget ads | Clientes ativos esperados | MRR |
 |---|---|---|---|---|
-| 1–2 | Validar copy/CPL com R$ 1.500. SEO blog começa | R$ 1.500 | 2–3 | R$ 6.000 |
-| 3–4 | Subir pra R$ 3k com criativo vencedor | R$ 3.000 | 6–8 | R$ 16.000 |
-| 5–6 | Contratar gestor. Escalar pra R$ 6k | R$ 6.000 | 12–15 | R$ 30.000 |
-| 7–9 | Indicação + SEO já trazem 30% dos leads. Ads = R$ 6k mantido | R$ 6.000 | 20–25 | R$ 50.000 |
-| 10–12 | Considerar R$ 10–12k se LTV/CAC ainda > 8x | R$ 10.000 | 30–40 | R$ 79.000 |
+| 1–2 | Validar copy/CPL com R$ 1.500. SEO blog começa | R$ 1.500 | 2–3 | R$ 5.900 |
+| 3–4 | Subir pra R$ 3k com criativo vencedor | R$ 3.000 | 6–8 | R$ 16.500 |
+| 5–6 | Contratar gestor. Escalar pra R$ 6k | R$ 5.900 | 12–15 | R$ 31.800 |
+| 7–9 | Indicação + SEO já trazem 30% dos leads. Ads = R$ 6k mantido | R$ 5.900 | 20–25 | R$ 53.000 |
+| 10–12 | Considerar R$ 10–12k se LTV/CAC ainda > 8x | R$ 10.000 | 30–40 | R$ 82.000 |
 
 ---
 

@@ -130,7 +130,7 @@
 • <b>Fila de sincronização:</b> sequencial (padrão) · Status: <b>Ativo</b><br>
 • <b>Eventos:</b> marque os de <b>Cobranças</b> — no mínimo <code>PAYMENT_CONFIRMED</code>, <code>PAYMENT_RECEIVED</code>, <code>PAYMENT_OVERDUE</code>, <code>PAYMENT_REFUNDED</code>, <code>PAYMENT_CHARGEBACK_REQUESTED</code> (pode marcar todos de cobrança; os extras são ignorados sem erro) → <b>Salvar</b>.</li>
 <li>Na Vercel: <code>ASAAS_WEBHOOK_TOKEN</code> = <b>exatamente o token que você digitou</b> no passo 5 (Sensitive). <i>O Asaas manda esse token no header <code>asaas-access-token</code> e o site confere — verificado no código do webhook.</i></li>
-<li><b>Opcional (recomendado) — links de pagamento fixos:</b> no painel → <b>Vendas → Link de pagamento → Criar link</b>. Crie 3 (assinatura mensal recorrente): Básico R$ 1.200 · Essencial R$ 2.200 · Premium R$ 3.200. Copie as 3 URLs e crie na Vercel: <code>ASAAS_PAYMENT_LINK_BASICO</code>, <code>ASAAS_PAYMENT_LINK_ESSENCIAL</code>, <code>ASAAS_PAYMENT_LINK_PREMIUM</code>. <i>Verificado: o site usa esses links antes de tentar a API — você fica no controle do texto/valor pelo painel.</i></li>
+<li><b>Opcional (recomendado) — links de pagamento fixos:</b> no painel → <b>Vendas → Link de pagamento → Criar link</b>. Crie 3 (assinatura mensal recorrente): Básico R$ 1.200 · Essencial R$ 2.300 · Premium R$ 3.400. Copie as 3 URLs e crie na Vercel: <code>ASAAS_PAYMENT_LINK_BASICO</code>, <code>ASAAS_PAYMENT_LINK_ESSENCIAL</code>, <code>ASAAS_PAYMENT_LINK_PREMIUM</code>. <i>Verificado: o site usa esses links antes de tentar a API — você fica no controle do texto/valor pelo painel.</i></li>
 </ol>
 </div>
 

@@ -109,7 +109,7 @@ export default function RootLayout({
     image: `${site.url}/opengraph-image`,
     telephone: `+${site.whatsapp}`,
     email: site.email,
-    priceRange: "R$1.200 - R$3.200/mês",
+    priceRange: "R$1.200 - R$3.400/mês",
     address: {
       "@type": "PostalAddress",
       addressLocality: "São Paulo",

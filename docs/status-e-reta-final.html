@@ -97,7 +97,7 @@ Isso é o jeito padrão de registrar um TXT longo, e o Resend lê normalmente.</
 <li><b>Causa mais provável — links fixos de sandbox.</b> Na Vercel → Environment Variables → busque por <code>ASAAS_PAYMENT_LINK</code>. Se aparecerem <code>_BASICO</code>, <code>_ESSENCIAL</code>, <code>_PREMIUM</code>, abra cada uma (⋯ → Edit) e veja se o valor contém a palavra <b>sandbox</b>.<br>
 <b>Se contiver, escolha um caminho:</b><br>
 &nbsp;&nbsp;• <b>Simples:</b> <b>apague as três</b> (⋯ → Delete). Sem elas, o site cria a cobrança pela API automaticamente, já em produção.<br>
-&nbsp;&nbsp;• <b>Controlado:</b> crie 3 links novos em <b>www.asaas.com</b> → Vendas → Link de pagamento (Básico R$ 1.200 · Essencial R$ 2.200 · Premium R$ 3.200, assinatura mensal) e substitua os valores.</li>
+&nbsp;&nbsp;• <b>Controlado:</b> crie 3 links novos em <b>www.asaas.com</b> → Vendas → Link de pagamento (Básico R$ 1.200 · Essencial R$ 2.300 · Premium R$ 3.400, assinatura mensal) e substitua os valores.</li>
 <li><b>Confira o ambiente.</b> <code>ASAAS_ENV</code> tem que ser exatamente <code>production</code> — tudo minúsculo, sem espaço antes ou depois.</li>
 <li><b>Confira a chave.</b> <code>ASAAS_API_KEY</code> tem que ser a de produção. A de produção começa com <code>$aact_prod_</code>; se começar diferente, ainda é a de sandbox — pegue a certa em <b>www.asaas.com</b> → ícone de perfil → Integrações → Chave de API.</li>
 </ol>
