@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Plano de crescimento até R$ 50k/mês — Food Guard</title>
+<style>
+  @page { size: A4; margin: 15mm 13mm 16mm; }
+  :root{--azul:#0F2947;--azul2:#17395E;--verde:#8CC63F;--verde2:#4F7D16;
+        --ink:#1F2E3D;--muted:#5B6B7A;--line:#DCE5ED;--soft:#F2F6FA;
+        --warn:#B85A14;--warn50:#FFF7ED;--crit:#A32020;--crit50:#FDF2F2}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+       color:var(--ink);font-size:9.8pt;line-height:1.52}
+  .capa{height:264mm;display:flex;flex-direction:column;justify-content:space-between;
+        background:var(--azul);color:#fff;padding:20mm 16mm;page-break-after:always}
+  .marca{font-size:9pt;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--verde)}
+  .regua{width:34mm;height:1.4mm;background:var(--verde);margin-top:4mm}
+  .capa h1{font-size:27pt;line-height:1.14;font-weight:800;letter-spacing:-.5pt;margin:0 0 6mm}
+  .capa .sub{font-size:11pt;line-height:1.55;color:#C6D7E6;max-width:142mm;margin:0}
+  .capa .idx{font-size:9pt;color:#8FA8BF;line-height:1.8}
+  .capa .idx b{color:var(--verde)}
+  h2{font-size:12.5pt;font-weight:800;color:#fff;background:var(--azul2);
+     padding:3mm 5mm;border-radius:2mm;margin:0 0 4mm;page-break-after:avoid}
+  h2 span{color:var(--verde)}
+  h3{font-size:10.8pt;font-weight:800;color:var(--azul);margin:6mm 0 2mm;page-break-after:avoid}
+  section{page-break-inside:avoid;margin:0 0 7mm}
+  .nova{page-break-before:always}
+  p{margin:0 0 3mm}
+  ul,ol{margin:0 0 3mm;padding-left:5mm} li{margin:1.4mm 0}
+  .intro{background:var(--soft);border-left:1.2mm solid var(--verde);border-radius:2mm;
+         padding:3.5mm 5mm;margin:0 0 5mm;font-size:9.4pt;color:var(--muted)}
+  .intro b{color:var(--ink)}
+  .alerta{background:var(--warn50);border-left:1.2mm solid var(--warn);border-radius:2mm;
+          padding:3.5mm 5mm;margin:3mm 0;font-size:9.2pt;color:#7A3A05}
+  .critico{background:var(--crit50);border-left:1.2mm solid var(--crit);border-radius:2mm;
+           padding:3.5mm 5mm;margin:3mm 0;font-size:9.2pt;color:#7A1414}
+  .ok{background:#EDF6E0;border-left:1.2mm solid var(--verde2);border-radius:2mm;
+      padding:3.5mm 5mm;margin:3mm 0;font-size:9.2pt;color:#2F4A10}
+  table{width:100%;border-collapse:collapse;font-size:8.8pt;margin:3mm 0}
+  th{text-align:left;padding:2.3mm 2.8mm;background:var(--azul);color:#fff;font-size:8pt;
+     text-transform:uppercase;letter-spacing:.04em}
+  td{padding:2.3mm 2.8mm;border-bottom:.2mm solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:var(--soft)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .destaque td{background:#DCEBC4 !important;font-weight:700;color:var(--azul)}
+  .fase{background:var(--azul);color:#fff;border-radius:2.5mm;padding:4mm 5mm;margin:0 0 4mm}
+  .fase h3{color:#fff;margin:0 0 1.5mm;font-size:12pt}
+  .fase p{margin:0;color:#C6D7E6;font-size:9.4pt}
+  .fase .meta{color:var(--verde);font-weight:800}
+  .cita{border-left:1mm solid var(--verde);padding:1mm 0 1mm 4mm;margin:3mm 0;
+        font-size:9.2pt;color:var(--muted);font-style:italic}
+  .final{page-break-before:always;background:var(--azul);color:#fff;border-radius:3mm;padding:11mm}
+  .final h3{font-size:15pt;color:#fff;margin:0 0 4mm}
+  .final p{color:#C6D7E6;font-size:10pt;line-height:1.6}
+  .final .destaque2{background:var(--verde);color:var(--azul);border-radius:2mm;padding:4.5mm 5mm;
+                   font-size:9.8pt;line-height:1.55;font-weight:600;margin:4mm 0 0}
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <div><div class="marca">Food Guard Assessoria</div><div class="regua"></div></div>
+  <div>
+    <h1>Plano de crescimento<br>até R$ 50 mil por mês</h1>
+    <p class="sub">Construído sobre o método de escala de prestação de serviço descrito na aula de Vinícius, aplicado aos números reais da Food Guard — e com o gargalo que o método não cobre, porque nosso serviço exige um profissional com CRN dentro da cozinha.</p>
+  </div>
+  <div class="idx">
+    <b>1.</b> O método em uma página &nbsp;·&nbsp; <b>2.</b> Onde estamos no mapa<br>
+    <b>3.</b> A matemática dos R$ 50k &nbsp;·&nbsp; <b>4.</b> O gargalo de capacidade<br>
+    <b>5–7.</b> As três fases &nbsp;·&nbsp; <b>8.</b> As três formas de captar<br>
+    <b>9.</b> O mecanismo único &nbsp;·&nbsp; <b>10.</b> Comercial com duas pessoas<br>
+    <b>11.</b> Painel de métricas &nbsp;·&nbsp; <b>12.</b> Onde estamos expostos &nbsp;·&nbsp; <b>13.</b> Linha do tempo<br><br>
+    Outubro de 2026 · foodguardassessoria.com.br
+  </div>
+</div>
+
+<section>
+<h2><span>1 ·</span> O método, em uma página</h2>
+<div class="intro">O que a aula sustenta, destilado. <b>Três faixas, exigências diferentes em cada uma</b> — e o erro mais comum é tentar resolver a faixa seguinte com as ferramentas da anterior.</div>
+<table>
+<tr><th style="width:17%">Faixa</th><th style="width:36%">O que define quem está nela</th><th style="width:47%">O que faz sair</th></tr>
+<tr><td><b>0 a 10k</b></td><td>O serviço ainda não é bom o bastante para gerar indicação espontânea. Ninguém sabe que você existe</td><td>Melhorar o serviço de verdade, se posicionar produzindo conteúdo e fazer o trabalho braçal: porta a porta, contato frio, pedir indicação</td></tr>
+<tr><td><b>10k a 40k</b></td><td>Conforto. Já tem uma ou duas pessoas ajudando, já tira um pró-labore, perdeu a fome. <b>É onde a maioria trava</b></td><td>Não parar. É justamente aqui que existe mais massa de manobra para crescer — e continuar produzindo conteúdo</td></tr>
+<tr><td><b>40k a 100k</b></td><td>Falta estrutura: oferta formalizada, processo comercial e tráfego pago rodando com método</td><td>Oferta com mecanismo único, comercial com SDR e closer medidos, e <b>organização e clareza dos dados</b> — o gap real dessa faixa</td></tr>
+</table>
+<div class="cita">As três únicas formas de adquirir cliente são indicação, prospecção fria e mídia paga. Todas as outras derivam dessas. Quem tem serviço ruim mata a primeira e fica com duas.</div>
+<div class="alerta"><b>Uma divergência que precisamos assumir desde já.</b> A aula é de quem deliberadamente não monta time, para manter margem alta numa operação enxuta. <b>Isso não transfere para a Food Guard:</b> nosso serviço exige presença física de um profissional com CRN. Tudo que é aquisição no método se aplica direto. A parte de capacidade a gente tem que resolver por conta — e é a seção 4.</div>
+</section>
+
+<section class="nova">
+<h2><span>2 ·</span> Onde a Food Guard está nesse mapa</h2>
+<p><b>Faixa zero.</b> Não estamos nos 10k — não começamos. Zero cliente pagante, zero receita recorrente, zero indicação possível. Mas a posição é melhor do que o número sugere, e vale ser honesto nas duas direções.</p>
+<table>
+<tr><th style="width:50%">O que já está resolvido</th><th style="width:50%">O que falta, segundo o método</th></tr>
+<tr><td>Serviço tecnicamente bom — o Renan é nutricionista de verdade, não alguém vendendo serviço que não sabe prestar</td><td><b>Posicionamento.</b> Cinco artigos publicados e o blog parado desde agosto. Ninguém sabe que existimos</td></tr>
+<tr><td>Produto digital pronto: diagnóstico, pagamento, e-mail, site no ar</td><td><b>Indicação.</b> Impossível hoje, porque não há cliente. É consequência, não causa</td></tr>
+<tr><td>Prospecção fria estruturada: 34 leads qualificados, 17 com mensagem pronta</td><td><b>Oferta formalizada</b> com mecanismo único — hoje vendemos "consultoria", que é o que todo mundo vende</td></tr>
+<tr><td>Custo de operação de R$ 3 por mês. Não há pressão de caixa para errar com pressa</td><td><b>Processo comercial</b> com etapas, responsável e número. Hoje não existe</td></tr>
+</table>
+<div class="ok"><b>A boa notícia é estrutural.</b> O método diz que o pré-requisito dos 0 aos 10k é ser genuinamente bom no serviço, porque é isso que destrava a indicação. Esse é exatamente o nosso ponto forte e é o que a maioria dos concorrentes não tem. O que falta é a parte mais barata de corrigir: aparecer.</div>
+</section>
+
+<section class="nova">
+<h2><span>3 ·</span> A matemática dos R$ 50 mil</h2>
+<p>Ticket médio ponderado de <b>R$ 2.355</b>, considerando o mix de 20% Básico, 55% Essencial e 25% Premium.</p>
+<table>
+<tr><th style="width:28%">Meta de receita</th><th style="width:24%">Clientes ativos</th><th style="width:24%">Visitas por mês</th><th style="width:24%">Dias úteis só de visita</th></tr>
+<tr><td>R$ 10.000</td><td class="num">4 a 5</td><td class="num">20</td><td class="num">7</td></tr>
+<tr><td>R$ 30.000</td><td class="num">13</td><td class="num">59</td><td class="num">20</td></tr>
+<tr class="destaque"><td>R$ 50.000</td><td class="num">21</td><td class="num">98</td><td class="num">33</td></tr>
+</table>
+<div class="critico"><b>Leia a última coluna.</b> Um mês útil tem 22 dias. A R$ 50 mil, considerando três visitas por dia com deslocamento em São Paulo, são <b>33 dias de trabalho de campo por mês</b> — mais do que um mês inteiro, de uma pessoa fazendo exclusivamente visita, sem vender, sem escrever relatório e sem atender ninguém.</div>
+
+<h3>E tem um segundo problema, menos óbvio</h3>
+<table>
+<tr><th style="width:28%">Plano</th><th style="width:18%">Preço</th><th style="width:22%">Visitas/mês</th><th style="width:32%">Receita por visita</th></tr>
+<tr><td>Básico</td><td class="num">R$ 1.200</td><td class="num">2</td><td class="num">R$ 600</td></tr>
+<tr><td>Essencial</td><td class="num">R$ 2.300</td><td class="num">4</td><td class="num">R$ 575</td></tr>
+<tr><td>Premium</td><td class="num">R$ 3.400</td><td class="num">8</td><td class="num">R$ 425</td></tr>
+</table>
+<div class="critico"><b>A receita por hora de campo cai conforme o plano sobe.</b> O Premium, que é o mais caro e ainda inclui a responsabilidade técnica — a parte com risco profissional de verdade —, é o que paga <b>pior por visita</b>. Vender Premium hoje é o pior uso possível da agenda do Renan. Isso não é um detalhe de precificação: é o que impede a operação de escalar.</div>
+</section>
+
+<section class="nova">
+<h2><span>4 ·</span> O gargalo de capacidade e as três alavancas</h2>
+<p>Um nutricionista sustenta, de forma realista, cerca de <b>40 visitas por mês</b> — e isso já contando que ele também escreve relatório, atende cliente e participa de venda. Os R$ 50 mil pedem 98.</p>
+
+<h3>Alavanca 1 · Contratar (obrigatória)</h3>
+<p>Não existe caminho até R$ 50 mil com a estrutura atual sem mais nutricionistas em campo. O custo é previsível e cabe:</p>
+<table>
+<tr><th style="width:40%">Linha</th><th style="width:30%">Valor ao mês</th><th style="width:30%">% da receita</th></tr>
+<tr><td>Dois nutricionistas de campo</td><td class="num">R$ 14.000</td><td class="num">28%</td></tr>
+<tr><td>Deslocamento e combustível</td><td class="num">R$ 1.500</td><td class="num">3%</td></tr>
+<tr><td>Impostos (Simples) e contador</td><td class="num">R$ 4.500</td><td class="num">9%</td></tr>
+<tr><td>Taxas do Asaas</td><td class="num">R$ 1.000</td><td class="num">2%</td></tr>
+<tr><td>Tráfego pago (fase 3)</td><td class="num">R$ 3.000</td><td class="num">6%</td></tr>
+<tr><td>Infraestrutura</td><td class="num">R$ 115</td><td class="num">0%</td></tr>
+<tr class="destaque"><td>Sobra para os sócios</td><td class="num">R$ 25.400</td><td class="num">52%</td></tr>
+</table>
+<div class="alerta"><b>Gatilhos de contratação por agenda, não por receita.</b> Contrate quando a agenda do mês passar de <b>32 visitas</b> (80% da capacidade do Renan) e de novo aos <b>70</b>. Esperar a receita chegar antes de contratar significa entregar mal justamente no mês em que a reputação está se formando.</div>
+
+<h3>Alavanca 2 · Corrigir a inversão dos planos</h3>
+<p>Antes de vender vinte contratos no formato atual, revisar a estrutura. Duas saídas, não excludentes:</p>
+<ul>
+<li><b>Reprecificar o Premium.</b> Oito visitas mensais mais responsabilidade técnica a R$ 3.400 está abaixo do que o trabalho custa. Ou o preço sobe, ou a frequência cai para uma vez por semana mantendo o RT — que é o que de fato tem valor ali.</li>
+<li><b>Mover parte do valor para o remoto.</b> Auditoria de documentos, revisão de cardápio e indicadores não exigem presença. Separar o que precisa de corpo na cozinha do que não precisa libera agenda sem reduzir entrega.</li>
+</ul>
+
+<h3>Alavanca 3 · Criar um degrau recorrente abaixo do Básico</h3>
+<p>Um plano de <b>R$ 600 a R$ 800</b>, sem visita mensal — documentação viva, suporte por WhatsApp e uma visita trimestral. Escala muito melhor porque quase não consome deslocamento, e atende as casas pequenas que hoje ouvem R$ 1.200 e somem. É o mesmo raciocínio da Visita Diagnóstica, aplicado ao recorrente.</p>
+<div class="ok"><b>Recomendação:</b> alavanca 2 agora, antes de vender em volume. Alavanca 1 por gatilho de agenda. Alavanca 3 depois dos cinco primeiros clientes, quando já soubermos quais objeções de preço aparecem de verdade.</div>
+</section>
+
+<section class="nova">
+<h2><span>5 ·</span> Fase 1 · de zero a R$ 10 mil</h2>
+<div class="fase"><h3>Meses 1 a 4</h3><p>Sair de zero. <span class="meta">Meta: 4 a 5 clientes · R$ 10.000/mês · cerca de 20 visitas</span> — ainda cabe inteiro na agenda do Renan.</p></div>
+<p>O método é explícito sobre esta faixa: é trabalho braçal, não há fórmula. Três frentes simultâneas.</p>
+<table>
+<tr><th style="width:24%">Frente</th><th style="width:44%">O que fazer</th><th style="width:32%">Meta do período</th></tr>
+<tr><td><b>Prospecção fria</b></td><td>20 abordagens por dia, das 9h às 10h. Lista já qualificada, mensagens já escritas</td><td>400 abordagens, 100 respostas</td></tr>
+<tr><td><b>Porta a porta</b></td><td>Uma manhã por semana numa rua gastronômica. <b>Antes, descobrir em que dia os donos estão presentes</b> e voltar nesse dia</td><td>16 manhãs, 300 conversas</td></tr>
+<tr><td><b>Posicionamento</b></td><td>Um artigo por semana e três publicações por semana. Sem exceção</td><td>16 artigos, 48 publicações</td></tr>
+<tr><td><b>Indicação</b></td><td>Dez escritórios de contabilidade visitados pessoalmente, com comissão clara</td><td>3 parcerias ativas</td></tr>
+</table>
+<div class="cita">A sacada do porta a porta que vale copiar: antes de sair vendendo, perguntar em cada comércio em que dia e horário o dono costuma estar. Encontrar a interseção, marcar na agenda e voltar nesse dia. Dobra a taxa de encontrar quem decide.</div>
+<div class="alerta"><b>O ponto em que a Food Guard mais falha hoje é posicionamento.</b> O método é duro nisso e tem razão: as pessoas só compram de quem elas sabem que existe. O blog parou em agosto. Essa é a correção mais barata do plano inteiro e a que leva mais tempo para dar retorno — por isso começa na semana 1, não quando sobrar tempo.</div>
+</section>
+
+<section class="nova">
+<h2><span>6 ·</span> Fase 2 · de R$ 10 mil a R$ 30 mil</h2>
+<div class="fase"><h3>Meses 5 a 10</h3><p>A faixa onde quase todo mundo trava. <span class="meta">Meta: 13 clientes · R$ 30.000/mês · cerca de 59 visitas</span> — aqui o Renan sozinho já não cabe.</p></div>
+<p>O método descreve exatamente o que acontece: com uma ou duas pessoas ajudando e um pró-labore saindo, a fome passa e o crescimento para. A defesa contra isso é mecânica, não motivacional.</p>
+<table>
+<tr><th style="width:30%">O que muda nesta fase</th><th style="width:70%">Por quê</th></tr>
+<tr><td><b>Primeiro nutricionista de campo</b></td><td>Gatilho: a agenda do mês passar de 32 visitas. Entra antes da receita justificar, não depois</td></tr>
+<tr><td><b>Processo comercial formalizado</b></td><td>Rafael como SDR, Renan como closer. Com script, tempo de resposta medido e confirmações de agenda. Detalhado na seção 10</td></tr>
+<tr><td><b>Mecanismo único no ar</b></td><td>Anúncio, página e conversa carregando a mesma promessa. Seção 9</td></tr>
+<tr><td><b>Tráfego pago entra</b></td><td>Só depois de três clientes pagantes e dois depoimentos publicados. Começa em R$ 1.500/mês</td></tr>
+<tr><td><b>Primeiras indicações</b></td><td>Pedir ativamente a cada cliente satisfeito, no mês 3 de contrato. Indicação não vem sozinha — vem quando é pedida</td></tr>
+</table>
+<div class="critico"><b>O risco desta fase não é falta de cliente. É entregar mal.</b> Com 13 clientes e um nutricionista sobrecarregado, a qualidade cai, o churn sobe e a indicação — que é a aquisição mais barata que existe — morre antes de nascer. Se a escolha for entre segurar vendas ou entregar mal, segure as vendas.</div>
+</section>
+
+<section class="nova">
+<h2><span>7 ·</span> Fase 3 · de R$ 30 mil a R$ 50 mil</h2>
+<div class="fase"><h3>Meses 11 a 18</h3><p>A faixa técnica. <span class="meta">Meta: 21 clientes · R$ 50.000/mês · cerca de 98 visitas</span> — dois nutricionistas em campo além do Renan.</p></div>
+<p>O método é categórico sobre o que separa os 40 dos 100 mil: não é esforço nem canal novo. É <b>organização e clareza dos dados</b>. Quem não lê os próprios números não atravessa.</p>
+<ul>
+<li><b>Metrificar tudo o que a seção 11 lista</b>, com parâmetro de referência para cada métrica. Sem parâmetro, um número não diz nada.</li>
+<li><b>Parar de tratar resultado ruim como "refazer do zero".</b> Quando um anúncio não funciona, a pergunta é o que especificamente falhou — o gancho, o corpo ou a chamada. Cada um tem conserto diferente.</li>
+<li><b>Mesma disciplina quando dá certo.</b> Entender por que funcionou é o que permite repetir. A maioria só investiga o fracasso.</li>
+<li><b>Segundo nutricionista</b> ao passar de 70 visitas no mês.</li>
+<li><b>Tráfego pago em R$ 3.000/mês</b>, com segmentação estreita. O método é direto: quanto mais barreiras na qualificação, melhor — quem chega no fim chega podendo comprar.</li>
+</ul>
+<div class="ok"><b>Aqui o churn vira o inimigo principal.</b> Com 21 clientes e 4% de cancelamento ao mês, é quase um contrato perdido por mês só para ficar parado. Chegar a 50 mil exige vender cerca de dois clientes brutos por mês, não um.</div>
+</section>
+
+<section class="nova">
+<h2><span>8 ·</span> As três formas de captar, aplicadas à Food Guard</h2>
+<table>
+<tr><th style="width:18%">Forma</th><th style="width:26%">Situação hoje</th><th style="width:56%">O que fazer</th></tr>
+<tr><td><b>Indicação</b></td><td>Inexistente — não há cliente</td><td>Duas origens. A orgânica vem de entregar bem e <b>pedir no mês 3</b> de cada contrato. A comprada vem dos contadores, arquitetos de cozinha, despachantes de alvará e fornecedores de equipamento, com 15% recorrente ou R$ 500 por indicação fechada</td></tr>
+<tr><td><b>Prospecção fria</b></td><td>Estruturada e pronta</td><td>20 por dia, das 9h às 10h, com um único follow-up em 72h. Mais os blocos de porta a porta semanais, que convertem muito melhor que mensagem</td></tr>
+<tr><td><b>Mídia paga</b></td><td>Bloqueada de propósito</td><td>Entra com três condições juntas: três clientes pagantes, dois depoimentos no site e a conversão de lead em cliente já medida. Começa em R$ 1.500 e sobe para R$ 3.000 na fase 3</td></tr>
+</table>
+<div class="alerta"><b>O conteúdo não é uma quarta forma — é o que faz as três funcionarem.</b> Quem recebe nossa mensagem fria vai pesquisar o nome antes de responder. Quem clica no anúncio vai ler o site antes de preencher. Quem recebe a indicação do contador vai olhar o Instagram. Perfil vazio derruba os três canais ao mesmo tempo.</div>
+</section>
+
+<section class="nova">
+<h2><span>9 ·</span> O mecanismo único da Food Guard</h2>
+<div class="intro">O método insiste que mecanismo único não é coisa de infoproduto: é o que responde <b>"por que contratar vocês e não a assessoria do lado"</b>. E aponta o diferencial mais forte em serviço — quanto menos o empresário precisa fazer, mais fácil ele fecha.</div>
+<h3>Método Food Guard — conformidade em três camadas</h3>
+<table>
+<tr><th style="width:20%">Camada</th><th style="width:38%">O que é</th><th style="width:42%">Por que é diferente do mercado</th></tr>
+<tr><td><b>1 · Mapa</b></td><td>Diagnóstico online com nota de 0 a 100, depois a Visita Diagnóstica com 80 itens fotografados</td><td>Quase ninguém mostra ao dono <b>onde ele está</b> antes de vender. Começam pela proposta</td></tr>
+<tr><td><b>2 · Correção</b></td><td>Plano de ação ordenado por exposição real numa fiscalização, não pela ordem da norma</td><td>O concorrente entrega um calhamaço e vai embora. Lista sem prioridade paralisa</td></tr>
+<tr><td><b>3 · Blindagem</b></td><td>Documentação viva, visitas recorrentes e nutricionista responsável assinando</td><td>Documento parado não protege ninguém. Conformidade é estado, não entrega</td></tr>
+</table>
+<h3>A promessa, em uma frase</h3>
+<div class="ok" style="font-size:10.5pt"><b>“Você não toca em um papel. A gente mapeia, corrige e mantém — e se a vigilância bater na porta, quem responde é a gente.”</b></div>
+<h3>A estrutura do anúncio que decorre disso</h3>
+<p>O método descreve a estrutura certa: falar da dor do outro, nunca sobre si. Nada de "somos uma assessoria com X anos de mercado".</p>
+<div class="cita">Dono de restaurante em São Paulo: você já pagou alguém para resolver a papelada da vigilância e continuou sem saber se está em conformidade de verdade? Isso acontece porque quase todo mundo entrega documento e some — e documento parado não protege ninguém numa fiscalização. O que funciona é manter a conformidade viva, com um nutricionista responsável assinando. Descubra em 2 minutos onde sua cozinha está exposta hoje.</div>
+<div class="alerta"><b>O mecanismo tem que atravessar o funil inteiro.</b> O mesmo ângulo no anúncio, a mesma promessa na página que recebe o clique, a mesma lógica na conversa. Quando quebra no meio, a pessoa sente que entrou em outro lugar e sai.</div>
+</section>
+
+<section class="nova">
+<h2><span>10 ·</span> O comercial com duas pessoas</h2>
+<p>O método separa SDR, que qualifica e marca, de closer, que fecha. Com dois sócios, os papéis existem igual — só não têm duas cabeças para cada um.</p>
+<table>
+<tr><th style="width:16%">Papel</th><th style="width:16%">Quem</th><th style="width:68%">O que faz</th></tr>
+<tr><td><b>SDR</b></td><td>Rafael</td><td>Responde o lead em menos de 5 minutos, qualifica com script fixo, mapeia as dores, manda o link de pagamento e marca a visita. Faz as confirmações de agenda</td></tr>
+<tr><td><b>Closer</b></td><td>Renan</td><td>A Visita Diagnóstica <b>é</b> a reunião de fechamento. Ele entra na cozinha, levanta as não conformidades e a conversa do plano acontece sobre o relatório</td></tr>
+</table>
+<div class="ok"><b>A Visita Diagnóstica resolve sozinha o maior problema de comercial que existe.</b> O método gasta boa parte do tempo em como fazer o lead comparecer na call e como gerar desejo dentro dela. No nosso caso a call é presencial, é paga antecipadamente e acontece dentro da operação do cliente. Quem pagou comparece. E ninguém discute um relatório com as próprias falhas fotografadas.</div>
+<h3>O que copiar do método, literalmente</h3>
+<ul>
+<li><b>Responder em menos de 5 minutos.</b> É a métrica mais barata de corrigir e uma das que mais mexe no resultado.</li>
+<li><b>Confirmar a visita três vezes:</b> 24 horas, 12 horas e 2 horas antes. Reduz falta.</li>
+<li><b>Medir onde o script perde gente.</b> Se muita gente para de responder depois de uma pergunta específica, a pergunta é invasiva ou está fora de hora. Troque ou tire.</li>
+<li><b>Consertar o topo antes do fundo.</b> Melhorar a abordagem rende mais que melhorar o fechamento, porque mais gente passa pelo topo.</li>
+</ul>
+</section>
+
+<section class="nova">
+<h2><span>11 ·</span> O painel de métricas e os parâmetros</h2>
+<div class="intro">O método é direto: a diferença entre 40 e 100 mil é ler os próprios números. E um número sem parâmetro não serve — é preciso saber <b>qual deveria ser</b> para saber se está ruim.</div>
+<table>
+<tr><th style="width:30%">Métrica</th><th style="width:22%">Parâmetro</th><th style="width:48%">Se estiver fora, olhe para</th></tr>
+<tr><td>Tempo até responder o lead</td><td class="num">menos de 5 min</td><td>Notificação do formulário não está chegando a ninguém</td></tr>
+<tr><td>Resposta ao WhatsApp frio</td><td class="num">15% a 25%</td><td>A mensagem, não o mercado. Horário errado ou abertura genérica</td></tr>
+<tr><td>Lead → Visita Diagnóstica</td><td class="num">15% a 20%</td><td>O e-mail de 7 dias, que é onde a oferta aparece</td></tr>
+<tr><td>Falta na visita agendada</td><td class="num">abaixo de 10%</td><td>As três confirmações. Com visita paga antes, falta é raro</td></tr>
+<tr><td>Visita → plano recorrente</td><td class="num">50% a 60%</td><td>Abaixo disso o preço do plano está errado, não o da visita</td></tr>
+<tr><td>Churn mensal</td><td class="num">abaixo de 4%</td><td>Entrega. Pare de captar e conserte antes de continuar</td></tr>
+<tr><td>Visitas por nutricionista</td><td class="num">até 40 por mês</td><td>Gatilho de contratação. Acima disso a qualidade cai</td></tr>
+<tr><td>Custo por lead (quando houver ads)</td><td class="num">R$ 40 a R$ 70</td><td>Segmentação do anúncio e coerência com a página</td></tr>
+</table>
+<div class="alerta"><b>Trinta minutos toda sexta, os dois juntos.</b> Não precisa de ferramenta cara — uma planilha com essas oito linhas resolve os próximos dois anos. O que não pode é a reunião não acontecer: sem ela, o plano inteiro vira intenção.</div>
+</section>
+
+<section class="nova">
+<h2><span>12 ·</span> Os erros do método e onde estamos expostos</h2>
+<table>
+<tr><th style="width:34%">Erro que o método aponta</th><th style="width:16%">Food Guard</th><th style="width:50%">Situação</th></tr>
+<tr><td>Vender serviço que não se sabe prestar</td><td style="color:#2F4A10"><b>Protegido</b></td><td>O Renan é nutricionista de verdade. É nosso ativo mais forte</td></tr>
+<tr><td>Não produzir conteúdo por vergonha ou falta de tempo</td><td style="color:#7A1414"><b>Exposto</b></td><td>Blog parado desde agosto. É a maior falha aberta hoje</td></tr>
+<tr><td>Anúncio que fala sobre si em vez da dor do cliente</td><td style="color:#7A3A05"><b>Atenção</b></td><td>Ainda não anunciamos — dá para nascer certo em vez de corrigir depois</td></tr>
+<tr><td>Medo de segmentar e atrair quem não pode pagar</td><td style="color:#7A3A05"><b>Atenção</b></td><td>A lista está qualificada por tipo de operação, mas o site fala com todo mundo</td></tr>
+<tr><td>Acomodar na faixa dos 30 a 40 mil</td><td style="color:#7A3A05"><b>Risco futuro</b></td><td>Chega no mês 10. Nomear agora é a melhor defesa</td></tr>
+<tr><td>Tratar fracasso como "refazer do zero"</td><td style="color:#7A1414"><b>Exposto</b></td><td>Sem painel de métricas, não há como saber o que especificamente falhou</td></tr>
+<tr><td>Comprar a estrutura antes de começar a fazer</td><td style="color:#2F4A10"><b>Protegido</b></td><td>Operação a R$ 3 por mês, agentes desligados. Estamos do lado certo</td></tr>
+</table>
+</section>
+
+<section class="nova">
+<h2><span>13 ·</span> Linha do tempo até os R$ 50 mil</h2>
+<table>
+<tr><th style="width:14%">Mês</th><th style="width:16%">Clientes</th><th style="width:18%">Receita</th><th style="width:16%">Visitas</th><th style="width:36%">O que acontece</th></tr>
+<tr><td>1 a 2</td><td class="num">1</td><td class="num">R$ 2.400</td><td class="num">4</td><td>Oferta definida, blog retomado, 400 abordagens</td></tr>
+<tr><td>3 a 4</td><td class="num">4</td><td class="num">R$ 9.400</td><td class="num">18</td><td>Primeiras indicações de contador. Dois depoimentos no site</td></tr>
+<tr><td>5 a 6</td><td class="num">7</td><td class="num">R$ 16.500</td><td class="num">32</td><td><b>Gatilho: primeiro nutricionista de campo.</b> Tráfego pago entra a R$ 1.500</td></tr>
+<tr><td>7 a 8</td><td class="num">10</td><td class="num">R$ 23.600</td><td class="num">46</td><td>Processo comercial formalizado e medido toda sexta</td></tr>
+<tr><td>9 a 10</td><td class="num">13</td><td class="num">R$ 30.600</td><td class="num">59</td><td><b>A zona de acomodação.</b> É aqui que a maioria para</td></tr>
+<tr><td>11 a 13</td><td class="num">16</td><td class="num">R$ 37.700</td><td class="num">73</td><td><b>Gatilho: segundo nutricionista.</b> Ads sobe para R$ 3.000</td></tr>
+<tr><td>14 a 16</td><td class="num">19</td><td class="num">R$ 44.700</td><td class="num">87</td><td>Indicação já responde por parte relevante do funil</td></tr>
+<tr class="destaque"><td>17 a 18</td><td class="num">21</td><td class="num">R$ 49.500</td><td class="num">98</td><td>Meta atingida. Sobra estimada de R$ 25.400 para os sócios</td></tr>
+</table>
+<div class="alerta"><b>Dezoito meses é o cenário de trabalho, não a promessa.</b> O ritmo depende de uma variável que ainda não medimos: quantas abordagens são necessárias por cliente fechado. As primeiras vinte conversas é que vão dizer — e aí esta linha do tempo se recalcula com número de verdade no lugar de hipótese.</div>
+</section>
+
+<div class="final">
+  <h3>As três coisas que decidem se isto acontece</h3>
+  <p><b>1. Voltar a publicar, esta semana.</b> É a correção mais barata, a de retorno mais lento e a primeira a ser cortada quando a semana aperta. Foi exatamente o que aconteceu em agosto.</p>
+  <p><b>2. Corrigir a inversão dos planos antes de vender em volume.</b> Vinte contratos no formato atual criam uma operação que não fecha a conta de hora de campo — e desmontar isso depois, com cliente dentro, é muito mais caro.</p>
+  <p><b>3. Contratar por agenda, não por receita.</b> Esperar o dinheiro chegar antes do nutricionista significa entregar mal justamente no trimestre em que a reputação está se formando. E reputação ruim mata a indicação, que é a aquisição mais barata que existe.</p>
+  <div class="destaque2">O método da aula resolve aquisição, e resolve bem. O que ele não resolve — porque quem o descreve escolheu não ter time — é que a Food Guard vende <b>a presença de um profissional com CRN dentro de uma cozinha</b>. Escalar isso é tão importante quanto vender, e tem que entrar no plano desde o primeiro mês.</div>
+</div>
+
+</body>
+</html>
