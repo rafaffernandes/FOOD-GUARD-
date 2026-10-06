@@ -4,9 +4,10 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { getAllPosts, getPost } from "@/lib/blog";
+import { extractFaq, getAllPosts, getPost } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
 import { site } from "@/lib/content/site";
 
@@ -99,6 +100,24 @@ export default async function PostPage({
     ],
   };
 
+  /* FAQPage: é o formato de onde buscadores e assistentes de IA extraem
+   * resposta pronta. As perguntas saem da própria seção do artigo, então
+   * não há conteúdo duplicado para manter em dia. */
+  const faq = extractFaq(post.content);
+  const faqLd =
+    faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          inLanguage: "pt-BR",
+          mainEntity: faq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }
+      : null;
+
   return (
     <article className="py-14 sm:py-20">
       <script
@@ -111,6 +130,13 @@ export default async function PostPage({
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <Container className="max-w-3xl">
         <Link
           href="/blog"
@@ -148,7 +174,10 @@ export default async function PostPage({
         )}
 
         <div className="prose-fg mt-10">
-          <MDXRemote source={post.content} />
+          <MDXRemote
+            source={post.content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          />
         </div>
 
         {/* Lead magnet: captura quem ainda não quer o diagnóstico */}

@@ -50,6 +50,23 @@
   .prose-fg ul {
     @apply mt-4 list-disc space-y-2 pl-6;
   }
+  .prose-fg ol {
+    @apply mt-4 list-decimal space-y-2 pl-6;
+  }
+  .prose-fg blockquote {
+    @apply mt-6 border-l-4 border-brand-200 pl-5 italic;
+  }
+  /* `block` + rolagem horizontal evita que tabela larga estoure a página no
+   * celular. Sem wrapper no MDX, é o jeito seguro de liberar tabelas. */
+  .prose-fg table {
+    @apply mt-6 block w-full overflow-x-auto border-collapse text-left text-sm;
+  }
+  .prose-fg th {
+    @apply border border-surface-sunken bg-surface-sunken px-3 py-2 font-semibold text-ink;
+  }
+  .prose-fg td {
+    @apply border border-surface-sunken px-3 py-2 align-top;
+  }
   .prose-fg a {
     @apply text-brand-700 underline underline-offset-2;
   }
