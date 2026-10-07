@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/Button";
+import { ChecklistGate } from "@/components/ui/ChecklistGate";
 import { Container } from "@/components/ui/Container";
 import { extractFaq, getAllPosts, getPost } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
@@ -183,19 +184,11 @@ export default async function PostPage({
           />
         </div>
 
-        {/* Lead magnet: captura quem ainda não quer o diagnóstico */}
-        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-brand-200 bg-brand-50/60 p-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="font-display text-lg font-bold text-ink">
-              📋 Checklist gratuito: o que a vigilância cobra primeiro
-            </p>
-            <p className="mt-1 text-sm text-ink-soft">
-              Imprima e confira sua cozinha item a item — antes da fiscalização.
-            </p>
-          </div>
-          <Button href="/checklist-vigilancia" variant="outline" size="sm" className="shrink-0">
-            Baixar checklist
-          </Button>
+        {/* Lead magnet: captura quem ainda não quer o diagnóstico. O
+            formulário abre aqui mesmo, em vez de mandar para outra página —
+            cada clique a mais é gente que desiste no meio. */}
+        <div className="mt-10">
+          <ChecklistGate variant="banner" />
         </div>
 
         <div className="mt-14 rounded-3xl bg-brand-600 px-8 py-10 text-center text-white">
