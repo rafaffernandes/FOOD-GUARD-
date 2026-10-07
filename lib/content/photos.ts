@@ -88,5 +88,17 @@ export const photos = {
     ),
     // Mãos preenchendo formulário — abre o artigo sobre custo de multa (Pexels)
     "quanto-custa-multa-vigilancia-sanitaria": px(7362882, 1200),
+    // Cozinha profissional bem iluminada — o ambiente que a inspeção percorre
+    "o-que-a-vigilancia-sanitaria-fiscaliza-em-restaurantes": u(
+      "photo-1577219492769-b63a779fac28",
+      1200,
+      630,
+    ),
+    // Chef conferindo documentação com prancheta — o tema do Manual e dos POPs
+    "manual-de-boas-praticas-e-pops-obrigatorios": u(
+      "photo-1636115130040-adf36e3ed32b",
+      1200,
+      630,
+    ),
   } as Record<string, string>,
 };
