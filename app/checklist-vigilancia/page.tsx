@@ -2,6 +2,7 @@ import { CheckSquare, Printer } from "lucide-react";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ChecklistGate } from "@/components/ui/ChecklistGate";
 import { Container } from "@/components/ui/Container";
 import { site } from "@/lib/content/site";
 
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
 
 /**
  * Lead magnet do blog: checklist prático e imprimível (Ctrl+P → salvar como
- * PDF). Sem gating — o CTA leva ao diagnóstico, que é onde capturamos o lead.
+ * PDF). A página fica aberta de propósito: é o ativo de busca que traz gente.
+ * Quem captura é o PDF de 80 itens, atrás do formulário (ChecklistGate).
  */
 
 const GRUPOS: { titulo: string; itens: string[] }[] = [
@@ -98,6 +100,10 @@ export default function ChecklistPage() {
           <Printer className="h-4 w-4" /> Dica: Ctrl+P (ou Compartilhar →
           Imprimir no celular) e escolha “Salvar como PDF”.
         </p>
+
+        <div className="mt-10 print:hidden">
+          <ChecklistGate />
+        </div>
 
         <div className="mt-10 rounded-3xl bg-brand-600 px-8 py-10 text-center text-white print:hidden">
           <h2 className="font-display text-2xl font-bold">

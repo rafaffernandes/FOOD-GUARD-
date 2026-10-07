@@ -27,12 +27,25 @@ export type GatingValues = z.infer<typeof schema>;
 
 const roles = ["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"] as const;
 
+/**
+ * Formulário de captura. Nasceu no diagnóstico e hoje serve também o
+ * checklist, por isso os textos são parametrizáveis — os padrões mantêm
+ * exatamente a redação do diagnóstico, que continua chamando sem props.
+ */
 export function GatingForm({
   onSubmit,
   submitting,
+  ctaLabel = "Liberar meu relatório e ver o dinheiro em risco",
+  consentPurpose = "gerar o diagnóstico",
+  optinLabel = "Aceito receber meu relatório e o contato do nutricionista pelo WhatsApp (opcional).",
+  footnote = "Resultado na tela + relatório no seu e-mail. Sem spam.",
 }: {
   onSubmit: (values: GatingValues) => void;
   submitting: boolean;
+  ctaLabel?: string;
+  consentPurpose?: string;
+  optinLabel?: string;
+  footnote?: string;
 }) {
   const {
     register,
@@ -96,9 +109,9 @@ export function GatingForm({
           {...register("consent")}
         />
         <span>
-          Concordo com o tratamento dos meus dados para gerar o diagnóstico,
+          Concordo com o tratamento dos meus dados para {consentPurpose},
           conforme a{" "}
-          <a href="/contato" className="text-brand-700 underline">
+          <a href="/privacidade" className="text-brand-700 underline">
             Política de Privacidade (LGPD)
           </a>
           .
@@ -114,10 +127,7 @@ export function GatingForm({
           className="mt-1 h-4 w-4 rounded border-surface-sunken text-brand-600 focus:ring-brand-400"
           {...register("whatsappOptin")}
         />
-        <span>
-          Aceito receber meu relatório e o contato do nutricionista pelo
-          WhatsApp (opcional).
-        </span>
+        <span>{optinLabel}</span>
       </label>
 
       <button
@@ -132,11 +142,9 @@ export function GatingForm({
         ) : (
           <Lock className="h-5 w-5" />
         )}
-        Liberar meu relatório e ver o dinheiro em risco
+        {ctaLabel}
       </button>
-      <p className="text-center text-xs text-ink-muted">
-        Resultado na tela + relatório no seu e-mail. Sem spam.
-      </p>
+      <p className="text-center text-xs text-ink-muted">{footnote}</p>
     </form>
   );
 }

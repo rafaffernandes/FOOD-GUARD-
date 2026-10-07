@@ -24,11 +24,16 @@ const AI_BOTS = [
   "cohere-ai",
 ];
 
+// O PDF do checklist fica fora da busca de propósito: ele é a recompensa por
+// deixar os dados. Indexado, viraria porta de entrada sem formulário — e
+// tráfego que cai direto num PDF não vira lead nem tem para onde clicar.
+const BLOQUEADO = ["/api/", "/admin/", "/checklist-vigilancia-food-guard.pdf"];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/admin/"] },
-      ...AI_BOTS.map((ua) => ({ userAgent: ua, allow: "/", disallow: ["/api/", "/admin/"] })),
+      { userAgent: "*", allow: "/", disallow: BLOQUEADO },
+      ...AI_BOTS.map((ua) => ({ userAgent: ua, allow: "/", disallow: BLOQUEADO })),
     ],
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,

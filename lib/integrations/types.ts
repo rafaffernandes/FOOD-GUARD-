@@ -8,6 +8,18 @@ export type LeadRole =
   | "Supervisor"
   | "Outro";
 
+/** Dados de contato — a parte comum a qualquer origem de lead. */
+export interface ContactPayload {
+  name: string;
+  email: string;
+  phone: string;
+  role: LeadRole;
+  company: string;
+  consent: boolean;
+  whatsappOptin: boolean;
+  utm?: Record<string, string>;
+}
+
 export interface LeadPayload {
   name: string;
   email: string;
