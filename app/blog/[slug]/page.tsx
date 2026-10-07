@@ -81,7 +81,10 @@ export default async function PostPage({
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     url,
-    ...(cover ? { image: [cover] } : {}),
+    // Schema.org pede URL absoluta. Capa própria vem como caminho relativo.
+    ...(cover
+      ? { image: [cover.startsWith("http") ? cover : `${site.url}${cover}`] }
+      : {}),
     articleSection: post.tag,
     about: {
       "@type": "Thing",
