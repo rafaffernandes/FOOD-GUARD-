@@ -1,7 +1,8 @@
-[Nome], esta é a última mensagem, para não incomodar.
+[Nome], prometo que esta é a última mensagem.
 
 Quer saber como o [Estabelecimento] se sairia numa fiscalização hoje? Um nutricionista da Food Guard vai até aí, conhece a operação com você e mostra o que está em ordem e o que precisa de atenção. A visita é gratuita, e o que ele vê fica entre você e a Food Guard.
 
-Se preferir começar pelo site, o diagnóstico gratuito está aqui: foodguardassessoria.com.br/diagnostico
+Se preferir começar pelo site, o diagnóstico gratuito está aqui:
+foodguardassessoria.com.br/diagnostico
 
-Para a visita, é só me dizer o melhor dia e horário. Obrigado pela atenção e bom trabalho!
+Que dia e horário ficam melhores para a visita? Se não for o momento, tudo bem: obrigado pela atenção e bom trabalho!

@@ -1,3 +1,5 @@
-Combinado: [dia], às [hora].
+Combinado! Fica [dia], às [hora].
 
-Só para confirmar: o endereço é [endereço] e quem recebe o nutricionista é você mesmo? Ele chega identificado como Food Guard. Na véspera a gente manda um lembrete.
+O nutricionista chega identificado como Food Guard, e na véspera a gente manda um lembrete por aqui.
+
+Só para confirmar: o endereço é [endereço], e é você mesmo quem vai receber?

@@ -199,8 +199,8 @@ ${linhasTeste}
 <!--trava:ignora--><table>
 <tr><th style="width:30%">Ponto</th><th>Como ficou</th></tr>
 <tr><td><b>Quem somos</b></td><td>"Food Guard, consultoria nutricional para serviços de alimentação", em todas as mensagens, na assinatura do e-mail e no perfil do WhatsApp. "Empresa de nutricionistas" e "assessoria de nutricionistas" saíram de tudo, e o gerador agora se recusa a montar o material se alguma dessas expressões voltar.</td></tr>
-<tr><td><b>Primeira mensagem</b></td><td>Mantém a pergunta do Manual na abertura e ganha o que faltava: quem é a Food Guard, o que ela faz e o link do diagnóstico gratuito, para quem quiser conhecer antes. O diagnóstico coloca o lead no funil com dados mais completos.</td></tr>
-<tr><td><b>Fechamento</b></td><td>Saiu o "fica melhor [dia] ou [dia], por volta das [hora]?". Agora as respostas fecham com "Que dia e horário ficam melhores para a visita?".</td></tr>
+<tr><td><b>Primeira mensagem</b></td><td>Mantém a pergunta do Manual na abertura e ganha o que faltava: por que o Manual importa (é obrigatório), quem é a Food Guard, o que ela faz, inclusive para quem já foi notificado, e termina no link do diagnóstico gratuito. O diagnóstico coloca o lead no funil com dados mais completos.</td></tr>
+<tr><td><b>Fechamento</b></td><td>Saiu o "fica melhor [dia] ou [dia], por volta das [hora]?" e saíram os finais sem pergunta ("é só me dizer…"). Toda mensagem que puxa a visita termina com "Que dia e horário ficam melhores para a visita?" ou uma variação, para não repetir a mesma frase duas vezes seguidas na conversa.</td></tr>
 <tr><td><b>Duração da visita</b></td><td>Não aparece em nenhuma mensagem, nem "não precisa parar a operação". Se a pessoa quiser saber, ela pergunta.</td></tr>
 <tr><td><b>Operação, não cozinha</b></td><td>O nutricionista "conhece a operação com você".</td></tr>
 <tr><td><b>Preço</b></td><td>"Depende da operação." A visita é gratuita e o plano é montado para cada modelo de negócio.</td></tr>
@@ -223,7 +223,7 @@ ${linhasTeste}
 <tr><th style="width:24%">Campo</th><th>Regra</th></tr>
 <tr><td><b>[Nome]</b></td><td>Só com o nome do dono confirmado (resposta dele no Google Maps, Instagram, site). Sem nome, a mensagem abre sem vocativo. Nunca mandar com colchete, vazio ou com o nome da casa no lugar do nome da pessoa.</td></tr>
 <tr><td><b>[Estabelecimento]</b></td><td>O nome que o dono usa: "Sabor da Vila", e não "Restaurante e Pizzaria Sabor da Vila - Marmitex 24h". Ajuste "do/da" e "no/na" na hora: "da Rainha de São Lucas".</td></tr>
-<tr><td><b>[origem]</b></td><td>Onde o contato foi achado de verdade: Google Maps, Instagram, site ou "com a [nome] da equipe de vocês". Quatro dos seis donos perguntaram de onde veio o número.</td></tr>
+<tr><td><b>[origem]</b></td><td>Onde o contato foi achado de verdade, para caber em "no [origem]": Google Maps, Instagram, site de vocês. Contato passado por alguém da equipe usa a abertura do card "Atendente". Quatro dos seis donos perguntaram de onde veio o número.</td></tr>
 <tr><td><b>[dia] [hora]</b></td><td>O dia e o horário que a pessoa escolheu. Ao confirmar, prefira fora do pico: restaurante e self-service à tarde, entre o almoço e o jantar; padaria no começo da tarde; delivery de manhã, antes de abrir.</td></tr>
 </table>
 </section>
@@ -241,7 +241,7 @@ ${linhasTeste}
 </div>
 <div class="ramo">
   <b>Respondeu em qualquer momento?</b> Sai da cadência e segue este caminho:
-  <div class="fluxo"><span>4a ou 4b · em até 5 min</span><span>→ 5 · escolheu o dia</span><span>→ Confirmação</span><span>→ Lembrete na véspera</span><span>→ Visita</span></div>
+  <div class="fluxo"><span>4a, 4b ou 4c · em até 5 min</span><span>→ 5 · escolheu o dia</span><span>→ Confirmação</span><span>→ Lembrete na véspera</span><span>→ Visita</span></div>
 </div>
 <table>
 <tr><th style="width:22%">Canal</th><th style="width:40%">Quando usar</th><th style="width:38%">Horário de envio</th></tr>
@@ -255,7 +255,7 @@ ${paginasMsg}
 
 <section class="nova">
 <h2><span>5 ·</span> Quando a pessoa responde</h2>
-<div class="intro"><b>Antes do texto-base, uma ou duas frases respondem o que a pessoa perguntou ou contou.</b> Perguntou preço, responde. Contou que foi autuada, reconhece isso. Depois vem a visita gratuita e o fechamento: "Que dia e horário ficam melhores para a visita?". Para quem ainda quer conhecer antes, o diagnóstico gratuito do site entra como segunda opção.</div>
+<div class="intro"><b>Antes do texto-base, uma ou duas frases respondem o que a pessoa perguntou ou contou.</b> Perguntou preço, responde. Contou que foi autuada, reconhece isso. Depois vem a visita gratuita e o fechamento: "Que dia e horário ficam melhores para a visita?". Se a mensagem anterior da mesma conversa já fechou com essa frase, varie: "Que dia e horário ficam melhores para você?", "Qual dia da semana costuma ser mais tranquilo para receber o nutricionista?" ou "Quando fica bom para você receber a visita?". Para quem ainda quer conhecer antes, o diagnóstico gratuito do site entra como segunda opção.</div>
 ${resp4}
 </section>
 
