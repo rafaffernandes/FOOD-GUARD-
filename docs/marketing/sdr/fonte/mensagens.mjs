@@ -88,7 +88,7 @@ export const agendamento = [
   {
     id: "4b-respondeu-sim",
     letra: "4b",
-    nome: "Respondeu \"sim\" (o Manual está em dia)",
+    nome: "Respondeu \"sim\" à pergunta do Manual ou da temperatura",
     quando: "Em até 5 minutos",
     texto:
       "Ótimo. Na fiscalização, o que costuma pegar é a rotina não bater com o que está no Manual: temperatura anotada, higienização, treinamento da equipe.\n\n" +
@@ -111,7 +111,8 @@ export const agendamento = [
     quando: "Assim que a pessoa escolher",
     texto:
       "Combinado: [dia], às [hora].\n\n" +
-      "Só para confirmar o endereço: é [endereço]? O nutricionista chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda um lembrete.",
+      "Só para confirmar: o endereço é [endereço] e quem recebe o nutricionista é você mesmo? Ele chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda um lembrete.",
+    nota: "Se quem recebe for outra pessoa, anotar o nome na planilha e usar esse nome na confirmação.",
   },
 ];
 
@@ -135,6 +136,16 @@ export const posAgendamento = [
       "Oi, [Nome]! Confirmando a visita do nutricionista da Food Guard amanhã, [dia] às [hora], no [Estabelecimento].\n\n" +
       "Está tudo certo? Se surgir algum imprevisto, é só avisar que a gente remarca.\n\nEquipe Food Guard",
     semNome: "Oi! Confirmando a visita do nutricionista da Food Guard amanhã, [dia] às [hora], no [Estabelecimento].",
+    nota: "Sem resposta até o fim do dia: na manhã da visita, mandar \"Bom dia, [Nome]. O nutricionista da Food Guard passa hoje às [hora] no [Estabelecimento]. Segue de pé?\". Sem resposta até duas horas antes, ligar para o estabelecimento antes de o nutricionista sair.",
+  },
+  {
+    id: "nao-aconteceu",
+    nome: "A visita não aconteceu",
+    quando: "No mesmo dia",
+    texto:
+      "[Nome], o nutricionista da Food Guard passou hoje às [hora] no [Estabelecimento], mas não deu para fazer a visita. Imagino que tenha surgido algum imprevisto.\n\n" +
+      "Quer remarcar? Fica melhor [dia] ou [dia], por volta das [hora]?\n\nEquipe Food Guard",
+    nota: "Sem resposta, uma retomada em 30 dias. Segunda falta: encerrar.",
   },
 ];
 
@@ -169,7 +180,7 @@ export const respostas = [
   },
   {
     gatilho: "Fui autuado / tenho prazo para regularizar",
-    texto: "Entendi, [Nome]. Então vale agir rápido. Dá para priorizar uma visita gratuita: o nutricionista vai até aí, entende o que foi apontado e mostra os próximos passos. Fica melhor [dia] ou [dia], por volta das [hora]?",
+    texto: "Entendi, [Nome]. Então vale agir rápido. Dá para priorizar uma visita gratuita: o nutricionista vai até aí, entende o que foi apontado e mostra os próximos passos. Se puder, deixa separado o papel que a fiscalização deixou. Fica melhor [dia] ou [dia], por volta das [hora]?",
     nota: "Ofereça os dois primeiros horários livres da agenda, mesmo que tirem outra visita do lugar.",
   },
   {
@@ -179,11 +190,51 @@ export const respostas = [
   {
     gatilho: "Atendente: o dono não está",
     texto: "Tudo bem! E quem cuida da cozinha aí? É para oferecer uma visita gratuita de um nutricionista. Pode me passar o contato ou o melhor horário para falar?",
+    nota: "Recebeu o contato: começar a cadência com o dono pela mensagem 1, citando quem passou (\"Boa tarde, [Nome]. A [quem passou] do [Estabelecimento] passou seu contato: o Manual de Boas Práticas está em dia?\"). Recebeu só um horário: escrever de novo neste número nesse horário. Sem retorno, segue a cadência neste número.",
+  },
+  {
+    gatilho: "Quais são os planos? Qual a diferença?",
+    texto: "São três planos mensais: Básico, R$ 1.200, com visita a cada 15 dias; Essencial, R$ 2.300, com visita toda semana; e Premium, R$ 3.400, com duas visitas por semana e nutricionista responsável pela operação. Está tudo em foodguardassessoria.com.br/planos. Qual faz sentido depende do que o nutricionista encontrar na visita gratuita, que não obriga a nada. Fica melhor [dia] ou [dia], por volta das [hora]?",
+  },
+  {
+    gatilho: "Quem vai vir?",
+    texto: "Vai um nutricionista da Food Guard, com registro no CRN, o conselho dos nutricionistas. Ele chega identificado como Food Guard e olha a cozinha junto com você. Fica melhor [dia] ou [dia], por volta das [hora]?",
+    nota: "Se você aprovar o nome e o CRN na confirmação (seção 11), acrescentar antes da pergunta: \"O nome dele vai na confirmação.\"",
+  },
+  {
+    gatilho: "Com quem eu falo? É robô?",
+    texto: "É uma pessoa, sim, do atendimento da Food Guard, que cuida da agenda das visitas. Pode perguntar o que quiser. Se a visita gratuita fizer sentido, tenho [dia] ou [dia], por volta das [hora].",
+    nota: "Não dar nome próprio: quem assina é a empresa.",
+  },
+  {
+    gatilho: "Vocês atendem na minha região?",
+    texto: "Atendemos a cidade de São Paulo e a Grande SP, e [bairro ou cidade] está dentro. A visita do nutricionista é gratuita e é feita no próprio [Estabelecimento]. Fica melhor [dia] ou [dia], por volta das [hora]?",
+    nota: "Fora da área: \"Por enquanto a Food Guard atende só a cidade de São Paulo e a Grande SP, então não conseguimos levar o nutricionista até aí. Obrigado pela atenção e bom trabalho.\" Status encerrado.",
+  },
+  {
+    gatilho: "Esses dias não dá / preciso remarcar",
+    texto: "Sem problema, [Nome]. Tenho também [dia] ou [dia], por volta das [hora]. Se nenhum encaixar, me diz o dia e o período melhores para você que a gente se ajusta.",
+    nota: "Se a visita já estava marcada, mandar a confirmação de novo com a nova data. Segunda remarcação sem data definida: tratar como \"agora não\".",
+  },
+  {
+    gatilho: "Me liga",
+    texto: "Ligo, sim. Pode ser agora ou prefere outro horário hoje?",
+    nota: "Na ligação, apresentar-se como atendimento da Food Guard, sem nome próprio, responder a dúvida e fechar dia e hora da visita gratuita. Depois, mandar a mensagem 5 por escrito para o combinado ficar registrado.",
+  },
+  {
+    gatilho: "Manda por e-mail",
+    texto: "Mando, sim. Qual é o seu e-mail? Vai lá como funciona a visita gratuita e duas opções de horário, e pode responder por lá mesmo.",
+    nota: "Mandar por e-mail o texto da 4a ou da 4b, com a assinatura, assunto \"[Estabelecimento]: visita gratuita do nutricionista\". Trocar o canal na planilha.",
+  },
+  {
+    gatilho: "Respondeu, recebeu os horários e sumiu",
+    texto: "[Nome], conseguiu ver um dia para a visita gratuita do nutricionista? Se [dia] ou [dia] não encaixarem, me diz o dia e o período melhores para o [Estabelecimento] que a gente se ajusta.",
+    nota: "Uma única retomada, dois dias úteis depois, no horário de envio. Se os dias oferecidos já passaram, usar dois novos. Sem resposta, encerra. Nunca reenviar a cadência.",
   },
   {
     gatilho: "Agora não / vou pensar",
     texto: "Sem problema. Posso voltar a falar com você daqui a um mês?",
-    nota: "Só volte se a pessoa topar. Na data, uma mensagem só, fora da cadência: \"Oi, [Nome]. Como combinamos, voltando a falar da visita gratuita do nutricionista no [Estabelecimento]. Fica melhor [dia] ou [dia], por volta das [hora]?\" Sem resposta, encerra. Se ela disser que não precisa voltar, trate como recusa.",
+    nota: "Só volte se a pessoa topar: status \"retorno em [data]\" na planilha. Na data, uma mensagem só, fora da cadência: \"Oi, [Nome]. Como combinamos, voltando a falar da visita gratuita do nutricionista no [Estabelecimento]. Fica melhor [dia] ou [dia], por volta das [hora]?\" Sem resposta, encerra. Se ela disser que não precisa voltar, trate como recusa.",
   },
   {
     gatilho: "Não tenho interesse / sair / resposta grosseira",
@@ -193,4 +244,6 @@ export const respostas = [
 ];
 
 // Mensagem automática do WhatsApp Business (saudação, cardápio) não conta
-// como resposta: o lead segue na cadência.
+// como resposta: o lead segue na cadência. Áudio do lead conta: ouvir,
+// responder por texto começando pelo que a pessoa disse e anotar na planilha.
+// O SDR não manda áudio.

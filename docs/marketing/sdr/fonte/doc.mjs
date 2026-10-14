@@ -55,20 +55,30 @@ const resp4 = agendamento.map((m) => `
   <div class="card">
     <div class="card-t"><span class="tag">${esc(m.letra)}</span> ${esc(m.nome)} <span>· ${esc(m.quando)}</span></div>
     <div class="bolha">${whats(m.texto)}</div>
+    ${m.nota ? `<div class="nota">${esc(m.nota)}</div>` : ""}
   </div>`).join("");
 
 const pos = posAgendamento.map((p) => `
   <div class="card">
     <div class="card-t">${esc(p.nome)} <span>· ${esc(p.quando)}</span></div>
     <div class="bolha">${whats(p.texto)}</div>
+    ${p.nota ? `<div class="nota">${esc(p.nota)}</div>` : ""}
   </div>`).join("");
 
-const resp = respostas.map((r) => `
+// Roteiro em dois blocos: dúvidas sobre a Food Guard e situações da conversa.
+const DUVIDAS = ["Quanto custa?", "Quais são os planos? Qual a diferença?", "Isso é obrigatório?",
+  "Quem é? De onde tirou meu número? É da Vigilância?", "O que vocês fazem exatamente?", "Quem vai vir?",
+  "Com quem eu falo? É robô?", "Já tenho nutricionista", "Aqui é só delivery, isso vale para mim?",
+  "Vocês atendem na minha região?", "Fui autuado / tenho prazo para regularizar"];
+const cartao = (r) => `
   <div class="resp">
     <div class="gatilho">"${esc(r.gatilho)}"</div>
     <div class="bolha">${whats(r.texto)}</div>
     ${r.nota ? `<div class="nota">${esc(r.nota)}</div>` : ""}
-  </div>`).join("");
+  </div>`;
+const respDuvidas = DUVIDAS.map((g) => respostas.find((r) => r.gatilho === g)).map(cartao).join("");
+const respSituacoes = respostas.filter((r) => !DUVIDAS.includes(r.gatilho)).map(cartao).join("");
+if (respostas.filter((r) => DUVIDAS.includes(r.gatilho)).length !== DUVIDAS.length) throw new Error("gatilho do roteiro não encontrado");
 
 const linhasTeste = teste.map((t) => `<tr><td>${esc(t.p)}</td><td class="n">${t.a[0]}%</td><td class="n">${t.a[1]}%</td><td class="n forte">${t.d[0]}%</td><td class="n forte">${t.d[1]}%</td></tr>`).join("");
 
@@ -249,8 +259,11 @@ ${resp4}
 
 <section class="nova">
 <h2><span>7 ·</span> Roteiro do SDR</h2>
-<div class="intro"><b>Responda em até 5 minutos</b> no horário comercial. Toda resposta termina puxando a visita, menos a recusa, que se respeita na hora, e o "agora não", que vira retorno em 30 dias.</div>
-<div class="cols2">${resp}</div>
+<div class="intro"><b>Responda em até 5 minutos</b> no horário comercial, sempre por texto, começando pelo que a pessoa disse. Quase toda resposta termina com duas opções de horário. As exceções são a recusa, que se respeita na hora, e os pedidos que mudam o caminho (ligar, mandar por e-mail, falar com o dono, voltar daqui a um mês).</div>
+<h3>Dúvidas sobre a Food Guard e a visita</h3>
+<div class="cols2">${respDuvidas}</div>
+<h3>Situações da conversa</h3>
+<div class="cols2">${respSituacoes}</div>
 </section>
 
 <section class="nova">
@@ -288,7 +301,7 @@ ${resp4}
 <h3>A planilha do SDR, uma linha por lead</h3>
 <table>
 <tr><th>Estabelecimento</th><th>Contato</th><th>Canal</th><th>Msg 1</th><th>Msg 2</th><th>Msg 3</th><th>Resposta</th><th>Visita</th><th>Status</th></tr>
-<tr><td>Nome limpo, tipo e bairro</td><td>Nome confirmado e número</td><td>Whats ou e-mail</td><td>data</td><td>data</td><td>data</td><td>o que disse</td><td>data e hora</td><td>em cadência · respondeu · agendado · encerrado · descadastrado</td></tr>
+<tr><td>Nome limpo, tipo e bairro</td><td>Nome confirmado e número</td><td>Whats ou e-mail</td><td>data</td><td>data</td><td>data</td><td>o que disse</td><td>data e hora</td><td>em cadência · respondeu · retorno em [data] · agendado · encerrado · descadastrado</td></tr>
 </table>
 <h3>Os três números de toda sexta</h3>
 <table>
