@@ -1,5 +1,5 @@
-[Nome], o nutricionista da Food Guard passou hoje às [hora] no [Estabelecimento], mas não deu para fazer a visita. Imagino que tenha surgido algum imprevisto.
+Oi, [Nome]! O nutricionista da Food Guard passou hoje às [hora] no [Estabelecimento], mas não deu para fazer a visita. Imagino que tenha surgido algum imprevisto.
 
-Quer remarcar? Fica melhor [dia] ou [dia], por volta das [hora]?
+Vamos remarcar? Me diz o dia e o horário que ficam melhores para você.
 
 Equipe Food Guard

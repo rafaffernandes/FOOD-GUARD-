@@ -1,5 +1,7 @@
-Tranquilo, isso é bem comum. O primeiro passo é uma visita gratuita: um nutricionista da Food Guard vai até o [Estabelecimento], olha a cozinha com você e mostra o que está em ordem e o que falta. Leva cerca de uma hora, não precisa parar a operação e o que ele vê fica entre você e a Food Guard.
+Sem problema, [Nome], isso acontece bastante! Por isso o primeiro passo é uma visita gratuita: um nutricionista da Food Guard vai até o [Estabelecimento], conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. O que ele vê fica entre você e a Food Guard.
 
-Se depois vocês quiserem ajuda para acertar o que faltar, a gente apresenta os planos. Se não, já saem sabendo o que ajustar.
+Se depois vocês quiserem ajuda para acertar o que faltar, a gente apresenta o plano que faz sentido para a operação. Se não, vocês já saem sabendo o que ajustar.
 
-Fica melhor [dia] ou [dia], por volta das [hora]?
+E se preferir conhecer a gente antes, dá para fazer o diagnóstico gratuito no site: foodguardassessoria.com.br/diagnostico
+
+Que dia e horário ficam melhores para a visita?

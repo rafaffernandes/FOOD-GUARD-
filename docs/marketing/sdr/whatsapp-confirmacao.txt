@@ -1,9 +1,9 @@
-Visita agendada, [Nome].
+Visita agendada, [Nome]!
 
 Data: [dia], às [hora]
 Endereço: [endereço]
 Quem vai: um nutricionista da Food Guard
 
-Se precisar remarcar, é só avisar por aqui.
+Se precisar remarcar, é só avisar por aqui. Até lá!
 
 Equipe Food Guard

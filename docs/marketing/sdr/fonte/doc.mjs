@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { travar } from "./trava.mjs";
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(FONTE, "..");
@@ -189,11 +190,22 @@ ${linhasTeste}
 <li><b>A notificação decide.</b> Só a primeira linha aparece na tela. Na primeira versão ela era "aqui é da Food Guard, assessoria…", e todos leram como vendedor antes de abrir. Agora a primeira linha é a pergunta, com o nome da casa.</li>
 <li><b>A visita aparecia tarde demais.</b> Só a mensagem 3 falava da visita gratuita, e ela é a menos lida. Agora a visita entra já na 2.</li>
 <li><b>Resposta que ignora a pergunta soa robô.</b> Quem perguntou preço ou contou que foi autuado e recebeu texto pronto quase desistiu. Regra nova: primeiro responde o que a pessoa disse, depois puxa a visita.</li>
-<li><b>Preço escondido parece armadilha.</b> Quando perguntarem, o valor sai na hora, junto com "ninguém sai da visita obrigado a contratar".</li>
+<li><b>Preço escondido parece armadilha.</b> No teste, quem perguntou o preço e não teve resposta desconfiou. Pela sua decisão, a resposta é "depende da operação": a visita é gratuita e o plano é montado para cada modelo de negócio. Os valores continuam públicos no site, em /planos.</li>
 <li><b>Detalhe de robô derruba tudo:</b> nome errado, "o Padaria", "restaurante" para quem é padaria, "responda VISITA" em maiúsculas, "pode responder só com sim, não ou não sei". Tudo isso saiu.</li>
-<li><b>Os números da tabela são da versão revisada.</b> A versão final ainda mudou alguns detalhes a partir da releitura e da checagem (origem do contato na primeira mensagem, faixa de preço completa, sem palavra-chave na última mensagem) e não foi testada de novo.</li>
+<li><b>Os números da tabela são da versão revisada.</b> A versão final mudou depois disso, com a checagem e com a sua revisão (seção 1, abaixo), e não foi testada de novo.</li>
 </ul>
 <div class="alerta"><b>O que o texto não resolve.</b> Os seis donos disseram a mesma coisa: o que mais faz responder é indicação de alguém conhecido, alguém passar no balcão ou o nome de uma pessoa de verdade. A mensagem converte melhor quem já sente a dor (autuado, com medo da fiscalização, operação nova). Para os desconfiados, o caminho é indicação e visita de balcão, que ficam como canais complementares.</div>
+<h3>O que mudou com a sua revisão</h3>
+<!--trava:ignora--><table>
+<tr><th style="width:30%">Ponto</th><th>Como ficou</th></tr>
+<tr><td><b>Quem somos</b></td><td>"Food Guard, consultoria nutricional para serviços de alimentação", em todas as mensagens, na assinatura do e-mail e no perfil do WhatsApp. "Empresa de nutricionistas" e "assessoria de nutricionistas" saíram de tudo, e o gerador agora se recusa a montar o material se alguma dessas expressões voltar.</td></tr>
+<tr><td><b>Primeira mensagem</b></td><td>Mantém a pergunta do Manual na abertura e ganha o que faltava: quem é a Food Guard, o que ela faz e o link do diagnóstico gratuito, para quem quiser conhecer antes. O diagnóstico coloca o lead no funil com dados mais completos.</td></tr>
+<tr><td><b>Fechamento</b></td><td>Saiu o "fica melhor [dia] ou [dia], por volta das [hora]?". Agora as respostas fecham com "Que dia e horário ficam melhores para a visita?".</td></tr>
+<tr><td><b>Duração da visita</b></td><td>Não aparece em nenhuma mensagem, nem "não precisa parar a operação". Se a pessoa quiser saber, ela pergunta.</td></tr>
+<tr><td><b>Operação, não cozinha</b></td><td>O nutricionista "conhece a operação com você".</td></tr>
+<tr><td><b>Preço</b></td><td>"Depende da operação." A visita é gratuita e o plano é montado para cada modelo de negócio.</td></tr>
+<tr><td><b>Tom</b></td><td>Mais comercial e amigável nas respostas, sem frase de roteiro.</td></tr>
+</table><!--/trava-->
 </section>
 
 <section class="nova">
@@ -204,16 +216,15 @@ ${linhasTeste}
   <div class="regra"><b>Quem assina é a empresa</b>Food Guard ou Equipe Food Guard. Nunca o nome de uma pessoa.</div>
   <div class="regra"><b>Uma comunicação, qualquer canal</b>O texto do WhatsApp e o do e-mail são o mesmo. No e-mail entram assunto, assinatura com logo e rodapé.</div>
   <div class="regra"><b>Sem resposta: no máximo três</b>Terça, sexta e terça seguinte. Depois disso, encerra e o lead sai da lista.</div>
-  <div class="regra"><b>Respondeu: sai da cadência</b>Responde primeiro o que a pessoa disse e fecha com duas opções de horário.</div>
+  <div class="regra"><b>Respondeu: sai da cadência</b>Responde primeiro o que a pessoa disse e fecha perguntando o melhor dia e horário para a visita.</div>
 </div>
 <h3>Como preencher os campos (a mesclagem)</h3>
 <table>
 <tr><th style="width:24%">Campo</th><th>Regra</th></tr>
 <tr><td><b>[Nome]</b></td><td>Só com o nome do dono confirmado (resposta dele no Google Maps, Instagram, site). Sem nome, a mensagem abre sem vocativo. Nunca mandar com colchete, vazio ou com o nome da casa no lugar do nome da pessoa.</td></tr>
 <tr><td><b>[Estabelecimento]</b></td><td>O nome que o dono usa: "Sabor da Vila", e não "Restaurante e Pizzaria Sabor da Vila - Marmitex 24h". Ajuste "do/da" e "no/na" na hora: "da Rainha de São Lucas".</td></tr>
-<tr><td><b>[tipo de operação]</b></td><td>Categoria ampla, no plural: restaurantes, padarias, lanchonetes, cozinhas de delivery. Chamar padaria de restaurante entrega o disparo em massa. Nicho fino ("restaurantes japoneses") dá a entender que já temos clientes nele.</td></tr>
 <tr><td><b>[origem]</b></td><td>Onde o contato foi achado de verdade: Google Maps, Instagram, site ou "com a [nome] da equipe de vocês". Quatro dos seis donos perguntaram de onde veio o número.</td></tr>
-<tr><td><b>[dia] [hora]</b></td><td>Os dois primeiros horários livres da agenda do nutricionista, fora do pico. Restaurante e self-service: 15h às 17h. Padaria: começo da tarde. Delivery: de manhã, antes de abrir.</td></tr>
+<tr><td><b>[dia] [hora]</b></td><td>O dia e o horário que a pessoa escolheu. Ao confirmar, prefira fora do pico: restaurante e self-service à tarde, entre o almoço e o jantar; padaria no começo da tarde; delivery de manhã, antes de abrir.</td></tr>
 </table>
 </section>
 
@@ -244,7 +255,7 @@ ${paginasMsg}
 
 <section class="nova">
 <h2><span>5 ·</span> Quando a pessoa responde</h2>
-<div class="intro"><b>Antes do texto-base, uma ou duas frases respondem o que a pessoa perguntou ou contou.</b> Perguntou preço, responde o preço. Contou que foi autuada, reconhece isso. Só então vem a visita, sempre com duas opções de horário, e não com "qual dia fica bom?", que abre mais uma rodada de conversa.</div>
+<div class="intro"><b>Antes do texto-base, uma ou duas frases respondem o que a pessoa perguntou ou contou.</b> Perguntou preço, responde. Contou que foi autuada, reconhece isso. Depois vem a visita gratuita e o fechamento: "Que dia e horário ficam melhores para a visita?". Para quem ainda quer conhecer antes, o diagnóstico gratuito do site entra como segunda opção.</div>
 ${resp4}
 </section>
 
@@ -259,7 +270,7 @@ ${resp4}
 
 <section class="nova">
 <h2><span>7 ·</span> Roteiro do SDR</h2>
-<div class="intro"><b>Responda em até 5 minutos</b> no horário comercial, sempre por texto, começando pelo que a pessoa disse. Quase toda resposta termina com duas opções de horário. As exceções são a recusa, que se respeita na hora, e os pedidos que mudam o caminho (ligar, mandar por e-mail, falar com o dono, voltar daqui a um mês).</div>
+<div class="intro"><b>Responda em até 5 minutos</b> no horário comercial, sempre por texto, começando pelo que a pessoa disse, com tom de conversa e não de roteiro. Quase toda resposta fecha puxando a visita. As exceções são a recusa, que se respeita na hora, e os pedidos que mudam o caminho (ligar, mandar por e-mail, falar com o responsável, voltar daqui a um mês).</div>
 <h3>Dúvidas sobre a Food Guard e a visita</h3>
 <div class="cols2">${respDuvidas}</div>
 <h3>Situações da conversa</h3>
@@ -290,7 +301,7 @@ ${resp4}
 <table class="check">
 <tr><th>Item</th><th>O que fazer</th></tr>
 <tr><td>Número dedicado</td><td>Recomendo um número só para prospecção. Mensagem fria gera bloqueio e denúncia, e o WhatsApp restringe o número. Se for o (11) 97646-6553, que está no site, a Food Guard perde também o canal dos leads que chegam sozinhos.</td></tr>
-<tr><td>Perfil completo</td><td>WhatsApp Business com logo, nome "Food Guard", descrição "Empresa particular de nutricionistas para serviços de alimentação. Não somos órgão público.", site, CNPJ e horário. O dono toca no perfil antes de responder.</td></tr>
+<tr><td>Perfil completo</td><td>WhatsApp Business com logo, nome "Food Guard", descrição "Consultoria nutricional para serviços de alimentação em São Paulo. Não somos órgão público.", site, CNPJ e horário. O dono toca no perfil antes de responder.</td></tr>
 <tr><td>Volume e ritmo</td><td>20 a 30 conversas novas por dia, digitadas uma a uma. Nada de disparador em massa. Se aparecerem bloqueios, pausa o dia.</td></tr>
 <tr><td>Horário</td><td>Terça a sexta, das 14h30 às 17h. Segunda tem muita cozinha fechada; almoço e jantar enterram a mensagem.</td></tr>
 </table>
@@ -320,8 +331,8 @@ ${resp4}
 <tr><th style="width:30%">Ponto</th><th style="width:70%">O que escrevi, e o que precisa da sua confirmação</th></tr>
 <tr><td><b>As três mensagens e as respostas</b></td><td>Seções 4 a 7. É o texto que vai para o WhatsApp e para o e-mail.</td></tr>
 <tr><td><b>"O que ele vê fica entre você e a Food Guard"</b></td><td>Foi a frase que mais baixou a guarda dos donos simulados. Escrevi "entre você e a Food Guard", e não "fica só com você", porque o nutricionista leva o que viu para a empresa montar a proposta e o sigilo profissional tem exceção legal. Ela é um compromisso: só pode ficar se for prática da Food Guard não repassar a ninguém de fora.</td></tr>
-<tr><td><b>Duração da visita</b></td><td>"Cerca de uma hora". Se for diferente, troco em todas as mensagens de uma vez.</td></tr>
-<tr><td><b>Preço na resposta</b></td><td>Quando perguntarem, o SDR diz a faixa inteira (R$ 1.200 a R$ 3.400) e avisa que o Manual de Boas Práticas entra a partir do Essencial. Dizer só "a partir de R$ 1.200" numa conversa que começou pelo Manual faria a pessoa achar que ele está no Básico, e ele não está.</td></tr>
+<tr><td><b>Link na primeira mensagem</b></td><td>Pedido seu, e faz sentido para o funil. Dois cuidados: link vindo de número desconhecido aumenta um pouco a chance de denúncia no WhatsApp, então vale acompanhar os bloqueios na primeira semana. E hoje o diagnóstico não registra de onde o lead veio; o SDR confere pelo telefone na base. Se quiser que a origem "prospecção" fique registrada sozinha, é um ajuste pequeno no site, que eu faço quando você pedir.</td></tr>
+<tr><td><b>Preço na resposta</b></td><td>Como você pediu: "depende da operação", a visita é gratuita e o plano é montado para cada modelo de negócio. Se a pessoa insistir nos valores, o SDR manda o link de /planos, onde eles já estão públicos.</td></tr>
 <tr><td><b>Quem vai na visita</b></td><td>Todos os donos simulados perguntaram "quem vem?". Hoje a confirmação diz "um nutricionista da Food Guard". Se quiser, a confirmação passa a levar o nome e o CRN de quem vai. As mensagens de prospecção continuam assinadas pela empresa.</td></tr>
 <tr><td><b>Lead autuado</b></td><td>Quem foi autuado recebe os dois primeiros horários livres da agenda, mesmo que tirem outra visita do lugar. É o lead que mais converte.</td></tr>
 <tr><td><b>Número de WhatsApp</b></td><td>Recomendo um número só para prospecção (seção 9). A decisão é sua.</td></tr>
@@ -333,5 +344,8 @@ ${resp4}
 
 </body></html>`;
 
+// O quadro "O que mudou" cita as expressões que saíram; o resto do documento passa pela trava.
+const texto = html.replace(/<!--trava:ignora-->[\s\S]*?<!--\/trava-->/g, "").replace(/<[^>]+>/g, " ");
+travar([[texto, "plano-sdr.html"]]);
 fs.writeFileSync(path.join(OUT, "plano-sdr.html"), html);
 console.log("documento gerado");

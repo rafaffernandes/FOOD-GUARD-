@@ -1,4 +1,4 @@
-Oi, [Nome]! Confirmando a visita do nutricionista da Food Guard amanhã, [dia] às [hora], no [Estabelecimento].
+Oi, [Nome]! Passando para lembrar da visita do nutricionista da Food Guard amanhã, [dia] às [hora], no [Estabelecimento].
 
 Está tudo certo? Se surgir algum imprevisto, é só avisar que a gente remarca.
 

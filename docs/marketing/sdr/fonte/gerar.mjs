@@ -3,6 +3,14 @@ import path from "node:path";
 import {
   agendamento, cadencia, CNPJ, posAgendamento, respostas, SITE, WA_EXIBICAO, WA_NUMERO,
 } from "./mensagens.mjs";
+import { travar } from "./trava.mjs";
+
+// Nada sai daqui com posicionamento errado, duração da visita ou fechamento antigo.
+travar([
+  ...[...cadencia, ...agendamento, ...posAgendamento].flatMap((m) =>
+    [[m.texto, m.id ?? m.nome], [m.semNome ?? "", `${m.id} (sem nome)`], [m.nota ?? "", `${m.id} (nota)`]]),
+  ...respostas.flatMap((r) => [[r.texto, r.gatilho], [r.nota ?? "", `${r.gatilho} (nota)`]]),
+]);
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(FONTE, "..");
@@ -33,6 +41,10 @@ function inline(x, marcar) {
 
 const paragrafos = (texto) => texto.split("\n\n");
 
+// Endereços do site viram link clicável no e-mail. No WhatsApp o próprio app faz isso.
+const linkar = (html) => html.replace(/foodguardassessoria\.com\.br(\/[a-z-]+)?/g,
+  (url) => `<a href="https://${url}" style="color:${C.verdeEsc};font-weight:bold;">${url}</a>`);
+
 // ---- WhatsApp ---------------------------------------------------------------
 const txt = (nome, texto) => fs.writeFileSync(path.join(OUT, `whatsapp-${nome}.txt`), `${texto}\n`);
 
@@ -45,7 +57,7 @@ function assinatura(logo) {
 <img src="${logo}" width="150" height="38" alt="Food Guard Assessoria" style="display:block;border:0;margin-top:14px;">
 <p style="margin:10px 0 0;${F}font-size:14px;line-height:1.55;color:${C.muted};">
 <strong style="color:${C.navy};">Equipe Food Guard</strong><br>
-Nutricionistas para serviços de alimentação · São Paulo<br>
+Consultoria nutricional para serviços de alimentação · São Paulo<br>
 WhatsApp ${WA_EXIBICAO} · ${SITE}
 </p>`;
 }
@@ -61,7 +73,7 @@ function emailProspeccao(m, { preview }) {
   const marcar = preview;
   const logo = preview ? LOGO_CLARO.preview : LOGO_CLARO.prod;
   const corpo = paragrafos(m.texto).map((p) =>
-    `<p style="margin:0 0 16px;${F}font-size:15px;line-height:1.65;color:${C.ink};">${inline(p, marcar).replace(/\n/g, "<br>")}</p>`,
+    `<p style="margin:0 0 16px;${F}font-size:15px;line-height:1.65;color:${C.ink};">${linkar(inline(p, marcar)).replace(/\n/g, "<br>")}</p>`,
   ).join("\n");
   const citado = m.email.fio === "resposta"
     ? `<p style="margin:18px 0 0;${F}font-size:13px;color:#8794a1;">··· mensagem anterior citada abaixo</p>` : "";
@@ -125,19 +137,20 @@ function emailConfirmacao({ preview }) {
 <tr><td class="px" style="padding:34px 40px 8px;">
 <p style="margin:0 0 8px;${F}font-size:12px;font-weight:bold;letter-spacing:1.6px;text-transform:uppercase;color:${C.verdeEsc};">Visita gratuita</p>
 <h1 style="margin:0 0 14px;${F}font-size:26px;line-height:1.25;color:${C.navy};">${inline("Visita agendada, [Nome]", marcar)}</h1>
-<p style="margin:0 0 22px;${F}font-size:16px;line-height:1.65;color:${C.ink};">${inline("Obrigado por receber a Food Guard. Seguem os dados da visita do nutricionista ao [Estabelecimento].", marcar)}</p>
+<p style="margin:0 0 22px;${F}font-size:16px;line-height:1.65;color:${C.ink};">${inline("Que bom que vamos conhecer o [Estabelecimento]! Seguem os dados da visita gratuita do nutricionista.", marcar)}</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.verdeClaro};border-radius:12px;"><tr><td style="padding:10px 22px 12px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${linha("Data", "[dia], às [hora]")}
 ${linha("Endereço", "[endereço]")}
-${linha("Quem vai", "Um nutricionista da Food Guard")}
-<tr><td style="padding:9px 0 0;${F}font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${C.verdeEsc};">Duração</td><td style="padding:9px 0 0;${F}font-size:16px;color:${C.navy};">Cerca de uma hora, sem parar a operação</td></tr>
+<tr>
+<td style="padding:9px 0 0;${F}font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${C.verdeEsc};width:120px;vertical-align:top;">Quem vai</td>
+<td style="padding:9px 0 0;${F}font-size:16px;color:${C.navy};vertical-align:top;">Um nutricionista da Food Guard</td></tr>
 </table></td></tr></table>
 </td></tr>
 <tr><td class="px" style="padding:26px 40px 6px;">
 <p style="margin:0 0 16px;${F}font-size:18px;font-weight:bold;color:${C.navy};">Como é a visita</p>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-${passo(1, "Conhece a cozinha com você", "O nutricionista acompanha a rotina da equipe, sem atrapalhar o serviço.")}
+${passo(1, "Conhece a operação com você", "O nutricionista acompanha a rotina da equipe e tira as suas dúvidas.")}
 ${passo(2, "Confere o que a fiscalização olha", "Documentos, registros, temperatura, higienização e armazenamento.")}
 ${passo(3, "Mostra o que está em ordem e o que falta", "No final, conversa com você sobre o que vale priorizar. O que ele vê fica entre você e a Food Guard.")}
 </table>
@@ -150,7 +163,7 @@ ${passo(3, "Mostra o que está em ordem e o que falta", "No final, conversa com 
 </td></tr>
 <tr><td class="px" style="padding:0 40px 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid ${C.linha};padding-top:20px;">
 <p style="margin:0;${F}font-size:15px;font-weight:bold;color:${C.navy};">Equipe Food Guard</p>
-<p style="margin:4px 0 0;${F}font-size:13px;line-height:1.5;color:${C.muted};">Nutricionistas para serviços de alimentação · São Paulo<br>WhatsApp ${WA_EXIBICAO} · ${SITE}</p>
+<p style="margin:4px 0 0;${F}font-size:13px;line-height:1.5;color:${C.muted};">Consultoria nutricional para serviços de alimentação · São Paulo<br>WhatsApp ${WA_EXIBICAO} · ${SITE}</p>
 </td></tr></table></td></tr>
 <tr><td class="px" style="background:#f6f8fa;padding:18px 40px;${F}font-size:12px;line-height:1.6;color:#8794a1;">Food Guard Assessoria · CNPJ ${CNPJ} · São Paulo, SP</td></tr>
 </table>

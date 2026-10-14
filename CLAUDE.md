@@ -24,6 +24,10 @@ componentes ou tokens.
 - **Voz da marca:** "nutricionista responsável" (nunca "RT"); legislação
   **RDC 216/2004 + Portaria 2.619/2011** (nunca "CFN 600"); sem "carência",
   sem "dinheiro de volta". Mais detalhes em `lib/content/site.ts`.
+- **Quem somos:** a Food Guard é **consultoria nutricional para serviços de
+  alimentação (food service)**. Nunca "empresa de nutricionistas", "assessoria
+  de nutricionistas" nem "nutricionistas que cuidam de…". Nas mensagens do SDR,
+  `docs/marketing/sdr/fonte/trava.mjs` barra essas expressões.
 - **Sources of truth:** `lib/content/site.ts`, `lib/content/plans.ts`,
   `lib/diagnostic/questions.ts`, `lib/diagnostic/engine.ts`.
 - **Antes de declarar pronto:** `npm run build` ✓, `npm run lint` ✓, e — se
