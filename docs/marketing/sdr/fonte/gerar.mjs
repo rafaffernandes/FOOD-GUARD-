@@ -1,126 +1,158 @@
 import fs from "node:fs";
 import path from "node:path";
-import { mensagens, posAgendamento, respostas, WA_NUMERO, WA_TEXTO } from "./mensagens.mjs";
+import {
+  agendamento, cadencia, CNPJ, posAgendamento, respostas, SITE, WA_EXIBICAO, WA_NUMERO,
+} from "./mensagens.mjs";
 
+const FONTE = path.dirname(new URL(import.meta.url).pathname);
+const OUT = path.join(FONTE, "..");
+const PREVIEW = path.join(FONTE, "preview");
+fs.mkdirSync(PREVIEW, { recursive: true });
 
-const OUT = path.join(path.dirname(new URL(import.meta.url).pathname), "..");
-const SCRATCH = path.dirname(new URL(import.meta.url).pathname);
-fs.mkdirSync(OUT, { recursive: true });
-
-const LOGO_PROD = "https://foodguardassessoria.com.br/email/logo-food-guard.png";
-const LOGO_PREVIEW = `file://${SCRATCH}/logo-email.png`;
-const WA_LINK = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(WA_TEXTO)}`;
+// Logos. No envio de verdade, o logo da assinatura entra por upload no editor
+// de assinatura do Gmail, para não depender de imagem hospedada no domínio
+// principal num e-mail frio. A URL abaixo serve ao e-mail de confirmação.
+const LOGO_CLARO = { prod: `https://${SITE}/email/logo-food-guard-claro.png`, preview: `file://${FONTE}/logo-email-claro.png` };
+const LOGO_ESCURO = { prod: `https://${SITE}/email/logo-food-guard.png`, preview: `file://${FONTE}/logo-email.png` };
 
 const C = {
-  navy: "#0b1c34", navy2: "#16335c", verde: "#74b43c", verdeEsc: "#446e22",
-  verdeClaro: "#f3faea", ink: "#1f2e3d", muted: "#5b6b7a", linha: "#dce5ed", fundo: "#eef2f6",
+  navy: "#0b1c34", verde: "#74b43c", verdeEsc: "#446e22", verdeClaro: "#f3faea",
+  ink: "#1f2e3d", muted: "#5b6b7a", linha: "#e3e9ef", fundo: "#eef2f6",
 };
-
+const F = "font-family:Arial,Helvetica,sans-serif;";
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-// ---- WhatsApp -------------------------------------------------------------
-function paraWhats(m) {
-  const linhas = [];
-  for (const b of m.blocos) {
-    const x = b.x.replace(/\*\*(.+?)\*\*/g, "*$1*");
-    if (b.t === "opcoes") linhas.push([x, ...b.itens.map((i) => `• ${i}`)].join("\n"));
-    else linhas.push(x);
-  }
-  linhas.push("Equipe Food Guard");
-  return linhas.join("\n\n");
-}
-
-// ---- E-mail ---------------------------------------------------------------
-function inline(x, marcarCampos) {
-  let h = esc(x).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  if (marcarCampos) {
+function inline(x, marcar) {
+  let h = esc(x);
+  if (marcar) {
     h = h.replace(/\[([^\]]+)\]/g,
       `<span style="background:#fff1dc;color:#7a3a05;border-radius:3px;padding:0 3px;font-weight:bold;">[$1]</span>`);
   }
   return h;
 }
 
-function corpoEmail(m, marcar) {
-  const F = "font-family:Arial,Helvetica,sans-serif;";
-  return m.blocos.map((b) => {
-    if (b.t === "p") {
-      return `<p style="margin:0 0 18px;${F}font-size:16px;line-height:1.65;color:${C.ink};">${inline(b.x, marcar)}</p>`;
-    }
-    if (b.t === "destaque") {
-      return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 22px;">
-<tr><td style="background:${C.verdeClaro};border-left:4px solid ${C.verde};border-radius:12px;padding:18px 22px;">
-<p style="margin:0 0 6px;${F}font-size:11px;font-weight:bold;letter-spacing:1.6px;text-transform:uppercase;color:${C.verdeEsc};">${esc(b.rotulo)}</p>
-<p style="margin:0;${F}font-size:16px;line-height:1.6;color:${C.navy};">${inline(b.x, marcar)}</p>
-</td></tr></table>`;
-    }
-    if (b.t === "opcoes") {
-      const itens = b.itens.map((i) => `<tr><td style="padding:0 0 8px;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="border:1px solid ${C.linha};border-radius:10px;padding:12px 16px;${F}font-size:15px;color:${C.navy};">
-<span style="display:inline-block;width:8px;height:8px;border-radius:8px;background:${C.verde};margin-right:10px;vertical-align:middle;"></span>${inline(i, marcar)}</td>
-</tr></table></td></tr>`).join("");
-      return `<p style="margin:0 0 10px;${F}font-size:16px;line-height:1.65;color:${C.ink};">${inline(b.x, marcar)}</p>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 14px;">${itens}</table>`;
-    }
-    return "";
-  }).join("\n");
+const paragrafos = (texto) => texto.split("\n\n");
+
+// ---- WhatsApp ---------------------------------------------------------------
+const txt = (nome, texto) => fs.writeFileSync(path.join(OUT, `whatsapp-${nome}.txt`), `${texto}\n`);
+
+// ---- E-mail de prospecção: cara de e-mail escrito por alguém ----------------
+// Fundo branco, texto corrido, nada de cabeçalho colorido nem botão. A marca
+// vai na assinatura. É o formato que chega na caixa principal e recebe resposta.
+function assinatura(logo) {
+  return `<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:26px;"><tr>
+<td style="width:36px;height:3px;background:${C.verde};font-size:0;line-height:3px;">&nbsp;</td></tr></table>
+<img src="${logo}" width="150" height="38" alt="Food Guard Assessoria" style="display:block;border:0;margin-top:14px;">
+<p style="margin:10px 0 0;${F}font-size:14px;line-height:1.55;color:${C.muted};">
+<strong style="color:${C.navy};">Equipe Food Guard</strong><br>
+Nutricionistas para serviços de alimentação · São Paulo<br>
+WhatsApp ${WA_EXIBICAO} · ${SITE}
+</p>`;
 }
 
-function email(m, { preview }) {
-  const logo = preview ? LOGO_PREVIEW : LOGO_PROD;
-  const F = "font-family:Arial,Helvetica,sans-serif;";
+function rodapeLgpd(marcar) {
+  return `<p style="margin:28px 0 0;padding-top:14px;border-top:1px solid ${C.linha};${F}font-size:12px;line-height:1.6;color:#8794a1;">
+Food Guard Assessoria · CNPJ ${CNPJ} · São Paulo, SP<br>
+${inline("Encontramos o contato do [Estabelecimento] no perfil público do Google Maps. Se não quiser mais receber, responda SAIR.", marcar)}
+</p>`;
+}
+
+function emailProspeccao(m, { preview }) {
+  const marcar = preview;
+  const logo = preview ? LOGO_CLARO.preview : LOGO_CLARO.prod;
+  const corpo = paragrafos(m.texto).map((p) =>
+    `<p style="margin:0 0 16px;${F}font-size:15px;line-height:1.65;color:${C.ink};">${inline(p, marcar).replace(/\n/g, "<br>")}</p>`,
+  ).join("\n");
+  const citado = m.email.fio === "resposta"
+    ? `<p style="margin:18px 0 0;${F}font-size:13px;color:#8794a1;">··· mensagem anterior citada abaixo</p>` : "";
+  // Cabeçalho De/Para/Assunto: só na prévia, para mostrar como chega na caixa.
+  const cab = preview ? `<div style="background:#f6f8fa;border-bottom:1px solid ${C.linha};padding:14px 24px;${F}font-size:13px;line-height:1.7;color:${C.muted};">
+<strong style="color:${C.navy};">De:</strong> Food Guard &lt;contato@[domínio de prospecção]&gt;<br>
+<strong style="color:${C.navy};">Para:</strong> ${inline("[e-mail do Estabelecimento]", true)}<br>
+<strong style="color:${C.navy};">Assunto:</strong> <span style="color:${C.ink};font-weight:bold;">${inline(m.email.assunto, true)}</span>
+</div>` : "";
+  return `<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(m.email.assunto)}</title>
+</head>
+<body style="margin:0;padding:0;background:#ffffff;">
+${cab}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding:26px 24px 30px;">
+<div style="max-width:560px;">
+${corpo}
+${citado}
+${assinatura(logo)}
+${rodapeLgpd(marcar)}
+</div>
+</td></tr></table>
+</body>
+</html>
+`;
+}
+
+// ---- E-mail de confirmação: aqui entra o layout completo da marca -----------
+// A pessoa já respondeu e marcou a visita. Não é mais e-mail frio, então o
+// visual de marca passa confiança em vez de cara de propaganda.
+function emailConfirmacao({ preview }) {
+  const marcar = preview;
+  const logo = preview ? LOGO_ESCURO.preview : LOGO_ESCURO.prod;
+  const wa = `https://wa.me/${WA_NUMERO}?text=${encodeURIComponent("Olá! Sobre a visita da Food Guard no [Estabelecimento]:")}`;
+  const linha = (rot, val) => `<tr>
+<td style="padding:9px 0;border-bottom:1px solid #dfe9d3;${F}font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${C.verdeEsc};width:120px;vertical-align:top;">${rot}</td>
+<td style="padding:9px 0;border-bottom:1px solid #dfe9d3;${F}font-size:16px;color:${C.navy};vertical-align:top;">${inline(val, marcar)}</td></tr>`;
+  const passo = (n, t, d) => `<tr><td style="padding:0 0 14px;vertical-align:top;width:40px;">
+<div style="width:28px;height:28px;border-radius:28px;background:${C.verde};color:${C.navy};${F}font-size:14px;font-weight:bold;line-height:28px;text-align:center;">${n}</div></td>
+<td style="padding:3px 0 14px;${F}font-size:15px;line-height:1.55;color:${C.ink};"><strong style="color:${C.navy};">${t}</strong><br>${d}</td></tr>`;
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="x-apple-disable-message-reformatting">
-<title>${esc(m.assunto)}</title>
-<!--[if mso]><style>table,td,p,a{font-family:Arial,sans-serif!important}</style><![endif]-->
-<style>
-@media (max-width:620px){
-  .card{width:100%!important;border-radius:0!important}
-  .px{padding-left:22px!important;padding-right:22px!important}
-  .tit{font-size:22px!important}
-}
-</style>
+<title>Visita agendada</title>
+<style>@media (max-width:620px){.card{width:100%!important;border-radius:0!important}.px{padding-left:22px!important;padding-right:22px!important}}</style>
 </head>
 <body style="margin:0;padding:0;background:${C.fundo};">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">${esc(m.preheader)}</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">${inline("Visita do nutricionista da Food Guard: [dia], às [hora].", false)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.fundo};">
 <tr><td align="center" style="padding:32px 12px;">
 <table role="presentation" class="card" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;">
-
-<tr><td class="px" style="background:${C.navy};padding:26px 40px;">
-<img src="${logo}" width="217" height="58" alt="Food Guard Assessoria" style="display:block;border:0;outline:none;">
-</td></tr>
+<tr><td class="px" style="background:${C.navy};padding:26px 40px;"><img src="${logo}" width="217" height="58" alt="Food Guard Assessoria" style="display:block;border:0;"></td></tr>
 <tr><td style="height:4px;background:${C.verde};line-height:4px;font-size:0;">&nbsp;</td></tr>
-
-<tr><td class="px" style="padding:36px 40px 4px;">
-<h1 class="tit" style="margin:0 0 22px;${F}font-size:26px;line-height:1.25;font-weight:bold;color:${C.navy};">${inline(m.titulo, preview)}</h1>
-${corpoEmail(m, preview)}
+<tr><td class="px" style="padding:34px 40px 8px;">
+<p style="margin:0 0 8px;${F}font-size:12px;font-weight:bold;letter-spacing:1.6px;text-transform:uppercase;color:${C.verdeEsc};">Visita gratuita</p>
+<h1 style="margin:0 0 14px;${F}font-size:26px;line-height:1.25;color:${C.navy};">${inline("Visita agendada, [Nome]", marcar)}</h1>
+<p style="margin:0 0 22px;${F}font-size:16px;line-height:1.65;color:${C.ink};">${inline("Obrigado por receber a Food Guard. Seguem os dados da visita do nutricionista ao [Estabelecimento].", marcar)}</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${C.verdeClaro};border-radius:12px;"><tr><td style="padding:10px 22px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${linha("Data", "[dia], às [hora]")}
+${linha("Endereço", "[endereço]")}
+${linha("Quem vai", "Um nutricionista da Food Guard")}
+<tr><td style="padding:9px 0 0;${F}font-size:13px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:${C.verdeEsc};">Duração</td><td style="padding:9px 0 0;${F}font-size:16px;color:${C.navy};">Cerca de uma hora, sem parar a operação</td></tr>
+</table></td></tr></table>
 </td></tr>
-
-<tr><td class="px" style="padding:6px 40px 34px;">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="border-radius:999px;background:${C.verde};">
-<a href="${WA_LINK}" style="display:inline-block;padding:15px 30px;${F}font-size:16px;font-weight:bold;color:${C.navy};text-decoration:none;border-radius:999px;">${esc(m.cta)} &rarr;</a>
+<tr><td class="px" style="padding:26px 40px 6px;">
+<p style="margin:0 0 16px;${F}font-size:18px;font-weight:bold;color:${C.navy};">Como é a visita</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+${passo(1, "Conhece a cozinha com você", "O nutricionista acompanha a rotina da equipe, sem atrapalhar o serviço.")}
+${passo(2, "Confere o que a fiscalização olha", "Documentos, registros, temperatura, higienização e armazenamento.")}
+${passo(3, "Mostra o que está em ordem e o que falta", "No final, conversa com você sobre o que vale priorizar. O que ele vê fica só com você.")}
+</table>
+</td></tr>
+<tr><td class="px" style="padding:6px 40px 30px;">
+<p style="margin:0 0 16px;${F}font-size:15px;line-height:1.6;color:${C.muted};">Precisa remarcar? Responda este e-mail ou chame a gente no WhatsApp.</p>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:999px;background:${C.verde};">
+<a href="${wa}" style="display:inline-block;padding:14px 28px;${F}font-size:16px;font-weight:bold;color:${C.navy};text-decoration:none;border-radius:999px;">Falar no WhatsApp &rarr;</a>
 </td></tr></table>
 </td></tr>
-
-<tr><td class="px" style="padding:0 40px 34px;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-<td style="border-top:1px solid ${C.linha};padding-top:22px;">
-<p style="margin:0;${F}font-size:16px;font-weight:bold;color:${C.navy};">Equipe Food Guard</p>
-<p style="margin:4px 0 0;${F}font-size:14px;line-height:1.5;color:${C.muted};">Assessoria em segurança alimentar · São Paulo<br>WhatsApp (11) 97646-6553 · foodguardassessoria.com.br</p>
-</td></tr></table>
-</td></tr>
-
-<tr><td class="px" style="background:#f6f8fa;padding:20px 40px;${F}font-size:12px;line-height:1.6;color:#8794a1;">
-Food Guard Assessoria · CNPJ 60.833.961/0001-73 · São Paulo, SP<br>
-Não quer mais receber nossas mensagens? Responda este e-mail com a palavra <strong>sair</strong> que removemos o seu contato.
-</td></tr>
-
+<tr><td class="px" style="padding:0 40px 30px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="border-top:1px solid ${C.linha};padding-top:20px;">
+<p style="margin:0;${F}font-size:15px;font-weight:bold;color:${C.navy};">Equipe Food Guard</p>
+<p style="margin:4px 0 0;${F}font-size:13px;line-height:1.5;color:${C.muted};">Nutricionistas para serviços de alimentação · São Paulo<br>WhatsApp ${WA_EXIBICAO} · ${SITE}</p>
+</td></tr></table></td></tr>
+<tr><td class="px" style="background:#f6f8fa;padding:18px 40px;${F}font-size:12px;line-height:1.6;color:#8794a1;">Food Guard Assessoria · CNPJ ${CNPJ} · São Paulo, SP</td></tr>
 </table>
 </td></tr></table>
 </body>
@@ -128,16 +160,34 @@ Não quer mais receber nossas mensagens? Responda este e-mail com a palavra <str
 `;
 }
 
-// ---- Saída ----------------------------------------------------------------
-for (const m of mensagens) {
-  fs.writeFileSync(path.join(OUT, `email-${m.id}.html`), email(m, { preview: false }));
-  fs.writeFileSync(path.join(SCRATCH, `preview-${m.id}.html`), email(m, { preview: true }));
-  fs.writeFileSync(path.join(OUT, `whatsapp-${m.id}.txt`), paraWhats(m) + "\n");
+// ---- Assinatura para instalar no Gmail --------------------------------------
+function arquivoAssinatura() {
+  return `<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Assinatura de e-mail · Food Guard</title></head>
+<body style="margin:0;padding:32px;background:#ffffff;">
+<!-- Abra este arquivo no navegador, selecione a assinatura abaixo da linha,
+     copie e cole em Gmail > Configurações > Assinatura. Depois troque o logo
+     colado pelo upload do arquivo logo-food-guard-claro.png (botão de imagem
+     do editor), para a imagem ficar hospedada pelo próprio Google. -->
+<p style="${F}font-size:13px;color:#8794a1;margin:0 0 20px;">Copie a partir da linha verde:</p>
+${assinatura("../../../public/email/logo-food-guard-claro.png")}
+</body></html>
+`;
 }
 
-fs.writeFileSync(path.join(SCRATCH, "dados.json"), JSON.stringify({
-  mensagens: mensagens.map((m) => ({ ...m, whats: paraWhats(m) })),
-  posAgendamento, respostas,
-}, null, 2));
+// ---- Saída -----------------------------------------------------------------
+for (const f of fs.readdirSync(OUT)) {
+  if (/^(email|whatsapp)-.*\.(html|txt)$/.test(f)) fs.rmSync(path.join(OUT, f));
+}
+for (const m of cadencia) {
+  txt(m.id, m.texto);
+  fs.writeFileSync(path.join(OUT, `email-${m.id}.html`), emailProspeccao(m, { preview: false }));
+  fs.writeFileSync(path.join(PREVIEW, `email-${m.id}.html`), emailProspeccao(m, { preview: true }));
+}
+for (const m of [...agendamento, ...posAgendamento]) txt(m.id, m.texto);
+fs.writeFileSync(path.join(OUT, "email-confirmacao.html"), emailConfirmacao({ preview: false }));
+fs.writeFileSync(path.join(PREVIEW, "email-confirmacao.html"), emailConfirmacao({ preview: true }));
+fs.writeFileSync(path.join(OUT, "assinatura-email.html"), arquivoAssinatura());
 
-console.log("gerado:", fs.readdirSync(OUT).join(", "));
+fs.writeFileSync(path.join(PREVIEW, "dados.json"), JSON.stringify({ cadencia, agendamento, posAgendamento, respostas }, null, 2));
+console.log("gerado:", fs.readdirSync(OUT).filter((f) => f !== "fonte").join(", "));
