@@ -1,3 +1,3 @@
 Combinado: [dia], às [hora].
 
-Só para confirmar o endereço: é [endereço]? O nutricionista chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda uma mensagem para confirmar.
+Só para confirmar o endereço: é [endereço]? O nutricionista chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda um lembrete.

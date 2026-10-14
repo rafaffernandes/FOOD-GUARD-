@@ -93,7 +93,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 
 <section>
 <h2><span>1 ·</span> O que mudou e por quê</h2>
-<div class="intro">Antes de te mandar, testei a sequência com <b>seis donos de operação simulados</b>, cada um com um perfil real da nossa lista, e com <b>quatro especialistas</b> (SDR, redator de resposta direta, ex-gerente de operações de restaurante e especialista em entrega de e-mail). Depois reescrevi e os mesmos seis leram de novo, sem saber o que tinha mudado. É simulação: serve para apontar direção, não substitui o primeiro mês de envio real.</div>
+<div class="intro">Antes de te mandar, testei a sequência com <b>seis donos de operação simulados</b>, cada um com um perfil real da nossa lista, e com <b>quatro especialistas</b> (SDR, redator de resposta direta, ex-gerente de operações de restaurante e especialista em entrega de e-mail). Depois reescrevi, os mesmos seis leram de novo sem saber o que tinha mudado, e uma última rodada conferiu fatos e legislação, as suas regras e a naturalidade do texto. É simulação: serve para apontar direção, não substitui o primeiro mês de envio real.</div>
 <table>
 <tr><th style="width:46%">Perfil simulado</th><th colspan="2" style="text-align:center">Primeira versão</th><th colspan="2" style="text-align:center">Versão revisada</th></tr>
 <tr><td></td><td class="n"><b>Responde</b></td><td class="n"><b>Marca</b></td><td class="n"><b>Responde</b></td><td class="n"><b>Marca</b></td></tr>
@@ -107,6 +107,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 <li><b>Resposta que ignora a pergunta soa robô.</b> Quem perguntou preço ou contou que foi autuado e recebeu texto pronto quase desistiu. Regra nova: primeiro responde o que a pessoa disse, depois puxa a visita.</li>
 <li><b>Preço escondido parece armadilha.</b> Quando perguntarem, o valor sai na hora, junto com "ninguém sai da visita obrigado a contratar".</li>
 <li><b>Detalhe de robô derruba tudo:</b> nome errado, "o Padaria", "restaurante" para quem é padaria, "responda VISITA" em maiúsculas, "pode responder só com sim, não ou não sei". Tudo isso saiu.</li>
+<li><b>Os números da tabela são da versão revisada.</b> A versão final ainda mudou alguns detalhes a partir da releitura e da checagem (origem do contato na primeira mensagem, faixa de preço completa, sem palavra-chave na última mensagem) e não foi testada de novo.</li>
 </ul>
 <div class="alerta"><b>O que o texto não resolve.</b> Os seis donos disseram a mesma coisa: o que mais faz responder é indicação de alguém conhecido, alguém passar no balcão ou o nome de uma pessoa de verdade. A mensagem converte melhor quem já sente a dor (autuado, com medo da fiscalização, operação nova). Para os desconfiados, o caminho é indicação e visita de balcão, que ficam como canais complementares.</div>
 </section>
@@ -126,8 +127,9 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 <tr><th style="width:24%">Campo</th><th>Regra</th></tr>
 <tr><td><b>[Nome]</b></td><td>Só com o nome do dono confirmado (resposta dele no Google Maps, Instagram, site). Sem nome, a mensagem abre sem vocativo. Nunca mandar com colchete, vazio ou com o nome da casa no lugar do nome da pessoa.</td></tr>
 <tr><td><b>[Estabelecimento]</b></td><td>O nome que o dono usa: "Sabor da Vila", e não "Restaurante e Pizzaria Sabor da Vila - Marmitex 24h". Ajuste "do/da" e "no/na" na hora: "da Rainha de São Lucas".</td></tr>
-<tr><td><b>[tipo de operação]</b></td><td>No plural e o mais específico possível: restaurantes, padarias, restaurantes japoneses, cozinhas de delivery. Chamar padaria de restaurante entrega o disparo em massa.</td></tr>
-<tr><td><b>[dia] [hora]</b></td><td>Duas opções reais da agenda do nutricionista, fora do pico. Restaurante e self-service: 15h às 17h. Padaria: começo da tarde. Delivery: de manhã, antes de abrir.</td></tr>
+<tr><td><b>[tipo de operação]</b></td><td>Categoria ampla, no plural: restaurantes, padarias, lanchonetes, cozinhas de delivery. Chamar padaria de restaurante entrega o disparo em massa. Nicho fino ("restaurantes japoneses") dá a entender que já temos clientes nele.</td></tr>
+<tr><td><b>[origem]</b></td><td>Onde o contato foi achado de verdade: Google Maps, Instagram, site ou "com a [nome] da equipe de vocês". Quatro dos seis donos perguntaram de onde veio o número.</td></tr>
+<tr><td><b>[dia] [hora]</b></td><td>Os dois primeiros horários livres da agenda do nutricionista, fora do pico. Restaurante e self-service: 15h às 17h. Padaria: começo da tarde. Delivery: de manhã, antes de abrir.</td></tr>
 </table>
 </section>
 
@@ -162,7 +164,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
     <div>
       <div class="msg-quando">Terça · 14h30 às 17h</div>
       <h2 class="msg-nome">Primeiro contato</h2>
-      <p class="msg-regra">A pergunta vai na primeira linha, porque é a única parte que aparece na notificação. A Food Guard se apresenta logo depois, em uma frase.</p>
+      <p class="msg-regra">A pergunta vai na primeira linha, porque é a única parte que aparece na notificação. Depois, quem é a Food Guard e de onde veio o contato, que é a primeira dúvida de quem recebe.</p>
     </div>
   </div>
   <div class="duas">
@@ -170,7 +172,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
       <div class="canal">Como aparece na notificação</div>
       <div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>. O Manual de Boas Práticas do <span class="ph">[Estabelecimento]</span> está em dia?</div>
       <div class="canal">WhatsApp</div>
-      <div class="bolha">Boa tarde, <span class="ph">[Nome]</span>. O Manual de Boas Práticas do <span class="ph">[Estabelecimento]</span> está em dia?<br><br>Aqui é da Food Guard, nutricionistas que cuidam da parte sanitária de <span class="ph">[tipo de operação]</span> em São Paulo. Pergunto porque ele costuma ser o primeiro documento que a Vigilância Sanitária pede.</div>
+      <div class="bolha">Boa tarde, <span class="ph">[Nome]</span>. O Manual de Boas Práticas do <span class="ph">[Estabelecimento]</span> está em dia?<br><br>Aqui é da Food Guard, nutricionistas que cuidam da parte sanitária de <span class="ph">[tipo de operação]</span> em São Paulo. Pergunto porque o Manual é um dos primeiros documentos que a Vigilância Sanitária pede.<br><br>Achamos o contato de vocês no <span class="ph">[origem]</span>. Se preferir não receber mensagens, é só avisar.</div>
       <div class="semnome"><b>Sem nome confirmado, a primeira linha fica:</b><br>Boa tarde. O Manual de Boas Práticas do <span class="ph">[Estabelecimento]</span> está em dia?</div>
     </div>
     <div class="col-e">
@@ -210,7 +212,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
     <div>
       <div class="msg-quando">Terça seguinte · só se não respondeu</div>
       <h2 class="msg-nome">Última tentativa</h2>
-      <p class="msg-regra">Avisa que é a última, oferece a visita com um pedido de uma palavra e encerra com educação. Depois dela, o lead sai da lista.</p>
+      <p class="msg-regra">Avisa que é a última, oferece a visita com um pedido simples e encerra com educação. Depois dela, o lead sai da lista.</p>
     </div>
   </div>
   <div class="duas">
@@ -218,7 +220,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
       <div class="canal">Como aparece na notificação</div>
       <div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br><span class="ph">[Nome]</span>, esta é a última mensagem, para não incomodar.</div>
       <div class="canal">WhatsApp</div>
-      <div class="bolha"><span class="ph">[Nome]</span>, esta é a última mensagem, para não incomodar.<br><br>Quer saber como o <span class="ph">[Estabelecimento]</span> se sairia numa fiscalização hoje? Um nutricionista da Food Guard faz uma visita gratuita na sua cozinha. Leva cerca de uma hora, não para a operação e o que ele vê fica só com você.<br><br>Se quiser marcar, é só responder "quero" que a gente combina o dia. Se não for o momento, obrigado e bom trabalho.</div>
+      <div class="bolha"><span class="ph">[Nome]</span>, esta é a última mensagem, para não incomodar.<br><br>Quer saber como o <span class="ph">[Estabelecimento]</span> se sairia numa fiscalização hoje? A gente manda um nutricionista até a sua cozinha para uma visita gratuita. Leva cerca de uma hora, não precisa parar a operação e o que ele vê fica entre você e a Food Guard.<br><br>Se quiser marcar, é só responder que sim e a gente combina o dia. Se não for o momento, obrigado e bom trabalho.</div>
       <div class="semnome"><b>Sem nome confirmado, a primeira linha fica:</b><br>Esta é a última mensagem, para não incomodar.</div>
     </div>
     <div class="col-e">
@@ -234,15 +236,19 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 
   <div class="card">
     <div class="card-t"><span class="tag">4a</span> Respondeu "não" ou "não sei" <span>· Em até 5 minutos</span></div>
-    <div class="bolha">Normal, é a situação mais comum. Por isso a gente começa com uma visita gratuita: um nutricionista da Food Guard vai até o <span class="ph">[Estabelecimento]</span>, olha a cozinha com você e mostra o que está em ordem e o que falta. Leva cerca de uma hora, não precisa parar a operação e o que ele vê fica só com você.<br><br>Se depois vocês quiserem ajuda para acertar o que faltar, a gente apresenta os planos. Se não, já saem sabendo o que ajustar.<br><br>Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="bolha">Tranquilo, isso é bem comum. O primeiro passo é uma visita gratuita: um nutricionista da Food Guard vai até o <span class="ph">[Estabelecimento]</span>, olha a cozinha com você e mostra o que está em ordem e o que falta. Leva cerca de uma hora, não precisa parar a operação e o que ele vê fica entre você e a Food Guard.<br><br>Se depois vocês quiserem ajuda para acertar o que faltar, a gente apresenta os planos. Se não, já saem sabendo o que ajustar.<br><br>Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
   </div>
   <div class="card">
-    <div class="card-t"><span class="tag">4b</span> Respondeu "sim" <span>· Em até 5 minutos</span></div>
-    <div class="bolha">Ótimo. Na fiscalização, o que costuma pegar é a rotina não bater com o que está no Manual: temperatura anotada, higienização, treinamento da equipe.<br><br>Por isso a gente começa com uma visita gratuita: um nutricionista da Food Guard vai até o <span class="ph">[Estabelecimento]</span>, confere com você se o dia a dia está igual ao papel e mostra o que ajustar. Leva cerca de uma hora e não precisa parar a operação. Se vocês já têm nutricionista, vale como segunda opinião, sem substituir ninguém.<br><br>Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="card-t"><span class="tag">4b</span> Respondeu "sim" (o Manual está em dia) <span>· Em até 5 minutos</span></div>
+    <div class="bolha">Ótimo. Na fiscalização, o que costuma pegar é a rotina não bater com o que está no Manual: temperatura anotada, higienização, treinamento da equipe.<br><br>Por isso a gente começa com uma visita gratuita: um nutricionista da Food Guard vai até o <span class="ph">[Estabelecimento]</span>, confere com você se o dia a dia está igual ao papel e mostra o que ajustar. Leva cerca de uma hora e não precisa parar a operação.<br><br>Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+  </div>
+  <div class="card">
+    <div class="card-t"><span class="tag">4c</span> Já quer marcar ("sim" à mensagem 2 ou à 3) <span>· Em até 5 minutos</span></div>
+    <div class="bolha">Ótimo! O nutricionista da Food Guard vai até o <span class="ph">[Estabelecimento]</span>, olha a cozinha com você e mostra o que está em ordem e o que falta. A visita é gratuita, leva cerca de uma hora e não precisa parar a operação.<br><br>Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
   </div>
   <div class="card">
     <div class="card-t"><span class="tag">5</span> Escolheu o dia <span>· Assim que a pessoa escolher</span></div>
-    <div class="bolha">Combinado: <span class="ph">[dia]</span>, às <span class="ph">[hora]</span>.<br><br>Só para confirmar o endereço: é <span class="ph">[endereço]</span>? O nutricionista chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda uma mensagem para confirmar.</div>
+    <div class="bolha">Combinado: <span class="ph">[dia]</span>, às <span class="ph">[hora]</span>.<br><br>Só para confirmar o endereço: é <span class="ph">[endereço]</span>? O nutricionista chega identificado como Food Guard e a visita leva cerca de uma hora. Na véspera a gente manda um lembrete.</div>
   </div>
 </section>
 
@@ -269,27 +275,27 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 <div class="cols2">
   <div class="resp">
     <div class="gatilho">"Quanto custa?"</div>
-    <div class="bolha">A visita é gratuita mesmo, sem compromisso. Os planos mensais começam em R$ 1.200, mas só fazem sentido depois que o nutricionista vê a cozinha, e ninguém sai da visita obrigado a contratar. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="bolha">A visita é gratuita mesmo, sem compromisso. Os planos são mensais e vão de R$ 1.200 a R$ 3.400; o Manual de Boas Práticas entra a partir do Essencial, de R$ 2.300. Qual faz sentido depende do que o nutricionista vir na cozinha. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
     
   </div>
   <div class="resp">
     <div class="gatilho">"Isso é obrigatório?"</div>
-    <div class="bolha">É, sim. A RDC 216/2004 da Anvisa pede Manual de Boas Práticas e POPs em todo serviço de alimentação, e em São Paulo a Portaria 2.619/2011 cobra o mesmo. Na visita gratuita, o nutricionista mostra o que se aplica ao <span class="ph">[Estabelecimento]</span>. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
-    
+    <div class="bolha">O Manual de Boas Práticas e os POPs são, sim. A RDC 216/2004 da Anvisa pede os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Na visita gratuita, o nutricionista mostra o que se aplica ao <span class="ph">[Estabelecimento]</span>. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="nota">Só para quando a dúvida for o Manual. Ter nutricionista não é obrigatório em todo serviço, e a visita é opcional. Fora da capital, corte a frase da Portaria.</div>
   </div>
   <div class="resp">
     <div class="gatilho">"Quem é? De onde tirou meu número? É da Vigilância?"</div>
-    <div class="bolha">Somos uma empresa particular de nutricionistas, sem ligação com a Vigilância Sanitária. Encontramos o <span class="ph">[Estabelecimento]</span> no Google Maps, e dá para conhecer a gente em foodguardassessoria.com.br. A visita do nutricionista é gratuita e leva cerca de uma hora: fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>? Se preferir que a gente não escreva mais, é só avisar.</div>
+    <div class="bolha">Somos uma empresa particular de nutricionistas, sem ligação com a Vigilância Sanitária. Achamos o contato do <span class="ph">[Estabelecimento]</span> no <span class="ph">[origem]</span>, e dá para conhecer a gente em foodguardassessoria.com.br. A visita do nutricionista é gratuita e leva cerca de uma hora. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>? Se preferir que a gente não escreva mais, é só avisar.</div>
     
   </div>
   <div class="resp">
     <div class="gatilho">"O que vocês fazem exatamente?"</div>
-    <div class="bolha">A Food Guard cuida da parte sanitária da operação: um nutricionista acompanha a cozinha, mantém em dia o Manual de Boas Práticas, os POPs e os registros, treina a equipe e deixa tudo pronto para a fiscalização. A melhor forma de ver o que se aplica ao <span class="ph">[Estabelecimento]</span> é a visita gratuita. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="bolha">A Food Guard cuida da parte sanitária da operação: um nutricionista visita a cozinha com frequência, mantém em dia os POPs e os registros e prepara tudo para a fiscalização. Conforme o plano, entram também o Manual de Boas Práticas e o treinamento da equipe. A melhor forma de ver o que se aplica ao <span class="ph">[Estabelecimento]</span> é a visita gratuita. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
     
   </div>
   <div class="resp">
     <div class="gatilho">"Já tenho nutricionista"</div>
-    <div class="bolha">Ótimo, a ideia não é substituir ninguém. A visita funciona como segunda opinião antes da próxima fiscalização: o nutricionista da Food Guard confere se a rotina está batendo com o papel. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="bolha">Ótimo, a ideia não é substituir ninguém. A visita gratuita da Food Guard funciona como segunda opinião antes da próxima fiscalização: um nutricionista confere se a rotina está batendo com o papel. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
     
   </div>
   <div class="resp">
@@ -299,27 +305,27 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
   </div>
   <div class="resp">
     <div class="gatilho">"Fui autuado / tenho prazo para regularizar"</div>
-    <div class="bolha">Obrigado por contar, <span class="ph">[Nome]</span>. Nesse caso vale agir rápido, porque o prazo costuma ser curto. Dá para priorizar a visita: o nutricionista vai até aí, entende o que foi apontado e mostra os próximos passos. Hoje ou amanhã funciona para você?</div>
-    
+    <div class="bolha">Entendi, <span class="ph">[Nome]</span>. Então vale agir rápido. Dá para priorizar uma visita gratuita: o nutricionista vai até aí, entende o que foi apontado e mostra os próximos passos. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="nota">Ofereça os dois primeiros horários livres da agenda, mesmo que tirem outra visita do lugar.</div>
   </div>
   <div class="resp">
     <div class="gatilho">"Me manda mais informações"</div>
-    <div class="bolha">Mando, sim: foodguardassessoria.com.br. Mas o que mais ajuda é a visita, porque cada cozinha tem uma realidade diferente e o nutricionista mostra o que vale para o <span class="ph">[Estabelecimento]</span>. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
+    <div class="bolha">Mando, sim: foodguardassessoria.com.br. Mas o que mais ajuda é uma visita gratuita do nutricionista, porque cada cozinha tem uma realidade diferente e ele mostra o que vale para o <span class="ph">[Estabelecimento]</span>. Fica melhor <span class="ph">[dia]</span> ou <span class="ph">[dia]</span>, por volta das <span class="ph">[hora]</span>?</div>
     
   </div>
   <div class="resp">
     <div class="gatilho">"Atendente: o dono não está"</div>
-    <div class="bolha">Obrigado! Quem cuida da cozinha aí? A ideia é oferecer a essa pessoa uma visita gratuita de um nutricionista. Pode me passar o contato ou o melhor horário para falar?</div>
+    <div class="bolha">Tudo bem! E quem cuida da cozinha aí? É para oferecer uma visita gratuita de um nutricionista. Pode me passar o contato ou o melhor horário para falar?</div>
     
   </div>
   <div class="resp">
     <div class="gatilho">"Agora não / vou pensar"</div>
-    <div class="bolha">Sem problema. Posso voltar a falar daqui a 30 dias? Assim a gente não perde o contato e você decide com calma.</div>
-    <div class="nota">Anotar a data de retorno na planilha e voltar com a mensagem 2.</div>
+    <div class="bolha">Sem problema. Posso voltar a falar com você daqui a um mês?</div>
+    <div class="nota">Só volte se a pessoa topar. Na data, uma mensagem só, fora da cadência: "Oi, [Nome]. Como combinamos, voltando a falar da visita gratuita do nutricionista no [Estabelecimento]. Fica melhor [dia] ou [dia], por volta das [hora]?" Sem resposta, encerra. Se ela disser que não precisa voltar, trate como recusa.</div>
   </div>
   <div class="resp">
     <div class="gatilho">"Não tenho interesse / sair / resposta grosseira"</div>
-    <div class="bolha">Entendido, não mandamos mais nada. Se um dia quiser a visita gratuita, é só chamar aqui. Equipe Food Guard.</div>
+    <div class="bolha">Tudo bem, não vamos mais mandar mensagem. Se um dia quiser a visita gratuita, é só chamar aqui.<br><br>Equipe Food Guard</div>
     <div class="nota">Encerrar na hora e marcar como descadastrado. Convite de agenda para quem recusou vira denúncia e derruba o número.</div>
   </div></div>
 </section>
@@ -373,14 +379,15 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 
 <section class="nova">
 <h2><span>11 ·</span> Para você aprovar</h2>
+<div class="alerta"><b>Antes do primeiro envio: consultar o CRN-3 sobre a visita gratuita.</b> A checagem final achou um risco para o nutricionista, não para a empresa: o Código de Ética do nutricionista (Resolução CFN 599/2018, art. 57) proíbe usar "promoções" de serviços como forma de propaganda, e uma avaliação gratuita oferecida em prospecção pode ser enquadrada aí. É uma leitura possível, não uma certeza; não achei parecer do CRN sobre visita de pré-venda. Recomendo pedir uma orientação por escrito ao CRN-3 descrevendo a visita como etapa comercial da Food Guard e guardar a resposta. Se pedirem ajuste, a visita continua gratuita e só muda o nome, por exemplo "visita de avaliação, sem custo, para montar a proposta".</div>
 <table>
 <tr><th style="width:30%">Ponto</th><th style="width:70%">O que escrevi, e o que precisa da sua confirmação</th></tr>
 <tr><td><b>As três mensagens e as respostas</b></td><td>Seções 4 a 7. É o texto que vai para o WhatsApp e para o e-mail.</td></tr>
-<tr><td><b>"O que ele vê fica só com você"</b></td><td>Os donos simulados disseram que essa foi a frase que mais baixou a guarda. Ela é um compromisso: só pode ficar se for prática da Food Guard não repassar nada do que se vê na visita.</td></tr>
+<tr><td><b>"O que ele vê fica entre você e a Food Guard"</b></td><td>Foi a frase que mais baixou a guarda dos donos simulados. Escrevi "entre você e a Food Guard", e não "fica só com você", porque o nutricionista leva o que viu para a empresa montar a proposta e o sigilo profissional tem exceção legal. Ela é um compromisso: só pode ficar se for prática da Food Guard não repassar a ninguém de fora.</td></tr>
 <tr><td><b>Duração da visita</b></td><td>"Cerca de uma hora". Se for diferente, troco em todas as mensagens de uma vez.</td></tr>
-<tr><td><b>Preço na resposta</b></td><td>Quando perguntarem, o SDR diz que os planos começam em R$ 1.200 por mês e que ninguém sai da visita obrigado a contratar.</td></tr>
+<tr><td><b>Preço na resposta</b></td><td>Quando perguntarem, o SDR diz a faixa inteira (R$ 1.200 a R$ 3.400) e avisa que o Manual de Boas Práticas entra a partir do Essencial. Dizer só "a partir de R$ 1.200" numa conversa que começou pelo Manual faria a pessoa achar que ele está no Básico, e ele não está.</td></tr>
 <tr><td><b>Quem vai na visita</b></td><td>Todos os donos simulados perguntaram "quem vem?". Hoje a confirmação diz "um nutricionista da Food Guard". Se quiser, a confirmação passa a levar o nome e o CRN de quem vai. As mensagens de prospecção continuam assinadas pela empresa.</td></tr>
-<tr><td><b>Autuado: "hoje ou amanhã"</b></td><td>A resposta para quem foi autuado oferece visita para hoje ou amanhã. Só vale se a agenda do nutricionista permitir.</td></tr>
+<tr><td><b>Lead autuado</b></td><td>Quem foi autuado recebe os dois primeiros horários livres da agenda, mesmo que tirem outra visita do lugar. É o lead que mais converte.</td></tr>
 <tr><td><b>Número de WhatsApp</b></td><td>Recomendo um número só para prospecção (seção 9). A decisão é sua.</td></tr>
 <tr><td><b>Domínio de e-mail</b></td><td>Se o e-mail for usado, precisa de domínio e caixa próprios (seção 8). Sem isso, recomendo só WhatsApp por enquanto.</td></tr>
 <tr><td><b>Layout do e-mail</b></td><td>Prospecção com cara de e-mail pessoal e marca na assinatura; layout completo na confirmação. Se preferir o layout completo também no primeiro e-mail, dá para trocar, sabendo que ele tende a cair em Promoções.</td></tr>

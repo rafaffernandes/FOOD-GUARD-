@@ -53,7 +53,7 @@ WhatsApp ${WA_EXIBICAO} · ${SITE}
 function rodapeLgpd(marcar) {
   return `<p style="margin:28px 0 0;padding-top:14px;border-top:1px solid ${C.linha};${F}font-size:12px;line-height:1.6;color:#8794a1;">
 Food Guard Assessoria · CNPJ ${CNPJ} · São Paulo, SP<br>
-${inline("Encontramos o contato do [Estabelecimento] no perfil público do Google Maps. Se não quiser mais receber, responda SAIR.", marcar)}
+Se não quiser mais receber nossas mensagens, responda SAIR.
 </p>`;
 }
 
@@ -139,7 +139,7 @@ ${linha("Quem vai", "Um nutricionista da Food Guard")}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
 ${passo(1, "Conhece a cozinha com você", "O nutricionista acompanha a rotina da equipe, sem atrapalhar o serviço.")}
 ${passo(2, "Confere o que a fiscalização olha", "Documentos, registros, temperatura, higienização e armazenamento.")}
-${passo(3, "Mostra o que está em ordem e o que falta", "No final, conversa com você sobre o que vale priorizar. O que ele vê fica só com você.")}
+${passo(3, "Mostra o que está em ordem e o que falta", "No final, conversa com você sobre o que vale priorizar. O que ele vê fica entre você e a Food Guard.")}
 </table>
 </td></tr>
 <tr><td class="px" style="padding:6px 40px 30px;">

@@ -167,7 +167,7 @@ tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)
 
 <section>
 <h2><span>1 ·</span> O que mudou e por quê</h2>
-<div class="intro">Antes de te mandar, testei a sequência com <b>seis donos de operação simulados</b>, cada um com um perfil real da nossa lista, e com <b>quatro especialistas</b> (SDR, redator de resposta direta, ex-gerente de operações de restaurante e especialista em entrega de e-mail). Depois reescrevi e os mesmos seis leram de novo, sem saber o que tinha mudado. É simulação: serve para apontar direção, não substitui o primeiro mês de envio real.</div>
+<div class="intro">Antes de te mandar, testei a sequência com <b>seis donos de operação simulados</b>, cada um com um perfil real da nossa lista, e com <b>quatro especialistas</b> (SDR, redator de resposta direta, ex-gerente de operações de restaurante e especialista em entrega de e-mail). Depois reescrevi, os mesmos seis leram de novo sem saber o que tinha mudado, e uma última rodada conferiu fatos e legislação, as suas regras e a naturalidade do texto. É simulação: serve para apontar direção, não substitui o primeiro mês de envio real.</div>
 <table>
 <tr><th style="width:46%">Perfil simulado</th><th colspan="2" style="text-align:center">Primeira versão</th><th colspan="2" style="text-align:center">Versão revisada</th></tr>
 <tr><td></td><td class="n"><b>Responde</b></td><td class="n"><b>Marca</b></td><td class="n"><b>Responde</b></td><td class="n"><b>Marca</b></td></tr>
@@ -181,6 +181,7 @@ ${linhasTeste}
 <li><b>Resposta que ignora a pergunta soa robô.</b> Quem perguntou preço ou contou que foi autuado e recebeu texto pronto quase desistiu. Regra nova: primeiro responde o que a pessoa disse, depois puxa a visita.</li>
 <li><b>Preço escondido parece armadilha.</b> Quando perguntarem, o valor sai na hora, junto com "ninguém sai da visita obrigado a contratar".</li>
 <li><b>Detalhe de robô derruba tudo:</b> nome errado, "o Padaria", "restaurante" para quem é padaria, "responda VISITA" em maiúsculas, "pode responder só com sim, não ou não sei". Tudo isso saiu.</li>
+<li><b>Os números da tabela são da versão revisada.</b> A versão final ainda mudou alguns detalhes a partir da releitura e da checagem (origem do contato na primeira mensagem, faixa de preço completa, sem palavra-chave na última mensagem) e não foi testada de novo.</li>
 </ul>
 <div class="alerta"><b>O que o texto não resolve.</b> Os seis donos disseram a mesma coisa: o que mais faz responder é indicação de alguém conhecido, alguém passar no balcão ou o nome de uma pessoa de verdade. A mensagem converte melhor quem já sente a dor (autuado, com medo da fiscalização, operação nova). Para os desconfiados, o caminho é indicação e visita de balcão, que ficam como canais complementares.</div>
 </section>
@@ -200,8 +201,9 @@ ${linhasTeste}
 <tr><th style="width:24%">Campo</th><th>Regra</th></tr>
 <tr><td><b>[Nome]</b></td><td>Só com o nome do dono confirmado (resposta dele no Google Maps, Instagram, site). Sem nome, a mensagem abre sem vocativo. Nunca mandar com colchete, vazio ou com o nome da casa no lugar do nome da pessoa.</td></tr>
 <tr><td><b>[Estabelecimento]</b></td><td>O nome que o dono usa: "Sabor da Vila", e não "Restaurante e Pizzaria Sabor da Vila - Marmitex 24h". Ajuste "do/da" e "no/na" na hora: "da Rainha de São Lucas".</td></tr>
-<tr><td><b>[tipo de operação]</b></td><td>No plural e o mais específico possível: restaurantes, padarias, restaurantes japoneses, cozinhas de delivery. Chamar padaria de restaurante entrega o disparo em massa.</td></tr>
-<tr><td><b>[dia] [hora]</b></td><td>Duas opções reais da agenda do nutricionista, fora do pico. Restaurante e self-service: 15h às 17h. Padaria: começo da tarde. Delivery: de manhã, antes de abrir.</td></tr>
+<tr><td><b>[tipo de operação]</b></td><td>Categoria ampla, no plural: restaurantes, padarias, lanchonetes, cozinhas de delivery. Chamar padaria de restaurante entrega o disparo em massa. Nicho fino ("restaurantes japoneses") dá a entender que já temos clientes nele.</td></tr>
+<tr><td><b>[origem]</b></td><td>Onde o contato foi achado de verdade: Google Maps, Instagram, site ou "com a [nome] da equipe de vocês". Quatro dos seis donos perguntaram de onde veio o número.</td></tr>
+<tr><td><b>[dia] [hora]</b></td><td>Os dois primeiros horários livres da agenda do nutricionista, fora do pico. Restaurante e self-service: 15h às 17h. Padaria: começo da tarde. Delivery: de manhã, antes de abrir.</td></tr>
 </table>
 </section>
 
@@ -300,14 +302,15 @@ ${resp4}
 
 <section class="nova">
 <h2><span>11 ·</span> Para você aprovar</h2>
+<div class="alerta"><b>Antes do primeiro envio: consultar o CRN-3 sobre a visita gratuita.</b> A checagem final achou um risco para o nutricionista, não para a empresa: o Código de Ética do nutricionista (Resolução CFN 599/2018, art. 57) proíbe usar "promoções" de serviços como forma de propaganda, e uma avaliação gratuita oferecida em prospecção pode ser enquadrada aí. É uma leitura possível, não uma certeza; não achei parecer do CRN sobre visita de pré-venda. Recomendo pedir uma orientação por escrito ao CRN-3 descrevendo a visita como etapa comercial da Food Guard e guardar a resposta. Se pedirem ajuste, a visita continua gratuita e só muda o nome, por exemplo "visita de avaliação, sem custo, para montar a proposta".</div>
 <table>
 <tr><th style="width:30%">Ponto</th><th style="width:70%">O que escrevi, e o que precisa da sua confirmação</th></tr>
 <tr><td><b>As três mensagens e as respostas</b></td><td>Seções 4 a 7. É o texto que vai para o WhatsApp e para o e-mail.</td></tr>
-<tr><td><b>"O que ele vê fica só com você"</b></td><td>Os donos simulados disseram que essa foi a frase que mais baixou a guarda. Ela é um compromisso: só pode ficar se for prática da Food Guard não repassar nada do que se vê na visita.</td></tr>
+<tr><td><b>"O que ele vê fica entre você e a Food Guard"</b></td><td>Foi a frase que mais baixou a guarda dos donos simulados. Escrevi "entre você e a Food Guard", e não "fica só com você", porque o nutricionista leva o que viu para a empresa montar a proposta e o sigilo profissional tem exceção legal. Ela é um compromisso: só pode ficar se for prática da Food Guard não repassar a ninguém de fora.</td></tr>
 <tr><td><b>Duração da visita</b></td><td>"Cerca de uma hora". Se for diferente, troco em todas as mensagens de uma vez.</td></tr>
-<tr><td><b>Preço na resposta</b></td><td>Quando perguntarem, o SDR diz que os planos começam em R$ 1.200 por mês e que ninguém sai da visita obrigado a contratar.</td></tr>
+<tr><td><b>Preço na resposta</b></td><td>Quando perguntarem, o SDR diz a faixa inteira (R$ 1.200 a R$ 3.400) e avisa que o Manual de Boas Práticas entra a partir do Essencial. Dizer só "a partir de R$ 1.200" numa conversa que começou pelo Manual faria a pessoa achar que ele está no Básico, e ele não está.</td></tr>
 <tr><td><b>Quem vai na visita</b></td><td>Todos os donos simulados perguntaram "quem vem?". Hoje a confirmação diz "um nutricionista da Food Guard". Se quiser, a confirmação passa a levar o nome e o CRN de quem vai. As mensagens de prospecção continuam assinadas pela empresa.</td></tr>
-<tr><td><b>Autuado: "hoje ou amanhã"</b></td><td>A resposta para quem foi autuado oferece visita para hoje ou amanhã. Só vale se a agenda do nutricionista permitir.</td></tr>
+<tr><td><b>Lead autuado</b></td><td>Quem foi autuado recebe os dois primeiros horários livres da agenda, mesmo que tirem outra visita do lugar. É o lead que mais converte.</td></tr>
 <tr><td><b>Número de WhatsApp</b></td><td>Recomendo um número só para prospecção (seção 9). A decisão é sua.</td></tr>
 <tr><td><b>Domínio de e-mail</b></td><td>Se o e-mail for usado, precisa de domínio e caixa próprios (seção 8). Sem isso, recomendo só WhatsApp por enquanto.</td></tr>
 <tr><td><b>Layout do e-mail</b></td><td>Prospecção com cara de e-mail pessoal e marca na assinatura; layout completo na confirmação. Se preferir o layout completo também no primeiro e-mail, dá para trocar, sabendo que ele tende a cair em Promoções.</td></tr>
