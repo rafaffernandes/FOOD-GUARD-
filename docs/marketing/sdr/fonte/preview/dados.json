@@ -3,7 +3,7 @@
     {
       "id": "1-operacoes-maior-complexidade",
       "segmento": "1. Operações com maior complexidade (quilo, self-service, buffet, alto volume)",
-      "porque": "Estrutura igual em todos os segmentos: quem escreve, uma frase de problema e a pergunta de descoberta no fim, em cerca de 350 caracteres e sem link. Com a identificação primeiro, a mensagem não parece fiscal, reclamação ou golpe. O problema vem pelo lado do ganho (o mesmo padrão na segunda e no sábado cheio), e não pela ameaça. A pergunta pede quem cuida, não se está em dia: a resposta traz um nome ('o cozinheiro', 'eu', 'a nutricionista') e abre a segunda pergunta, sem o 'sim' que encerra a conversa. Sem nome confirmado, abra só com 'Boa tarde!'. Se o dono decidir pelo primeiro nome do SDR, troque 'Aqui é da Food Guard' por 'Aqui é [Nome do SDR], da Food Guard' em todas as versões. O e-mail leva o mesmo texto. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta.",
+      "porque": "Estrutura igual em todos os segmentos: quem escreve, o que a Food Guard faz, o link do diagnóstico e a pergunta de descoberta no fim. Com a identificação primeiro, a mensagem não parece fiscal, reclamação ou golpe. O problema vem pelo lado do ganho (o mesmo padrão na segunda e no sábado cheio), e não pela ameaça. A pergunta pede quem cuida, não se está em dia: a resposta traz um nome ('o cozinheiro', 'eu', 'a nutricionista') e abre a segunda pergunta, sem o 'sim' que encerra a conversa. Sem nome confirmado, abra só com 'Boa tarde!'. Se o dono decidir pelo primeiro nome do SDR, troque 'Aqui é da Food Guard' por 'Aqui é [Nome do SDR], da Food Guard' em todas as versões. O e-mail leva o mesmo texto. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta.",
       "texto": "Boa tarde, [Nome]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda restaurantes por quilo, self-service e buffet a manter os registros de temperatura e a rotina de boas práticas em dia, no mesmo padrão na segunda e no sábado cheio.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nNo [Estabelecimento], quem cuida desses registros no dia a dia hoje?",
       "email": {
         "assunto": "[Estabelecimento]: rotina sanitária e fiscalização",
@@ -28,7 +28,7 @@
       "id": "1-3a-operacoes-novas",
       "segmento": "3a. Operações novas ou em expansão: inauguração, pré-inauguração, nova unidade",
       "porque": "Neste segmento, o momento da operação justifica o contato, e o parabéns abre a conversa sem dizer onde o contato foi achado. Troque [inauguração] por 'nova unidade' ou 'reforma', e [cozinha nova] por 'unidade nova'. Na pré-inauguração, use 'parabéns pela inauguração que vem aí'. Use esta versão só para quem abriu há até 6 meses ou abre nos próximos 60 dias. Casa que já existe e entrou no delivery recebe a versão 3b, porque 'cozinha nova' nesse caso entrega mensagem pronta. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta.",
-      "texto": "Boa tarde, [Nome], e parabéns pela [inauguração]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o começo, porque o que a equipe aprende nos primeiros meses é o que fica.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nQuem está cuidando do Manual de Boas Práticas e dos POPs da [cozinha nova]?",
+      "texto": "Boa tarde, [Nome], e parabéns pela [inauguração]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o começo, enquanto a equipe ainda está pegando o jeito da casa.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nQuem está cuidando do Manual de Boas Práticas e dos POPs da [cozinha nova]?",
       "email": {
         "assunto": "[Estabelecimento]: rotina sanitária e fiscalização",
         "fio": "novo"
@@ -51,7 +51,7 @@
     {
       "id": "1-operacoes-necessidade-imediata",
       "segmento": "4. Operações com necessidade imediata (pendência, fiscalização, regularização)",
-      "porque": "Nunca cita o sinal público (avaliação ruim, fechamento temporário, notícia, vaga de nutricionista): o problema só entra quando a pessoa conta. A frase 'pendência ou prazo para regularizar' deixa a porta aberta, e a dona simulada contou a pendência já na primeira resposta. Sem diagnóstico e sem checklist. Resposta que fala em auto ou prazo vai para a frente da fila e é atendida assim que o SDR vir. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta.",
+      "porque": "Nunca cita o sinal público (avaliação ruim, fechamento temporário, notícia, vaga de nutricionista): o problema só entra quando a pessoa conta. A frase 'pendência ou prazo para regularizar' deixa a porta aberta, e a dona simulada contou a pendência já na primeira resposta. Depois que a pessoa contar a pendência, nada de checklist nem diagnóstico: o próximo passo é a visita. Resposta que fala em auto ou prazo vai para a frente da fila e é atendida assim que o SDR vir. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta.",
       "texto": "Boa tarde, [Nome]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente organiza a documentação e a rotina de boas práticas com nutricionista acompanhando a operação de perto, tanto para manter tudo em dia quanto quando aparece uma pendência ou um prazo para regularizar.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nNo [Estabelecimento], quem cuida dessa parte hoje?",
       "email": {
         "assunto": "[Estabelecimento]: rotina sanitária e fiscalização",
@@ -77,7 +77,7 @@
       "numero": 2,
       "nome": "Segundo contato",
       "quando": "Sexta · só se não respondeu",
-      "regra": "Sai no 3º dia de envio depois da mensagem 1 (exemplo: 1 na terça, 2 na sexta), só se não houve resposta. Em vez de cobrar a resposta anterior, oferece um material útil e termina numa pergunta fácil: um 'sim' já é resposta, tira o lead da cadência e abre a descoberta (ramo 'Pediu o checklist'). Não manda link nem pede formulário de 6 campos para quem ainda não respondeu. Também não cria uma 4ª mensagem sem resposta depois de um download silencioso. 'A gente tem' no lugar de 'separamos para o [Estabelecimento]', porque não há personalização. Se o dono não autorizar o PDF direto no WhatsApp, troque a pergunta final por 'Quer que a gente mande o link?' e mande foodguardassessoria.com.br/checklist-vigilancia. Nesse caso, o download pelo site não conta como resposta. Para o segmento 4 o checklist só entra porque a pessoa ainda não contou nada; se ela contar que tem prazo, o roteiro troca material por visita.",
+      "regra": "Sai no 3º dia de envio depois da mensagem 1 (exemplo: 1 na terça, 2 na sexta), só se não houve resposta. Em vez de cobrar a resposta anterior, oferece um material útil e termina numa pergunta fácil: um 'sim' já é resposta, tira o lead da cadência e abre a descoberta (ramo 'Pediu o checklist'). Não manda link nem pede formulário de 6 campos para quem ainda não respondeu. Também não cria uma 4ª mensagem sem resposta depois de um download silencioso. 'A gente tem' no lugar de 'separamos para o [Estabelecimento]', porque não há personalização. Quem disser 'sim' recebe o link da página foodguardassessoria.com.br/checklist-vigilancia, onde deixa os dados para baixar o PDF (ramo 'Pediu o checklist'). O PDF nunca vai direto no WhatsApp. Para o segmento 4 o checklist só entra porque a pessoa ainda não contou nada; se ela contar que tem prazo, o roteiro troca material por visita.",
       "texto": "Oi, [Nome]! A gente tem um checklist de 80 itens para conferir a rotina sanitária com a equipe. São 12 blocos com base na RDC 216/2004, da documentação às temperaturas, à equipe e à higiene, prontos para imprimir. É gratuito.\n\nQuer que a gente mande o link aqui?",
       "email": {
         "assunto": "Re: [Estabelecimento]: rotina sanitária e fiscalização",
@@ -107,7 +107,7 @@
     {
       "id": "d2",
       "situacao": "Confirmou que ninguém de fora acompanha ('não temos nutricionista fixo', 'fica comigo mesmo')",
-      "mensagem": "Faz sentido. Quando essa parte fica com quem já toca a operação, o registro do dia a dia costuma ser o primeiro a escapar nos dias corridos. A Food Guard existe para manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
+      "mensagem": "Faz sentido. Quando essa parte fica com quem já toca a operação, o registro do dia a dia costuma ser o primeiro a escapar nos dias corridos. A Food Guard ajuda justamente nisso: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
       "proximo_passo": "Escolheu o dia: confira os blocos da agenda e mande o ramo 'Escolheu dia e horário'. Veio objeção: use o roteiro de objeções. Silêncio: uma retomada 2 dias úteis depois (ramo 'Conversa parada'); sem resposta, 'retorno em [data]' ou 'encerrado'."
     },
     {
@@ -119,7 +119,7 @@
     {
       "id": "d4",
       "situacao": "Depois do 'está tudo em dia', contou que ninguém confere a rotina com frequência",
-      "mensagem": "Entendi. É aí que costuma morar o risco: o Manual existe, mas a rotina vai se afastando dele com o tempo, e na fiscalização vale o que está registrado.\n\nPor isso a gente começa com uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês, confere se o dia a dia está igual ao papel e mostra o que vale ajustar e, se fizer sentido, como seria o acompanhamento.\n\nQuando fica bom para vocês receberem a visita?",
+      "mensagem": "Entendi. Isso é bem comum: o Manual existe, mas a rotina vai se afastando dele com o tempo, e na fiscalização vale o que está registrado.\n\nPor isso a gente começa com uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês, confere se o dia a dia está igual ao papel e mostra o que vale ajustar e, se fizer sentido, como seria o acompanhamento.\n\nQual dia e horário fica melhor para vocês receberem a visita?",
       "proximo_passo": "Mesmo caminho do ramo da oferta: agenda, ramo 'Escolheu dia e horário' ou objeções."
     },
     {
@@ -131,7 +131,7 @@
     {
       "id": "d6",
       "situacao": "Tem nutricionista, e entre as visitas a rotina fica com a equipe",
-      "mensagem": "Faz sentido, [Nome]. Entre uma visita e outra, a rotina fica com a equipe, e é aí que as coisas costumam escapar. A diferença da Food Guard está no modelo: a frequência das visitas e o que é entregue ficam definidos no plano, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra.\n\nSe quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso e não muda nada no acompanhamento que vocês têm hoje. Que dia e horário ficam melhores para a visita?",
+      "mensagem": "Faz sentido, [Nome]. Entre uma visita e outra, a rotina fica com a equipe, e é aí que as coisas costumam escapar. Na Food Guard, a frequência das visitas e o que é entregue ficam combinados desde o começo, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra.\n\nSe quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso e não muda nada no acompanhamento que vocês têm hoje. Que dia e horário ficam melhores para a visita?",
       "proximo_passo": "Se o profissional atual for o nutricionista responsável da operação, lembre que só o Premium inclui nutricionista responsável: Básico e Essencial complementam, não substituem. Se a pessoa disser que outro nutricionista lá dentro criaria problema, não insista: ofereça o checklist e encerre. Se o dono confirmar a política de sigilo, acrescente antes da pergunta: 'O que o nutricionista vê fica entre vocês e a Food Guard.'"
     },
     {
@@ -167,7 +167,7 @@
     {
       "id": "d12",
       "situacao": "Operação nova ou em expansão, depois da segunda resposta",
-      "mensagem": "Faz sentido. A rotina que a equipe aprende agora é a que fica, e acertar a documentação enquanto a operação toma forma dá menos trabalho do que corrigir depois. Como o cardápio muda e a equipe roda nos primeiros meses, o acompanhamento confere isso com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês enquanto o fluxo ainda pode ser ajustado e mostra o que está bem encaminhado, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
+      "mensagem": "Faz sentido. Nessa fase, acertar a documentação e a rotina dá bem menos trabalho do que corrigir depois, quando a equipe já se acostumou de outro jeito. Como o cardápio muda e a equipe roda nos primeiros meses, o acompanhamento confere isso com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês enquanto o fluxo ainda pode ser ajustado e mostra o que está bem encaminhado, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
       "proximo_passo": "Pré-inauguração com data marcada: proponha a visita antes da abertura e trate como topo da semana. Na casa que entrou no delivery, troque a primeira frase por 'O delivery muda a rotina: embalagem, tempo até o cliente e temperatura na entrega passam a fazer parte do processo, e isso precisa entrar nos procedimentos.' Não diga 'documentação feita para esta cozinha' enquanto o dono não definir o Manual do Essencial."
     },
     {
@@ -179,7 +179,7 @@
     {
       "id": "d14",
       "situacao": "Chegou pelo site (fez o diagnóstico ou baixou o checklist e escreveu no WhatsApp)",
-      "mensagem": "Oi, [Nome]! Aqui é da Food Guard, obrigado por fazer o diagnóstico. O resultado é uma estimativa a partir das 5 respostas; quem confirma o que se aplica ao [Estabelecimento] é o nutricionista, na visita de avaliação sem custo. Para a gente entender melhor: hoje, quem cuida da documentação sanitária e da rotina de boas práticas aí?",
+      "mensagem": "Oi, [Nome]! Aqui é da Food Guard, obrigado por fazer o diagnóstico. O resultado é uma estimativa a partir das 5 respostas. Quem confirma o que se aplica ao [Estabelecimento] é o nutricionista, na visita de avaliação sem custo. Para a gente entender melhor: hoje, quem cuida da documentação sanitária e da rotina de boas práticas aí?",
       "proximo_passo": "Frente da fila, com resposta em até 5 minutos no horário comercial. Não repita a multa nem o plano que vieram na mensagem do site. Para quem chegou pelo checklist, troque a primeira frase por 'obrigado por baixar o checklist'. Origem = site. Siga os ramos conforme a resposta."
     },
     {
@@ -209,7 +209,7 @@
     {
       "id": "d19",
       "situacao": "Conversa parada (respondeu, recebeu pergunta ou oferta e sumiu)",
-      "mensagem": "Oi, [Nome]! Retomando o que você contou sobre [assunto da conversa]: ficou alguma dúvida sobre a visita de avaliação? Se agora não for um bom momento, qual semana fica melhor para vocês?",
+      "mensagem": "Oi, [Nome]! Retomando o que você contou sobre [assunto da conversa]: ficou alguma dúvida sobre a visita de avaliação? Se não, que dia e horário ficam bons para vocês, nem que seja mais para frente?",
       "proximo_passo": "Uma retomada só, 2 dias úteis depois, com assunto da própria conversa. Sem resposta: status 'retorno em [data]' se a pessoa demonstrou interesse, senão 'encerrado'."
     },
     {
@@ -238,8 +238,8 @@
     }
   ],
   "ofertaVisita": {
-    "texto": "[Retome em poucas palavras o que a pessoa contou.] É para isso que a Food Guard existe: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência, para que isso não dependa só de quem já toca a casa.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\n[Motivo do momento do segmento, se houver.] Que dia e horário ficam melhores para a visita?",
-    "quando_usar": "Só depois da descoberta (uma ou duas perguntas), quando a resposta mostrou necessidade: ninguém de fora acompanha, ninguém confere a rotina entre as visitas, falta documento ou há prazo. Os ramos da descoberta já trazem a oferta adaptada a cada situação, e este texto é a base para os casos fora deles. Regras globais do roteiro: (1) antes da descoberta, toda resposta, inclusive a de objeção, termina na pergunta de descoberta, não no convite; (2) pergunta de preço nunca fica sem resposta, e na segunda vez vai o link de /planos; (3) o mesmo fechamento não se repete na conversa: use as variações ('Quando fica bom para você receber a visita?', 'Qual dia da semana costuma ser mais tranquilo para receber o nutricionista?'); (4) depois de uma recusa da visita, não repita o convite: mude o próximo passo (checklist, retorno combinado ou encerramento); (5) dois 'está tudo certo' encerram a oferta; (6) motivo do momento só se for do segmento (padaria e buffet até meados de novembro, abertura, expansão, prazo), e nunca fim de ano ou 'a fiscalização não avisa' para quem já foi autuado; (7) 'o nutricionista vai estar na região' só se já houver visita marcada no bairro; (8) a frase de sigilo só entra se o dono confirmar a política; (9) tudo na voz 'a gente', sem 'eu', coerente com a assinatura da empresa."
+    "texto": "[Retome em poucas palavras o que a pessoa contou.] É nisso que a Food Guard ajuda: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência, para que isso não dependa só de quem já toca a casa.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\n[Motivo do momento do segmento, se houver.] Que dia e horário ficam melhores para a visita?",
+    "quando_usar": "Só depois da descoberta (uma ou duas perguntas), quando a resposta mostrou necessidade: ninguém de fora acompanha, ninguém confere a rotina entre as visitas, falta documento ou há prazo. Os ramos da descoberta já trazem a oferta adaptada a cada situação, e este texto é a base para os casos fora deles. Regras globais do roteiro: (1) antes da descoberta, toda resposta, inclusive a de objeção, termina na pergunta de descoberta, não no convite; (2) pergunta de preço nunca fica sem resposta, e na segunda vez vai o link de /planos; (3) o mesmo fechamento não se repete na conversa: use as variações ('Qual dia e horário fica melhor para você receber a visita?', 'Qual dia e horário costuma ser mais tranquilo para receber o nutricionista?'); (4) depois de uma recusa da visita, não repita o convite: mude o próximo passo (checklist, retorno combinado ou encerramento); (5) dois 'está tudo certo' encerram a oferta; (6) motivo do momento só se for do segmento (padaria e buffet até meados de novembro, abertura, expansão, prazo), e nunca fim de ano ou 'a fiscalização não avisa' para quem já foi autuado; (7) 'o nutricionista vai estar na região' só se já houver visita marcada no bairro; (8) a frase de sigilo só entra se o dono confirmar a política; (9) tudo na voz 'a gente', sem 'eu', coerente com a assinatura da empresa."
   },
   "agendamento": [
     {
@@ -283,7 +283,7 @@
     },
     {
       "gatilho": "Eu mesmo faço os ajustes / por que pagar todo mês?",
-      "texto": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
+      "texto": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard serve para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
       "nota": "Responde à pergunta do dono 'por que um serviço recorrente se eu mesmo ajusto'. Se a descoberta já foi feita, troque a pergunta final por 'Que dia e horário ficam melhores para a visita?'. Se perguntarem da garantia, diga que ela anda junto com a execução das adequações recomendadas. Não prometa treinamento como regra geral (o Básico não tem) nem 'cancela quando quiser'."
     },
     {
@@ -324,7 +324,7 @@
     {
       "gatilho": "Agora não / vou pensar",
       "texto": "Sem problema, [Nome]! Se quiserem conferir a operação com calma enquanto isso, a gente tem um checklist de 80 itens em PDF, com base na RDC 216/2004, e manda o link aqui mesmo. Podemos voltar a falar daqui a um mês?",
-      "nota": "Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Quando fica bom para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo."
+      "nota": "Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Qual dia e horário fica melhor para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo."
     },
     {
       "gatilho": "Sair / não tenho interesse / resposta grosseira",
@@ -333,12 +333,12 @@
     },
     {
       "gatilho": "Isso é obrigatório? / Preciso ter nutricionista?",
-      "texto": "O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço; o que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?",
+      "texto": "O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço. O que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?",
       "nota": "Fora da capital, corte a frase da Portaria. Depois da descoberta, troque a pergunta final por: 'É isso que a visita de avaliação sem custo mostra: o que se aplica ao [Estabelecimento] e o que falta. Que dia e horário ficam melhores para você?'. Nunca diga que sem nutricionista a operação fica exposta a autuação, nem que o nutricionista assina ou assume a responsabilidade pela operação."
     },
     {
       "gatilho": "Tem garantia? / E se não resolver?",
-      "texto": "Tem, sim: 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?",
+      "texto": "Tem, sim: 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?",
       "nota": "Não omita a condição de executar as adequações recomendadas. Se o dono aprovar o critério mensurável (checklist de 80 itens no dia 1 e no dia 90, com a meta escrita na proposta), acrescente: 'A conformidade é medida pelo mesmo checklist no começo e no dia 90.' Antes da descoberta, troque a pergunta final pela de descoberta. Nunca diga 'garantimos que você não será multado' nem 'aprovação garantida'."
     },
     {
@@ -348,7 +348,7 @@
     },
     {
       "gatilho": "Quanto tempo leva a visita? / Vai atrapalhar o movimento?",
-      "texto": "Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a rotina junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?",
+      "texto": "Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a operação junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?",
       "nota": "Nunca diga quanto tempo a visita leva nem fale em interromper o movimento. Se o pico for a preocupação, deixe a pessoa escolher um horário fora dele, dentro dos blocos da agenda. Se a pessoa disser que não fica na produção, diga que o gerente pode receber, e peça que quem decide esteja junto no fim."
     },
     {
@@ -358,7 +358,7 @@
     },
     {
       "gatilho": "Visita grátis é para vender / vão me empurrar um plano",
-      "texto": "É uma visita para apresentar o nosso trabalho, sim, e a gente prefere dizer isso com clareza. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?",
+      "texto": "É uma visita para apresentar o nosso trabalho, sim, não tem por que esconder isso. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?",
       "nota": "Ser honesto sobre o objetivo comercial desarma mais do que negar. Se a pessoa quiser saber o valor antes, mande foodguardassessoria.com.br/planos. Não diga que ela 'sai com tudo resolvido' nem que 'pode seguir sozinha': a visita mostra o quê, não o passo a passo."
     },
     {
@@ -392,7 +392,7 @@
         {
           "pergunta": "Por que deveria contratar um serviço recorrente se já consegue fazer os ajustes sozinho?",
           "resposta_interna": "Seja honesto: muita coisa pontual o dono resolve sozinho. O que a Food Guard resolve é manter tudo funcionando depois do ajuste, e uma intervenção só não dá conta disso. É preciso registro diário de temperatura e higienização, orientar de novo quem entra quando a equipe troca, atualizar documentos quando muda cardápio, fornecedor ou processo, e corrigir a rotina que vai se afastando do Manual com o tempo. Quando a fiscalização volta, vale a planilha preenchida dia a dia e a equipe seguindo o POP, e não só o papel. O que o recorrente entrega, pelo plans.ts: visitas presenciais quinzenais (Básico), semanais (Essencial) ou 2x por semana (Premium); documentação ANVISA e POPs em todos os planos; checklist de inspeção, relatório de não conformidades e plano de ação em todos; auditoria interna mensal, simulação de fiscalização e treinamento periódico a partir do Essencial; WhatsApp com nutricionista em todos (comercial, estendido ou prioritário com resposta em até 2h). O dono deixa de ser quem responde pela norma no meio da operação. A garantia do site.ts é de 90 dias para estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Ela depende de o cliente executar as adequações recomendadas (Termos, item 5), e o SDR não omite isso se perguntarem. Hoje a garantia não tem critério mensurável, e o dono precisa decidir esse critério. Subir de plano pode ser feito a qualquer momento, sem multa e sem reinício de prazo (FAQ de /planos). Cancelamento livre não pode ser prometido enquanto o contrato (12 meses, multa de 3 mensalidades) e os Termos ('a qualquer momento') não estiverem alinhados.",
-          "frase_para_mensagem": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
+          "frase_para_mensagem": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard serve para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
           "prova_disponivel_hoje": "Escopo de cada plano publicado em foodguardassessoria.com.br/planos (plans.ts). Garantia de 90 dias (site.ts e Termos, item 4). Troca para plano maior sem multa e sem reinício de prazo (FAQ de /planos). O prazo 'típico' da FAQ de /planos (documentação em 30 a 60 dias) é estimativa sem histórico próprio e não serve como prova."
         },
         {
@@ -404,7 +404,7 @@
         {
           "pergunta": "Qual problema a Food Guard resolve melhor do que um nutricionista autônomo ou uma assessoria concorrente?",
           "resposta_interna": "Compare modelos, nunca pessoas. O autônomo pode ser excelente, e o modelo em que o profissional assume a parte técnica e aparece pouco existe porque muita operação precisa de alguém formalmente responsável. A lacuna desse modelo é que, entre uma visita e outra, a rotina fica com a equipe e ninguém confere se o dia a dia bate com o papel. Por isso a pergunta de descoberta é 'entre uma visita e outra, quem confere a rotina com a equipe?'. Ela não pede que o dono critique o profissional que tem, e quem tem nutricionista só no papel não precisa confessar nada. O que a Food Guard tem e dá para verificar: frequência de visitas definida no plano, escopo escrito e público com preço no site, plano de ação, auditoria interna mensal e simulação de fiscalização (a partir do Essencial), WhatsApp com nutricionista em horário definido, apoio em fiscalizações e garantia de 90 dias. Frequência no papel o autônomo também oferece. O argumento que ele não copia é a continuidade de um time: a operação não fica descoberta se o nutricionista tirar férias ou sair, o que casa com o gatilho 'o nutricionista saiu' do segmento 4. Esse argumento só entra se o dono confirmar quantos nutricionistas o time tem. Nuance honesta: nutricionista responsável só existe no Premium. Se o lead já tem um autônomo como responsável, Básico e Essencial complementam esse profissional, não o substituem, e a visita é uma segunda opinião. Sobre a assessoria concorrente, não sabemos o que cada uma oferece, então nunca diga que somos os únicos com garantia ou com visita presencial.",
-          "frase_para_mensagem": "Se vocês já têm nutricionista, ótimo: a ideia não é substituir ninguém. A diferença da Food Guard está no modelo: a frequência das visitas e o que é entregue ficam definidos no plano, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Se quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso. Que dia e horário ficam melhores para a visita?",
+          "frase_para_mensagem": "Se vocês já têm nutricionista, ótimo: a ideia não é substituir ninguém. Na Food Guard, a frequência das visitas e o que é entregue ficam combinados desde o começo, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Se quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso. Que dia e horário ficam melhores para a visita?",
           "prova_disponivel_hoje": "Página /planos com escopo e valores públicos (plans.ts). Garantia de 90 dias (site.ts e Termos). Time com CRN ativo, segundo a página /sobre, verificável na consulta pública do CRN quando o nome do nutricionista for informado. Não há comparação documentada com concorrentes nem resultado próprio."
         }
       ],
@@ -727,7 +727,7 @@
         {
           "segmento": "1. Operações com maior complexidade (quilo, self-service, buffet, alto volume)",
           "texto": "Boa tarde, [Nome]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda restaurantes por quilo, self-service e buffet a manter os registros de temperatura e a rotina de boas práticas em dia, no mesmo padrão na segunda e no sábado cheio.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nNo [Estabelecimento], quem cuida desses registros no dia a dia hoje?",
-          "por_que": "Estrutura igual em todos os segmentos: quem escreve, uma frase de problema e a pergunta de descoberta no fim, em cerca de 350 caracteres e sem link. Com a identificação primeiro, a mensagem não parece fiscal, reclamação ou golpe. O problema vem pelo lado do ganho (o mesmo padrão na segunda e no sábado cheio), e não pela ameaça. A pergunta pede quem cuida, não se está em dia: a resposta traz um nome ('o cozinheiro', 'eu', 'a nutricionista') e abre a segunda pergunta, sem o 'sim' que encerra a conversa. Sem nome confirmado, abra só com 'Boa tarde!'. Se o dono decidir pelo primeiro nome do SDR, troque 'Aqui é da Food Guard' por 'Aqui é [Nome do SDR], da Food Guard' em todas as versões. O e-mail leva o mesmo texto. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta."
+          "por_que": "Estrutura igual em todos os segmentos: quem escreve, o que a Food Guard faz, o link do diagnóstico e a pergunta de descoberta no fim. Com a identificação primeiro, a mensagem não parece fiscal, reclamação ou golpe. O problema vem pelo lado do ganho (o mesmo padrão na segunda e no sábado cheio), e não pela ameaça. A pergunta pede quem cuida, não se está em dia: a resposta traz um nome ('o cozinheiro', 'eu', 'a nutricionista') e abre a segunda pergunta, sem o 'sim' que encerra a conversa. Sem nome confirmado, abra só com 'Boa tarde!'. Se o dono decidir pelo primeiro nome do SDR, troque 'Aqui é da Food Guard' por 'Aqui é [Nome do SDR], da Food Guard' em todas as versões. O e-mail leva o mesmo texto. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta."
         },
         {
           "segmento": "2. Padarias e operações com produção própria",
@@ -736,7 +736,7 @@
         },
         {
           "segmento": "3a. Operações novas ou em expansão: inauguração, pré-inauguração, nova unidade",
-          "texto": "Boa tarde, [Nome], e parabéns pela [inauguração]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o começo, porque o que a equipe aprende nos primeiros meses é o que fica.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nQuem está cuidando do Manual de Boas Práticas e dos POPs da [cozinha nova]?",
+          "texto": "Boa tarde, [Nome], e parabéns pela [inauguração]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o começo, enquanto a equipe ainda está pegando o jeito da casa.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nQuem está cuidando do Manual de Boas Práticas e dos POPs da [cozinha nova]?",
           "por_que": "Neste segmento, o momento da operação justifica o contato, e o parabéns abre a conversa sem dizer onde o contato foi achado. Troque [inauguração] por 'nova unidade' ou 'reforma', e [cozinha nova] por 'unidade nova'. Na pré-inauguração, use 'parabéns pela inauguração que vem aí'. Use esta versão só para quem abriu há até 6 meses ou abre nos próximos 60 dias. Casa que já existe e entrou no delivery recebe a versão 3b, porque 'cozinha nova' nesse caso entrega mensagem pronta. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta."
         },
         {
@@ -747,7 +747,7 @@
         {
           "segmento": "4. Operações com necessidade imediata (pendência, fiscalização, regularização)",
           "texto": "Boa tarde, [Nome]! Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo.\n\nA gente organiza a documentação e a rotina de boas práticas com nutricionista acompanhando a operação de perto, tanto para manter tudo em dia quanto quando aparece uma pendência ou um prazo para regularizar.\n\nSe quiser conhecer o nosso trabalho, o diagnóstico gratuito do site mostra em 5 perguntas como está a operação:\nfoodguardassessoria.com.br/diagnostico\n\nNo [Estabelecimento], quem cuida dessa parte hoje?",
-          "por_que": "Nunca cita o sinal público (avaliação ruim, fechamento temporário, notícia, vaga de nutricionista): o problema só entra quando a pessoa conta. A frase 'pendência ou prazo para regularizar' deixa a porta aberta, e a dona simulada contou a pendência já na primeira resposta. Sem diagnóstico e sem checklist. Resposta que fala em auto ou prazo vai para a frente da fila e é atendida assim que o SDR vir. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta."
+          "por_que": "Nunca cita o sinal público (avaliação ruim, fechamento temporário, notícia, vaga de nutricionista): o problema só entra quando a pessoa conta. A frase 'pendência ou prazo para regularizar' deixa a porta aberta, e a dona simulada contou a pendência já na primeira resposta. Depois que a pessoa contar a pendência, nada de checklist nem diagnóstico: o próximo passo é a visita. Resposta que fala em auto ou prazo vai para a frente da fila e é atendida assim que o SDR vir. O link do diagnóstico fica antes da pergunta final, para a mensagem terminar pedindo resposta."
         },
         {
           "segmento": "Fora dos segmentos (grupo de comparação: à la carte, bar, lanchonete, sem sinal)",
@@ -757,7 +757,7 @@
       ],
       "segundo_contato": {
         "texto": "Oi, [Nome]! A gente tem um checklist de 80 itens para conferir a rotina sanitária com a equipe. São 12 blocos com base na RDC 216/2004, da documentação às temperaturas, à equipe e à higiene, prontos para imprimir. É gratuito.\n\nQuer que a gente mande o link aqui?",
-        "por_que": "Sai no 3º dia de envio depois da mensagem 1 (exemplo: 1 na terça, 2 na sexta), só se não houve resposta. Em vez de cobrar a resposta anterior, oferece um material útil e termina numa pergunta fácil: um 'sim' já é resposta, tira o lead da cadência e abre a descoberta (ramo 'Pediu o checklist'). Não manda link nem pede formulário de 6 campos para quem ainda não respondeu. Também não cria uma 4ª mensagem sem resposta depois de um download silencioso. 'A gente tem' no lugar de 'separamos para o [Estabelecimento]', porque não há personalização. Se o dono não autorizar o PDF direto no WhatsApp, troque a pergunta final por 'Quer que a gente mande o link?' e mande foodguardassessoria.com.br/checklist-vigilancia. Nesse caso, o download pelo site não conta como resposta. Para o segmento 4 o checklist só entra porque a pessoa ainda não contou nada; se ela contar que tem prazo, o roteiro troca material por visita."
+        "por_que": "Sai no 3º dia de envio depois da mensagem 1 (exemplo: 1 na terça, 2 na sexta), só se não houve resposta. Em vez de cobrar a resposta anterior, oferece um material útil e termina numa pergunta fácil: um 'sim' já é resposta, tira o lead da cadência e abre a descoberta (ramo 'Pediu o checklist'). Não manda link nem pede formulário de 6 campos para quem ainda não respondeu. Também não cria uma 4ª mensagem sem resposta depois de um download silencioso. 'A gente tem' no lugar de 'separamos para o [Estabelecimento]', porque não há personalização. Quem disser 'sim' recebe o link da página foodguardassessoria.com.br/checklist-vigilancia, onde deixa os dados para baixar o PDF (ramo 'Pediu o checklist'). O PDF nunca vai direto no WhatsApp. Para o segmento 4 o checklist só entra porque a pessoa ainda não contou nada; se ela contar que tem prazo, o roteiro troca material por visita."
       },
       "ultima_tentativa": {
         "texto": "[Nome], como não tivemos retorno, imaginamos que essa parte não seja prioridade agora, e tudo bem: vamos parar de escrever por aqui. Se um dia quiserem uma visita de avaliação sem custo, este número continua aberto.\n\nAntes de encerrar, só uma pergunta: hoje a documentação sanitária e a rotina de boas práticas ficam com a própria equipe ou com alguém de fora?",
@@ -771,7 +771,7 @@
         },
         {
           "situacao": "Confirmou que ninguém de fora acompanha ('não temos nutricionista fixo', 'fica comigo mesmo')",
-          "mensagem": "Faz sentido. Quando essa parte fica com quem já toca a operação, o registro do dia a dia costuma ser o primeiro a escapar nos dias corridos. A Food Guard existe para manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
+          "mensagem": "Faz sentido. Quando essa parte fica com quem já toca a operação, o registro do dia a dia costuma ser o primeiro a escapar nos dias corridos. A Food Guard ajuda justamente nisso: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
           "proximo_passo": "Escolheu o dia: confira os blocos da agenda e mande o ramo 'Escolheu dia e horário'. Veio objeção: use o roteiro de objeções. Silêncio: uma retomada 2 dias úteis depois (ramo 'Conversa parada'); sem resposta, 'retorno em [data]' ou 'encerrado'."
         },
         {
@@ -781,7 +781,7 @@
         },
         {
           "situacao": "Depois do 'está tudo em dia', contou que ninguém confere a rotina com frequência",
-          "mensagem": "Entendi. É aí que costuma morar o risco: o Manual existe, mas a rotina vai se afastando dele com o tempo, e na fiscalização vale o que está registrado.\n\nPor isso a gente começa com uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês, confere se o dia a dia está igual ao papel e mostra o que vale ajustar e, se fizer sentido, como seria o acompanhamento.\n\nQuando fica bom para vocês receberem a visita?",
+          "mensagem": "Entendi. Isso é bem comum: o Manual existe, mas a rotina vai se afastando dele com o tempo, e na fiscalização vale o que está registrado.\n\nPor isso a gente começa com uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês, confere se o dia a dia está igual ao papel e mostra o que vale ajustar e, se fizer sentido, como seria o acompanhamento.\n\nQual dia e horário fica melhor para vocês receberem a visita?",
           "proximo_passo": "Mesmo caminho do ramo da oferta: agenda, ramo 'Escolheu dia e horário' ou objeções."
         },
         {
@@ -791,7 +791,7 @@
         },
         {
           "situacao": "Tem nutricionista, e entre as visitas a rotina fica com a equipe",
-          "mensagem": "Faz sentido, [Nome]. Entre uma visita e outra, a rotina fica com a equipe, e é aí que as coisas costumam escapar. A diferença da Food Guard está no modelo: a frequência das visitas e o que é entregue ficam definidos no plano, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra.\n\nSe quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso e não muda nada no acompanhamento que vocês têm hoje. Que dia e horário ficam melhores para a visita?",
+          "mensagem": "Faz sentido, [Nome]. Entre uma visita e outra, a rotina fica com a equipe, e é aí que as coisas costumam escapar. Na Food Guard, a frequência das visitas e o que é entregue ficam combinados desde o começo, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra.\n\nSe quiserem uma segunda opinião, a visita de avaliação é sem custo e sem compromisso e não muda nada no acompanhamento que vocês têm hoje. Que dia e horário ficam melhores para a visita?",
           "proximo_passo": "Se o profissional atual for o nutricionista responsável da operação, lembre que só o Premium inclui nutricionista responsável: Básico e Essencial complementam, não substituem. Se a pessoa disser que outro nutricionista lá dentro criaria problema, não insista: ofereça o checklist e encerre. Se o dono confirmar a política de sigilo, acrescente antes da pergunta: 'O que o nutricionista vê fica entre vocês e a Food Guard.'"
         },
         {
@@ -821,7 +821,7 @@
         },
         {
           "situacao": "Operação nova ou em expansão, depois da segunda resposta",
-          "mensagem": "Faz sentido. A rotina que a equipe aprende agora é a que fica, e acertar a documentação enquanto a operação toma forma dá menos trabalho do que corrigir depois. Como o cardápio muda e a equipe roda nos primeiros meses, o acompanhamento confere isso com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês enquanto o fluxo ainda pode ser ajustado e mostra o que está bem encaminhado, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
+          "mensagem": "Faz sentido. Nessa fase, acertar a documentação e a rotina dá bem menos trabalho do que corrigir depois, quando a equipe já se acostumou de outro jeito. Como o cardápio muda e a equipe roda nos primeiros meses, o acompanhamento confere isso com frequência.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês enquanto o fluxo ainda pode ser ajustado e mostra o que está bem encaminhado, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\nQue dia e horário ficam melhores para a visita?",
           "proximo_passo": "Pré-inauguração com data marcada: proponha a visita antes da abertura e trate como topo da semana. Na casa que entrou no delivery, troque a primeira frase por 'O delivery muda a rotina: embalagem, tempo até o cliente e temperatura na entrega passam a fazer parte do processo, e isso precisa entrar nos procedimentos.' Não diga 'documentação feita para esta cozinha' enquanto o dono não definir o Manual do Essencial."
         },
         {
@@ -831,7 +831,7 @@
         },
         {
           "situacao": "Chegou pelo site (fez o diagnóstico ou baixou o checklist e escreveu no WhatsApp)",
-          "mensagem": "Oi, [Nome]! Aqui é da Food Guard, obrigado por fazer o diagnóstico. O resultado é uma estimativa a partir das 5 respostas; quem confirma o que se aplica ao [Estabelecimento] é o nutricionista, na visita de avaliação sem custo. Para a gente entender melhor: hoje, quem cuida da documentação sanitária e da rotina de boas práticas aí?",
+          "mensagem": "Oi, [Nome]! Aqui é da Food Guard, obrigado por fazer o diagnóstico. O resultado é uma estimativa a partir das 5 respostas. Quem confirma o que se aplica ao [Estabelecimento] é o nutricionista, na visita de avaliação sem custo. Para a gente entender melhor: hoje, quem cuida da documentação sanitária e da rotina de boas práticas aí?",
           "proximo_passo": "Frente da fila, com resposta em até 5 minutos no horário comercial. Não repita a multa nem o plano que vieram na mensagem do site. Para quem chegou pelo checklist, troque a primeira frase por 'obrigado por baixar o checklist'. Origem = site. Siga os ramos conforme a resposta."
         },
         {
@@ -856,7 +856,7 @@
         },
         {
           "situacao": "Conversa parada (respondeu, recebeu pergunta ou oferta e sumiu)",
-          "mensagem": "Oi, [Nome]! Retomando o que você contou sobre [assunto da conversa]: ficou alguma dúvida sobre a visita de avaliação? Se agora não for um bom momento, qual semana fica melhor para vocês?",
+          "mensagem": "Oi, [Nome]! Retomando o que você contou sobre [assunto da conversa]: ficou alguma dúvida sobre a visita de avaliação? Se não, que dia e horário ficam bons para vocês, nem que seja mais para frente?",
           "proximo_passo": "Uma retomada só, 2 dias úteis depois, com assunto da própria conversa. Sem resposta: status 'retorno em [data]' se a pessoa demonstrou interesse, senão 'encerrado'."
         },
         {
@@ -881,8 +881,8 @@
         }
       ],
       "oferta_visita": {
-        "texto": "[Retome em poucas palavras o que a pessoa contou.] É para isso que a Food Guard existe: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência, para que isso não dependa só de quem já toca a casa.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\n[Motivo do momento do segmento, se houver.] Que dia e horário ficam melhores para a visita?",
-        "quando_usar": "Só depois da descoberta (uma ou duas perguntas), quando a resposta mostrou necessidade: ninguém de fora acompanha, ninguém confere a rotina entre as visitas, falta documento ou há prazo. Os ramos da descoberta já trazem a oferta adaptada a cada situação, e este texto é a base para os casos fora deles. Regras globais do roteiro: (1) antes da descoberta, toda resposta, inclusive a de objeção, termina na pergunta de descoberta, não no convite; (2) pergunta de preço nunca fica sem resposta, e na segunda vez vai o link de /planos; (3) o mesmo fechamento não se repete na conversa: use as variações ('Quando fica bom para você receber a visita?', 'Qual dia da semana costuma ser mais tranquilo para receber o nutricionista?'); (4) depois de uma recusa da visita, não repita o convite: mude o próximo passo (checklist, retorno combinado ou encerramento); (5) dois 'está tudo certo' encerram a oferta; (6) motivo do momento só se for do segmento (padaria e buffet até meados de novembro, abertura, expansão, prazo), e nunca fim de ano ou 'a fiscalização não avisa' para quem já foi autuado; (7) 'o nutricionista vai estar na região' só se já houver visita marcada no bairro; (8) a frase de sigilo só entra se o dono confirmar a política; (9) tudo na voz 'a gente', sem 'eu', coerente com a assinatura da empresa."
+        "texto": "[Retome em poucas palavras o que a pessoa contou.] É nisso que a Food Guard ajuda: manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência, para que isso não dependa só de quem já toca a casa.\n\nO primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com vocês e mostra o que já está em ordem, o que precisa de atenção e, se fizer sentido, como seria o acompanhamento.\n\n[Motivo do momento do segmento, se houver.] Que dia e horário ficam melhores para a visita?",
+        "quando_usar": "Só depois da descoberta (uma ou duas perguntas), quando a resposta mostrou necessidade: ninguém de fora acompanha, ninguém confere a rotina entre as visitas, falta documento ou há prazo. Os ramos da descoberta já trazem a oferta adaptada a cada situação, e este texto é a base para os casos fora deles. Regras globais do roteiro: (1) antes da descoberta, toda resposta, inclusive a de objeção, termina na pergunta de descoberta, não no convite; (2) pergunta de preço nunca fica sem resposta, e na segunda vez vai o link de /planos; (3) o mesmo fechamento não se repete na conversa: use as variações ('Qual dia e horário fica melhor para você receber a visita?', 'Qual dia e horário costuma ser mais tranquilo para receber o nutricionista?'); (4) depois de uma recusa da visita, não repita o convite: mude o próximo passo (checklist, retorno combinado ou encerramento); (5) dois 'está tudo certo' encerram a oferta; (6) motivo do momento só se for do segmento (padaria e buffet até meados de novembro, abertura, expansão, prazo), e nunca fim de ano ou 'a fiscalização não avisa' para quem já foi autuado; (7) 'o nutricionista vai estar na região' só se já houver visita marcada no bairro; (8) a frase de sigilo só entra se o dono confirmar a política; (9) tudo na voz 'a gente', sem 'eu', coerente com a assinatura da empresa."
       },
       "objecoes": [
         {
@@ -892,7 +892,7 @@
         },
         {
           "gatilho": "Eu mesmo faço os ajustes / por que pagar todo mês?",
-          "texto": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
+          "texto": "Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard serve para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?",
           "nota": "Responde à pergunta do dono 'por que um serviço recorrente se eu mesmo ajusto'. Se a descoberta já foi feita, troque a pergunta final por 'Que dia e horário ficam melhores para a visita?'. Se perguntarem da garantia, diga que ela anda junto com a execução das adequações recomendadas. Não prometa treinamento como regra geral (o Básico não tem) nem 'cancela quando quiser'."
         },
         {
@@ -933,7 +933,7 @@
         {
           "gatilho": "Agora não / vou pensar",
           "texto": "Sem problema, [Nome]! Se quiserem conferir a operação com calma enquanto isso, a gente tem um checklist de 80 itens em PDF, com base na RDC 216/2004, e manda o link aqui mesmo. Podemos voltar a falar daqui a um mês?",
-          "nota": "Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Quando fica bom para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo."
+          "nota": "Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Qual dia e horário fica melhor para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo."
         },
         {
           "gatilho": "Sair / não tenho interesse / resposta grosseira",
@@ -942,12 +942,12 @@
         },
         {
           "gatilho": "Isso é obrigatório? / Preciso ter nutricionista?",
-          "texto": "O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço; o que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?",
+          "texto": "O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço. O que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?",
           "nota": "Fora da capital, corte a frase da Portaria. Depois da descoberta, troque a pergunta final por: 'É isso que a visita de avaliação sem custo mostra: o que se aplica ao [Estabelecimento] e o que falta. Que dia e horário ficam melhores para você?'. Nunca diga que sem nutricionista a operação fica exposta a autuação, nem que o nutricionista assina ou assume a responsabilidade pela operação."
         },
         {
           "gatilho": "Tem garantia? / E se não resolver?",
-          "texto": "Tem, sim: 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?",
+          "texto": "Tem, sim: 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?",
           "nota": "Não omita a condição de executar as adequações recomendadas. Se o dono aprovar o critério mensurável (checklist de 80 itens no dia 1 e no dia 90, com a meta escrita na proposta), acrescente: 'A conformidade é medida pelo mesmo checklist no começo e no dia 90.' Antes da descoberta, troque a pergunta final pela de descoberta. Nunca diga 'garantimos que você não será multado' nem 'aprovação garantida'."
         },
         {
@@ -957,7 +957,7 @@
         },
         {
           "gatilho": "Quanto tempo leva a visita? / Vai atrapalhar o movimento?",
-          "texto": "Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a rotina junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?",
+          "texto": "Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a operação junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?",
           "nota": "Nunca diga quanto tempo a visita leva nem fale em interromper o movimento. Se o pico for a preocupação, deixe a pessoa escolher um horário fora dele, dentro dos blocos da agenda. Se a pessoa disser que não fica na produção, diga que o gerente pode receber, e peça que quem decide esteja junto no fim."
         },
         {
@@ -967,7 +967,7 @@
         },
         {
           "gatilho": "Visita grátis é para vender / vão me empurrar um plano",
-          "texto": "É uma visita para apresentar o nosso trabalho, sim, e a gente prefere dizer isso com clareza. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?",
+          "texto": "É uma visita para apresentar o nosso trabalho, sim, não tem por que esconder isso. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?",
           "nota": "Ser honesto sobre o objetivo comercial desarma mais do que negar. Se a pessoa quiser saber o valor antes, mande foodguardassessoria.com.br/planos. Não diga que ela 'sai com tudo resolvido' nem que 'pode seguir sozinha': a visita mostra o quê, não o passo a passo."
         },
         {

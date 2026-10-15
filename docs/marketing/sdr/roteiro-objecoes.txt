@@ -6,7 +6,7 @@ Entendo, [Nome]. Se está funcionando, ninguém quer mexer. A visita de avaliaç
 
 ## Eu mesmo faço os ajustes / por que pagar todo mês?
 
-Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?
+Dá para resolver muita coisa por conta própria, sim. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard serve para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?
 
 (nota: Responde à pergunta do dono 'por que um serviço recorrente se eu mesmo ajusto'. Se a descoberta já foi feita, troque a pergunta final por 'Que dia e horário ficam melhores para a visita?'. Se perguntarem da garantia, diga que ela anda junto com a execução das adequações recomendadas. Não prometa treinamento como regra geral (o Básico não tem) nem 'cancela quando quiser'.)
 
@@ -58,7 +58,7 @@ Para a gente mandar o que realmente serve para vocês: hoje, quem cuida dessa pa
 
 Sem problema, [Nome]! Se quiserem conferir a operação com calma enquanto isso, a gente tem um checklist de 80 itens em PDF, com base na RDC 216/2004, e manda o link aqui mesmo. Podemos voltar a falar daqui a um mês?
 
-(nota: Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Quando fica bom para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo.)
+(nota: Se o checklist já foi enviado, tire a primeira frase. Só volte se a pessoa topar: status 'retorno em [data]'. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Qual dia e horário fica melhor para você receber a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo.)
 
 ## Sair / não tenho interesse / resposta grosseira
 
@@ -70,13 +70,13 @@ Equipe Food Guard
 
 ## Isso é obrigatório? / Preciso ter nutricionista?
 
-O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço; o que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?
+O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço. O que a norma cobra é a rotina de boas práticas e a documentação em ordem. Hoje, quem cuida do Manual e dos POPs aí no [Estabelecimento]?
 
 (nota: Fora da capital, corte a frase da Portaria. Depois da descoberta, troque a pergunta final por: 'É isso que a visita de avaliação sem custo mostra: o que se aplica ao [Estabelecimento] e o que falta. Que dia e horário ficam melhores para você?'. Nunca diga que sem nutricionista a operação fica exposta a autuação, nem que o nutricionista assina ou assume a responsabilidade pela operação.)
 
 ## Tem garantia? / E se não resolver?
 
-Tem, sim: 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?
+Tem, sim: 90 dias para a operação estar em conformidade real. Se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?
 
 (nota: Não omita a condição de executar as adequações recomendadas. Se o dono aprovar o critério mensurável (checklist de 80 itens no dia 1 e no dia 90, com a meta escrita na proposta), acrescente: 'A conformidade é medida pelo mesmo checklist no começo e no dia 90.' Antes da descoberta, troque a pergunta final pela de descoberta. Nunca diga 'garantimos que você não será multado' nem 'aprovação garantida'.)
 
@@ -88,7 +88,7 @@ O contrato começa com [prazo inicial] e depois segue [regra de saída], e está
 
 ## Quanto tempo leva a visita? / Vai atrapalhar o movimento?
 
-Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a rotina junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?
+Depende da operação, [Nome]. Por isso a gente marca no horário mais tranquilo para vocês, e o nutricionista conhece a operação junto com quem acompanha o dia a dia. Que dia e horário costumam ser mais tranquilos por aí?
 
 (nota: Nunca diga quanto tempo a visita leva nem fale em interromper o movimento. Se o pico for a preocupação, deixe a pessoa escolher um horário fora dele, dentro dos blocos da agenda. Se a pessoa disser que não fica na produção, diga que o gerente pode receber, e peça que quem decide esteja junto no fim.)
 
@@ -100,7 +100,7 @@ A Food Guard não tem nenhuma ligação com a Vigilância Sanitária, [Nome]. O 
 
 ## Visita grátis é para vender / vão me empurrar um plano
 
-É uma visita para apresentar o nosso trabalho, sim, e a gente prefere dizer isso com clareza. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?
+É uma visita para apresentar o nosso trabalho, sim, não tem por que esconder isso. Ela é sem custo e sem compromisso: o nutricionista conhece a operação, mostra o que está em ordem e o que pede atenção e, se fizer sentido, como seria o acompanhamento e quanto custaria. A decisão fica com vocês, sem pressa. Que dia e horário ficam melhores para a visita?
 
 (nota: Ser honesto sobre o objetivo comercial desarma mais do que negar. Se a pessoa quiser saber o valor antes, mande foodguardassessoria.com.br/planos. Não diga que ela 'sai com tudo resolvido' nem que 'pode seguir sozinha': a visita mostra o quê, não o passo a passo.)
 
