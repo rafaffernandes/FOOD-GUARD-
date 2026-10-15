@@ -1,0 +1,55 @@
+{
+ "tag": "Controle de temperatura",
+ "cta": "Link na bio",
+ "slides": [
+  {
+   "titulo": "Quais temperaturas a norma cobra na cozinha?",
+   "texto": "Os principais limites da RDC 216 e o que a Portaria 2.619 acrescenta no recebimento, na capital paulista. Cada número indica a norma de origem.",
+   "destaque": "RDC 216"
+  },
+  {
+   "titulo": "Comida quente: acima de 60 °C",
+   "texto": "Norma (RDC 216): acima de 60 °C, por no máximo 6 horas. Sugestão da Food Guard: anote a hora em que a preparação foi para o balcão.",
+   "destaque": "60 °C"
+  },
+  {
+   "titulo": "Cocção: a RDC 216 pede 70 °C",
+   "texto": "Norma (RDC 216): 70 °C em todas as partes do alimento, ou combinação de tempo e temperatura de mesma segurança. A norma da sua cidade pode pedir mais, então confira.",
+   "destaque": "70 °C"
+  },
+  {
+   "titulo": "Resfriamento: 2 horas para chegar a 10 °C",
+   "texto": "Norma (RDC 216): baixar o alimento de 60 °C para 10 °C em até 2 horas. Depois, refrigeração abaixo de 5 °C ou congelamento a -18 °C ou menos.",
+   "destaque": "2 horas"
+  },
+  {
+   "titulo": "Recebimento na capital: o que a Portaria pede",
+   "texto": "Norma (Portaria 2.619): congelados no máximo -12 °C, pescado cru resfriado até 3 °C, carnes cruas resfriadas até 7 °C. Confira a versão atual do texto.",
+   "destaque": "-12 °C"
+  },
+  {
+   "titulo": "Registro: quem define a frequência?",
+   "texto": "A RDC 216 manda registrar com regularidade a temperatura de armazenamento do alimento preparado, sem fixar número. Defina a frequência nos POPs e confira a norma local.",
+   "destaque": "POP"
+  },
+  {
+   "titulo": "Como deixar o registro confiável",
+   "texto": "Sugestão da Food Guard: imprima o limite no formulário, anote o número medido em vez de ok, deixe um campo para ação corretiva e defina quem mede e quem confere.",
+   "destaque": "número medido"
+  },
+  {
+   "titulo": "Salve este post e use o checklist",
+   "texto": "Salve para consultar na hora de montar a planilha. O checklist de 80 itens, com itens de temperatura, é liberado após cadastro no link da bio.",
+   "destaque": "80 itens"
+  }
+ ],
+ "legenda": "Quais temperaturas a norma cobra na cozinha, e onde cada número está escrito?\n\nNeste carrossel, cada número indica a norma de origem: a RDC 216/2004 (Anvisa, vale no país todo) e, para o recebimento na capital, a Portaria SMS 2.619/2011 (Prefeitura de São Paulo). O que é sugestão de rotina vem avisado no próprio slide.\n\nDois cuidados. A Portaria recebeu alterações depois de 2011, então confira a versão consolidada no portal de legislação da Prefeitura. E a vigilância do seu município pode aplicar regra própria, inclusive na cocção e na frequência de registro.\n\nSalve este post para consultar na hora de montar a planilha.\nComente qual etapa mais dá trabalho na sua operação: recebimento, cocção, resfriamento ou balcão.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP. O checklist de 80 itens, com itens de temperatura, é liberado após cadastro no link da bio.",
+ "hashtags": [
+  "#boaspraticas",
+  "#rdc216",
+  "#vigilanciasanitaria",
+  "#controledetemperatura",
+  "#servicosdealimentacao"
+ ],
+ "texto_alternativo": "Slide 1: capa com a pergunta 'Quais temperaturas a norma cobra na cozinha?' e o destaque RDC 216. Slide 2: comida quente acima de 60 °C por no máximo 6 horas, com a sugestão de anotar a hora em que foi para o balcão. Slide 3: cocção a 70 °C em todas as partes do alimento pela RDC 216, com aviso de que a norma da cidade pode pedir mais. Slide 4: resfriamento de 60 °C a 10 °C em até 2 horas, depois refrigeração abaixo de 5 °C ou congelamento a -18 °C ou menos. Slide 5: limites de recebimento da Portaria 2.619 na capital, congelados -12 °C, pescado cru resfriado 3 °C e carnes cruas resfriadas 7 °C. Slide 6: a frequência do registro de temperatura é definida nos POPs, conferindo a norma local. Slide 7: sugestões para um registro confiável. Slide 8: convite para salvar o post e usar o checklist de 80 itens pelo link da bio."
+}
