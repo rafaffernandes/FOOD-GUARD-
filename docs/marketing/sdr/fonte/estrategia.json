@@ -646,5 +646,77 @@
   "Diagnóstico. Você pediu o link do diagnóstico na primeira mensagem, e ele está lá. O ponto é que o resultado mostra a faixa de multa e o plano recomendado com preço, e o SDR responde \"depende da operação\" quando perguntam preço. Ou o resultado deixa de mostrar faixa de multa e plano para quem vem da prospecção, ou o SDR passa a dizer que os valores estão no site.",
   "Correções no site antes de o SDR mandar gente para lá. Na home: 'centenas de visitas sanitárias', 'R$ 2 mil e R$ 30 mil', 'Até R$ 18.000' e a resposta do FAQ que diz que o nutricionista 'assina pela sua operação' e que sem ele 'você fica exposto'. Em plans.ts e /planos: a sigla do responsável técnico. No /sobre: o título 'Quem confia na Food Guard'. No /checklist-vigilancia: 'o nº 1 em autuações', 'os pontos que mais geram autuação' e 'risco real de multa'.",
   "Cobertura fora da janela. Quem responde as mensagens que chegam à noite e de manhã (o SDR, o dono ou o nutricionista) e em quanto tempo, principalmente lead com auto e prazo."
- ]
+ ],
+ "resumo": {
+  "segmentos": [
+   {
+    "nome": "1. Operações com maior complexidade (quilo, self-service, buffet, alto volume)",
+    "dor": "Muitas preparações no balcão. Registro diário de temperatura, feito por equipe grande e rotativa, fica em branco nos dias corridos.",
+    "angulo": "Rotina que se mantém todo dia, não papel feito uma vez. Registros em dia, no mesmo padrão na segunda e no sábado cheio.",
+    "isca": "Visita de avaliação sem custo após a descoberta. Reserva: checklist de 80 itens em PDF."
+   },
+   {
+    "nome": "2. Padarias e operações com produção própria",
+    "dor": "Muitas etapas em turnos diferentes. Produto da casa, de validade curta, pede etiqueta e temperatura certa. Equipe sem treinamento registrado.",
+    "angulo": "Etapas e turnos no mesmo padrão: etiqueta, equipe orientada, Manual e POPs em dia. Até meados de novembro, orientar temporários antes do fim de ano.",
+    "isca": "Visita sem custo se ninguém de fora acompanha. Senão, checklist de 80 itens em PDF."
+   },
+   {
+    "nome": "3. Operações novas ou em expansão (recém-inaugurados, novas unidades, cozinhas de delivery)",
+    "dor": "Rotina sendo montada agora. Manual e POPs inexistentes, baixados ou herdados. Equipe nova, cardápio mudando, primeira fiscalização pode vir.",
+    "angulo": "Estruturar certo enquanto a operação toma forma: o que a equipe aprende agora fica. Na expansão, mesmo padrão em todas as unidades.",
+    "isca": "Visita sem custo, antes da abertura ou logo depois. Reserva: checklist de 80 itens."
+   },
+   {
+    "nome": "4. Operações com necessidade imediata (pendência, fiscalização, regularização)",
+    "dor": "Prazo correndo, sem saber o que corrigir nem em que ordem. Risco de multa ou interdição. Medo do preço.",
+    "angulo": "Entender antes de oferecer: o que foi apontado, o prazo e se a agenda cabe. Nunca prometer cumprir o prazo do auto antes da visita.",
+    "isca": "Visita sem custo no primeiro horário que caiba no prazo. Sem checklist nem diagnóstico."
+   }
+  ],
+  "etapas": [
+   {
+    "etapa": "1. Leads identificados",
+    "definicao": "Estabelecimento na planilha com perfil, rede, sinal e bairro, na capital ou Grande SP. Ainda sem mensagem.",
+    "hipotese": "Hipótese: 90% dos identificados viram contato realizado."
+   },
+   {
+    "etapa": "2. Contatos realizados",
+    "definicao": "Lead que recebeu a mensagem 1. Cadência manual de até três mensagens, terça a sexta, 14h30 às 17h.",
+    "hipotese": "Hipótese: 20% respondem (faixa de 15% a 25%)."
+   },
+   {
+    "etapa": "3. Conversas (respondeu)",
+    "definicao": "Lead que respondeu. Antes de oferecer visita, o SDR faz uma ou duas perguntas de descoberta.",
+    "hipotese": "Hipótese: 50% das conversas viram qualificadas."
+   },
+   {
+    "etapa": "4. Leads qualificados",
+    "definicao": "Necessidade, aderência e região em S. O SDR propõe a visita; decisor se confirma no agendamento.",
+    "hipotese": "Hipótese: 60% dos qualificados agendam (30% de resposta até visita)."
+   },
+   {
+    "etapa": "5. Visitas agendadas",
+    "definicao": "Visita sem custo com data, hora, endereço, quem recebe e decisor confirmados, e lembrete na véspera.",
+    "hipotese": "Hipótese: 80% acontecem (conservadora para lead frio; meta: falta abaixo de 10%)."
+   },
+   {
+    "etapa": "6. Visitas realizadas",
+    "definicao": "Nutricionista seguiu o roteiro de 4 passos: entender a dor, conhecer a operação, mostrar 3 pontos, apresentar plano.",
+    "hipotese": "Hipótese: 75% das visitas viram proposta."
+   },
+   {
+    "etapa": "7. Propostas enviadas",
+    "definicao": "Proposta escrita ao decisor com plano, valor, escopo, início, condições e garantia. Follow-up em D+2, D+5 e D+10.",
+    "hipotese": "Hipótese: 30% das propostas fecham (o unit-economics usa 25% no inbound)."
+   },
+   {
+    "etapa": "8. Contratos fechados (receita recorrente)",
+    "definicao": "Contrato assinado e primeiro pagamento confirmado. Só então o valor mensal entra como MRR.",
+    "hipotese": "Hipótese: ticket médio de R$ 2.355 (mix 20/55/25) e churn de 4% ao mês."
+   }
+  ],
+  "conta": "Tudo é hipótese. Taxas: 90%, 20%, 50%, 60%, 80%, 75% e 30%. Contato a contrato: 1,08%. Por 1.000 contatos: 200 conversas, 100 qualificados, 60 agendadas, 48 realizadas, 36 propostas, cerca de 11 contratos. São ≈93 contatos por contrato. Com ticket de R$ 2.355, 100 contatos rendem ≈R$ 2.540 de MRR novo. Mês cheio (100 contatos por semana): ≈4,6 contratos e ≈R$ 10.900 de MRR novo. Em 6 meses, com sazonalidade: ≈17 clientes e ≈R$ 40 mil de MRR.",
+  "qualificacao": "Lead qualificado: necessidade, aderência e região em S. Visita só com decisor também em S. Necessidade exige uma ou duas perguntas de descoberta e é declarada, nunca presumida. Aderência e região vêm da planilha. Decisor se confirma no agendamento. Qualquer N desqualifica, com motivo."
+ }
 }
