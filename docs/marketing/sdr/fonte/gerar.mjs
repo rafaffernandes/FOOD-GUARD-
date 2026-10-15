@@ -1,15 +1,23 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
-  agendamento, cadencia, CNPJ, posAgendamento, respostas, SITE, WA_EXIBICAO, WA_NUMERO,
+  agendamento, cadencia, CNPJ, descoberta, estrategia, ofertaVisita, posAgendamento, respostas, SITE,
+  WA_EXIBICAO, WA_NUMERO,
 } from "./mensagens.mjs";
 import { travar } from "./trava.mjs";
 
 // Nada sai daqui com posicionamento errado, duração da visita ou fechamento antigo.
+// A única mensagem que pode falar de duração é a resposta a quem perguntou quanto tempo leva.
+const perguntaDuracao = (g) => /quanto tempo|tempo leva|atrapalh/i.test(g);
 travar([
   ...[...cadencia, ...agendamento, ...posAgendamento].flatMap((m) =>
     [[m.texto, m.id ?? m.nome], [m.semNome ?? "", `${m.id} (sem nome)`], [m.nota ?? "", `${m.id} (nota)`]]),
-  ...respostas.flatMap((r) => [[r.texto, r.gatilho], [r.nota ?? "", `${r.gatilho} (nota)`]]),
+  ...descoberta.flatMap((d) => [[d.mensagem, `descoberta: ${d.situacao}`], [d.proximo_passo, `descoberta: ${d.situacao} (próximo passo)`]]),
+  [ofertaVisita.texto, "oferta da visita"],
+  ...respostas.filter((r) => !perguntaDuracao(r.gatilho)).flatMap((r) => [[r.texto, r.gatilho], [r.nota ?? "", `${r.gatilho} (nota)`]]),
+  // "nao_dizer" lista de propósito as expressões proibidas, então fica de fora.
+  [JSON.stringify({ ...estrategia.proposta, nao_dizer: [] }), "proposta de valor"],
+  [JSON.stringify(estrategia.segmentacao), "segmentação"],
 ]);
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
@@ -190,7 +198,7 @@ ${assinatura("../../../public/email/logo-food-guard-claro.png")}
 
 // ---- Saída -----------------------------------------------------------------
 for (const f of fs.readdirSync(OUT)) {
-  if (/^(email|whatsapp)-.*\.(html|txt)$/.test(f)) fs.rmSync(path.join(OUT, f));
+  if (/^(email|whatsapp|roteiro)-.*\.(html|txt)$/.test(f)) fs.rmSync(path.join(OUT, f));
 }
 for (const m of cadencia) {
   txt(m.id, m.texto);
@@ -198,9 +206,14 @@ for (const m of cadencia) {
   fs.writeFileSync(path.join(PREVIEW, `email-${m.id}.html`), emailProspeccao(m, { preview: true }));
 }
 for (const m of [...agendamento, ...posAgendamento]) txt(m.id, m.texto);
+// Roteiros para o SDR copiar e colar.
+const bloco = (titulo, texto, nota) => `## ${titulo}\n\n${texto}${nota ? `\n\n(nota: ${nota})` : ""}\n`;
+fs.writeFileSync(path.join(OUT, "roteiro-descoberta.txt"),
+  [...descoberta.map((d) => bloco(d.situacao, d.mensagem, d.proximo_passo)), bloco("Oferta da visita", ofertaVisita.texto, ofertaVisita.quando_usar)].join("\n"));
+fs.writeFileSync(path.join(OUT, "roteiro-objecoes.txt"), respostas.map((r) => bloco(r.gatilho, r.texto, r.nota)).join("\n"));
 fs.writeFileSync(path.join(OUT, "email-confirmacao.html"), emailConfirmacao({ preview: false }));
 fs.writeFileSync(path.join(PREVIEW, "email-confirmacao.html"), emailConfirmacao({ preview: true }));
 fs.writeFileSync(path.join(OUT, "assinatura-email.html"), arquivoAssinatura());
 
-fs.writeFileSync(path.join(PREVIEW, "dados.json"), JSON.stringify({ cadencia, agendamento, posAgendamento, respostas }, null, 2));
+fs.writeFileSync(path.join(PREVIEW, "dados.json"), JSON.stringify({ cadencia, descoberta, ofertaVisita, agendamento, posAgendamento, respostas, estrategia }, null, 2));
 console.log("gerado:", fs.readdirSync(OUT).filter((f) => f !== "fonte").join(", "));

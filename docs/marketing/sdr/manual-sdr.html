@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Manual do SDR · Food Guard</title>
+<style>@font-face{font-family:Sora;src:url(file:///home/user/FOOD-GUARD-/.next/static/media/f3f7e95f2dbc4fe4-s.p.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:Inter;src:url(file:///home/user/FOOD-GUARD-/.next/static/media/e4af272ccee01ff0-s.p.woff2) format('woff2');font-weight:100 900}
+@page { size: A4; margin: 14mm 13mm 15mm; }
+:root{--navy:#0b1c34;--navy2:#16335c;--verde:#74b43c;--verdeE:#446e22;--verdeC:#f3faea;
+  --ink:#1f2e3d;--muted:#5b6b7a;--linha:#dce5ed;--soft:#f2f6fa;--warn:#b85a14;--warn50:#fff7ed}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;color:var(--ink);font-size:9.4pt;line-height:1.5}
+h1,h2,h3,.msg-num,.capa .idx b{font-family:Sora,Inter,sans-serif}
+.capa{height:266mm;display:flex;flex-direction:column;justify-content:space-between;background:var(--navy);
+  color:#fff;padding:18mm 16mm;page-break-after:always}
+.capa img{width:62mm}
+.capa h1{font-size:27pt;line-height:1.12;font-weight:700;margin:0 0 6mm;letter-spacing:-.4pt}
+.capa .sub{font-size:10.6pt;color:#c6d7e6;max-width:145mm;line-height:1.6;margin:0}
+.capa .idx{font-size:9pt;color:#8fa8bf;line-height:1.85}
+.capa .idx b{color:var(--verde)}
+h2{font-size:12.5pt;font-weight:700;color:#fff;background:var(--navy2);padding:3mm 5mm;border-radius:2mm;margin:0 0 4mm}
+h2 span{color:var(--verde)}
+h3{font-size:10.4pt;color:var(--navy);margin:5mm 0 2mm}
+section{margin:0 0 6mm}
+.nova{page-break-before:always}
+.junto{page-break-inside:avoid}
+p{margin:0 0 3mm}
+ul{margin:0 0 3mm;padding-left:5mm}li{margin:0 0 1.4mm}
+.intro{background:var(--soft);border-left:1.2mm solid var(--verde);border-radius:2mm;padding:3.5mm 5mm;margin:0 0 5mm;color:var(--muted)}
+.intro b{color:var(--ink)}
+.regras{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.regra{border:.3mm solid var(--linha);border-radius:2.5mm;padding:3.5mm 4mm}
+.regra b{display:block;color:var(--navy);font-size:9.8pt;margin-bottom:1mm}
+.regra.forte{background:var(--navy);border-color:var(--navy);color:#c6d7e6}
+.regra.forte b{color:var(--verde)}
+.trilho{display:flex;align-items:stretch;gap:2mm;margin:4mm 0}
+.etapa{flex:1;border-radius:2.5mm;padding:3mm;background:var(--soft);border:.3mm solid var(--linha);text-align:center}
+.etapa .d{font-size:7.8pt;font-weight:700;color:var(--verdeE);text-transform:uppercase;letter-spacing:.06em}
+.etapa .n{font-size:9.6pt;font-weight:700;color:var(--navy);margin-top:1mm}
+.etapa.fim{background:#fdf2f2;border-color:#f3c9c9}.etapa.fim .d{color:#a32020}
+.seta{display:flex;align-items:center;color:var(--verde);font-weight:800;font-size:12pt}
+.ramo{margin-top:3mm;background:var(--verdeC);border:.3mm solid #cfe6ae;border-radius:2.5mm;padding:3.5mm 4.5mm}
+.ramo b{color:var(--navy)}
+.ramo .fluxo{display:flex;gap:2mm;flex-wrap:wrap;margin-top:2mm}
+.ramo .fluxo span{background:#fff;border:.3mm solid #cfe6ae;border-radius:99mm;padding:1mm 3mm;font-size:8.4pt;font-weight:700;color:var(--verdeE)}
+table{width:100%;border-collapse:collapse;font-size:8.7pt;margin:3mm 0}
+th{text-align:left;padding:2.2mm 2.8mm;background:var(--navy);color:#fff;font-size:7.8pt;text-transform:uppercase;letter-spacing:.04em}
+td{padding:2.2mm 2.8mm;border-bottom:.2mm solid var(--linha);vertical-align:top}
+tr:nth-child(even) td{background:var(--soft)}
+td.n{text-align:center;white-space:nowrap}td.forte{font-weight:700;color:var(--verdeE)}
+tr.total td{font-weight:700;background:var(--verdeC)!important;color:var(--navy)}
+.msg-cab{display:flex;gap:4mm;align-items:flex-start;margin-bottom:4mm}
+.msg-num{flex:0 0 12mm;height:12mm;border-radius:99mm;background:var(--verde);color:var(--navy);font-weight:700;font-size:16pt;display:flex;align-items:center;justify-content:center}
+.msg-quando{font-size:8.2pt;font-weight:700;color:var(--verdeE);text-transform:uppercase;letter-spacing:.07em}
+.msg-nome{background:none;color:var(--navy);padding:0;margin:.5mm 0 1mm;font-size:16pt}
+.msg-regra{color:var(--muted);margin:0}
+.duas{display:flex;gap:5mm;align-items:flex-start}
+.col-w{flex:0 0 84mm}.col-e{flex:1}
+.canal{font-size:7.8pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 1.5mm}
+.notif{background:#1f2933;color:#e9eef3;border-radius:3.5mm;padding:3mm 4mm;font-size:8.8pt;line-height:1.45;margin-bottom:4mm}
+.notif b{color:#fff}.notif-app{font-size:7pt;color:#9fb0c0;margin-bottom:1mm;text-transform:uppercase;letter-spacing:.06em}
+.notif .ph{background:#4a3a20;color:#ffd79a}
+.bolha{background:#e7f3dc;border:.25mm solid #b9d98c;border-radius:3mm;padding:3.5mm 4mm;font-size:9pt;line-height:1.6}
+.semnome{font-size:8.4pt;color:var(--muted);margin-top:2.5mm;padding:2.5mm 3.5mm;border:.25mm dashed var(--linha);border-radius:2mm}
+.semnome b{color:var(--ink)}
+.shot{width:100%;border-radius:2mm;border:.3mm solid var(--linha)}
+.ph{background:#fff1dc;color:#7a3a05;padding:0 .8mm;border-radius:.8mm;font-weight:700}
+.card{margin:0 0 4mm;page-break-inside:avoid}.card-t{font-weight:700;color:var(--navy);margin-bottom:1.5mm}.card-t span{font-weight:400;color:var(--muted)}
+.card-t .tag{display:inline-block;background:var(--verde);color:var(--navy);border-radius:99mm;padding:0 2.4mm;font-weight:700;margin-right:1mm}
+.resp{page-break-inside:avoid;margin:0 0 3.5mm}
+.gatilho{font-weight:700;color:var(--navy);font-size:9.6pt;margin-bottom:1.2mm}
+.nota{font-size:8.4pt;color:var(--warn);background:var(--warn50);border-left:1mm solid var(--warn);border-radius:1.5mm;padding:2mm 3mm;margin-top:1.5mm}
+.alerta{background:var(--warn50);border-left:1.2mm solid var(--warn);border-radius:2mm;padding:3.5mm 5mm;margin:3mm 0;color:#7a3a05}
+.alerta b{color:#5c2a02}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+.lado{display:flex;gap:5mm;align-items:flex-start}.lado>div{flex:1}
+.check td:first-child{width:34%;font-weight:700;color:var(--navy)}
+/* v4 */
+.seg{border:.3mm solid var(--linha);border-radius:3mm;padding:4mm 5mm;margin:0 0 4mm;page-break-inside:avoid}
+.seg h3{margin:0 0 1mm;font-size:11.5pt}
+.seg .quem{color:var(--muted);margin:0 0 3mm}
+.seg dl{display:grid;grid-template-columns:30mm 1fr;gap:1.6mm 4mm;margin:0}
+.seg dt{font-weight:700;color:var(--verdeE);font-size:8.4pt;text-transform:uppercase;letter-spacing:.04em}
+.seg dd{margin:0}
+.seg ul{margin:0;padding-left:4mm}
+.q4{border-left:1.2mm solid var(--verde);background:var(--soft);border-radius:2mm;padding:3.5mm 4.5mm;margin:0 0 3.5mm;page-break-inside:avoid}
+.q4 .p{font-weight:700;color:var(--navy);font-size:10pt;margin:0 0 1.5mm}
+.q4 .rot{font-size:7.8pt;font-weight:700;color:var(--verdeE);text-transform:uppercase;letter-spacing:.06em;margin:2.5mm 0 .8mm}
+.q4 .bolha{margin-top:1mm}
+.ramo-card{border:.3mm solid var(--linha);border-radius:2.5mm;padding:3mm 4mm;margin:0 0 3.5mm;page-break-inside:avoid}
+.ramo-card .sit{font-weight:700;color:var(--navy);margin-bottom:1.5mm}
+.ramo-card .prox{font-size:8.4pt;color:#1d4d0f;background:var(--verdeC);border-radius:1.5mm;padding:2mm 3mm;margin-top:1.5mm}
+.destaque-proposta{background:var(--navy);color:#e6eef6;border-radius:3mm;padding:5mm 6mm;font-size:11pt;line-height:1.55;margin:0 0 4mm}
+.destaque-proposta b{color:var(--verde)}
+.lista2{columns:2;column-gap:6mm}
+.lista2 li{break-inside:avoid}
+.msg1{page-break-inside:avoid;margin:0 0 5mm}
+.msg1 .seg-nome{font-weight:700;color:var(--navy);font-size:10.5pt;margin:0 0 1.5mm}
+.msg1 .porque{font-size:8.4pt;color:var(--muted);margin-top:1.5mm}
+</style></head><body>
+<div class="capa">
+  <img src="file:///home/user/FOOD-GUARD-/docs/marketing/sdr/fonte/logo-email.png" alt="Food Guard">
+  <div>
+    <h1>Manual do SDR</h1>
+    <p class="sub">A referência completa para quem vai operar a prospecção: o argumento por trás de cada resposta, como reconhecer cada segmento, a rubrica de prioridade e o que fazer depois de cada mensagem.</p>
+  </div>
+  <div class="idx">
+    <b>1.</b> O que mudou &nbsp;·&nbsp; <b>2.</b> Proposta de valor &nbsp;·&nbsp; <b>3.</b> Segmentação<br>
+    <b>4.</b> Regras e cadência &nbsp;·&nbsp; <b>5.</b> Primeiro contato por segmento<br>
+    <b>6.</b> Segundo contato e encerramento &nbsp;·&nbsp; <b>7.</b> Descoberta e oferta<br>
+    <b>8.</b> Agendamento &nbsp;·&nbsp; <b>9.</b> Objeções &nbsp;·&nbsp; <b>10.</b> Funil até a receita<br>
+    <b>11.</b> Operação dos canais &nbsp;·&nbsp; <b>12.</b> Para você aprovar<br><br>
+    Manual do SDR · acompanha o Plano de prospecção · outubro de 2026
+  </div>
+</div>
+
+<section>
+<h2><span>1 ·</span> O que mudou nesta versão</h2>
+<div class="intro">(rascunho)</div>
+<table>
+<tr><th style="width:28%">Antes</th><th>Agora</th></tr>
+<tr><td>A visita era o produto da mensagem</td><td>A mensagem parte do problema operacional (rotina sanitária organizada, registros em dia, operação pronta para a fiscalização). A visita é o primeiro passo.</td></tr>
+<tr><td>Uma mensagem igual para todos</td><td>Quatro segmentos, cada um com seu gancho, mais uma versão para quem não se encaixa. A base ganha perfil, sinal de oportunidade e prioridade.</td></tr>
+<tr><td>Pergunta do Manual, sim ou não</td><td>Perguntas de descoberta: quem cuida da rotina, como é feita, se há necessidade. Só depois a visita.</td></tr>
+<tr><td>Segundo e terceiro contatos insistindo na visita</td><td>Segundo contato oferece o checklist de 80 itens, que já captura o lead no site. Terceiro encerra com educação e deixa a porta aberta.</td></tr>
+<tr><td>Metas de resposta e agendamento</td><td>Funil completo até contrato e receita recorrente, com hipóteses por etapa.</td></tr>
+</table>
+
+</section>
+<section class="nova">
+<h2><span>2 ·</span> Proposta de valor</h2>
+<div class="intro"><b>O problema que a Food Guard resolve:</b> A cozinha funciona, mas a parte sanitária vive no improviso: o Manual e os POPs foram feitos uma vez (ou nunca), a planilha de temperatura e de higienização tem buraco, quem entrou na equipe não foi orientado e ninguém confere se o dia a dia bate com o papel. Quem segura isso é o dono ou o gerente, no meio da correria, e a fiscalização não avisa quando vem. Na hora da fiscalização, o que não está registrado conta como não feito.</div>
+<div class="destaque-proposta"><b>Em uma frase.</b> A Food Guard é uma consultoria nutricional para serviços de alimentação que mantém a rotina sanitária organizada, os registros em dia e a operação pronta para a fiscalização em qualquer dia, com nutricionista presente na operação com frequência.</div>
+<h3>As quatro perguntas que a abordagem precisa responder</h3>
+
+<div class="q4">
+  <div class="p">Por que o dono deveria receber a Food Guard e não continuar como está?</div>
+  <div>Continuar como está quer dizer que a conformidade depende da memória do dono ou do gerente e só é testada quando o fiscal aparece. O risco não aparece no dia a dia, só na fiscalização. A visita de avaliação sem custo faz esse risco aparecer antes e sem custo nenhum: o nutricionista conhece a operação e mostra o que está em ordem e o que precisa de atenção. Mesmo quem não contrata sai sabendo o que ajustar, e por isso pedir a visita é razoável. Antes de oferecer a visita, o SDR descobre quem cuida da documentação e das rotinas e como isso é feito (uma ou duas perguntas). Se a resposta for 'está tudo em dia', o ângulo passa a ser conferir se a rotina bate com o papel (temperatura, higienização, treinamento registrado), não o Manual em si. O ângulo muda por segmento. Alta complexidade (quilo, self-service, buffet): volume de registros e padronização. Padaria e produção própria: rotina de boas práticas por etapa e equipe. Recém-inaugurado ou em expansão: estruturar desde o início ou antes de replicar. Necessidade imediata: entender o que foi apontado e o prazo. A mensagem atual promete que 'o que ele vê fica entre você e a Food Guard'. Isso só deve continuar se o dono confirmar como política.</div><div class="rot">Como aparece na mensagem</div>
+  <div class="bolha">A visita de avaliação é sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. Se depois vocês preferirem seguir por conta própria, já sabem o que ajustar. Que dia e horário ficam melhores para a visita?</div>
+  <div class="rot">Prova que existe hoje</div><div>Ainda não há prova social. Existem: a própria visita de avaliação sem custo; o diagnóstico gratuito de 5 perguntas com resultado na hora (foodguardassessoria.com.br/diagnostico); o checklist de 80 itens em PDF liberado após cadastro (foodguardassessoria.com.br/checklist-vigilancia), além da versão aberta de 16 itens na mesma página; a exigência real da RDC 216/2004 de Manual de Boas Práticas e POPs.</div>
+</div>
+<div class="q4">
+  <div class="p">Por que deveria contratar um serviço recorrente se já consegue fazer os ajustes sozinho?</div>
+  <div>Seja honesto: muitos ajustes pontuais o dono consegue fazer sozinho, e a visita vai mostrar quais. O problema que a Food Guard resolve é manter tudo funcionando depois do ajuste, e isso não se resolve com uma intervenção só. Registro diário de temperatura e higienização, equipe que troca e precisa ser orientada de novo, documentos que precisam ser atualizados quando muda cardápio, fornecedor ou processo, rotina que vai se afastando do Manual com o tempo. O que o recorrente entrega e está em plans.ts: visitas presenciais quinzenais (Básico), semanais (Essencial) ou 2x por semana (Premium); documentação ANVISA e POPs em todos os planos; checklist de inspeção, relatório de não conformidades e plano de ação para adequações em todos; auditoria interna mensal, simulação de fiscalização e treinamento periódico da equipe a partir do Essencial; WhatsApp com nutricionista em todos os planos (horário comercial, estendido ou prioritário com resposta em até 2h). O dono deixa de ser o responsável pela norma no meio da operação. Garantia (site.ts): 90 dias para estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Os Termos condicionam o resultado a o cliente executar as adequações recomendadas, e o SDR não pode omitir isso se perguntarem. Se o dono pergunta se dá para mudar de plano: sobe a qualquer momento, sem multa e sem reinício de prazo (FAQ de /planos). Não prometa cancelamento livre: o contrato tem prazo mínimo de 12 meses e multa rescisória de 3 mensalidades, o que conflita com os Termos ('cancelamento a qualquer momento'). O dono precisa alinhar esses dois documentos antes de o SDR tocar no assunto.</div><div class="rot">Como aparece na mensagem</div>
+  <div class="bolha">Dá para resolver muita coisa por conta própria, e a visita mostra o quê. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia?</div>
+  <div class="rot">Prova que existe hoje</div><div>Escopo de cada plano publicado em foodguardassessoria.com.br/planos (plans.ts). Garantia de 90 dias (site.ts e Termos, item 4). Troca de plano sem multa e sem reinício de prazo (FAQ de /planos). O prazo 'típico' da FAQ de /planos (documentação em 30 a 60 dias, conformidade em 90) é estimativa sem histórico próprio e não serve como prova.</div>
+</div>
+<div class="q4">
+  <div class="p">Por que deveria priorizar a visita nesta semana?</div>
+  <div>Não invente escassez. Os motivos verdadeiros são estes. (1) A fiscalização não marca hora, então quanto antes o dono souber o que falta, mais tempo tem para ajustar com calma e menos chance de corrigir às pressas. (2) A visita não tem custo nem compromisso, e o custo de marcar é baixo perto do custo de descobrir o problema na fiscalização. (3) Estamos em meados de outubro: o movimento de fim de ano (encomendas de padaria, confraternizações em buffets, pico de delivery) e a contratação de temporários estão chegando, e organizar a rotina e orientar a equipe antes do pico é mais fácil do que durante. (4) Gatilhos por segmento. Quem foi autuado ou notificado tem um prazo da própria fiscalização correndo. Recém-inaugurado: a rotina ainda está se formando, e estruturar agora é mais fácil do que corrigir depois. Expansão ou nova unidade: padronizar antes de replicar. Quando o lead declarar uma necessidade com data, pergunte a data e agende em função dela. Só fale em agenda limitada do nutricionista se isso for fato naquele dia, e nunca como 'últimas vagas'.</div><div class="rot">Como aparece na mensagem</div>
+  <div class="bolha">Como a fiscalização não avisa quando vem, quanto antes vocês souberem o que está em ordem e o que precisa de atenção, mais tempo têm para ajustar com calma, de preferência antes do movimento de fim de ano. A visita de avaliação é sem custo. Que dia e horário ficam melhores para você?</div>
+  <div class="rot">Prova que existe hoje</div><div>Afirmação do próprio site ('A vigilância não avisa quando vai aparecer'). Calendário real (fim de ano). O auto ou a notificação do próprio lead, quando houver, com o prazo escrito pela fiscalização. Não existe dado próprio de frequência de fiscalização, então nada de número.</div>
+</div>
+<div class="q4">
+  <div class="p">Qual problema a Food Guard resolve melhor do que um nutricionista autônomo ou uma assessoria concorrente?</div>
+  <div>Compare modelos, não pessoas. O nutricionista autônomo pode ser excelente. O modelo em que o profissional assume a parte técnica e aparece pouco existe porque muita operação precisa de alguém formalmente responsável, e isso é legítimo. A lacuna desse modelo é que, entre uma visita e outra, a rotina fica com a equipe, sem ninguém conferindo se o dia a dia bate com o papel. A Food Guard é diferente nos pontos que dá para verificar. A frequência de visitas presenciais fica definida no plano (quinzenal, semanal ou 2x por semana). O escopo é escrito e público, com preço no site. Há plano de ação para adequações, auditoria interna mensal e simulação de fiscalização (a partir do Essencial), WhatsApp com nutricionista com horário definido por plano, apoio em fiscalizações e garantia de 90 dias. O time tem CRN ativo (página /sobre). Atenção a uma nuance honesta: nutricionista responsável só existe no Premium. Se o lead já tem um autônomo como responsável, o Básico e o Essencial complementam esse profissional e não o substituem. A mensagem é de segunda opinião, não de troca. Sobre a assessoria concorrente, não sabemos o que cada uma oferece, então não diga que somos os únicos com garantia ou com visita presencial. Faça uma pergunta de descoberta ('O que vocês sentem falta no acompanhamento de hoje?') e responda com o que temos para aquela falta.</div><div class="rot">Como aparece na mensagem</div>
+  <div class="bolha">Se vocês já têm nutricionista, ótimo: a visita não é para substituir ninguém. A diferença da Food Guard está no modelo: a frequência das visitas e o que é entregue ficam definidos no plano, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Na visita sem custo, vocês comparam com o que têm hoje. Que dia e horário ficam melhores para a visita?</div>
+  <div class="rot">Prova que existe hoje</div><div>Página /planos com escopo e valores públicos (plans.ts). Garantia de 90 dias (site.ts e Termos). Time com CRN ativo (página /sobre), que pode ser verificado na consulta pública do CRN quando o nome do nutricionista for informado. Não há comparação documentada com concorrentes nem resultado próprio.</div>
+</div>
+<div class="cols2">
+  <div><h3>Diferenciais que dá para provar</h3><ul class=""><li>Consultoria nutricional para serviços de alimentação com foco em conformidade sanitária pela RDC 216/2004 e pela Portaria 2.619/2011 (site.ts)</li><li>Visitas presenciais com frequência definida em contrato: quinzenais (Básico), semanais (Essencial) e 2x por semana (Premium)</li><li>Documentação ANVISA completa e POPs em todos os planos; Manual de Boas Práticas à parte no Básico, padrão no Essencial e personalizado no Premium</li><li>Checklist de inspeção sanitária, relatório de não conformidades (simplificado no Básico, completo no Essencial e no Premium) e plano de ação para adequações em todos os planos</li><li>Atualização de documentos regulatórios (Básico); revisão e adequação de registros obrigatórios e de fornecedores (Essencial)</li><li>Auditoria interna mensal e simulação de fiscalização sanitária no Essencial e no Premium</li><li>Treinamento da equipe: periódico no Essencial e mensal no Premium (o Básico não tem treinamento, só orientação sobre armazenamento e validade)</li><li>Apoio em fiscalizações: básico, completo ou prioritário, conforme o plano</li><li>WhatsApp com nutricionista: horário comercial seg-sex 9h-18h (Básico), estendido até 20h e sábados (Essencial), prioritário com resposta em até 2h (Premium)</li><li>Nutricionista responsável exclusivo do Premium, junto com fichas técnicas, cardápio, análise de custos, indicadores mensais de conformidade e reuniões gerenciais</li><li>Garantia: 90 dias para estar em conformidade real; se não chegarmos lá, seguimos sem custo extra (site.ts), condicionada a o cliente executar as adequações recomendadas (Termos, item 5)</li><li>Troca para um plano maior a qualquer momento, sem multa e sem reinício de prazo (FAQ de /planos)</li><li>Preços públicos em foodguardassessoria.com.br/planos</li><li>Diagnóstico gratuito de 5 perguntas com resultado na hora (score antes do cadastro, relatório completo depois)</li><li>Checklist de 80 itens em PDF liberado após cadastro, mais a versão aberta de 16 itens em /checklist-vigilancia</li><li>Time de nutricionistas com CRN ativo (página /sobre)</li><li>Atendimento em São Paulo capital e Grande SP</li><li>Visita de avaliação sem custo como primeiro passo</li></ul></div>
+  <div><h3>Por que agir esta semana, sem inventar escassez</h3><ul class=""><li>A fiscalização não marca hora. Quanto antes o dono souber o que falta, mais tempo tem para ajustar com calma, sem corrigir às pressas.</li><li>A visita de avaliação é sem custo e sem compromisso, então marcar custa pouco perto de descobrir o problema na fiscalização.</li><li>O movimento de fim de ano (novembro e dezembro) e a contratação de temporários estão chegando: organizar a rotina e orientar a equipe antes do pico é mais fácil do que durante. Vale sobretudo para padarias, buffets, delivery e restaurantes.</li><li>Quem recebeu auto ou notificação tem um prazo da própria fiscalização correndo. Pergunte a data e agende em função dela.</li><li>Recém-inaugurados: estruturar a rotina enquanto a equipe ainda forma hábito é mais fácil do que corrigir depois.</li><li>Expansão ou nova unidade: padronizar processos e documentos antes de replicar para a próxima unidade.</li><li>Necessidade declarada pelo próprio lead (renovação de licença, troca de gerente, equipe nova): use a data que ele der, nunca uma data inventada.</li><li>Agenda do nutricionista limitada: só mencione se for fato naquele dia e sem a expressão 'últimas vagas'.</li></ul></div>
+</div>
+<div class="cols2">
+  <div><h3>Prova que ainda falta construir</h3><ul class=""><li>Relatório da visita de avaliação padronizado (1 página: o que está em ordem, o que precisa de atenção e prioridades), entregue por escrito depois de cada visita. Com autorização e sem identificar o estabelecimento, vira amostra para mostrar a novos leads.</li><li>Marco zero dos primeiros clientes: aplicar o checklist de 80 itens no dia 1 e repetir nos dias 30, 60 e 90. A evolução documentada vira estudo de caso, com autorização escrita.</li><li>Depoimento escrito e autorizado ao fim dos 90 dias da garantia, usando o nome do estabelecimento só com permissão explícita. Depois, pedir avaliação no Perfil da Empresa no Google.</li><li>Ficha pública de cada nutricionista (nome, CRN, formação e experiência anterior real), verificável na consulta do CRN. É prova de competência que já pode existir mesmo sem clientes.</li><li>Comprovar ou retirar a frase da home 'experiência prática em centenas de visitas sanitárias' antes de qualquer uso comercial.</li><li>Material de demonstração com a marca Food Guard (modelo de planilha de temperatura, exemplo de POP ou de plano de ação) para mostrar na visita o que é entregue.</li><li>Funil próprio por segmento e por sinal de oportunidade (leads, contatos, qualificados, visitas agendadas, visitas realizadas, propostas, contratos e receita). Depois de cerca de 30 visitas, trocar hipóteses por dados próprios.</li></ul></div>
+  <div><h3>O que não dizer</h3><!--trava:ignora--><ul class=""><li>Caso de sucesso, depoimento, 'ajudamos recentemente', 'nossos clientes', número de clientes ou 'quem confia na Food Guard' (o título da página /sobre sugere clientes que ainda não existem e deve ser revisto)</li><li>'Experiência em centenas de visitas sanitárias' (está na home e não tem comprovação)</li><li>Valores de multa nas mensagens ('R$ 2 mil a R$ 30 mil', 'até R$ 18.000'); os Termos dizem que são estimativas ilustrativas</li><li>Estatística sem fonte ('X% das operações são autuadas', 'o erro que mais gera multa')</li><li>'RT', 'CFN 600', 'carência', 'dinheiro de volta' (plans.ts e /planos ainda exibem 'Responsável Técnico (RT)', o que deve ser corrigido)</li><li>'Ter nutricionista é obrigatório' ou 'sem nutricionista você fica exposto a autuação'; a RDC 216/2004 exige Manual de Boas Práticas e POPs, não nutricionista em todo serviço (a FAQ da home insinua o contrário e deve ser revista)</li><li>'O nutricionista assume toda a responsabilidade' ou 'assina pela sua operação'; a responsabilidade legal é do proprietário, e nutricionista responsável só existe no Premium</li><li>'Garantimos que você não será multado' ou 'aprovação garantida'; a garantia é de 90 dias para conformidade real, e se não chegarmos lá seguimos sem custo extra</li><li>'Cancela quando quiser' ou 'sem fidelidade'; o contrato tem prazo mínimo de 12 meses e multa de 3 mensalidades, em conflito com os Termos, até o dono alinhar os dois</li><li>Valor dos planos na mensagem, ou 'o preço só sai na visita'; a resposta é 'depende da operação; os planos são montados para cada modelo de negócio' e, se pedirem por escrito, foodguardassessoria.com.br/planos</li><li>'Treinamos sua equipe' como promessa geral (o Básico não tem treinamento)</li><li>Quanto tempo a visita leva, 'não precisa parar a operação', 'olhar a cozinha'</li><li>'Empresa de nutricionistas', 'assessoria de nutricionistas', 'nutricionistas que cuidam de'</li><li>'Fica melhor terça ou quinta?' ou terminar sem pergunta ('é só me dizer')</li><li>Escassez inventada: 'últimas vagas', 'só esta semana', 'condição especial'</li><li>Ataque ao concorrente: 'nutricionista que só assina e some', 'assessoria barata não resolve'</li><li>Qualquer insinuação de ligação com a Vigilância Sanitária</li><li>'Sem cadastro' sobre o relatório do diagnóstico (o score aparece antes, mas o relatório completo pede nome e contato)</li><li>Frase de origem do contato ou 'se preferir não receber mensagens' na primeira mensagem</li><li>Nome próprio do SDR na assinatura (quem assina é a Food Guard ou a Equipe Food Guard)</li><li>'Líder', 'referência' ou 'a melhor consultoria' de São Paulo</li></ul><!--/trava--></div>
+</div>
+</section>
+<section class="nova">
+<h2><span>3 ·</span> Segmentação: para quem falar primeiro</h2>
+<div class="intro">Os segmentos são <b>hipóteses</b>. Depois das primeiras 100 conversas, os números de cada um dizem onde vale insistir. Restaurante maior não vale mais por definição, e autuado não contrata sempre.</div>
+
+<div class="seg">
+  <h3>1. Alto volume e autosserviço (quilo, self-service, buffet)</h3>
+  <p class="quem">Restaurantes por quilo e self-service, buffet livre, rodízio e churrascaria, almoço executivo de alto giro, marmitaria ou refeição transportada independente e buffet de festas com cozinha própria. Ficam de fora as concessionárias de refeição coletiva e as redes com área de qualidade própria, porque essas já têm nutricionista.</p>
+  <dl>
+    <dt>Como reconhecer</dt><dd><ul class=""><li>Categoria do Google Maps 'Restaurante self-service', 'por quilo', 'Buffet', 'Churrascaria' ou 'comida caseira', com fotos de balcão de cubas e balança</li><li>Funciona só no almoço ou tem pico forte no almoço (gráfico de horários de pico do Maps), perto de escritórios, indústrias, hospitais ou comércio</li><li>Centenas de avaliações citando preço do quilo, variedade do buffet, comida caseira</li><li>Instagram ou WhatsApp com cardápio do dia postado todo dia; iFood com marmita ou PF</li><li>Salão grande nas fotos; vagas abertas para cozinheiro, auxiliar de cozinha ou copeiro (sinal de equipe grande e rotativa)</li><li>Exclusão: logotipo de rede ou franquia, 'unidade X' de marca com várias lojas, cozinha dentro de empresa ou hospital operada por concessionária</li></ul></dd>
+    <dt>Dor provável</dt><dd>Muitas preparações por dia expostas em balcão: temperatura do balcão térmico e do refrigerado, tempo de exposição, sobras e reaproveitamento. O registro precisa ser feito todo dia, por várias pessoas, e é o primeiro a ficar em branco nos dias corridos. Com equipe grande e rotativa, a rotina passa de um funcionário para o outro sem registro. Na fiscalização, o que não está anotado conta como não feito. O desperdício pesa na margem e serve como dor secundária para o Essencial e o Premium.</dd>
+    <dt>Ângulo</dt><dd>Uma rotina que se mantém todo dia, e não um papel feito uma vez. A mensagem enfatiza: registros de temperatura e validade em dia sem depender de uma única pessoa, o mesmo padrão em todos os turnos e alguém de fora conferindo com frequência e treinando quem entra. Para a objeção 'por que pagar todo mês se eu mesmo ajusto': o ajuste de hoje não garante a rotina de amanhã; o acompanhamento confere se o registro bate com a prática e corrige antes da fiscalização. Contra o autônomo ou o concorrente: escopo fechado (visitas marcadas, relatório de não conformidades, plano de ação com prazo) e garantia de 90 dias para estar em conformidade real, senão seguimos sem custo extra. O desperdício entra como segundo argumento, sem prometer economia em número. Linha de apresentação: 'A Food Guard é uma consultoria nutricional para serviços de alimentação e ajuda operações de self-service e buffet a manter os registros e a rotina de boas práticas em dia, todos os dias.'</dd>
+    <dt>Descoberta</dt><dd><ul class=""><li>Hoje, quem confere e anota a temperatura do buffet e das geladeiras no dia a dia por aí?</li><li>E alguém de fora acompanha essa rotina com a equipe de tempos em tempos, ou fica tudo com o gerente?</li></ul></dd>
+    <dt>Isca</dt><dd>A oferta principal, feita depois da descoberta, é a visita de avaliação sem custo. Nesse perfil o que pesa é a rotina de distribuição, e ela só aparece quando o nutricionista conhece a operação. Para quem responde 'agora não' ou 'me manda material', a reserva é o checklist de 80 itens, com a indicação de começar pela parte de temperaturas e alimentos. O diagnóstico só entra se a pessoa pedir algo rápido para fazer sozinha.</dd>
+    <dt>Plano provável</dt><dd>Na maioria dos casos, Essencial (visita semanal, auditoria interna mensal, treinamento periódico, avaliação de desperdício e simulação de fiscalização). Premium quando há duas ou mais unidades, quando o cardápio muda muito (buffet de eventos) ou quando há interesse em ficha técnica e custo do cardápio. Básico só para operação pequena que já tem a rotina organizada.</dd>
+    <dt>Prioridade</dt><dd>Operação independente desse perfil costuma ter aderência 2 e potencial 2. Sem sinal de oportunidade, fica em média (necessidade 0) e não sobe para alta só por ser grande. Vai para alta com abertura recente, expansão ou pendência, ou quando a descoberta mostra que ninguém de fora acompanha a rotina (necessidade 1 ou 2). Rede ou franquia fica em baixa; concessionária de refeição coletiva fica fora da base.</dd>
+  </dl>
+</div>
+<div class="seg">
+  <h3>2. Padarias e operações com produção própria</h3>
+  <p class="quem">Padarias com fabricação própria (pães, salgados, doces, frios fatiados, lanches e café da manhã), confeitarias, rotisserias e casas de salgados e doces sob encomenda com balcão. A padaria que também serve almoço por quilo fica neste segmento, porque é a produção em etapas que define a rotina dela.</p>
+  <dl>
+    <dt>Como reconhecer</dt><dd><ul class=""><li>Categoria do Google Maps 'Padaria', 'Confeitaria', 'Rotisseria' ou 'Doceria', com fotos de vitrine de salgados e doces, balcão de frios e forno à vista</li><li>'Fabricação própria', 'produção própria' ou 'encomendas para festas' na bio do Instagram ou no nome</li><li>Horário longo, abrindo cedo e fechando à noite: turnos diferentes em cada etapa</li><li>Café da manhã ou buffet de café no fim de semana; almoço por quilo junto</li><li>Vagas abertas para padeiro, confeiteiro, balconista ou auxiliar de produção</li><li>Avaliações elogiando produtos feitos na casa (bolo, coxinha, pão de queijo)</li><li>Exclusão: franquia de padaria ou café, ou loja que só assa pão congelado de terceiros (pouca manipulação, aderência menor)</li></ul></dd>
+    <dt>Dor provável</dt><dd>São muitas etapas (recebimento, preparo de massas e recheios, forno, resfriamento, exposição e fatiamento de frios) feitas por turnos diferentes. Produto manipulado com validade curta precisa de etiqueta, data e vitrine na temperatura certa, e recheios cremosos e frios fatiados são pontos sensíveis. A equipe é grande e rotativa e aprende com o colega, sem treinamento registrado. Manual e POPs, quando existem, quase nunca descrevem a produção real.</dd>
+    <dt>Ângulo</dt><dd>Cada etapa e cada turno fazendo do mesmo jeito. A mensagem enfatiza o treinamento da equipe com registro, a etiquetagem e a validade do que é produzido na casa e uma documentação que descreve a produção de verdade. Para a objeção 'o padeiro (ou o gerente) já cuida': ele cuida da produção; a Food Guard mantém a rotina de boas práticas registrada e a equipe treinada, e confere isso com frequência. Linha de apresentação: 'A Food Guard é uma consultoria nutricional para serviços de alimentação e ajuda padarias com produção própria a manter a rotina de boas práticas, a equipe treinada e a documentação em dia.'</dd>
+    <dt>Descoberta</dt><dd><ul class=""><li>Hoje, quem cuida da etiquetagem e da validade do que é produzido aí, como salgados, recheios e frios fatiados?</li><li>E o treinamento de boas práticas de quem entra na produção e no balcão: alguém de fora faz, ou o próprio gerente passa?</li></ul></dd>
+    <dt>Isca</dt><dd>Depende da resposta. Se ninguém de fora acompanha ou se o treinamento da equipe não tem registro, a oferta é a visita de avaliação sem custo. Se a resposta for 'a gente mesmo cuida e está tudo certo', a oferta é o checklist de 80 itens para o gerente conferir com a equipe. É o teste mais honesto do 'já faço sozinho', e o cadastro abre uma retomada com assunto concreto ('ficou algum item em branco?'). Vale testar os dois caminhos e comparar quantos viram visita.</dd>
+    <dt>Plano provável</dt><dd>O mais provável é o Essencial (treinamento periódico, Manual de Boas Práticas padrão, auditoria interna mensal e revisão de fornecedores). Premium para padaria grande com confeitaria, encomendas e almoço, ou com duas ou mais lojas (fichas técnicas, cardápio e custos, treinamento mensal). Básico para padaria pequena de bairro com pouca produção.</dd>
+    <dt>Prioridade</dt><dd>Aderência 2 quando a padaria é independente, tem produção própria e o dono ou o gerente é acessível; aderência 1 quando ela só revende ou assa produto de terceiros. Potencial 2 com confeitaria, encomendas, almoço ou mais de uma loja. Só vira alta com algum sinal ou depois que a descoberta mostra que o treinamento ou a etiquetagem não têm responsável. Franquia fica em baixa.</dd>
+  </dl>
+</div>
+<div class="seg">
+  <h3>3. Operações novas ou em expansão (inclui cozinhas de delivery)</h3>
+  <p class="quem">Recém-inaugurados (até 6 meses), operações em pré-inauguração (até 60 dias para abrir), segunda ou terceira unidade de marca independente, reforma ou mudança de endereço, operação que está abrindo delivery ou almoço e cozinhas de delivery (dark kitchens e marcas virtuais) que estão começando ou crescendo.</p>
+  <dl>
+    <dt>Como reconhecer</dt><dd><ul class=""><li>Google Maps: poucas avaliações, todas recentes, fotos de inauguração e ficha criada há pouco tempo; 'Fechado temporariamente' por reforma</li><li>Instagram: posts de 'em breve', 'inauguração', 'nova unidade' ou 'agora também em <span class="ph">[bairro]</span>', contagem regressiva e bastidores de obra</li><li>Na rua: placa ou faixa de 'em breve' ou de inauguração</li><li>iFood e outros apps: loja marcada como nova, várias marcas no mesmo endereço, endereço sem salão (só entrega)</li><li>Vagas abertas para montar equipe de cozinha ('estamos contratando', sites de vagas)</li><li>Mesma marca com dois ou mais endereços no Maps, um deles recente</li><li>Exclusão: marca ligada a hub de cozinhas ou a uma operadora grande, onde a decisão é centralizada</li></ul></dd>
+    <dt>Dor provável</dt><dd>A rotina está sendo montada agora. O Manual de Boas Práticas e os POPs ainda não existem ou foram copiados de um modelo ou da outra unidade, a equipe é nova e não foi treinada, e a primeira fiscalização pode vir a qualquer momento. Na expansão, a unidade nova precisa repetir o padrão sem o dono por perto. No delivery entram embalagem, transporte e o tempo até o cliente, além das mesmas regras de boas práticas de qualquer cozinha.</dd>
+    <dt>Ângulo</dt><dd>Estruturar certo desde o começo: a rotina que a equipe aprende nos primeiros meses é a que fica, e documentação feita para a operação real evita retrabalho. Na expansão, o argumento é o mesmo padrão em todas as unidades. É o segmento em que o 'por que agora' é mais natural, porque a operação está sendo montada neste momento. A mensagem pode abrir com parabéns pela inauguração ou pela nova unidade, sem dizer onde o contato foi achado. Linha de apresentação: 'A Food Guard é uma consultoria nutricional para serviços de alimentação e ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o início.'</dd>
+    <dt>Descoberta</dt><dd><ul class=""><li>Como está ficando a parte de documentação sanitária e de rotina de boas práticas da cozinha nova: alguém já está cuidando disso?</li><li>O Manual e os POPs estão sendo feitos para esta cozinha, ou vocês estão usando os da outra unidade ou um modelo pronto? (No delivery, troque por: 'E a parte de embalagem e transporte já entrou nos procedimentos?')</li></ul></dd>
+    <dt>Isca</dt><dd>Visita de avaliação sem custo, de preferência antes da abertura ou logo depois dela: o nutricionista conhece a operação enquanto o fluxo ainda pode ser ajustado. A reserva é o checklist de 80 itens, para conferir a montagem da cozinha. O diagnóstico funciona mal neste segmento, porque várias respostas viram 'ainda não tenho'.</dd>
+    <dt>Plano provável</dt><dd>Operação nova precisa de Manual, então o mais provável é o Essencial (Manual padrão e treinamento periódico). Básico para dark kitchen de uma marca só ou operação pequena (no Básico, o Manual sai à parte). Premium para expansão com várias unidades ou cardápio novo (Manual personalizado, fichas técnicas, cardápio e custos).</dd>
+    <dt>Prioridade</dt><dd>Os sinais 'abertura recente' e 'expansão' valem necessidade 1, que sobe para 2 se a descoberta mostrar que ninguém está cuidando. O sinal tem validade: seis meses depois da inauguração, vira 'nenhum sinal'. Pré-inauguração com data marcada vai para o topo da lista da semana. Dark kitchen ligada a hub ou a operadora grande tem aderência 0 ou 1. Lead sem telefone do decisor (só o chat do app) não entra até o SDR achar o contato.</dd>
+  </dl>
+</div>
+<div class="seg">
+  <h3>4. Necessidade imediata (pendência, fiscalização, regularização)</h3>
+  <p class="quem">Qualquer perfil com o problema já colocado: autuação ou notificação com prazo, interdição recente ou reabertura, perda do nutricionista ou do consultor, exigência de terceiro (shopping, cliente corporativo, condomínio) pedindo documentação ou procura ativa por nutricionista. É um sinal que se soma ao perfil, e não um tipo de operação.</p>
+  <dl>
+    <dt>Como reconhecer</dt><dd><ul class=""><li>Vaga aberta para nutricionista ou técnico em nutrição, ou post pedindo indicação de nutricionista (necessidade declarada em público)</li><li>Google Maps 'Fechado temporariamente' sem motivo aparente ou reaberto há pouco tempo; Instagram com 'fechados para adequações' ou 'voltamos'</li><li>Duas ou mais avaliações dos últimos 6 meses citando sujeira, praga, cabelo na comida ou mal-estar. É indício, não fato, e nunca é citado na mensagem</li><li>Notícia local de interdição</li><li>Na conversa: 'fui autuado', 'tenho prazo', 'a vigilância veio', 'o nutricionista saiu', 'o shopping pediu o Manual'</li><li>Lead do site que marcou no diagnóstico 'com auto ou notificação nos últimos 12 meses'</li></ul></dd>
+    <dt>Dor provável</dt><dd>O prazo está correndo, e a pessoa não sabe exatamente o que corrigir nem em que ordem. Há risco de multa ou de nova interdição, e a documentação precisa existir rápido. Às vezes a dor é só 'um papel para apresentar ao fiscal', sem interesse real em acompanhamento.</dd>
+    <dt>Ângulo</dt><dd>Entender antes de oferecer: o que foi apontado, qual é o prazo e se a Food Guard consegue atender dentro dele. A mensagem enfatiza um plano de ação na ordem do que mais expõe a operação, apoio na fiscalização e a garantia de 90 dias para estar em conformidade real, senão seguimos sem custo extra. Nunca prometer cumprir o prazo do auto antes da visita. A primeira mensagem não menciona problema detectado em público; ele só entra na conversa quando a própria pessoa conta. Depois disso, siga o roteiro 'Fui autuado / tenho prazo para regularizar'.</dd>
+    <dt>Descoberta</dt><dd><ul class=""><li>O que a fiscalização apontou, e qual prazo deram para regularizar?</li><li>Hoje tem alguém cuidando dessas correções com vocês, ou ficou com a própria equipe?</li></ul></dd>
+    <dt>Isca</dt><dd>Visita de avaliação sem custo no primeiro horário livre, pedindo que a pessoa separe o auto ou a notificação. Sem checklist e sem diagnóstico: quem tem prazo precisa de alguém, não de material. Se a agenda não couber no prazo, o SDR diz isso com franqueza.</dd>
+    <dt>Plano provável</dt><dd>Essencial (apoio completo em fiscalizações, relatório completo, revisão de registros obrigatórios e simulação de fiscalização). Premium quando a exigência é ter nutricionista responsável, ou quando o problema envolve várias frentes ao mesmo tempo. Básico quando a pendência é só de documentação e a operação é pequena.</dd>
+    <dt>Prioridade</dt><dd>A necessidade é 2 automaticamente, mas a prioridade não é alta automaticamente. Autuado de rede ou franquia continua em baixa, porque a decisão é tomada fora da loja. Autuado que só quer o papel e recusa acompanhamento cai para aderência 1. Lead em alta vai para a frente da fila do dia e recebe resposta em até 5 minutos. Nunca desmarcar visita confirmada de outro lead para encaixar este.</dd>
+  </dl>
+</div>
+<h3>Os campos novos na base</h3>
+<table>
+<tr><th style="width:22%">Campo</th><th style="width:30%">Valores</th><th>Como preencher</th></tr>
+<tr><td><b>Perfil da operação</b></td><td>Alto volume / autosserviço · Padaria / produção própria · Restaurante à la carte / bar · Cozinha de delivery · Lanchonete / café / montagem · Outro (escola, hotel, indústria)</td><td>Preencha antes do primeiro contato, pela categoria do Google Maps conferida com as fotos e o cardápio (Maps, Instagram, iFood). Use um valor só por lead: o da rotina de cozinha mais pesada. Padaria com fabricação própria fica em Padaria mesmo servindo almoço; restaurante com buffet no almoço fica em Alto volume. Corrija depois da descoberta se a pessoa contar outra coisa. O segmento não precisa de coluna própria, porque sai de perfil + sinal: pendência conhecida ou necessidade declarada leva ao segmento 4; abertura recente ou expansão, ao 3; sem esses sinais, Alto volume vai para o 1 e Padaria para o 2. À la carte, delivery, lanchonete e outros sem sinal ficam como 'fora dos segmentos' e servem de grupo de comparação.</td></tr><tr><td><b>Sinal de oportunidade</b></td><td>pendência conhecida · necessidade declarada · abertura recente · expansão · nenhum sinal</td><td>Pendência conhecida: indício público de problema sanitário nos últimos 6 meses (fechamento temporário sem motivo ou reabertura recente, interdição noticiada, duas ou mais avaliações sobre higiene, praga ou mal-estar). Necessidade declarada: a própria operação disse que precisa, seja numa vaga ou pedido de indicação de nutricionista, seja na conversa (auto, prazo, nutricionista que saiu, exigência de shopping ou cliente, 'ninguém cuida disso aqui'). Abertura recente: inaugurou há até 6 meses ou inaugura nos próximos 60 dias. Expansão: nova unidade, reforma, mudança, início de delivery ou de almoço, ou contratação de equipe de cozinha nos últimos 3 meses. Nenhum sinal: nada disso aparece. Preencha antes do contato com o que estiver visível (Maps, depois Instagram, depois iFood) e coloque a evidência, com link ou data, como nota da célula. Use um valor só; se houver dois, vale o mais forte, na ordem da lista. Atualize depois da primeira resposta, porque a 'necessidade declarada' quase sempre só aparece na conversa. O sinal tem validade: abertura recente vira 'nenhum sinal' seis meses depois da inauguração.</td></tr><tr><td><b>Prioridade comercial</b></td><td>alta · média · baixa</td><td>Calcule pela rubrica (quatro notas de 0 a 2: necessidade, aderência, região, potencial) duas vezes: antes do primeiro contato, para ordenar a fila, e de novo depois das perguntas de descoberta. A nota pós-descoberta é a que decide quem recebe primeiro a oferta de visita e quem ocupa a agenda do nutricionista. Na planilha, use quatro colunas estreitas auxiliares (N, A, R, P) e uma fórmula para a prioridade, para dar para auditar depois quais critérios acertaram.</td></tr><tr><td><b>Etapa do funil (complementar, necessária para validar os segmentos)</b></td><td>identificado · contatado · qualificado · visita agendada · visita realizada · proposta enviada · contrato fechado · perdido (com motivo) · descadastrado</td><td>Convive com a coluna Status atual, que controla a cadência. 'Qualificado' só quando a descoberta confirmou necessidade, aderência, região e decisor. Atualize no mesmo dia em que a etapa muda; 'perdido' leva o motivo em poucas palavras (já tem nutricionista, preço, decisor fora, sem resposta após a visita).</td></tr><tr><td><b>Plano e receita mensal (complementar)</b></td><td>Básico · Essencial · Premium + valor mensal contratado</td><td>Preencha só no contrato fechado. É o que permite comparar receita por 100 contatos por segmento, sinal e prioridade, em vez de comparar só a taxa de resposta.</td></tr>
+</table>
+<div class="cols2">
+  <div><h3>Rubrica de prioridade</h3><p>São quatro critérios, cada um com nota de 0 a 2; a soma vai de 0 a 8.
+
+NECESSIDADE (N). 2 = pendência conhecida, necessidade declarada ou descoberta que mostrou falta clara (sem Manual ou POPs, sem treinamento, ninguém responde pela rotina). 1 = abertura recente, expansão ou descoberta mostrando que a equipe cuida sozinha, sem acompanhamento. 0 = nenhum sinal, ou já há nutricionista acompanhando com regularidade e a pessoa está satisfeita.
+
+ADERÊNCIA (A). 2 = operação independente (até 3 unidades), com manipulação e produção diária, e decisor (dono, sócio ou gerente com autonomia) alcançável no WhatsApp. 1 = encaixa, mas com dúvida: pouca manipulação, contato só com atendente, pode ter nutricionista, ou quer só 'um papel'. 0 = rede ou franquia com área de qualidade central, concessionária, hospital, indústria, ou recusou acompanhamento.
+
+REGIÃO (R). 2 = capital, dentro da zona-foco da semana (onde o nutricionista já tem visitas ou rota). 1 = resto da capital e Grande SP. Fora de São Paulo capital e Grande SP o lead não entra na base. Para lead da Grande SP, cite só a RDC 216/2004: a Portaria 2.619/2011 vale para a capital.
+
+POTENCIAL (P), medido pelo plano provável e não pelo tamanho. 2 = provável Essencial ou Premium (rotina diária pesada, muitas etapas, duas ou mais unidades, interesse em cardápio e custos). 1 = provável Básico ou Essencial. 0 = operação pequena demais para uma assinatura mensal (quiosque, só revenda ou montagem, sem cozinha).
+
+CLASSIFICAÇÃO. Alta = soma de 6 a 8, com N pelo menos 1 e A igual a 2. Média = soma de 4 ou mais que não fecha alta. Baixa = soma até 3, ou A igual a 0 em qualquer soma.
+
+POR QUE ASSIM. Necessidade e aderência travam a alta. Assim, operação grande sem sinal não passa na frente (fica em média) e autuado de rede não ganha prioridade (fica em baixa). O potencial pesa o mesmo que os outros critérios, não mais.
+
+QUANDO PONTUAR. Antes do contato, com o que Maps, Instagram e iFood mostram (aqui, N quase sempre fica em 0 ou 1). Depois da descoberta, de novo; essa é a nota que vale para oferecer a visita e ocupar a agenda.
+
+EXEMPLOS. Quilo independente na zona-foco, sem sinal: N0 A2 R2 P2 = 6, mas com N=0 fica em média; se a descoberta trouxer 'o gerente cuida, sem nutricionista', N vai a 1 e o total a 7, alta. Padaria inaugurada há 3 meses em Guarulhos: N1 A2 R1 P1 = 5, média. Lanchonete de franquia autuada: N2, mas A0, baixa. Dark kitchen nova, de uma marca, dono no WhatsApp, na zona-foco: N1 A2 R2 P1 = 6, alta.
+
+CALIBRAÇÃO. A rubrica também é hipótese. Depois de 4 semanas, compare visitas realizadas e contratos por faixa de prioridade. Se a média converter tanto quanto a alta, os cortes ou os pesos estão errados e precisam ser ajustados.</p></div>
+  <div><h3>Ordem de ataque do dia</h3><p>SEGUNDA (sem envio): montar a base da semana. Buscar no Google Maps por categoria e bairro, conferir Instagram e iFood e preencher perfil, sinal e as quatro notas. A meta é de 110 a 130 leads com WhatsApp do decisor, com folga para descarte. Distribuir os leads pelos dias agrupando por zona: cada dia trabalha uma ou duas zonas vizinhas, para que as visitas que surgirem caiam próximas na agenda. Quando já houver visita marcada num bairro, o SDR pode dizer a um lead vizinho que o nutricionista vai estar na região naquele dia. É um motivo real para priorizar a visita nesta semana, e só vale se for verdade.
+
+TERÇA A SEXTA, 14h30 às 17h.
+(1) Às 14h30, primeiro quem respondeu, com resposta em até 5 minutos durante a janela inteira. Depois as mensagens 2 e 3 da cadência e as retomadas combinadas. Nada disso conta nas 20 a 30 conversas novas.
+(2) Conversas novas nesta ordem: (a) todas as altas do dia, começando pelo segmento 4 e depois o 3; (b) as médias, alternando os segmentos 1 e 2; (c) as baixas, só para chegar ao mínimo de 20. O teto é 30, ou menos quando as respostas estiverem tomando o tempo.
+(3) Encaixe por horário, como hipótese a testar: quilo e self-service logo às 14h30, quando o almoço acabou e o dono ainda está na casa; cozinhas de delivery até 16h, antes do pico do jantar; padarias e confeitarias entre 15h e 16h30, antes do movimento do café da tarde; à la carte e bares entre 15h e 16h30.
+
+COTAS PARA VALIDAR AS HIPÓTESES (primeiras 4 semanas, cerca de 100 conversas novas por semana). Segmento 4 sem cota: todo lead que aparecer entra, porque são raros. Segmento 3, cerca de 25; segmento 1, cerca de 30; segmento 2, cerca de 30; fora dos segmentos (à la carte, lanchonete, nenhum sinal), de 10 a 15, como grupo de comparação. Cada segmento recebe no mínimo 20 contatos por semana, mesmo sem nenhuma alta, para que todos gerem dado. Dentro de cada cota, sempre da alta para a baixa.
+
+A AGENDA MANDA. Se a semana do nutricionista lotar, cortar primeiro as baixas e depois as médias de zona distante. Nunca marcar visita que não cabe na agenda.
+
+TODA SEXTA: os três números do plano atual, mais o funil por segmento e por prioridade (identificados, contatados, qualificados, visitas agendadas, visitas realizadas, propostas enviadas, contratos e receita mensal). Com 4 semanas, cerca de 100 contatos por segmento, comparar a receita por 100 contatos e os contratos por visita realizada, não só a taxa de resposta, e redistribuir as cotas: o segmento que gera mais receita por contato ganha volume. Segmento sem nenhuma proposta depois de 100 contatos muda de abordagem antes de sair da lista.</p></div>
+</div>
+</section>
+<section class="nova">
+<h2><span>4 ·</span> Regras e cadência</h2>
+<div class="regras">
+  <div class="regra forte"><b>Problema primeiro, visita depois</b>A conversa parte do problema que a Food Guard resolve. A visita de avaliação sem custo é o primeiro passo para mostrar valor, não o produto.</div>
+  <div class="regra forte"><b>Descobrir antes de oferecer</b>Uma ou duas perguntas para entender quem cuida da rotina e se há necessidade. Só então a visita.</div>
+  <div class="regra"><b>Quem somos</b>Food Guard, consultoria nutricional para serviços de alimentação. Quem assina é a empresa.</div>
+  <div class="regra"><b>Fechamento</b>Quando puxa a visita, termina perguntando o melhor dia e horário. Nunca sem pergunta.</div>
+  <div class="regra"><b>Sem resposta: no máximo três</b>Terça, sexta e terça seguinte. Depois, encerra.</div>
+  <div class="regra"><b>Nada inventado</b>Sem caso de cliente, depoimento ou número sem fonte. Duração da visita e preço só quando perguntarem.</div>
+</div>
+<div class="trilho">
+  <div class="etapa"><div class="d">Terça</div><div class="n">1 · Primeiro contato, por segmento</div></div>
+  <div class="seta">→</div>
+  <div class="etapa"><div class="d">Sexta</div><div class="n">2 · Checklist de 80 itens</div></div>
+  <div class="seta">→</div>
+  <div class="etapa"><div class="d">Terça seguinte</div><div class="n">3 · Encerramento</div></div>
+  <div class="seta">→</div>
+  <div class="etapa fim"><div class="d">Sem resposta</div><div class="n">Encerra · sai da lista</div></div>
+</div>
+<div class="ramo">
+  <b>Respondeu em qualquer momento?</b> Sai da cadência e segue este caminho:
+  <div class="fluxo"><span>Descoberta · 1 ou 2 perguntas</span><span>→ Oferta da visita</span><span>→ 5 · escolheu o dia</span><span>→ Confirmação</span><span>→ Lembrete</span><span>→ Visita</span><span>→ Proposta</span></div>
+</div>
+<div class="alerta"><b>Um canal por lead.</b> WhatsApp é o canal principal, digitado um a um, 20 a 30 conversas novas por dia, de terça a sexta, das 14h30 às 17h. E-mail só para quem não tem WhatsApp. Mensagem automática do WhatsApp Business não conta como resposta.</div>
+</section>
+<section class="nova">
+<h2><span>5 ·</span> Primeiro contato, uma versão por segmento</h2>
+<div class="intro">A pergunta abre a mensagem porque é a única parte que aparece na notificação, e ela serve para <b>descobrir</b> quem cuida da rotina sanitária, não para empurrar a visita. Sem nome confirmado, a mensagem abre sem o [Nome].</div>
+
+<div class="msg1">
+  <div class="seg-nome">1. Alto volume e autosserviço (quilo, self-service, buffet)</div>
+  <div class="duas">
+    <div class="col-w"><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>! No <span class="ph">[Estabelecimento]</span>, quem confere e anota a temperatura do buffet e das geladeiras no dia a dia?</div><div class="bolha">Boa tarde, <span class="ph">[Nome]</span>! No <span class="ph">[Estabelecimento]</span>, quem confere e anota a temperatura do buffet e das geladeiras no dia a dia?<br><br>Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. A gente ajuda restaurantes por quilo, self-service e buffet a manter os registros e a rotina de boas práticas em dia todos os dias, em todos os turnos, porque na fiscalização o que não está anotado conta como não feito.<br><br>Se quiser ter uma ideia de como a operação está, o diagnóstico gratuito tem 5 perguntas e o resultado sai na hora:<br>foodguardassessoria.com.br/diagnostico</div></div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>A pergunta da notificação toca a dor do perfil (temperatura do buffet e das geladeiras, que alguém precisa anotar todo dia) e pergunta quem cuida, não se está em dia. A resposta traz um nome ('o cozinheiro', 'eu', 'ninguém') e abre a segunda pergunta de descoberta, sem o 'sim' que encerra a conversa. A apresentação diz em uma frase o que a Food Guard resolve para esse perfil (registro diário, mesmo padrão em todos os turnos) e o motivo concreto. Não oferece visita, porque ainda não se sabe quem cuida. O diagnóstico fica como alternativa para quem prefere fazer sozinho. Sem nome confirmado, abre só com 'Boa tarde!' (vale para todas as versões).</p></div>
+  </div>
+</div>
+<div class="msg1">
+  <div class="seg-nome">2. Padarias e operações com produção própria</div>
+  <div class="duas">
+    <div class="col-w"><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>! Na <span class="ph">[Estabelecimento]</span>, quem cuida da etiqueta e da validade do que é produzido na casa, como salgados, recheios e frios fatiados?</div><div class="bolha">Boa tarde, <span class="ph">[Nome]</span>! Na <span class="ph">[Estabelecimento]</span>, quem cuida da etiqueta e da validade do que é produzido na casa, como salgados, recheios e frios fatiados?<br><br>Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. A gente ajuda padarias com produção própria a fazer a rotina de boas práticas do mesmo jeito em todas as etapas e turnos, com a equipe orientada e o Manual e os POPs descrevendo a produção de verdade, e não um modelo pronto.<br><br>Se quiser ter uma ideia de como a operação está, o diagnóstico gratuito tem 5 perguntas e o resultado sai na hora:<br>foodguardassessoria.com.br/diagnostico</div></div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>Etiqueta e validade do que sai da produção própria são o ponto sensível de padaria e confeitaria. A pergunta mostra que a Food Guard conhece a rotina de produção, e não só a papelada. A apresentação junta os três problemas do perfil: etapas e turnos fazendo cada um de um jeito, equipe que aprende com o colega e Manual e POPs que não descrevem a produção real. Diz 'equipe orientada' e não promete treinamento, porque o Básico não tem. Ajuste o artigo (na/da padaria, no/do empório).</p></div>
+  </div>
+</div>
+<div class="msg1">
+  <div class="seg-nome">3. Operações novas ou em expansão (inclui cozinhas de delivery)</div>
+  <div class="duas">
+    <div class="col-w"><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>, e parabéns pela <span class="ph">[inauguração]</span>! Quem está cuidando do Manual de Boas Práticas e dos POPs da cozinha nova?</div><div class="bolha">Boa tarde, <span class="ph">[Nome]</span>, e parabéns pela <span class="ph">[inauguração]</span>! Quem está cuidando do Manual de Boas Práticas e dos POPs da cozinha nova?<br><br>Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. A gente ajuda operações que estão abrindo ou crescendo a estruturar a rotina sanitária e a documentação desde o começo, porque o jeito que a equipe aprende nos primeiros meses é o que fica, e corrigir depois dá mais trabalho.</div></div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>É o único segmento em que o momento da operação justifica o contato, então o parabéns abre a conversa sem dizer onde o contato foi achado. Troque [inauguração] por 'nova unidade', 'chegada ao delivery' ou 'reforma', e 'cozinha nova' por 'unidade nova' na expansão. Na pré-inauguração: 'parabéns pela inauguração que vem aí'. O gancho do Manual e dos POPs funciona bem aqui porque é o documento que ainda está sendo feito, ou foi copiado de um modelo ou da outra unidade. O 'por que agora' já vem na apresentação. Sem link do diagnóstico, porque nesse perfil várias respostas viram 'ainda não tenho'.</p></div>
+  </div>
+</div>
+<div class="msg1">
+  <div class="seg-nome">4. Necessidade imediata (pendência, fiscalização, regularização)</div>
+  <div class="duas">
+    <div class="col-w"><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>! Hoje, quem cuida da documentação sanitária e das rotinas de boas práticas do <span class="ph">[Estabelecimento]</span>?</div><div class="bolha">Boa tarde, <span class="ph">[Nome]</span>! Hoje, quem cuida da documentação sanitária e das rotinas de boas práticas do <span class="ph">[Estabelecimento]</span>?<br><br>Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. A gente organiza a documentação e a rotina de boas práticas com nutricionista acompanhando a operação de perto, tanto para manter tudo em dia quanto quando aparece uma pendência ou um prazo para regularizar.</div></div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>Usa a pergunta de descoberta mais aberta e nunca cita o sinal público (avaliação ruim, fechamento temporário, notícia, vaga de nutricionista): o problema só entra na conversa quando a pessoa conta. A apresentação cita 'pendência ou prazo para regularizar' como situação que a Food Guard atende, e isso deixa a porta aberta para a pessoa contar o que está acontecendo. Sem diagnóstico e sem checklist: quem tem prazo precisa de alguém, não de material. Resposta que fala em auto ou prazo vai para a frente da fila, com resposta em até 5 minutos.</p></div>
+  </div>
+</div>
+<div class="msg1">
+  <div class="seg-nome">Fora dos segmentos (grupo de comparação: à la carte, bar, lanchonete, sem sinal)</div>
+  <div class="duas">
+    <div class="col-w"><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Boa tarde, <span class="ph">[Nome]</span>! No <span class="ph">[Estabelecimento]</span>, quem cuida do Manual de Boas Práticas e dos POPs: a própria equipe ou alguém de fora?</div><div class="bolha">Boa tarde, <span class="ph">[Nome]</span>! No <span class="ph">[Estabelecimento]</span>, quem cuida do Manual de Boas Práticas e dos POPs: a própria equipe ou alguém de fora?<br><br>Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. A gente mantém a documentação sanitária e a rotina da cozinha organizadas para a fiscalização, com nutricionista indo à operação com frequência, para que isso não fique só na memória do dono ou do gerente.<br><br>Se quiser ter uma ideia de como a operação está, o diagnóstico gratuito tem 5 perguntas e o resultado sai na hora:<br>foodguardassessoria.com.br/diagnostico</div></div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>Mantém o gancho do Manual de Boas Práticas, de que o dono gostou, mas troca 'está em dia?' por 'quem cuida', com as duas respostas possíveis dentro da pergunta. Fica fácil responder e já se descobre se alguém de fora acompanha. É a versão do grupo de comparação (10 a 15 contatos por semana): comparar a resposta, as visitas e os contratos deste grupo com os quatro segmentos é o que mostra se a segmentação vale a pena.</p></div>
+  </div>
+</div>
+<div class="canal">Exemplo no e-mail (o primeiro segmento)</div>
+<img class="shot" style="max-width:120mm" src="file:///home/user/FOOD-GUARD-/docs/marketing/sdr/fonte/preview/email-1-alto-volume-autosservico.png" alt="">
+</section>
+<section class="nova">
+  <h2><span>6 ·</span> Segundo contato e encerramento</h2>
+  <div class="msg-cab">
+    <div class="msg-num">2</div>
+    <div>
+      <div class="msg-quando">Sexta · só se não respondeu</div>
+      <h2 class="msg-nome">Segundo contato</h2>
+      <p class="msg-regra">Muda de assunto em vez de cobrar a resposta anterior: entrega um material que a pessoa usa sozinha, mesmo sem responder. A primeira linha já é a oferta, para aparecer na notificação. O cadastro da página registra nome e contato e abre uma retomada com assunto concreto ('ficou algum item em branco?'). A pergunta do fim continua a descoberta e é fácil de responder. Não oferece a visita, porque ainda não houve descoberta. Troque [ponto do segmento] por: temperatura do buffet e das geladeiras (segmento 1), etiqueta e validade do que é produzido na casa (2), documentação e estrutura da cozinha nova (3), documentação (4 e fora dos segmentos). No segmento 4 o checklist entra porque a pessoa ainda não contou nada; se ela contar que tem prazo, o roteiro troca material por visita.</p>
+    </div>
+  </div>
+  <div class="duas">
+    <div class="col-w"><div class="canal">Como aparece na notificação</div><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br>Oi, <span class="ph">[Nome]</span>! Separamos um checklist de 80 itens para conferir a rotina sanitária do <span class="ph">[Estabelecimento]</span> com a equipe.</div><div class="canal">WhatsApp</div><div class="bolha">Oi, <span class="ph">[Nome]</span>! Separamos um checklist de 80 itens para conferir a rotina sanitária do <span class="ph">[Estabelecimento]</span> com a equipe.<br><br>São 12 blocos com base na RDC 216/2004, da documentação à temperatura, validade, higiene e treinamento, prontos para imprimir. É gratuito: na página você coloca seus dados e o PDF é liberado na hora.<br>foodguardassessoria.com.br/checklist-vigilancia<br><br>Uma dica: comecem pela parte de <span class="ph">[ponto do segmento]</span>. Hoje, qual dessas partes dá mais trabalho por aí?</div></div>
+    <div class="col-e"><div class="canal">E-mail · resposta no mesmo fio</div><img class="shot" src="file:///home/user/FOOD-GUARD-/docs/marketing/sdr/fonte/preview/email-2-segundo-contato.png" alt=""></div>
+  </div>
+</section>
+<section class="nova">
+  
+  <div class="msg-cab">
+    <div class="msg-num">3</div>
+    <div>
+      <div class="msg-quando">Terça seguinte · só se não respondeu</div>
+      <h2 class="msg-nome">Encerramento</h2>
+      <p class="msg-regra">Fecha a cadência sem culpar ninguém: supõe que a prioridade é outra, avisa que os contatos param e deixa a porta aberta. A hipótese (a medir no funil) é que a despedida traz resposta de quem ia responder 'depois'. A última linha cumpre a regra de nunca terminar sem pergunta e só pede a visita se a pessoa quiser. Não repete links, porque ela já recebeu o diagnóstico e o checklist. Depois desta mensagem, o lead sai da lista.</p>
+    </div>
+  </div>
+  <div class="duas">
+    <div class="col-w"><div class="canal">Como aparece na notificação</div><div class="notif"><div class="notif-app">WhatsApp · agora</div><b>Food Guard</b><br><span class="ph">[Nome]</span>, imagino que a rotina aí esteja corrida e que organizar a parte sanitária não seja prioridade agora, e tudo bem. Vou encerrar meus contatos por aqui para não incomodar. Obrigado pela atenção!</div><div class="canal">WhatsApp</div><div class="bolha"><span class="ph">[Nome]</span>, imagino que a rotina aí esteja corrida e que organizar a parte sanitária não seja prioridade agora, e tudo bem. Vou encerrar meus contatos por aqui para não incomodar. Obrigado pela atenção!<br><br>Se mais para frente vocês quiserem que um nutricionista da Food Guard conheça a operação e mostre o que está em ordem e o que precisa de atenção, a visita de avaliação continua sem custo, e este número segue aberto.<br><br>E se eu tiver entendido errado e fizer sentido marcar agora, que dia e horário ficam melhores para a visita?</div></div>
+    <div class="col-e"><div class="canal">E-mail · resposta no mesmo fio</div><img class="shot" src="file:///home/user/FOOD-GUARD-/docs/marketing/sdr/fonte/preview/email-3-ultima-tentativa.png" alt=""></div>
+  </div>
+</section>
+<section class="nova">
+<h2><span>7 ·</span> Quando a pessoa responde: descoberta e oferta</h2>
+<div class="intro"><b>Uma ou duas perguntas, no máximo.</b> O objetivo é entender quem cuida da rotina, como ela é feita e se existe uma necessidade que justifique a visita. Quem diz que está tudo certo e não mostra brecha recebe o checklist e não é empurrado para a visita.</div>
+
+<div class="ramo-card">
+  <div class="sit">Respondeu que a própria equipe cuida ('a gente mesmo', 'o gerente vê isso', 'eu cuido')</div>
+  <div class="bolha">Entendi, <span class="ph">[Nome]</span>, obrigado por responder! E alguém de fora acompanha essa rotina com a equipe de tempos em tempos, como um nutricionista, ou fica tudo com vocês no dia a dia?</div>
+  <div class="prox"><b>Depois:</b> Qualquer resposta tira o lead da cadência. Se for 'fica com a gente' ou 'não temos nutricionista fixo', a necessidade vai a 1: recalcule a prioridade e mande a oferta do ramo seguinte. Se tiver nutricionista ou assessoria, siga o ramo 'Tem nutricionista ou assessoria'.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Confirmou que ninguém de fora acompanha ('não temos nutricionista fixo', 'fica comigo mesmo')</div>
+  <div class="bolha">Faz sentido. Quando essa parte fica com quem já toca a operação, o registro do dia a dia costuma ser o primeiro a escapar nos dias corridos, e a fiscalização não avisa quando vem. A Food Guard existe para manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência.<br><br>O primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. Se depois vocês preferirem seguir por conta própria, já sabem o que ajustar.<br><br>Que dia e horário ficam melhores para a visita?</div>
+  <div class="prox"><b>Depois:</b> Escolheu o dia: confira a agenda do nutricionista e mande a mensagem 5 (dia, hora, endereço e quem recebe). Veio objeção: use o roteiro de objeções. Silêncio: uma única retomada dois dias úteis depois; sem resposta, encerra.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Disse que está tudo em dia ('temos Manual', 'está tudo certinho')</div>
+  <div class="bolha">Que bom, <span class="ph">[Nome]</span>, isso já é meio caminho andado! E no dia a dia, quem confere se a rotina continua batendo com o Manual, como temperatura anotada, higienização e treinamento de quem entrou depois?</div>
+  <div class="prox"><b>Depois:</b> Se 'ninguém confere' ou 'eu, quando dá': necessidade 1, mande o ramo seguinte. Se um nutricionista confere: ramo 'Tem nutricionista ou assessoria'. Se insistir que está tudo certo: não empurre a visita. Mande o checklist como prova com a equipe ('Se quiser tirar a prova com a equipe, o checklist de 80 itens está aqui: foodguardassessoria.com.br/checklist-vigilancia. Se algum item ficar em branco, quer que a gente veja com você?') e registre necessidade 0.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Depois do 'está tudo em dia', contou que ninguém confere a rotina com frequência</div>
+  <div class="bolha">Entendi. É aí que mora o risco: o Manual existe, mas a rotina vai se afastando dele com o tempo, e na fiscalização o que não está anotado conta como não feito.<br><br>Por isso a gente começa com uma visita de avaliação sem custo: um nutricionista da Food Guard conhece a operação com você, confere se o dia a dia está igual ao papel e mostra o que vale ajustar. Se estiver tudo certo, vocês ficam com essa confirmação.<br><br>Que dia e horário ficam melhores para a visita?</div>
+  <div class="prox"><b>Depois:</b> Mesmo caminho do ramo da oferta: agenda, mensagem 5 ou objeções.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Tem nutricionista ou assessoria</div>
+  <div class="bolha">Que bom, isso já ajuda muito! A ideia não é substituir ninguém. Só para eu entender: ele vem com que frequência, e tem alguma coisa que vocês sentem falta no acompanhamento de hoje?</div>
+  <div class="prox"><b>Depois:</b> Apontou uma falta (vem pouco, ninguém confere a rotina entre uma visita e outra, demora para responder, equipe sem treinamento): necessidade 1, responda com a objeção 'Já tenho nutricionista ou outra assessoria' e feche com a visita como segunda opinião. Está satisfeito: necessidade 0. Agradeça, mande o checklist como segunda conferência e encerre sem empurrar a visita.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Ninguém cuida, não tem Manual nem POPs, ou respondeu 'não sei'</div>
+  <div class="bolha">Obrigado pela sinceridade, <span class="ph">[Nome]</span>, isso ajuda a gente a entender. Dá para organizar: o Manual de Boas Práticas e os POPs, que a RDC 216/2004 exige, e uma rotina que a equipe consiga manter.<br><br>O primeiro passo é uma visita de avaliação sem custo: um nutricionista da Food Guard conhece a operação com você e mostra o que já está em ordem, o que precisa de atenção e por onde começar. Se depois vocês preferirem seguir por conta própria, já sabem o que ajustar.<br><br>Que dia e horário ficam melhores para a visita?</div>
+  <div class="prox"><b>Depois:</b> Necessidade 2. Recalcule a prioridade; se der alta, ofereça o primeiro horário livre na zona da semana. Se a pessoa contar que tem fiscalização ou prazo, vá para o ramo 'Foi autuado'.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Contou que foi autuado, notificado ou tem prazo para regularizar</div>
+  <div class="bolha">Entendi, <span class="ph">[Nome]</span>, obrigado por contar. Para ver como a gente consegue ajudar: o que a fiscalização apontou, e qual prazo deram para regularizar?</div>
+  <div class="prox"><b>Depois:</b> Necessidade 2 e frente da fila, com resposta em até 5 minutos. A prioridade só vira alta se a aderência for 2: autuado de rede ou franquia continua em baixa. Com a resposta, mande o ramo seguinte. Sem checklist e sem diagnóstico.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Autuado, depois de contar o que foi apontado e o prazo</div>
+  <div class="bolha">Obrigado, <span class="ph">[Nome]</span>. Com prazo correndo, vale começar logo. Dá para priorizar uma visita de avaliação sem custo: um nutricionista da Food Guard conhece a operação, entende o que foi apontado e mostra os próximos passos, na ordem do que mais pesa. Se puder, separa o auto ou a notificação para ele ver.<br><br>Qual é o primeiro dia e horário que você consegue?</div>
+  <div class="prox"><b>Depois:</b> Encaixe no primeiro horário livre que caiba no prazo, sem desmarcar visita confirmada de outro lead. Se a agenda não couber no prazo, diga isso com franqueza. Nunca prometa cumprir o prazo do auto antes da visita. Se a pessoa só quer 'um papel para o fiscal' e recusa acompanhamento, a aderência cai para 1.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Operação nova ou em expansão respondeu sobre o Manual e os POPs ('estamos usando o da outra loja', 'pegamos um modelo', 'ainda não vimos isso')</div>
+  <div class="bolha">Entendi! E a equipe já passou por treinamento de boas práticas, ou está aprendendo no dia a dia?</div>
+  <div class="prox"><b>Depois:</b> Abertura recente ou expansão já vale necessidade 1; se ninguém está cuidando, ou o Manual é de outra unidade ou de um modelo pronto, vai a 2. Mande o ramo seguinte. Em cozinha de delivery, troque a pergunta por: 'E a parte de embalagem e transporte já entrou nos procedimentos?'.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Operação nova ou em expansão, depois da segunda resposta</div>
+  <div class="bolha">Faz sentido. A operação está tomando forma agora, e esse é o melhor momento para acertar a rotina: o jeito que a equipe aprende nos primeiros meses é o que fica, e documentação feita para esta cozinha evita retrabalho depois.<br><br>O primeiro passo é uma visita de avaliação sem custo: um nutricionista da Food Guard conhece a operação com você enquanto o fluxo ainda pode ser ajustado e mostra o que já está bem encaminhado e o que precisa de atenção.<br><br>Que dia e horário ficam melhores para a visita?</div>
+  <div class="prox"><b>Depois:</b> Pré-inauguração com data marcada: proponha a visita antes da abertura e trate como topo da lista da semana. Na expansão, troque 'esta cozinha' por 'esta unidade'.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Respondeu ao segundo contato (checklist) dizendo qual parte dá mais trabalho, ou que baixou e ficou item em branco</div>
+  <div class="bolha">Obrigado por contar, <span class="ph">[Nome]</span>! E hoje, quem cuida de <span class="ph">[a parte que a pessoa citou]</span> aí, a própria equipe ou alguém de fora?</div>
+  <div class="prox"><b>Depois:</b> Daqui em diante, siga os ramos acima conforme a resposta (equipe cuida sozinha, tem nutricionista, ninguém cuida). Se a pessoa baixou o PDF pelo site, anote na planilha: o cadastro mostra interesse.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Quem respondeu não decide ('sou funcionário', 'o dono não está', 'isso é com o gerente')</div>
+  <div class="bolha">Obrigado por avisar! Quem cuida dessa parte aí, o dono ou o gerente? Pode me passar o contato dessa pessoa ou um bom horário para falar com ela?</div>
+  <div class="prox"><b>Depois:</b> Recebeu o contato: comece a cadência com o responsável pela primeira mensagem do segmento, abrindo com 'O [quem passou] do [Estabelecimento] passou seu contato' (aqui a origem entra porque foi a própria equipe que passou). Recebeu só um horário: escreva de novo neste número nesse horário. Sem retorno, a cadência segue neste número. Aderência fica em 1 até chegar ao decisor.</div>
+</div>
+<div class="ramo-card">
+  <div class="sit">Respondeu com outra pergunta ('por quê?', 'do que se trata?')</div>
+  <div class="bolha">Pergunto porque é a primeira coisa que a gente precisa entender para saber se faz sentido conversar. A Food Guard é uma consultoria nutricional para serviços de alimentação e mantém a documentação e a rotina de boas práticas em dia, com nutricionista indo à operação com frequência. Aí no <span class="ph">[Estabelecimento]</span>, isso fica com a própria equipe ou com alguém de fora?</div>
+  <div class="prox"><b>Depois:</b> Siga os ramos acima conforme a resposta.</div>
+</div>
+<h3>Oferta da visita</h3>
+<p style="color:var(--muted)">Só depois da descoberta (uma ou duas perguntas), quando a resposta mostrou necessidade: ninguém de fora acompanha, ninguém confere se a rotina bate com o papel, falta documento ou há prazo. Abra retomando o que a pessoa contou; os ramos da descoberta já trazem a oferta adaptada a cada situação. Não use quando a pessoa disse que está satisfeita com o acompanhamento atual: aí vale o checklist. A frase do fim de ano vale até o começo de dezembro; depois, corte. Se a pergunta final já apareceu na conversa, use uma variação ('Quando fica bom para você receber a visita?' ou 'Qual dia da semana costuma ser mais tranquilo para receber o nutricionista?'). Só diga que o nutricionista vai estar na região em tal dia se já houver visita marcada no bairro. A frase de que o que o nutricionista vê fica entre a operação e a Food Guard só volta se o dono confirmar como política.</p>
+<div class="bolha">Faz sentido, <span class="ph">[Nome]</span>. A Food Guard existe para manter essa rotina organizada e os registros em dia, com nutricionista voltando à operação com frequência, para que isso não dependa só de quem já toca a casa.<br><br>O primeiro passo é uma visita de avaliação sem custo e sem compromisso: um nutricionista da Food Guard conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. Se depois vocês preferirem seguir por conta própria, já sabem o que ajustar.<br><br>Como a fiscalização não avisa quando vem, quanto antes vocês souberem, mais tempo têm para ajustar com calma, de preferência antes do movimento de fim de ano. Que dia e horário ficam melhores para a visita?</div>
+</section>
+<section class="nova">
+<h2><span>8 ·</span> Agendamento e depois de marcada</h2>
+<div class="intro">Visita marcada ainda não é visita feita. No e-mail, é aqui que entra o layout completo da marca: a pessoa já respondeu e marcou, então o visual de empresa passa confiança.</div>
+<div class="lado">
+  <div>
+  <div class="card">
+    <div class="card-t"><span class="tag">5</span> Escolheu o dia <span>· Assim que a pessoa escolher</span></div>
+    <div class="bolha">Combinado! Fica <span class="ph">[dia]</span>, às <span class="ph">[hora]</span>.<br><br>O nutricionista chega identificado como Food Guard, e na véspera a gente manda um lembrete por aqui.<br><br>Só para confirmar: o endereço é <span class="ph">[endereço]</span>, e é você mesmo quem vai receber?</div>
+    <div class="nota">Antes de mandar, confira a agenda. Se o horário pedido estiver ocupado: "Nesse horário a agenda do nutricionista já está ocupada, [Nome]. Tenho [dia] às [hora] livre, serve para você? Se não, me diz outro que eu confiro." Se quem recebe for outra pessoa, anotar o nome na planilha e usar na confirmação.</div>
+  </div>
+  <div class="card">
+    <div class="card-t">Confirmação <span>· Assim que o endereço for confirmado</span></div>
+    <div class="bolha">Visita agendada, <span class="ph">[Nome]</span>!<br><br>Data: <span class="ph">[dia]</span>, às <span class="ph">[hora]</span><br>Endereço: <span class="ph">[endereço]</span><br>Quem vai: um nutricionista da Food Guard<br><br>Se precisar remarcar, é só avisar por aqui. Até lá!<br><br>Equipe Food Guard</div>
+    
+  </div>
+  <div class="card">
+    <div class="card-t">Lembrete <span>· Véspera da visita, de manhã</span></div>
+    <div class="bolha">Oi, <span class="ph">[Nome]</span>! Passando para lembrar da visita do nutricionista da Food Guard amanhã, <span class="ph">[dia]</span> às <span class="ph">[hora]</span>, no <span class="ph">[Estabelecimento]</span>.<br><br>Está tudo certo? Se surgir algum imprevisto, é só avisar que a gente remarca.<br><br>Equipe Food Guard</div>
+    <div class="nota">Sem resposta até o fim do dia: na manhã da visita, mandar "Bom dia, [Nome]! O nutricionista da Food Guard passa hoje às [hora] no [Estabelecimento]. Segue de pé?". Sem resposta até duas horas antes, ligar para o estabelecimento antes de o nutricionista sair.</div>
+  </div>
+  <div class="card">
+    <div class="card-t">A visita não aconteceu <span>· No mesmo dia</span></div>
+    <div class="bolha">Oi, <span class="ph">[Nome]</span>! O nutricionista da Food Guard passou hoje às <span class="ph">[hora]</span> no <span class="ph">[Estabelecimento]</span>, mas não deu para fazer a visita. Imagino que tenha surgido algum imprevisto.<br><br>Vamos remarcar? Que dia e horário ficam melhores para você?<br><br>Equipe Food Guard</div>
+    <div class="nota">Sem resposta, uma retomada em 30 dias. Segunda falta: encerrar.</div>
+  </div></div>
+  <div><div class="canal">E-mail de confirmação</div><img class="shot" src="file:///home/user/FOOD-GUARD-/docs/marketing/sdr/fonte/preview/email-confirmacao.png" alt=""></div>
+</div>
+</section>
+<section class="nova">
+<h2><span>9 ·</span> Objeções</h2>
+<div class="intro"><b>Responda em até 5 minutos</b>, por texto, começando pelo que a pessoa disse. As quatro primeiras são as perguntas que você levantou: por que não continuar como está, por que pagar todo mês, por que agora e por que a Food Guard.</div>
+<div class="cols2">
+  <div class="resp">
+    <div class="gatilho">"Vou continuar como estou / do jeito que está, funciona"</div>
+    <div class="bolha">Entendo, <span class="ph">[Nome]</span>. Se está funcionando, ninguém quer mexer. Só que hoje isso depende da memória de quem toca a operação e só é testado de verdade quando a fiscalização aparece, sem aviso. A visita de avaliação serve para testar antes, sem custo: um nutricionista da Food Guard conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. Se estiver tudo certo, vocês ficam com essa confirmação; se não, já sabem o que ajustar, contratando a Food Guard ou não. Que dia e horário ficam melhores para a visita?</div>
+    <div class="nota">Responde à pergunta do dono 'por que receber a Food Guard e não continuar como está'. Sem valor de multa e sem susto: o argumento é saber antes. Se a descoberta ainda não foi feita, troque a pergunta final por 'Hoje, quem cuida dessa parte no dia a dia?'. Se a pessoa repetir que não quer, siga 'Agora não / vou pensar'.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Eu mesmo faço os ajustes / por que pagar todo mês?"</div>
+    <div class="bolha">Dá para resolver muita coisa por conta própria, sim, e a visita mostra o quê. O difícil costuma ser manter: temperatura anotada todo dia, gente nova na equipe orientada, documentos atualizados quando muda cardápio ou fornecedor. O acompanhamento da Food Guard existe para isso, com nutricionista voltando à operação com frequência e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Hoje, quem faz esse controle no dia a dia por aí?</div>
+    <div class="nota">Responde à pergunta do dono 'por que um serviço recorrente se eu mesmo ajusto'. Seja honesto: muito ajuste pontual o dono faz sozinho. Se a descoberta já foi feita, troque a pergunta final por 'Que dia e horário ficam melhores para a visita?'. Se perguntarem da garantia, diga que ela vale para quem executa as adequações recomendadas. Não prometa treinamento como regra geral (o Básico não tem) nem 'cancela quando quiser'.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Por que agora? / Vejo isso mais para frente"</div>
+    <div class="bolha">Entendo, <span class="ph">[Nome]</span>. O motivo para não deixar para depois é que a fiscalização não avisa quando vem: quanto antes vocês souberem o que está em ordem e o que precisa de atenção, mais tempo têm para ajustar com calma, e não às pressas. E o fim de ano está chegando, com mais movimento e gente nova na equipe; organizar a rotina antes do pico é bem mais fácil do que no meio dele. A visita de avaliação é sem custo. Que dia e horário ficam melhores para você?</div>
+    <div class="nota">Responde à pergunta do dono 'por que priorizar a visita nesta semana'. Nada de escassez inventada ('últimas vagas', 'só esta semana'). Se houver visita marcada num bairro vizinho, pode dizer que o nutricionista vai estar na região em [dia], só se for verdade. Se o lead contou uma data (prazo do auto, renovação de licença, inauguração), use a data dele. Depois do começo de dezembro, troque a frase do fim de ano. Se insistir que não é o momento, siga 'Agora não / vou pensar'.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Já tenho nutricionista / já tenho outra assessoria"</div>
+    <div class="bolha">Que bom, isso já ajuda muito! A ideia não é substituir ninguém. Só para eu entender: ele vem com que frequência, e tem alguma coisa que vocês sentem falta no acompanhamento de hoje?</div>
+    <div class="nota">Responde à pergunta do dono 'o que a Food Guard resolve melhor que um autônomo ou outra assessoria'. Compare modelos, nunca pessoas. Se a pessoa apontar uma falta, responda com o que a Food Guard tem para ela e feche assim: 'A diferença da Food Guard está no modelo: a frequência das visitas e o que é entregue ficam definidos no plano, com plano de ação, WhatsApp com o nutricionista e 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Na visita de avaliação sem custo, vocês comparam com o que têm hoje. Que dia e horário ficam melhores para a visita?'. Se estiver satisfeita: agradeça, mande o checklist como segunda conferência e encerre sem empurrar a visita. Se o profissional atual for o nutricionista responsável da operação, lembre que só o Premium inclui nutricionista responsável: Básico e Essencial complementam, não substituem. Nunca diga que a Food Guard é a única com garantia ou visita presencial, nem fale mal de concorrente.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Quanto custa?"</div>
+    <div class="bolha">Depende da operação, <span class="ph">[Nome]</span>. Os planos são montados para cada modelo de negócio, porque um self-service tem uma rotina bem diferente de uma padaria ou de uma cozinha de delivery. Por isso o primeiro passo é a visita de avaliação, que é sem custo: o nutricionista conhece a operação e a gente apresenta o plano que faz sentido para o <span class="ph">[Estabelecimento]</span>, sem compromisso. Que dia e horário ficam melhores para você?</div>
+    <div class="nota">Nunca digite valores na mensagem. Se a pessoa pedir os planos por escrito ou insistir no preço, mande: 'Os planos e os valores estão aqui: foodguardassessoria.com.br/planos'. A página mostra os preços, então nunca diga que o preço só sai na visita.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Quem é? / O que vocês fazem? / É da Vigilância?"</div>
+    <div class="bolha">Aqui é da Food Guard, consultoria nutricional para serviços de alimentação em São Paulo. Não temos nenhuma ligação com a Vigilância Sanitária. A gente mantém a rotina sanitária organizada, os registros em dia e a operação pronta para a fiscalização, com nutricionista indo à operação com frequência. Para eu entender se faz sentido para vocês: hoje, quem cuida da documentação sanitária e das rotinas de boas práticas aí no <span class="ph">[Estabelecimento]</span>?</div>
+    <div class="nota">Se a descoberta já foi feita, troque a pergunta final pela oferta da visita. Quem quiser conhecer antes pode ver o site: foodguardassessoria.com.br.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"De onde tirou meu número?"</div>
+    <div class="bolha">Achamos o contato do <span class="ph">[Estabelecimento]</span> no <span class="ph">[origem]</span>, <span class="ph">[Nome]</span>. Estamos falando com operações de alimentação da região para apresentar o trabalho da Food Guard. Se preferir que a gente não escreva mais, é só avisar que tiramos o número da lista na hora. Se puder, só uma pergunta: hoje, quem cuida da documentação sanitária e das rotinas de boas práticas por aí?</div>
+    <div class="nota">[origem] é onde o contato foi achado de fato: Google Maps, Instagram, site de vocês. Nunca invente nem desconverse. Se a pessoa pedir para sair, siga 'Sair' na hora.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"É robô? / Com quem eu falo?"</div>
+    <div class="bolha">Não é robô, não! Aqui é do atendimento da Food Guard, a gente cuida das conversas e da agenda das visitas de avaliação do nutricionista. Pode perguntar o que quiser. E, para eu entender a situação de vocês: hoje, quem cuida da documentação sanitária aí no dia a dia?</div>
+    <div class="nota">Sem nome próprio: quem assina é a empresa. Se a descoberta já foi feita, feche com 'Que dia e horário ficam melhores para a visita?'. O SDR não manda áudio.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Me manda mais informações"</div>
+    <div class="bolha">Mando, sim! Em resumo: a Food Guard é uma consultoria nutricional para serviços de alimentação. A gente mantém a documentação sanitária, os POPs e a rotina de boas práticas em dia, com nutricionista indo à operação com frequência e plano de ação para o que precisa ser ajustado. No site dá para conhecer o trabalho e fazer o diagnóstico gratuito, com resultado na hora:<br>foodguardassessoria.com.br/diagnostico<br><br>Para eu mandar o que realmente serve para vocês: hoje, quem cuida dessa parte no <span class="ph">[Estabelecimento]</span>, a própria equipe ou alguém de fora?</div>
+    <div class="nota">Material genérico costuma morrer na conversa; a pergunta do fim é o que mantém a descoberta. Se a descoberta já foi feita, feche com a oferta da visita. Se pedir planos e valores: foodguardassessoria.com.br/planos.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Agora não / vou pensar"</div>
+    <div class="bolha">Sem problema, <span class="ph">[Nome]</span>! Enquanto isso, deixo um material para vocês conferirem a operação com calma: um checklist de 80 itens com base na RDC 216/2004. Na página você coloca seus dados e o PDF é liberado na hora:<br>foodguardassessoria.com.br/checklist-vigilancia<br><br>Posso voltar a falar com você daqui a um mês?</div>
+    <div class="nota">Se o checklist já foi no segundo contato, troque pelo diagnóstico (foodguardassessoria.com.br/diagnostico). Só volte se a pessoa topar: status 'retorno em [data]' na planilha. Na data, uma mensagem só, fora da cadência, retomando o que ela contou e fechando com 'Que dia e horário ficam melhores para a visita?'. Sem resposta, encerra. Se ela disser que não precisa voltar, trate como 'Sair'. Quem tem prazo de fiscalização não recebe material: pergunte o prazo.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Sair / não tenho interesse / resposta grosseira"</div>
+    <div class="bolha">Tudo bem, não vamos mais mandar mensagem. Se um dia precisar, é só chamar aqui. Bom trabalho!<br><br>Equipe Food Guard</div>
+    <div class="nota">Única mensagem que termina sem pergunta, de propósito. Encerre na hora, marque como descadastrado e não mande mais nada, nem checklist. Convite depois de pedido de saída vira denúncia e derruba o número.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Isso é obrigatório? / Preciso ter nutricionista?"</div>
+    <div class="bolha">O Manual de Boas Práticas e os POPs são, sim: a RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Ter nutricionista não é exigido em todo serviço; o que a norma cobra é a rotina de boas práticas e a documentação em ordem. É isso que a visita de avaliação sem custo mostra: o que se aplica ao <span class="ph">[Estabelecimento]</span> e o que falta. Que dia e horário ficam melhores para você?</div>
+    <div class="nota">Fora da capital, corte a frase da Portaria. Nunca diga que sem nutricionista a operação fica exposta a autuação, nem que o nutricionista assina ou assume a responsabilidade pela operação.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Tem garantia? / E se não resolver?"</div>
+    <div class="bolha">Tem, sim: 90 dias para a operação estar em conformidade real; se não chegarmos lá, seguimos sem custo extra. Ela anda junto com a execução das adequações que o nutricionista recomendar, porque tem coisa que só a própria operação pode fazer. Na visita de avaliação sem custo, o nutricionista já mostra o que entraria nesse plano. Que dia e horário ficam melhores para a visita?</div>
+    <div class="nota">Não omita a condição de executar as adequações recomendadas. Nunca diga 'garantimos que você não será multado' nem 'aprovação garantida'.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Tem fidelidade? / Posso cancelar quando quiser?"</div>
+    <div class="bolha">Boa pergunta, <span class="ph">[Nome]</span>. As condições do contrato vão por escrito junto com a proposta, depois da visita, para você ler com calma antes de decidir, e até lá não tem compromisso nenhum. O que já dá para adiantar: se a operação precisar de mais acompanhamento, dá para subir de plano a qualquer momento, sem multa e sem reinício de prazo. Que dia e horário ficam melhores para a visita?</div>
+    <div class="nota">Resposta provisória até o dono alinhar o contrato (prazo mínimo de 12 meses e multa de 3 mensalidades) com os Termos (que falam em cancelamento a qualquer momento). Nunca diga 'cancela quando quiser' nem 'sem fidelidade'. Se a pessoa insistir, não chute: diga que confirma e responde por escrito, e leve a pergunta ao dono.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Quanto tempo leva a visita? / Vai atrapalhar o movimento?"</div>
+    <div class="bolha">Depende do tamanho da operação, <span class="ph">[Nome]</span>. Por isso a gente marca no horário que for mais tranquilo para vocês, e o nutricionista conhece a rotina junto com você. Que dia e horário costumam ser mais tranquilos por aí?</div>
+    <div class="nota">Nunca diga quanto tempo a visita leva nem fale em parar ou atrapalhar a operação. Se o pico for a preocupação, deixe a pessoa escolher um horário fora dele.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Vocês atendem na minha região?"</div>
+    <div class="bolha">Atendemos, sim! A Food Guard atende a cidade de São Paulo e a Grande SP, e <span class="ph">[bairro ou cidade]</span> está dentro. A visita de avaliação sem custo é feita no próprio <span class="ph">[Estabelecimento]</span>. Que dia e horário ficam melhores para você?</div>
+    <div class="nota">Se a descoberta ainda não foi feita, troque a pergunta final por 'Hoje, quem cuida da documentação sanitária por aí?'. Fora da área: 'Por enquanto a Food Guard atende só a cidade de São Paulo e a Grande SP, então não conseguimos levar o nutricionista até aí. Obrigado pela atenção e bom trabalho!' e status encerrado.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Manda por e-mail"</div>
+    <div class="bolha">Mando, sim! Vou te mandar um resumo do trabalho da Food Guard e o link do diagnóstico, e você pode responder por lá mesmo. Qual é o seu e-mail?</div>
+    <div class="nota">Mande por e-mail o mesmo texto de 'Me manda mais informações' (o texto é igual nos dois canais), com assinatura e assunto '[Estabelecimento]: Food Guard'. Troque o canal na planilha.</div>
+  </div>
+  <div class="resp">
+    <div class="gatilho">"Me liga"</div>
+    <div class="bolha">Ligo, sim! Pode ser agora ou prefere outro horário hoje?</div>
+    <div class="nota">Na ligação, apresente-se como atendimento da Food Guard, sem nome próprio, faça as perguntas de descoberta e, se houver necessidade, feche dia e horário da visita. Depois, mande a mensagem 5 por escrito para o combinado ficar registrado.</div>
+  </div></div>
+</section>
+<section class="nova">
+<h2><span>10 ·</span> Funil: do primeiro contato à receita</h2>
+<div class="intro">Taxa de resposta sozinha engana: uma operação com menos respostas pode fechar mais contratos. O número que importa é <b>receita recorrente por 100 contatos</b>. As taxas abaixo são <b>hipóteses</b> para começar; depois das primeiras 100 conversas, viram o número real.</div>
+<table>
+<tr><th style="width:17%">Etapa</th><th style="width:27%">Definição</th><th style="width:24%">Para avançar</th><th style="width:16%">Métrica</th><th style="width:16%">Hipótese inicial</th></tr>
+<tr><td><b>1. Leads identificados</b></td><td>Estabelecimento que entrou na planilha com os campos mínimos preenchidos: serviço de alimentação com manipulação no local, ativo (aberto no Google Maps), em São Paulo capital ou Grande SP, com telefone, perfil da operação, segmento, sinal de oportunidade e prioridade comercial. Ainda não recebeu mensagem.</td><td>Número confirmado no WhatsApp (ou e-mail válido) e mensagem 1 entregue (dois tiques, ou e-mail sem retorno de erro). Duplicado, fechado, fora da área ou sem canal vira 'descartado', com o motivo anotado.</td><td>Leads identificados por semana (a lista precisa sustentar 80 a 120 primeiros contatos); % descartados e motivo; distribuição por segmento e prioridade.</td><td>HIPÓTESE: 90% dos identificados viram contato realizado (10% caem por número inválido, duplicado ou fora da área).</td></tr><tr><td><b>2. Contatos realizados</b></td><td>Lead que recebeu a mensagem 1 entregue. Conta uma vez por lead, não por mensagem. Entra na cadência de no máximo três mensagens sem resposta: 20 a 30 novos por dia, de terça a sexta, das 14h30 às 17h, envio manual.</td><td>Resposta humana em qualquer canal (texto ou áudio), com qualquer conteúdo, inclusive recusa. A mensagem automática do WhatsApp Business não conta. Qualquer resposta tira o lead da cadência. Sem resposta depois da mensagem 3, o status vira 'encerrado'.</td><td>Taxa de resposta = conversas ÷ contatos realizados, por coorte (semana do 1º contato), pela mensagem que gerou a resposta (1, 2 ou 3) e por segmento. Bloqueios e denúncias do número.</td><td>HIPÓTESE: 20% respondem (faixa de 15% a 25%, a mesma meta inicial do plano do SDR).</td></tr><tr><td><b>3. Conversas (respondeu): etapa intermediária, acrescentada porque a qualificação só acontece aqui</b></td><td>Lead que respondeu. Antes de oferecer a visita, o SDR faz uma ou duas perguntas de descoberta: quem cuida hoje da documentação sanitária e das rotinas de boas práticas, se há acompanhamento periódico e quem decide. Recusas e descadastros contam no denominador.</td><td>Os quatro critérios de qualificação marcados 'S' (necessidade, aderência, região, decisor). Qualquer '?' mantém o lead em conversa. 'N' em qualquer critério desqualifica, com o motivo anotado.</td><td>Conversa → qualificado; distribuição de 'quem cuida hoje'; motivos de desqualificação e de recusa (os três primeiros); % de descadastro; número de perguntas até qualificar.</td><td>HIPÓTESE: 50% das conversas viram qualificadas. A outra metade é recusa, operação que já tem acompanhamento periódico e está satisfeita, pessoa que não é o decisor ou operação sem manipulação.</td></tr><tr><td><b>4. Leads qualificados</b></td><td>Conversa com os quatro critérios confirmados. Só então o SDR propõe a visita de avaliação sem custo e fecha com uma pergunta aberta pelo melhor dia e horário.</td><td>Visita agendada: dia, hora, endereço e quem recebe confirmados (mensagem 5), com a confirmação enviada.</td><td>Qualificado → agendado; dias entre a 1ª resposta e o agendamento; tempo de resposta do SDR (meta: até 5 minutos no horário de envio); conversão por segmento e por sinal de oportunidade.</td><td>HIPÓTESE: 60% dos qualificados agendam. Somado à etapa anterior, dá 30% de resposta → visita. Fica abaixo da meta antiga de 40% porque agora o SDR qualifica antes de convidar; o ganho esperado aparece no comparecimento e no fechamento.</td></tr><tr><td><b>5. Visitas agendadas</b></td><td>Visita de avaliação sem custo com data, hora, endereço e quem recebe confirmados, e lembrete na véspera. Remarcação não abre uma linha nova: só atualiza a data.</td><td>O nutricionista esteve na operação e a conheceu com quem responde por ela. Se ninguém recebeu, o status vira 'faltou': cabe uma retomada, e a segunda falta encerra.</td><td>Comparecimento = realizadas ÷ agendadas com data já passada; % de falta; % de remarcação; dias entre agendar e visitar (meta: até 7).</td><td>HIPÓTESE: 80% acontecem. A meta do plano do SDR é falta abaixo de 10%, ou seja, 90%; 80% é a hipótese conservadora para lead frio.</td></tr><tr><td><b>6. Visitas realizadas</b></td><td>O nutricionista conheceu a operação e preencheu a ficha da visita: o que está em ordem, o que precisa de atenção, perfil e volume da operação, o plano que indicaria e se o decisor estava presente.</td><td>Proposta escrita enviada ao decisor em até 2 dias úteis, com o plano indicado para aquele modelo de negócio, o escopo, o valor mensal e a garantia de 90 dias.</td><td>Realizada → proposta; % de visitas com o decisor presente; dias entre a visita e a proposta; plano indicado (primeira leitura do mix).</td><td>HIPÓTESE: 75% das visitas viram proposta. As demais: sem aderência real, decisor ausente que não retoma ou operação que prefere ajustar sozinha.</td></tr><tr><td><b>7. Propostas enviadas</b></td><td>Proposta escrita entregue ao decisor depois da visita, com plano, valor, escopo, data de início e a garantia: 90 dias para estar em conformidade real; se não chegarmos lá, seguimos sem custo extra.</td><td>Contrato assinado E primeira cobrança paga no Asaas. Sem decisão em 14 dias depois do envio, o status vira 'perdido: sem resposta', e a proposta reabre se o cliente voltar.</td><td>Proposta → contrato; dias até a decisão; motivo de perda; plano proposto x plano fechado; MRR em aberto.</td><td>HIPÓTESE: 30% das propostas fecham. O unit-economics usa 25% de call → cliente no inbound; a visita presencial deve converter um pouco melhor.</td></tr><tr><td><b>8. Contratos fechados (receita recorrente)</b></td><td>Cliente com contrato assinado e primeiro pagamento confirmado. Só a partir daqui o valor mensal entra como MRR; venda assinada sem pagamento não conta.</td><td>Cliente ativo no dia 90 (fim do prazo da garantia) e renovação mensal. É o elo com o churn do unit-economics.</td><td>Contratos e MRR novo por semana e por coorte; ticket médio real; contatos por contrato; MRR por 100 contatos. Depois: clientes ativos no dia 90 e churn mensal.</td><td>HIPÓTESE: ticket médio de R$ 2.355 (mix de 20% Básico, 55% Essencial e 25% Premium) e churn de 4% ao mês. As duas são hipóteses do unit-economics, a revisar depois de 10 vendas.</td></tr>
+</table>
+<h3>O que é um lead qualificado</h3><p>O lead só vira qualificado com os QUATRO critérios marcados 'S' na planilha. '?' não qualifica: o lead continua em conversa. Para chegar lá bastam uma ou duas perguntas de descoberta, feitas antes de oferecer a visita (ex.: 'Hoje, quem cuida da documentação sanitária e das rotinas de boas práticas por aí?' e 'E isso fica com você mesmo ou tem mais alguém que decide junto?').
+
+1) NECESSIDADE (declarada pela pessoa, nunca presumida pelo segmento): pelo menos um destes aparece na conversa. Sem acompanhamento periódico, com a rotina nas mãos do dono, do gerente ou de ninguém. Registros feitos de forma irregular ou não feitos (temperatura, higienização). Manual de Boas Práticas ou POPs ausentes, desatualizados ou 'não sei'. Pendência, notificação ou autuação com prazo. Abertura recente, nova unidade ou expansão. 'Já tenho nutricionista' não desqualifica sozinho: o SDR pergunta com que frequência ele vai à operação. Se o acompanhamento é periódico e a pessoa está satisfeita, marcar N (motivo: 'já atendido') e não insistir. Em pendência com prazo, anotar o prazo; se a Food Guard não consegue atender nesse prazo, marcar N.
+
+2) ADERÊNCIA: serviço de alimentação com manipulação no local (por quilo, self-service, buffet, à la carte, padaria ou confeitaria com produção, delivery ou dark kitchen, lanchonete, refeição coletiva), ativo ou com abertura marcada. Só revenda de embalados, sem manipulação, ou operação sem ponto fixo = N. O porte NÃO é critério: não presumir que operação maior vale mais nem que autuado sempre contrata. Isso se mede.
+
+3) REGIÃO: São Paulo capital ou Grande SP, com bairro ou cidade confirmado pela pessoa. Fora da área = N e encerramento educado.
+
+4) DECISOR: a pessoa na conversa é dono, sócio ou gerente com autonomia para contratar, ou o SDR conseguiu o contato do decisor e ele respondeu. Atendente que passou o contato não qualifica: o lead só qualifica quando o decisor entra na conversa. Na visita, o ideal é o decisor estar presente; a ficha registra se esteve.
+
+A data de qualificação só é preenchida quando os quatro estão em S. Qualquer N gera 'desqualificado' com o motivo, o que alimenta o relatório de motivos.</p>
+<h3>A conta até a receita</h3><p>TODAS AS TAXAS SÃO HIPÓTESES. Encadeadas: 90% identificado → contato; 20% contato → conversa; 50% conversa → qualificado; 60% qualificado → agendada; 80% agendada → realizada; 75% realizada → proposta; 30% proposta → contrato.
+
+Contato → contrato = 0,20 × 0,50 × 0,60 × 0,80 × 0,75 × 0,30 = 1,08%.
+
+POR 1.000 CONTATOS: 200 conversas → 100 qualificados → 60 visitas agendadas → 48 realizadas → 36 propostas → cerca de 11 contratos.
+
+POR CONTRATO: cerca de 93 contatos (≈103 leads identificados), 19 conversas, 9 qualificados, 5,6 visitas agendadas, 4,4 realizadas e 3,3 propostas.
+
+RECEITA: o unit-economics usa ticket médio ponderado de R$ 2.355/mês (mix 20/55/25, hipótese), margem bruta de R$ 1.648 (70%) e LTV de R$ 41.200 (churn de 4%, hipótese). Cada 100 contatos rendem ≈ 1,08 contrato, ≈ R$ 2.540 de MRR novo e ≈ R$ 44.500 de LTV.
+
+RITMO: 20 a 30 contatos novos por dia × 4 dias = 80 a 120 por semana (~350 a 520 por mês). No meio da faixa (100 por semana, ~430 por mês) saem ~4,7 contratos por mês, ~R$ 11.000 de MRR novo e ~R$ 7.700 de margem nova por mês. Isso pede ~26 visitas agendadas e ~21 realizadas por mês, ou ~5 por semana. Faixa: de R$ 8.800 (80 por semana) a R$ 13.200 (120 por semana) de MRR novo por mês.
+
+RECORRÊNCIA: com esse ritmo e churn de 4%, a base chega a ~22 clientes e ~R$ 51 mil de MRR no 6º mês. A conta já desconta 1 mês de atraso, porque o ciclo estimado entre o 1º contato e o 1º pagamento é de 3 a 5 semanas.
+
+SENSIBILIDADE:
+(a) Se o mix vier todo Básico, cada contrato vale R$ 1.200 e o mês médio cai para ~R$ 5.600 de MRR novo.
+(b) No cenário pessimista (15/40/50/75/70/20%) são ~317 contatos por contrato, ou ~1,4 contrato por mês.
+(c) No otimista (25/60/70/90/85/40%) são ~31 contatos por contrato, e o gargalo passa a ser a agenda do nutricionista (~45 visitas agendadas por mês).
+A distância entre 31 e 317 é o que as primeiras semanas precisam reduzir.
+
+CUSTO: com o CAC-alvo de R$ 1.500 do unit-economics e ~4,4 visitas realizadas por contrato, cada visita realizada pode custar no máximo ~R$ 340, já contando o tempo do SDR e os deslocamentos perdidos com faltas.
+
+COMPARAÇÃO COM O UNIT-ECONOMICS: os 7% de lead → cliente de lá são do inbound (diagnóstico) e não valem para prospecção ativa. O equivalente aqui é qualificado → contrato = 0,6 × 0,8 × 0,75 × 0,3 = 10,8%.
+
+Indicador para comparar operações (como as operações A e B do exemplo do dono): MRR por 100 contatos e contatos por contrato, nunca só a taxa de resposta.</p>
+<div class="cols2">
+  <div><h3>Relatório de toda sexta</h3><ul class=""><li>Quando: toda sexta, depois do horário de envio, a partir da planilha (contagens por data de cada etapa, sem CRM). Uma página, com o n ao lado de cada taxa.</li><li>1. Atividade da semana: leads identificados, primeiros contatos (meta de 80 a 120), dias de envio, números inválidos, bloqueios e denúncias do número.</li><li>2. O que aconteceu na semana, em contagem: conversas, qualificados, visitas agendadas, visitas realizadas, faltas, propostas enviadas, contratos fechados (assinado + 1º pagamento).</li><li>3. Funil por coorte (semana do 1º contato), das últimas 6 coortes, com conversão de cada etapa e acumulada. Uma coorte só conta como 'fechada' depois de ~6 semanas; antes disso, marcar como parcial.</li><li>4. Receita: contratos da semana com o plano de cada um, MRR novo, MRR total da base, ticket médio real x R$ 2.355 da hipótese.</li><li>5. Eficiência acumulada: contatos por contrato (hipótese: 93) e MRR por 100 contatos (hipótese: R$ 2.540).</li><li>6. Hipótese x real: tabela com as 7 taxas (hipótese, real, n). Destacar a etapa com o maior desvio, porque é nela que a próxima semana trabalha.</li><li>7. Recortes por segmento, perfil da operação, sinal de oportunidade e prioridade comercial, sempre com o n. Abaixo de 30 contatos no recorte, só registrar, sem tirar conclusão.</li><li>8. Motivos (os 3 primeiros, com contagem): desqualificação, recusa, falta na visita, perda de proposta. Mais as frases dos donos que se repetiram.</li><li>9. Velocidade: tempo de resposta do SDR (meta: até 5 minutos), dias do 1º contato à visita, da visita à proposta (meta: até 2 dias úteis) e da proposta à decisão.</li><li>10. Pipeline: visitas marcadas para as próximas 2 semanas, propostas em aberto com o MRR em jogo e retornos combinados ('retorno em <span class="ph">[data]</span>').</li><li>11. Alertas (limiares que também são hipóteses): resposta abaixo de 10% depois de 100 contatos → revisar a lista e a primeira linha; qualificado → agendado abaixo de 40% → ver se o SDR está convidando antes de entender ou se a qualificação está frouxa; falta acima de 20% → confirmação e lembrete; realizada → proposta abaixo de 60% → revisar a ficha da visita; proposta → contrato abaixo de 15% com 10 propostas ou mais → revisar oferta e plano indicado.</li><li>12. Uma decisão para a próxima semana: uma mudança só (lista, segmento, mensagem ou horário), para saber o que causou o efeito.</li></ul></div>
+  <div><h3>O que aprender nas primeiras 100 conversas</h3><ul class=""><li>Leitura das 100: considero 100 primeiros contatos (≈1 semana a 25 por dia). Pelas hipóteses, rendem ~20 conversas, ~10 qualificados, ~6 visitas agendadas, ~5 realizadas e ~1 contrato. Medem o topo do funil. Fechamento, ticket e mix só aparecem com ~10 propostas (≈300 contatos), e o mix real com 10 contratos (≈900 contatos), que é quando o unit-economics manda revisar.</li><li>Qualidade da lista: % de números com WhatsApp válido, % fora da área ou sem manipulação, % em que quem atende é o dono e quanto tempo leva montar 100 leads. Lista ruim derruba todas as taxas seguintes.</li><li>Taxa de resposta real e qual mensagem a gera (1, 2 ou 3). Com n = 100, a margem é de ±8 pontos: dá para saber se estamos perto de 10%, 20% ou 30%, mas não para separar 18% de 22%. Se a mensagem 3 quase não traz resposta, a cadência pode encurtar.</li><li>Quem cuida hoje: quantos são cuidados pelo dono ou gerente, por nutricionista fixo, por nutricionista esporádico ou por ninguém. É o mapa da concorrência real e responde, com dados, a pergunta 'por que contratar se dá para fazer sozinho'.</li><li>Como o problema aparece na fala dos donos: fiscalização, Manual e POPs, registros, treinamento, abertura, autuação. O vocabulário que se repete reescreve a primeira mensagem e as respostas.</li><li>Objeções e motivos de recusa por frequência (sem interesse, já tenho, preço, desconfiança de golpe ou de ser a Vigilância). Os três mais comuns definem o que muda no roteiro.</li><li>Segmentos: primeira leitura de qual dos 4 responde e qualifica mais. Com ~25 contatos por segmento (±16 pontos), só diferenças grandes são reais. Não cortar nenhum segmento antes de 60 a 80 contatos nele.</li><li>Calibrar a prioridade comercial e o sinal de oportunidade: os leads 'alta' e com sinal respondem e qualificam mais que 'baixa' e 'nenhum sinal'? Se não, a regra de prioridade muda antes de escalar.</li><li>Acesso ao decisor: % de conversas já com o dono ou gerente que decide, e quantos passos leva chegar a ele quando quem atende é outra pessoa.</li><li>Descoberta antes do convite: quantas perguntas até qualificar e se perguntar antes de oferecer a visita reduz o agendamento (comparar com a meta antiga de 40% de resposta → visita) ou melhora o comparecimento.</li><li>Preço: em que momento a pergunta aparece e se mandar /planos faz a conversa avançar ou morrer.</li><li>Velocidade: tempo real de resposta do SDR e se as respostas em até 5 minutos agendam mais.</li><li>Primeiras ~5 visitas: aconteceram? O decisor estava? A ficha saiu completa para virar proposta em 2 dias úteis? Que plano o nutricionista indicaria (primeira leitura do mix contra os 20/55/25)?</li><li>Custo e capacidade: tempo do SDR por conversa, se 20 a 30 contatos novos por dia cabem junto com respostas e retomadas, e o custo real de deslocamento por visita contra o teto de ~R$ 340.</li><li>Saúde do número: bloqueios, denúncias e quantas pessoas perguntam se é golpe ou a Vigilância. Se sobem na primeira semana, reduzir o volume antes de mexer no texto.</li></ul></div>
+</div>
+<h3>Colunas da planilha do SDR</h3>
+<ul class="lista2"><li>ID: FG-0001, sequencial; uma linha por estabelecimento, nunca duplicar</li><li>Data de identificação</li><li>Estabelecimento: nome limpo, como o dono fala</li><li>Perfil da operação: por quilo/self-service · buffet/eventos · à la carte · padaria/confeitaria com produção · delivery/dark kitchen · lanchonete/café · refeição coletiva · outro</li><li>Segmento de abordagem: 1 Maior complexidade · 2 Produção própria · 3 Nova ou em expansão · 4 Necessidade imediata</li><li>Sinal de oportunidade: abertura recente · expansão · necessidade declarada · pendência conhecida · nenhum sinal</li><li>Prioridade comercial: alta · média · baixa (necessidade + aderência + região + potencial de receita); o SDR trabalha primeiro as altas</li><li>Bairro/cidade e região atendida (S/N)</li><li>Origem do contato: Google Maps · Instagram · iFood · site · indicação de atendente · outro</li><li>Contato: nome confirmado, cargo, telefone e/ou e-mail</li><li>Canal: WhatsApp · e-mail (um canal por lead)</li><li>Coorte: número da semana da Msg 1 (fórmula)</li><li>Msg 1: data</li><li>Entregue: S · N (sem WhatsApp ou um tique só por 48h = N, descartado)</li><li>Msg 2: data</li><li>Msg 3: data</li><li>Data da 1ª resposta humana (automática do WhatsApp Business não conta)</li><li>Respondeu na mensagem: 1 · 2 · 3</li><li>Tipo de resposta: interesse · dúvida · preço · já tem nutricionista · agora não · recusa · descadastro</li><li>O que disse: resumo nas palavras da pessoa</li><li>Quem cuida hoje: dono · gerente · funcionário · nutricionista fixo · nutricionista esporádico · ninguém · não sabe</li><li>Necessidade: S · N · ? e qual (sem acompanhamento, registros, Manual/POPs, pendência ou autuação com prazo, abertura/expansão)</li><li>Aderência: S · N · ?</li><li>Decisor: S · N · ? e o cargo de quem decide</li><li>Data de qualificação: só com os 4 critérios em S</li><li>Motivo de desqualificação</li><li>Data em que agendou</li><li>Visita: data, hora, endereço e quem recebe</li><li>Resultado da visita: realizada · faltou · remarcada (e a data em que foi realizada)</li><li>Decisor presente na visita: S · N</li><li>Nutricionista da visita e link da ficha da visita</li><li>Proposta: plano indicado, valor mensal e data de envio</li><li>Decisão: data e resultado (ganho · perdido · em aberto)</li><li>Motivo de perda</li><li>Contrato: plano fechado, MRR e data do 1º pagamento</li><li>Fez o diagnóstico no site: S · N (o SDR confere pelo telefone na base)</li><li>Status atual (coluna única): identificado · em cadência · conversa · qualificado · agendado · visitado · proposta · cliente · perdido · retorno em <span class="ph">[data]</span> · encerrado · descadastrado · descartado</li><li>Próxima ação e data</li></ul>
+</section>
+<section class="nova">
+<h2><span>11 ·</span> Operação dos canais</h2>
+<h3>WhatsApp</h3>
+<table class="check">
+<tr><th>Item</th><th>O que fazer</th></tr>
+<tr><td>Número dedicado</td><td>Recomendo um número só para prospecção. Mensagem fria gera bloqueio e denúncia, e o WhatsApp restringe o número. Se for o (11) 97646-6553, que está no site, a Food Guard perde também o canal dos leads que chegam sozinhos.</td></tr>
+<tr><td>Perfil completo</td><td>WhatsApp Business com logo, nome "Food Guard", descrição "Consultoria nutricional para serviços de alimentação em São Paulo. Não somos órgão público.", site, CNPJ e horário. O dono toca no perfil antes de responder.</td></tr>
+<tr><td>Volume e ritmo</td><td>20 a 30 conversas novas por dia, digitadas uma a uma. Nada de disparador em massa. Se aparecerem bloqueios, pausa o dia.</td></tr>
+<tr><td>Horário</td><td>Terça a sexta, das 14h30 às 17h. Segunda tem muita cozinha fechada; almoço e jantar enterram a mensagem.</td></tr>
+</table>
+<h3>E-mail (canal secundário)</h3>
+<table class="check">
+<tr><th>Item</th><th>O que fazer</th></tr>
+<tr><td>Domínio separado</td><td>Prospecção nunca sai do foodguardassessoria.com.br nem pelo Resend, que entregam os relatórios do diagnóstico. Registrar um domínio só para prospecção (R$ 40 por ano no Registro.br) com caixa no Google Workspace.</td></tr>
+<tr><td>Autenticação e aquecimento</td><td>SPF, DKIM e DMARC no domínio novo, duas a três semanas de uso leve e depois no máximo 20 a 30 e-mails novos por dia, sem pixel de abertura.</td></tr>
+<tr><td>Formato</td><td>Cara de e-mail pessoal, com a marca na assinatura (assinatura-email.html). As mensagens 2 e 3 vão como resposta no mesmo fio.</td></tr>
+</table>
+</section>
+<section class="nova">
+<h2><span>12 ·</span> Para você aprovar</h2>
+<table>
+<tr><th style="width:28%">Ponto</th><th>O que precisa da sua decisão</th></tr>
+<tr><td><b>Termos x Contrato</b></td><td>Os Termos de uso dizem que o cancelamento pode ser pedido a qualquer momento; o Contrato tem prazo mínimo de 12 meses e multa de 3 mensalidades. O SDR vai ouvir "tem fidelidade?", e hoje não há uma resposta só. Precisa alinhar os dois documentos.</td></tr><tr><td><b>CRN-3</b></td><td>Pedir orientação por escrito sobre a visita de avaliação sem custo como etapa comercial (Código de Ética, Resolução CFN 599/2018, art. 57). Chamar de "visita de avaliação" já ajuda.</td></tr><tr><td><b>Nome do SDR</b></td><td>Hoje quem assina é a empresa. Todos os donos simulados disseram que responderiam mais a uma pessoa com nome. O SDR pode se apresentar pelo primeiro nome ("Aqui é a Ana, da Food Guard") se você quiser.</td></tr><tr><td><b>Número de WhatsApp</b></td><td>Número dedicado à prospecção, separado do número do site.</td></tr>
+
+</table>
+</section>
+</body></html>

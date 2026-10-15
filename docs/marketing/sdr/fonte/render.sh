@@ -12,6 +12,8 @@ for f in preview/email-*.html; do
   rm "preview/$n-raw.png"
 done
 node doc.mjs
-$CH --headless --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=5000 \
-  --print-to-pdf=../plano-sdr.pdf "file://$PWD/../plano-sdr.html" 2>/dev/null
+for doc in plano-sdr manual-sdr; do
+  $CH --headless --no-sandbox --disable-gpu --no-pdf-header-footer --virtual-time-budget=5000 \
+    --print-to-pdf=../$doc.pdf "file://$PWD/../$doc.html" 2>/dev/null
+done
 echo pronto

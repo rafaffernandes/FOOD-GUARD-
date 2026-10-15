@@ -1,25 +1,22 @@
-// Fonte única das mensagens do SDR. WhatsApp e e-mail saem daqui, então o
-// texto é idêntico nos dois canais. Muda só a embalagem: no e-mail entram
-// assunto, assinatura com logo e rodapé.
+// Fonte única das mensagens do SDR. O conteúdo comercial (proposta de valor,
+// segmentação, funil, mensagens e objeções) vem de estrategia.json; aqui ficam
+// as constantes da marca, o agendamento e as mensagens depois de marcada.
+// WhatsApp e e-mail saem daqui com o mesmo texto; no e-mail entram assunto,
+// assinatura com logo e rodapé.
 //
 // Campos entre colchetes são preenchidos à mão, lead a lead:
-//   [Nome]              só se o nome do dono estiver confirmado; sem nome, use `semNome`
+//   [Nome]              só se o nome do dono estiver confirmado; sem nome, abra sem vocativo
 //   [Estabelecimento]   nome limpo, como o dono fala ("Sabor da Vila"). Ajuste o
 //                       artigo em toda mensagem: do/da, no/na, o/a, ao/à
-//                       ("da Padaria Estrela", "na Padaria Estrela")
-//   [origem]            onde o contato foi achado de fato, para caber em "no [origem]":
-//                       Google Maps, Instagram, site de vocês. Contato passado por
-//                       alguém da equipe usa a abertura da nota do card "Atendente"
-//   [bairro ou cidade]  onde fica a operação, como a pessoa falou ("Mooca", "Osasco")
 //   [dia] [hora]        o dia e o horário combinados com a pessoa
 //   [endereço]          endereço da operação, confirmado com a pessoa na mensagem 5
+
+import fs from "node:fs";
 
 export const WA_NUMERO = "5511976466553";
 export const WA_EXIBICAO = "(11) 97646-6553";
 export const SITE = "foodguardassessoria.com.br";
 export const CNPJ = "60.833.961/0001-73";
-export const DIAGNOSTICO = "foodguardassessoria.com.br/diagnostico";
-export const PLANOS = "foodguardassessoria.com.br/planos";
 
 // Quem a Food Guard é. Consultoria nutricional para serviços de alimentação
 // (food service). Nunca "empresa de nutricionistas" nem "assessoria de
@@ -29,103 +26,53 @@ export const QUEM_SOMOS = "Food Guard, consultoria nutricional para serviços de
 // Fechamento padrão: pergunta aberta pelo melhor dia e horário, nunca duas
 // opções prontas. Se a mensagem anterior da mesma conversa já fechou com ela,
 // use uma das variações, para não repetir a frase palavra por palavra.
-const CTA = "Que dia e horário ficam melhores para a visita?";
 const CTA_VOCE = "Que dia e horário ficam melhores para você?";
 export const CTA_VARIACOES = [
-  CTA,
+  "Que dia e horário ficam melhores para a visita?",
   CTA_VOCE,
   "Qual dia da semana costuma ser mais tranquilo para receber o nutricionista?",
   "Quando fica bom para você receber a visita?",
 ];
 
+export const estrategia = JSON.parse(fs.readFileSync(new URL("./estrategia.json", import.meta.url), "utf8"));
+const M = estrategia.mensagens;
+
+const VAZIAS = new Set(["e", "com", "ou", "de", "da", "do", "dos", "das", "em"]);
+const slug = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  .replace(/^\d+\.\s*/, "").replace(/\(.*?\)/g, "").split(/[^a-z0-9]+/)
+  .filter((w) => w && !VAZIAS.has(w)).slice(0, 3).join("-");
+
+const ASSUNTO = "[Estabelecimento]: rotina sanitária e fiscalização";
+
 // ---- Cadência: no máximo três mensagens sem resposta -----------------------
+// A primeira tem uma versão por segmento; a segunda e a terceira são iguais para todos.
+export const primeiras = M.primeiro_contato_por_segmento.map((p, i) => ({
+  id: `1-${slug(p.segmento)}`,
+  segmento: p.segmento,
+  porque: p.por_que,
+  texto: p.texto,
+  email: { assunto: ASSUNTO, fio: "novo" },
+}));
+
 export const cadencia = [
+  ...primeiras.map((p) => ({ ...p, numero: 1, nome: "Primeiro contato" })),
   {
-    id: "1-primeiro-contato",
-    numero: 1,
-    nome: "Primeiro contato",
-    quando: "Terça · 14h30 às 17h",
-    regra: "A pergunta abre a mensagem, porque é a única parte que aparece na notificação. Depois vêm quem é a Food Guard, o que ela faz, de onde veio o contato e, por último, o link do diagnóstico gratuito, que coloca o lead no funil.",
-    texto:
-      "Boa tarde, [Nome]! O Manual de Boas Práticas do [Estabelecimento] está em dia?\n\n" +
-      "Pergunto porque ele é obrigatório e é um dos primeiros documentos que a Vigilância Sanitária pede numa fiscalização.\n\n" +
-      `Aqui é da ${QUEM_SOMOS} em São Paulo. A gente acompanha a operação com visitas de nutricionista, cuida da documentação sanitária e orienta a equipe, seja para se preparar para a fiscalização, seja para regularizar uma notificação. Achamos o contato de vocês no [origem]; se preferir não receber mensagens, é só avisar.\n\n` +
-      `Se quiser ver como a operação está hoje, faça o diagnóstico gratuito no nosso site. São 5 perguntas e o resultado sai na hora:\n${DIAGNOSTICO}`,
-    semNome: "Boa tarde! O Manual de Boas Práticas do [Estabelecimento] está em dia?",
-    email: {
-      assunto: "[Estabelecimento]: o Manual de Boas Práticas está em dia?",
-      fio: "novo",
-    },
+    id: "2-segundo-contato", numero: 2, nome: "Segundo contato", quando: "Sexta · só se não respondeu",
+    regra: M.segundo_contato.por_que, texto: M.segundo_contato.texto,
+    email: { assunto: `Re: ${ASSUNTO}`, fio: "resposta" },
   },
   {
-    id: "2-segundo-contato",
-    numero: 2,
-    nome: "Segundo contato",
-    quando: "Sexta · só se não respondeu",
-    regra: "Uma pergunta nova, sobre um ponto que pega muita operação, e a visita gratuita já oferecida. Nada de \"de novo\" nem de cobrar a resposta anterior.",
-    texto:
-      "Oi, [Nome]! A temperatura das geladeiras e freezers do [Estabelecimento] é anotada todo dia?\n\n" +
-      "Na fiscalização, o que não está registrado conta como não feito.\n\n" +
-      `Se quiser, um nutricionista da Food Guard confere isso e o resto da operação com você numa visita gratuita, sem compromisso. ${CTA_VOCE}`,
-    semNome: "Oi! A temperatura das geladeiras e freezers do [Estabelecimento] é anotada todo dia?",
-    email: {
-      assunto: "Re: [Estabelecimento]: o Manual de Boas Práticas está em dia?",
-      fio: "resposta",
-    },
-  },
-  {
-    id: "3-ultima-tentativa",
-    numero: 3,
-    nome: "Última tentativa",
-    quando: "Terça seguinte · só se não respondeu",
-    regra: "Avisa que é a última, oferece a visita e o diagnóstico do site como alternativa, e fecha com a pergunta e uma despedida educada. Depois dela, o lead sai da lista.",
-    texto:
-      "[Nome], prometo que esta é a última mensagem.\n\n" +
-      "Quer saber como o [Estabelecimento] se sairia numa fiscalização hoje? Um nutricionista da Food Guard vai até aí, conhece a operação com você e mostra o que está em ordem e o que precisa de atenção. A visita é gratuita, e o que ele vê fica entre você e a Food Guard.\n\n" +
-      `Se preferir começar pelo site, o diagnóstico gratuito está aqui:\n${DIAGNOSTICO}\n\n` +
-      `${CTA} Se não for o momento, tudo bem: obrigado pela atenção e bom trabalho!`,
-    semNome: "Prometo que esta é a última mensagem.",
-    email: {
-      assunto: "Re: [Estabelecimento]: o Manual de Boas Práticas está em dia?",
-      fio: "resposta",
-    },
+    id: "3-ultima-tentativa", numero: 3, nome: "Encerramento", quando: "Terça seguinte · só se não respondeu",
+    regra: M.ultima_tentativa.por_que, texto: M.ultima_tentativa.texto,
+    email: { assunto: `Re: ${ASSUNTO}`, fio: "resposta" },
   },
 ];
 
-// ---- Respondeu: sai da cadência e cai aqui ---------------------------------
-// Antes do texto-base, uma ou duas frases respondem o que a pessoa perguntou
-// ou contou. Resposta que ignora a pergunta soa robô e derruba a visita.
+// ---- Respondeu: descoberta e oferta da visita ------------------------------
+export const descoberta = M.descoberta.map((d, i) => ({ id: `d${i + 1}`, ...d }));
+export const ofertaVisita = M.oferta_visita;
+
 export const agendamento = [
-  {
-    id: "4a-respondeu-nao",
-    letra: "4a",
-    nome: "Respondeu \"não\" ou \"não sei\"",
-    quando: "Em até 5 minutos",
-    texto:
-      "Sem problema, [Nome], isso é mais comum do que parece! O primeiro passo é uma visita gratuita: um nutricionista da Food Guard vai até o [Estabelecimento], conhece a operação com você e mostra o que já está em ordem e o que precisa de atenção. O que ele vê fica entre você e a Food Guard.\n\n" +
-      "Se depois vocês quiserem ajuda para acertar o que faltar, a gente apresenta o plano que faz sentido para a operação. Se não, já ficam sabendo o que ajustar.\n\n" +
-      `Quem prefere conhecer a gente antes pode começar pelo diagnóstico gratuito do site:\n${DIAGNOSTICO}\n\n` +
-      CTA,
-  },
-  {
-    id: "4b-respondeu-sim",
-    letra: "4b",
-    nome: "Respondeu \"sim\" à pergunta do Manual ou da temperatura, sem falar da visita",
-    quando: "Em até 5 minutos",
-    texto:
-      "Ótimo, [Nome]! Na fiscalização, o que costuma pegar é a rotina não bater com o que está no Manual: temperatura anotada, higienização, treinamento da equipe.\n\n" +
-      "Por isso a gente começa com uma visita gratuita: um nutricionista da Food Guard vai até o [Estabelecimento], confere com você se o dia a dia está igual ao papel e mostra o que vale ajustar.\n\n" +
-      CTA,
-  },
-  {
-    id: "4c-quer-marcar",
-    letra: "4c",
-    nome: "Topou a visita na mensagem 2 ou na 3 (\"pode vir\", \"vamos marcar\")",
-    quando: "Em até 5 minutos",
-    texto:
-      "Que bom, [Nome]! Vamos marcar, então. Se surgir qualquer dúvida até lá, pode perguntar por aqui.\n\n" +
-      CTA,
-  },
   {
     id: "5-marcando",
     letra: "5",
@@ -172,100 +119,8 @@ export const posAgendamento = [
   },
 ];
 
-// ---- Roteiro do SDR --------------------------------------------------------
-// Toda resposta fecha puxando a visita, menos a recusa e os pedidos que mudam
-// o caminho (ligar, mandar por e-mail, falar com o responsável, voltar depois).
-export const respostas = [
-  {
-    gatilho: "Quanto custa?",
-    texto: `Depende da operação, [Nome]. Os planos são montados para cada modelo de negócio, porque um restaurante tem necessidades diferentes de uma padaria ou de uma cozinha de delivery. Por isso o primeiro passo é a visita, que é gratuita: o nutricionista conhece o dia a dia de vocês e a gente apresenta o plano que faz sentido para o [Estabelecimento], sem compromisso. ${CTA_VOCE}`,
-  },
-  {
-    gatilho: "Quais são os planos? Qual a diferença?",
-    texto: `Os planos variam no nível de acompanhamento: quantas vezes o nutricionista vai até vocês, como fica a documentação e o treinamento da equipe. E são montados para cada modelo de negócio, então o jeito mais certeiro de saber qual serve para o [Estabelecimento] é a visita gratuita: o nutricionista conhece a operação e a gente indica o plano certo, sem compromisso. ${CTA_VOCE}`,
-    nota: `Se a pessoa pedir os planos por escrito, mande ${PLANOS}. A página mostra os valores, então nunca diga que o preço só sai na visita.`,
-  },
-  {
-    gatilho: "Isso é obrigatório?",
-    texto: `O Manual de Boas Práticas e os POPs são, sim. A RDC 216/2004 da Anvisa exige os dois em todo serviço de alimentação, e na cidade de São Paulo a Portaria 2.619/2011 cobra o mesmo. Dá para resolver sem dor de cabeça: na visita gratuita, o nutricionista mostra o que se aplica ao [Estabelecimento] e o que falta. ${CTA_VOCE}`,
-    nota: "Só para quando a dúvida for o Manual. Ter nutricionista não é obrigatório em todo serviço, e a visita é opcional. Fora da capital, corte a frase da Portaria.",
-  },
-  {
-    gatilho: "Quem é? De onde tirou meu número? É da Vigilância?",
-    texto: `Somos a ${QUEM_SOMOS} aqui de São Paulo. Não temos nenhuma ligação com a Vigilância Sanitária: o nosso trabalho é deixar a operação pronta para a fiscalização. Achamos o contato do [Estabelecimento] no [origem]. Se preferir que a gente não escreva mais, é só avisar.\n\nPara conhecer a gente, dá para fazer o diagnóstico gratuito no site:\n${DIAGNOSTICO}\n\nE se quiser ver o trabalho na prática, um nutricionista nosso faz uma visita gratuita à operação. ${CTA_VOCE}`,
-  },
-  {
-    gatilho: "O que vocês fazem exatamente?",
-    texto: `A Food Guard é uma consultoria nutricional para serviços de alimentação. Um nutricionista nosso vai até a operação com frequência, cuida da documentação sanitária, como POPs e registros, orienta a equipe e ajuda a deixar a operação pronta para a fiscalização. O primeiro passo é uma visita gratuita: ele conhece a operação e mostra o que se aplica ao [Estabelecimento]. ${CTA_VOCE}`,
-  },
-  {
-    gatilho: "Quem vai vir?",
-    texto: `Vai um nutricionista da Food Guard, com registro no CRN, o conselho dos nutricionistas. Ele chega identificado como Food Guard e conhece a operação junto com você. ${CTA}`,
-    nota: "Se você aprovar o nome e o CRN na confirmação (seção 11), acrescentar antes da pergunta: \"O nome dele vai na confirmação.\"",
-  },
-  {
-    gatilho: "Com quem eu falo? É robô?",
-    texto: `Não é robô, não! Aqui é do atendimento da Food Guard, a gente cuida da agenda das visitas do nutricionista. Se tiver alguma dúvida, pode perguntar. E se quiser marcar a visita gratuita, ${CTA_VOCE.charAt(0).toLowerCase()}${CTA_VOCE.slice(1)}`,
-    nota: "Não dar nome próprio: quem assina é a empresa.",
-  },
-  {
-    gatilho: "Já tenho nutricionista",
-    texto: `Que bom, isso já ajuda muito! A visita não é para substituir ninguém: ela funciona como uma segunda opinião antes da próxima fiscalização, e um nutricionista da Food Guard confere com você se a rotina está batendo com o papel. É gratuita e sem compromisso. ${CTA_VOCE}`,
-  },
-  {
-    gatilho: "Aqui é só delivery, isso vale para mim?",
-    texto: `Vale, sim! Cozinha que só entrega segue as mesmas regras de boas práticas de um restaurante, inclusive o Manual. E o delivery tem pontos próprios, como embalagem e transporte, que o nutricionista também confere na visita gratuita. ${CTA}`,
-  },
-  {
-    gatilho: "Vocês atendem na minha região?",
-    texto: `Atendemos, sim! A Food Guard atende a cidade de São Paulo e a Grande SP, e [bairro ou cidade] está dentro. A visita gratuita é feita no próprio [Estabelecimento]. ${CTA_VOCE}`,
-    nota: "Fora da área: \"Por enquanto a Food Guard atende só a cidade de São Paulo e a Grande SP, então não conseguimos levar o nutricionista até aí. Obrigado pela atenção e bom trabalho!\" Status encerrado.",
-  },
-  {
-    gatilho: "Fui autuado / tenho prazo para regularizar",
-    texto: "Entendi, [Nome]. Nesse caso vale agir rápido, e a gente pode ajudar. Dá para priorizar uma visita gratuita: o nutricionista vai até aí, entende o que foi apontado e mostra os próximos passos para regularizar. Se puder, separa o auto ou a notificação que a fiscalização deixou. Qual é o primeiro dia e horário que você consegue?",
-    nota: "Encaixe no primeiro horário livre da agenda. Não desmarque visita já confirmada de outro estabelecimento para abrir vaga.",
-  },
-  {
-    gatilho: "Me manda mais informações",
-    texto: `Claro! A Food Guard é uma consultoria nutricional para serviços de alimentação: a gente acompanha a operação com visitas de nutricionista, cuida da documentação sanitária e orienta a equipe para a fiscalização. No site você conhece o nosso trabalho e pode fazer um diagnóstico gratuito:\n${DIAGNOSTICO}\n\nMas o que mais ajuda é a visita gratuita, porque cada operação tem a sua realidade e o nutricionista mostra o que vale para o [Estabelecimento]. ${CTA_VOCE}`,
-  },
-  {
-    gatilho: "Manda por e-mail",
-    texto: "Mando, sim! Vou te mandar como funciona a visita gratuita e o link do nosso diagnóstico, e você pode responder por lá mesmo. Qual é o seu e-mail?",
-    nota: "Mandar por e-mail o texto da 4a sem a primeira frase, abrindo com \"Oi, [Nome]! Como combinamos, segue como funciona: o primeiro passo é uma visita gratuita...\", com a assinatura e o assunto \"[Estabelecimento]: visita gratuita do nutricionista\". Trocar o canal na planilha.",
-  },
-  {
-    gatilho: "Me liga",
-    texto: "Ligo, sim! Pode ser agora ou prefere outro horário hoje?",
-    nota: "Na ligação, apresentar-se como atendimento da Food Guard, sem nome próprio, responder a dúvida e fechar dia e hora da visita gratuita. Depois, mandar a mensagem 5 por escrito para o combinado ficar registrado.",
-  },
-  {
-    gatilho: "Atendente: o dono não está",
-    texto: "Tudo bem, obrigado por avisar! Queria falar com quem cuida da operação aí, para oferecer uma visita gratuita do nutricionista da Food Guard. Pode me passar o contato dessa pessoa ou um bom horário para falar com ela?",
-    nota: "Recebeu o contato: começar a cadência com o responsável pela mensagem 1, citando quem passou (\"Boa tarde, [Nome]! A [quem passou] do [Estabelecimento] passou seu contato: o Manual de Boas Práticas está em dia?\"). Recebeu só um horário: escrever de novo neste número nesse horário. Sem retorno, segue a cadência neste número.",
-  },
-  {
-    gatilho: "Esses dias não dá / preciso remarcar",
-    texto: `Sem problema, [Nome], a gente se ajusta! ${CTA_VOCE}`,
-    nota: "Se a visita já estava marcada, mandar a confirmação de novo com a nova data. Segunda remarcação sem data definida: tratar como \"agora não\".",
-  },
-  {
-    gatilho: "Respondeu e sumiu",
-    texto: `Oi, [Nome]! Tudo certo por aí? Ficou faltando só a gente combinar a visita gratuita do nutricionista no [Estabelecimento]. ${CTA_VOCE}`,
-    nota: "Uma única retomada, dois dias úteis depois, no horário de envio. Sem resposta, encerra. Nunca reenviar a cadência.",
-  },
-  {
-    gatilho: "Agora não / vou pensar",
-    texto: `Sem problema! Enquanto isso, se quiser ver como a operação está, o diagnóstico gratuito do site fica aqui:\n${DIAGNOSTICO}\n\nPosso voltar a falar com você daqui a um mês?`,
-    nota: "Só volte se a pessoa topar: status \"retorno em [data]\" na planilha. Na data, uma mensagem só, fora da cadência: \"Oi, [Nome]! Como combinamos, voltando a falar da visita gratuita do nutricionista no [Estabelecimento]. Que dia e horário ficam melhores para você?\" Sem resposta, encerra. Se ela disser que não precisa voltar, trate como recusa.",
-  },
-  {
-    gatilho: "Não tenho interesse / sair / resposta grosseira",
-    texto: "Tudo bem, não vamos mais mandar mensagem. Se um dia precisar, é só chamar aqui. Bom trabalho!\n\nEquipe Food Guard",
-    nota: "Encerrar na hora e marcar como descadastrado. Convite de agenda para quem recusou vira denúncia e derruba o número.",
-  },
-];
+// ---- Roteiro de objeções ---------------------------------------------------
+export const respostas = M.objecoes.map((o) => ({ gatilho: o.gatilho, texto: o.texto, nota: o.nota }));
 
 // Mensagem automática do WhatsApp Business (saudação, cardápio) não conta
 // como resposta: o lead segue na cadência. Áudio do lead conta: ouvir,
