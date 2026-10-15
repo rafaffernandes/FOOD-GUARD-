@@ -10,6 +10,10 @@ const { cadencia, descoberta, ofertaVisita, agendamento, posAgendamento, respost
   fs.readFileSync(path.join(PREVIEW, "dados.json"), "utf8"),
 );
 const { proposta, segmentacao, funil } = estrategia;
+// Versões curtas para o plano de aprovação; o manual usa o texto completo.
+const resumo = estrategia.resumo;
+const segCurto = (s) => resumo?.segmentos.find((r) => r.nome === s.nome) ?? { dor: s.dor_provavel, angulo: s.angulo, isca: s.isca };
+const etapaCurta = (e) => resumo?.etapas.find((r) => r.etapa === e.etapa) ?? { definicao: e.definicao, hipotese: e.hipotese_inicial };
 const css = fs.readFileSync(path.join(FONTE, "doc.css"), "utf8").replaceAll("url(MEDIA/", `url(file://${MEDIA}/`);
 
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -80,7 +84,7 @@ ${segmentacao.campos_da_base.map((c) => `<tr><td><b>${esc(c.campo)}</b></td><td>
 <div class="intro">Os segmentos são <b>hipóteses</b>. Depois das primeiras 100 conversas, os números de cada um dizem onde vale insistir. Como reconhecer cada um, a rubrica de prioridade e a ordem de ataque do dia estão no Manual do SDR.</div>
 <table>
 <tr><th style="width:22%">Segmento</th><th style="width:26%">Dor provável</th><th style="width:30%">Ângulo da mensagem</th><th style="width:22%">Isca</th></tr>
-${segmentacao.segmentos.map((s) => `<tr><td><b>${esc(s.nome)}</b></td><td>${esc(s.dor_provavel)}</td><td>${esc(s.angulo)}</td><td>${esc(s.isca)}</td></tr>`).join("")}
+${segmentacao.segmentos.map((s) => { const c = segCurto(s); return `<tr><td><b>${esc(s.nome)}</b></td><td>${esc(c.dor)}</td><td>${esc(c.angulo)}</td><td>${esc(c.isca)}</td></tr>`; }).join("")}
 </table>
 <h3>Os campos novos na base</h3>
 <table>
@@ -122,14 +126,18 @@ const secPrimeiras = (completo) => `
 <section class="nova">
 <h2><span>5 ·</span> Primeiro contato, uma versão por segmento</h2>
 <div class="intro">A pergunta abre a mensagem porque é a única parte que aparece na notificação, e ela serve para <b>descobrir</b> quem cuida da rotina sanitária, não para empurrar a visita. Sem nome confirmado, a mensagem abre sem o [Nome].</div>
-${primeiras.map((m) => `
+${completo ? primeiras.map((m) => `
 <div class="msg1">
   <div class="seg-nome">${esc(m.segmento)}</div>
   <div class="duas">
     <div class="col-w">${notif(m.texto)}<div class="bolha">${whats(m.texto)}</div></div>
-    <div class="col-e">${completo ? `<div class="canal">Por que assim</div><p>${esc(m.porque)}</p>` : ""}</div>
+    <div class="col-e"><div class="canal">Por que assim</div><p>${esc(m.porque)}</p></div>
   </div>
-</div>`).join("")}
+</div>`).join("") : `<div class="cols2">${primeiras.map((m) => `
+<div class="msg1">
+  <div class="seg-nome">${esc(m.segmento)}</div>
+  ${notif(m.texto)}<div class="bolha">${whats(m.texto)}</div>
+</div>`).join("")}</div>`}
 <div class="canal">Exemplo no e-mail (o primeiro segmento)</div>
 <img class="shot" style="max-width:120mm" src="file://${PREVIEW}/email-${primeiras[0].id}.png" alt="">
 </section>`;
@@ -157,12 +165,12 @@ const secDescoberta = (completo) => `
 <section class="nova">
 <h2><span>7 ·</span> Quando a pessoa responde: descoberta e oferta</h2>
 <div class="intro"><b>Uma ou duas perguntas, no máximo.</b> O objetivo é entender quem cuida da rotina, como ela é feita e se existe uma necessidade que justifique a visita. Quem diz que está tudo certo e não mostra brecha recebe o checklist e não é empurrado para a visita.</div>
-${descoberta.map((d) => `
+<div class="${completo ? "" : "cols2"}">${descoberta.map((d) => `
 <div class="ramo-card">
   <div class="sit">${esc(d.situacao)}</div>
   <div class="bolha">${whats(d.mensagem)}</div>
   ${completo ? `<div class="prox"><b>Depois:</b> ${esc(d.proximo_passo)}</div>` : ""}
-</div>`).join("")}
+</div>`).join("")}</div>
 <h3>Oferta da visita</h3>
 <p style="color:var(--muted)">${esc(ofertaVisita.quando_usar)}</p>
 <div class="bolha">${whats(ofertaVisita.texto)}</div>
@@ -203,12 +211,15 @@ const secFunil = (completo) => `
 <section class="nova">
 <h2><span>10 ·</span> Funil: do primeiro contato à receita</h2>
 <div class="intro">Taxa de resposta sozinha engana: uma operação com menos respostas pode fechar mais contratos. O número que importa é <b>receita recorrente por 100 contatos</b>. As taxas abaixo são <b>hipóteses</b> para começar; depois das primeiras 100 conversas, viram o número real.</div>
-<table>
+${completo ? `<table>
 <tr><th style="width:17%">Etapa</th><th style="width:27%">Definição</th><th style="width:24%">Para avançar</th><th style="width:16%">Métrica</th><th style="width:16%">Hipótese inicial</th></tr>
 ${funil.etapas.map((e) => `<tr><td><b>${esc(e.etapa)}</b></td><td>${esc(e.definicao)}</td><td>${esc(e.criterio_para_avancar)}</td><td>${esc(e.metrica)}</td><td>${esc(e.hipotese_inicial)}</td></tr>`).join("")}
-</table>
-<h3>O que é um lead qualificado</h3><p>${esc(funil.qualificacao)}</p>
-<h3>A conta até a receita</h3><p>${esc(funil.conta_ate_a_receita)}</p>
+</table>` : `<table>
+<tr><th style="width:24%">Etapa</th><th style="width:46%">O que é</th><th style="width:30%">Hipótese inicial</th></tr>
+${funil.etapas.map((e) => { const c = etapaCurta(e); return `<tr><td><b>${esc(e.etapa)}</b></td><td>${esc(c.definicao)}</td><td>${esc(c.hipotese)}</td></tr>`; }).join("")}
+</table>`}
+<h3>O que é um lead qualificado</h3><p>${esc(completo ? funil.qualificacao : resumo?.qualificacao ?? funil.qualificacao)}</p>
+<h3>A conta até a receita</h3><p>${esc(completo ? funil.conta_ate_a_receita : resumo?.conta ?? funil.conta_ate_a_receita)}</p>
 ${completo ? `<div class="cols2">
   <div><h3>Relatório de toda sexta</h3>${lista(funil.relatorio_semanal)}</div>
   <div><h3>O que aprender nas primeiras 100 conversas</h3>${lista(funil.o_que_aprender_nas_primeiras_100)}</div>
@@ -240,9 +251,7 @@ const secCanais = `
 
 // ---- 12. Aprovação -----------------------------------------------------------
 const decisoesFixas = [
-  ["Termos x Contrato", "Os Termos de uso dizem que o cancelamento pode ser pedido a qualquer momento; o Contrato tem prazo mínimo de 12 meses e multa de 3 mensalidades. O SDR vai ouvir \"tem fidelidade?\", e hoje não há uma resposta só. Precisa alinhar os dois documentos."],
   ["CRN-3", "Pedir orientação por escrito sobre a visita de avaliação sem custo como etapa comercial (Código de Ética, Resolução CFN 599/2018, art. 57). Chamar de \"visita de avaliação\" já ajuda."],
-  ["Nome do SDR", "Hoje quem assina é a empresa. Todos os donos simulados disseram que responderiam mais a uma pessoa com nome. O SDR pode se apresentar pelo primeiro nome (\"Aqui é a Ana, da Food Guard\") se você quiser."],
   ["Número de WhatsApp", "Número dedicado à prospecção, separado do número do site."],
 ];
 const secAprovar = `
@@ -256,7 +265,7 @@ ${(estrategia.decisoes_para_o_dono ?? []).map((d) => `<tr><td colspan="2">${esc(
 </section>`;
 
 // ---- 1. O que mudou ----------------------------------------------------------
-const secMudou = `
+const secMudou = (completo) => `
 <section>
 <h2><span>1 ·</span> O que mudou nesta versão</h2>
 <div class="intro">${esc(estrategia.diagnostico)}</div>
@@ -268,7 +277,7 @@ const secMudou = `
 <tr><td>Segundo e terceiro contatos insistindo na visita</td><td>Segundo contato oferece o checklist de 80 itens, que já captura o lead no site. Terceiro encerra com educação e deixa a porta aberta.</td></tr>
 <tr><td>Metas de resposta e agendamento</td><td>Funil completo até contrato e receita recorrente, com hipóteses por etapa.</td></tr>
 </table>
-${(estrategia.mudancas_pos_critica ?? []).length ? `<h3>Ajustes depois da crítica do diretor comercial e dos donos simulados</h3>${lista(estrategia.mudancas_pos_critica)}` : ""}
+${completo && (estrategia.mudancas_pos_critica ?? []).length ? `<h3>Ajustes depois da crítica do diretor comercial e dos donos simulados</h3>${lista(estrategia.mudancas_pos_critica)}` : ""}
 </section>`;
 
 function montar(completo) {
@@ -295,7 +304,7 @@ function montar(completo) {
     ${rodape}
   </div>
 </div>
-${secMudou}${secProposta(completo)}${secSegmentos(completo)}${secRegras}${secPrimeiras(completo)}${secSeguintes}${secDescoberta(completo)}${secAgenda(completo)}${secObjecoes(completo)}${secFunil(completo)}${secCanais}${secAprovar}
+${secMudou(completo)}${secProposta(completo)}${secSegmentos(completo)}${secRegras}${secPrimeiras(completo)}${secSeguintes}${secDescoberta(completo)}${secAgenda(completo)}${secObjecoes(completo)}${secFunil(completo)}${secCanais}${secAprovar}
 </body></html>`;
 }
 
