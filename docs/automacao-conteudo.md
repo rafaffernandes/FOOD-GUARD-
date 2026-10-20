@@ -72,8 +72,8 @@ Os detalhes mudam na Meta de tempos em tempos; confira na tela. Resumo:
    uma etapa a mais, que o Claude ajuda a preparar.
 4. Gerar o token de acesso com a permissão de publicação e trocá-lo por um token
    de 60 dias.
-5. Passar para o Claude: o token, o ID da conta do Instagram e o ID do app. Eles
-   vão como variáveis de ambiente na Vercel, nunca no código.
+5. Guardar o token e o ID da conta nos segredos do ambiente do Claude, nunca no chat.
+   Passo a passo em `docs/conectar-instagram.md`.
 
 Limites que a Meta documenta: só imagens JPEG, até 8 MB, proporção entre 4:5 e
 1,91:1, as imagens precisam estar em endereço público no momento da publicação.

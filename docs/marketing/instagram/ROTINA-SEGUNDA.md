@@ -13,6 +13,7 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
 
 1. Trabalhe na branch `claude/charming-allen-Nc7aL`:
    `git fetch origin claude/charming-allen-Nc7aL && git checkout claude/charming-allen-Nc7aL && git pull`.
+   Se o repositório não estiver na sessão, adicione `rafaffernandes/FOOD-GUARD-` e clone antes.
    Rode `npm install` se `node_modules` não existir (o gerador de imagens usa `sharp`).
 2. Datas da semana: a quarta e o sábado desta semana, às 18h.
 3. Pautas: em `docs/marketing/instagram/pautas.json`, pegue as duas primeiras com status
