@@ -43,6 +43,10 @@ h1,h2{font-family:Sora,sans-serif;letter-spacing:-.02em;font-weight:700}
 .capa .desliza{font-size:34px;color:${C.suave};font-weight:600;margin-bottom:34px}
 .miolo h2{font-size:78px;line-height:1.1;margin-bottom:46px}
 .miolo p{font-size:46px;line-height:1.38;color:#e6eef6;font-weight:500}
+.origem{display:inline-block;align-self:flex-start;font-size:26px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:10px 22px;border-radius:999px;margin:-14px 0 34px;border:2px solid rgba(255,255,255,.28);color:${C.suave}}
+.origem.norma{border-color:${C.verde};color:${C.verdeClaro}}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,28,52,.62) 0%,rgba(11,28,52,.93) 78%)}
 .destaque{font-family:Sora,sans-serif;font-weight:800;color:${C.verde};font-size:230px;line-height:1;letter-spacing:-.04em;margin:8px 0 22px}
 .destaque.curto{font-size:300px}
 .fim h2{font-size:84px;line-height:1.1;margin-bottom:40px}
@@ -55,11 +59,13 @@ function pontos(i) { return `<div class="pontos">${dados.slides.map((_, k) => `<
 
 function html(s, i) {
   const rodape = `<div class="pag"><span>${i + 1} / ${total}</span>${pontos(i)}</div>`;
-  const fundo = `<div class="grade"></div><div class="brilho"></div>`;
+  const foto = s.foto ? `<div class="foto" style="background-image:url(data:image/jpeg;base64,${b64(path.resolve(path.dirname(entrada), s.foto))})"></div>` : "";
+  const fundo = `${foto}<div class="grade"></div><div class="brilho"></div>`;
   if (i === 0) return `<div class="slide capa">${fundo}<div class="z tag">${esc(dados.tag ?? "Food Guard")}</div><h1 class="z">${esc(s.titulo)}</h1><div class="z desliza">Deslize para ver →</div>${rodape}</div>`;
   if (i === total - 1) return `<div class="slide fim">${fundo}<div class="z barra"></div><h2 class="z">${esc(s.titulo)}</h2><p class="z">${esc(s.texto)}</p><div class="z cta">${esc(dados.cta ?? "Link na bio")}</div><img class="z" src="data:image/png;base64,${logo}" alt="">${rodape}</div>`;
   const dest = s.destaque ? `<div class="z destaque ${String(s.destaque).length <= 4 ? "curto" : ""}">${esc(s.destaque)}</div>` : "";
-  return `<div class="slide miolo">${fundo}<div class="z barra"></div><h2 class="z">${esc(s.titulo)}</h2>${dest}<p class="z">${esc(s.texto)}</p>${rodape}</div>`;
+  const origem = s.origem ? `<div class="z origem ${/norma|rdc|portaria/i.test(s.origem) && !/sugest/i.test(s.origem) ? "norma" : ""}">${esc(s.origem)}</div>` : "";
+  return `<div class="slide miolo">${fundo}<div class="z barra"></div>${origem}<h2 class="z">${esc(s.titulo)}</h2>${dest}<p class="z">${esc(s.texto)}</p>${rodape}</div>`;
 }
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });

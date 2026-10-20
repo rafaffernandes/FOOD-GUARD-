@@ -60,6 +60,6 @@ ${linhas.map(([a, n, o, c]) => `<tr><td>${esc(a)}</td><td>${esc(n)}</td><td>${es
 <ul>${rotina.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
 <div class="alerta"><b>Prazo.</b> Para sair no sábado às 18h, a resposta precisa chegar até o meio-dia. Se não der tempo, o post vai para a semana seguinte, sem prejuízo.</div>
 </section></body></html>`;
-fs.writeFileSync(path.join(OUT, "ficha-renan-temperatura.html"), html);
-execFileSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome", ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${path.join(OUT, "ficha-renan-temperatura.pdf")}`, `file://${path.join(OUT, "ficha-renan-temperatura.html")}`], { stdio: "ignore" });
+fs.writeFileSync(path.join(OUT, "ficha-renan-temperatura-rascunho.html"), html);
+execFileSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome", ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${path.join(OUT, "ficha-renan-temperatura-rascunho.pdf")}`, `file://${path.join(OUT, "ficha-renan-temperatura-rascunho.html")}`], { stdio: "ignore" });
 console.log("ficha gerada");
