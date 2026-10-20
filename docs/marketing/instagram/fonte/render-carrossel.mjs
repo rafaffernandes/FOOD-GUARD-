@@ -47,7 +47,7 @@ h1,h2{font-family:Sora,sans-serif;letter-spacing:-.02em;font-weight:700}
 .origem.norma{border-color:${C.verde};color:${C.verdeClaro}}
 .foto{position:absolute;inset:0;background-size:cover;background-position:center}
 .foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,28,52,.62) 0%,rgba(11,28,52,.93) 78%)}
-.destaque{font-family:Sora,sans-serif;font-weight:800;color:${C.verde};font-size:230px;line-height:1;letter-spacing:-.04em;margin:8px 0 22px}
+.destaque{font-family:Sora,sans-serif;font-weight:800;color:${C.verde};font-size:230px;line-height:1;letter-spacing:-.04em;margin:8px 0 22px;width:888px;overflow:hidden}
 .destaque.curto{font-size:300px}
 .fim h2{font-size:84px;line-height:1.1;margin-bottom:40px}
 .fim p{font-size:44px;line-height:1.4;color:#e6eef6;margin-bottom:56px}
@@ -74,6 +74,22 @@ const arquivos = [];
 for (let i = 0; i < total; i++) {
   await page.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${base}</style></head><body>${html(dados.slides[i], i)}</body></html>`);
   await page.evaluate(() => document.fonts.ready);
+  // Ajusta o destaque (e, se preciso, o texto) para caber na largura e acima do rodapé.
+  await page.evaluate(() => {
+    const slide = document.querySelector(".slide");
+    const d = document.querySelector(".destaque");
+    const p = document.querySelector(".slide p");
+    const pag = document.querySelector(".pag");
+    if (!slide || !pag) return;
+    const limite = pag.getBoundingClientRect().top - 28;
+    const cabe = () => (!d || d.scrollWidth <= d.clientWidth + 1) &&
+      [...slide.querySelectorAll(".z")].every((el) => el.classList.contains("pag") || el.getBoundingClientRect().bottom <= limite);
+    if (d) d.style.whiteSpace = d.textContent.trim().includes(" ") ? "normal" : "nowrap";
+    let fd = d ? parseFloat(getComputedStyle(d).fontSize) : 0;
+    while (d && !cabe() && fd > 96) { fd -= 6; d.style.fontSize = fd + "px"; }
+    let fp = p ? parseFloat(getComputedStyle(p).fontSize) : 0;
+    while (p && !cabe() && fp > 34) { fp -= 2; p.style.fontSize = fp + "px"; }
+  });
   const png = await page.screenshot({ type: "png", clip: { x: 0, y: 0, width: 1080, height: 1350 } });
   const f = path.join(saida, `slide-${String(i + 1).padStart(2, "0")}.jpg`);
   await sharp(png).flatten({ background: C.navy }).jpeg({ quality: 92, mozjpeg: true }).toFile(f);
