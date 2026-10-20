@@ -1,0 +1,16 @@
+{
+  "_como_usar": "Fila de pautas da rotina de segunda-feira. A rotina pega as duas primeiras com status 'pendente', na ordem. Depois de produzir, troca o status para 'enviada para aprovação' e anota a data. 'aguarda_renan' só entra quando o Renan liberar.",
+  "pautas": [
+    { "tema": "Manipuladores de alimentos: higiene, saúde e capacitação da equipe (RDC 216/2004)", "angulo": "Equipe nova e temporários de fim de ano", "status": "enviada para aprovação", "data": "2026-10-21" },
+    { "tema": "Controle integrado de vetores e pragas: o que a RDC 216/2004 pede e o que guardar", "angulo": "Começo do verão, padarias e restaurantes", "status": "enviada para aprovação", "data": "2026-10-24" },
+    { "tema": "Transporte do alimento pronto no delivery: o que a RDC 216/2004 pede da saída da cozinha até o cliente", "angulo": "Cozinhas de delivery e restaurantes que entregam. Sem números de temperatura que não estejam confirmados em fonte que cite a norma", "status": "pendente" },
+    { "tema": "Higienização de hortaliças e frutas: o que a RDC 216/2004 pede", "angulo": "Restaurantes e self-service. Produto regularizado e diluição conforme o rótulo, sem fixar concentração que não esteja confirmada", "status": "pendente" },
+    { "tema": "Caixa d'água do restaurante: higienização e o registro que a RDC 216/2004 pede", "angulo": "Todos os segmentos. Conferir o prazo da norma e qualquer exceção antes de afirmar", "status": "pendente" },
+    { "tema": "Lixo e resíduos na cozinha: lixeiras, retirada e área de resíduos segundo a RDC 216/2004", "angulo": "Cozinhas novas e operações de alto volume", "status": "pendente" },
+    { "tema": "Padaria e confeitaria seguem a RDC 216/2004? O que muda na produção própria", "angulo": "Padarias com produção própria, antes das encomendas de fim de ano", "status": "pendente" },
+    { "tema": "Pendências sanitárias: por onde começar a corrigir", "angulo": "Quem sabe que tem coisa fora do lugar e não sabe a ordem", "status": "pendente" },
+    { "tema": "A pasta de comprovantes da cozinha: o que guardar para a fiscalização", "angulo": "Documentação que prova a rotina: POPs, registros, comprovantes de terceiros", "status": "pendente" },
+    { "tema": "Higienização de instalações, equipamentos, móveis e utensílios: o POP do dia a dia", "angulo": "Rotina de limpeza que a equipe consegue cumprir e registrar", "status": "pendente" },
+    { "tema": "Controle de temperatura em restaurantes: o que a norma cobra", "angulo": "Rascunho pronto em docs/rascunhos-blog. Só entra quando o Renan confirmar os números na ficha", "status": "aguarda_renan" }
+  ]
+}

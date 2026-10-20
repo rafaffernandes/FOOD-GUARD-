@@ -691,7 +691,8 @@
   "data": "2026-10-21",
   "dir": "quarta-2026-10-21",
   "quando": "quarta-feira, 21/10, às 18h",
-  "foto": "/home/user/FOOD-GUARD-/public/blog-fiscalizacao-vigilancia-sanitaria.jpg"
+  "foto": "/home/user/FOOD-GUARD-/public/blog-fiscalizacao-vigilancia-sanitaria.jpg",
+  "pacote": "aprovacao-semana-2026-10-19.pdf"
  },
  {
   "post": {
@@ -1188,6 +1189,7 @@
   "chave": "sabado-24-10",
   "data": "2026-10-24",
   "dir": "sabado-2026-10-24",
-  "quando": "sábado, 24/10, às 18h"
+  "quando": "sábado, 24/10, às 18h",
+  "pacote": "aprovacao-semana-2026-10-19.pdf"
  }
 ]

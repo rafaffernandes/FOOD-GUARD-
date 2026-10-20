@@ -1,0 +1,51 @@
+# Rotina de segunda-feira: conteúdo da semana para aprovação
+
+Roda toda segunda, perto do meio-dia (horário de Brasília), numa sessão nova. Objetivo:
+mandar ao Rafael e ao Renan, por e-mail, os dois posts da semana (blog e Instagram) para
+aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.**
+
+## Destinatários
+
+- rafael.andes2@gmail.com
+- reeh_rizzo@hotmail.com (Renan, nutricionista, faz a curadoria técnica)
+
+## Passo a passo
+
+1. Trabalhe na branch `claude/charming-allen-Nc7aL`:
+   `git fetch origin claude/charming-allen-Nc7aL && git checkout claude/charming-allen-Nc7aL && git pull`.
+   Rode `npm install` se `node_modules` não existir (o gerador de imagens usa `sharp`).
+2. Datas da semana: a quarta e o sábado desta semana, às 18h.
+3. Pautas: em `docs/marketing/instagram/pautas.json`, pegue as duas primeiras com status
+   `pendente`, na ordem. Não use `aguarda_renan`.
+4. Produção: rode o workflow salvo em `docs/marketing/instagram/fonte/workflow-posts-da-semana.js`
+   (Workflow com `scriptPath`), com `args` no formato
+   `{ "posts": [{ "chave": "quarta-DD-MM", "dia": "quarta-feira, DD/MM/AAAA", "tema": ..., "angulo": ... }, { sábado igual }], "existentes": [títulos de content/blog e docs/rascunhos-blog] }`.
+   Ele escreve, revisa tecnicamente e devolve o post final, o carrossel, a ficha do Renan e as decisões.
+5. Montagem: grave o resultado em `docs/marketing/instagram/fonte/semana-AAAA-MM-DD.json`
+   (data da segunda), um item por post com `chave`, `data` (AAAA-MM-DD), `dir`
+   (`quarta-AAAA-MM-DD` / `sabado-AAAA-MM-DD`), `quando` ("quarta-feira, DD/MM, às 18h") e
+   `pacote` (`aprovacao-semana-AAAA-MM-DD.pdf`). Depois rode, a partir de
+   `docs/marketing/instagram/fonte/`:
+   - `node montar-semana.mjs semana-AAAA-MM-DD.json`
+   - `node gerar-pacote.mjs semana-AAAA-MM-DD.json ../aprovacao-semana-AAAA-MM-DD.pdf`
+   Confira o mosaico de cada carrossel (texto cortado ou encostando no rodapé).
+6. Pautas usadas: troque o status para `enviada para aprovação` e anote a data.
+7. Commit e push **só na branch** (`git push -u origin claude/charming-allen-Nc7aL`).
+8. E-mail: `node gerar-email-aprovacao.mjs semana-AAAA-MM-DD.json <SHA do commit> ../email-aprovacao-semana-AAAA-MM-DD.html`.
+   Confira se os links respondem (`curl -o /dev/null -w "%{http_code}"`). Envie pelo Gmail para
+   os dois destinatários, com o HTML em `htmlBody` e uma versão em texto com os links em `body`.
+   Assunto: `Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)`.
+   Se o Gmail não tiver ferramenta de envio, crie o rascunho e avise o Rafael.
+
+## Regras do conteúdo
+
+As regras de marca e de verdade estão no próprio workflow e no `CLAUDE.md`. As principais:
+consultoria nutricional para serviços de alimentação; só RDC 216/2004 e Portaria 2.619/2011;
+nada de caso, depoimento ou estatística inventada; nada de número que não tenha fonte que cite a
+norma; o post fica em `docs/rascunhos-blog` até ser aprovado.
+
+## Envio único desta semana
+
+Se a mensagem que disparou a rotina disser "envie a semana 2026-10-19", não produza nada: o
+conteúdo já existe. Envie o HTML de `docs/marketing/instagram/email-aprovacao-semana-2026-10-19.html`
+com o assunto `Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10)`.
