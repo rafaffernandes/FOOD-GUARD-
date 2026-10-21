@@ -35,9 +35,19 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
 8. E-mail: `node gerar-email-aprovacao.mjs semana-AAAA-MM-DD.json <SHA do commit> ../email-aprovacao-semana-AAAA-MM-DD.html`.
    Confira se os links respondem (`curl -o /dev/null -w "%{http_code}"`). Envie com
    `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)"`.
-   O envio é pelo Resend, com a variável `RESEND_API_KEY` do ambiente; ele vai para o Rafael e
-   para o Renan, e as respostas voltam para o Rafael. Se o envio falhar (sem chave, rede ou
-   erro do Resend), não tente outro caminho: registre o erro no commit.
+   O envio é pelo Resend. A chave fica num segredo de rede do ambiente (host `api.resend.com`):
+   o proxy coloca a chave na requisição, ela não aparece na sessão e não está em variável de
+   ambiente. O e-mail vai para o Rafael e para o Renan, e as respostas voltam para o Rafael. Se
+   o envio falhar (401/403 é chave ausente; erro de conexão é rede), não tente outro caminho:
+   registre o erro no commit.
+
+## Configuração (uma vez, feita pelo Rafael)
+
+No Claude, setinha ao lado do título da sessão → **Editar ambiente na nuvem** → **Segredos de
+rede** → **Adicionar segredo**: tipo **Bearer**, nome `Resend Food Guard`, site permitido
+`api.resend.com`, cabeçalho `Authorization` com prefixo `Bearer` e a chave do Resend no valor →
+**Adicionar**. Não precisa mexer em Acesso à rede. Detalhes da tela em `docs/conectar-instagram.md`,
+Parte 2 (é o mesmo formulário).
 
 ## Regras do conteúdo
 
