@@ -37,9 +37,12 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)"`.
    O envio é pelo Resend. A chave fica num segredo de rede do ambiente (host `api.resend.com`):
    o proxy coloca a chave na requisição, ela não aparece na sessão e não está em variável de
-   ambiente. O e-mail vai para o Rafael e para o Renan, e as respostas voltam para o Rafael. Se
-   o envio falhar (401/403 é chave ausente; erro de conexão é rede), não tente outro caminho:
-   registre o erro no commit.
+   ambiente. O e-mail vai para o Rafael e para o Renan, e as respostas voltam para o Rafael.
+   Não teste a chave com outros endpoints (como `/domains`): uma chave só de envio responde 401
+   `restricted_api_key` a eles, e isso não é falha. O teste é o próprio envio.
+9. Registro: o script grava cada tentativa em `docs/marketing/instagram/envios.log`. Sempre
+   faça commit e push desse arquivo na branch, com sucesso ou com erro. Se o envio falhar
+   (`missing_api_key` é chave ausente; erro de conexão é rede), não tente outro caminho.
 
 ## Configuração (uma vez, feita pelo Rafael)
 
@@ -61,3 +64,4 @@ norma; o post fica em `docs/rascunhos-blog` até ser aprovado.
 Se a mensagem que disparou a rotina disser "envie a semana 2026-10-19", não produza nada: o
 conteúdo já existe. A partir de `docs/marketing/instagram/fonte/`, rode
 `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-2026-10-19.html "Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10)"`.
+Depois, commit e push de `docs/marketing/instagram/envios.log` na branch (passo 9).
