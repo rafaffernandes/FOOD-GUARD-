@@ -40,6 +40,8 @@ try {
   saida = execFileSync("curl", ["-sS", "-w", "\n%{http_code}", "-X", "POST", "https://api.resend.com/emails",
     ...auth, "-H", "Content-Type: application/json", "--data-binary", `@${tmp}`], { encoding: "utf8" });
 } catch (erro) {
+  // process.exit não passa pelo finally: apaga o temporário aqui.
+  fs.rmSync(tmp, { force: true });
   const motivo = String(erro.stderr || erro.message).trim();
   registrar(`sem conexão: ${motivo}`);
   console.error(`Sem conexão com api.resend.com (${motivo}). Confira o segredo de rede do Resend. Nada foi enviado.`);
