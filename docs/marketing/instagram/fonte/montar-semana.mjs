@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
+import { travarCliente } from "../../sdr/fonte/trava.mjs";
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const RAIZ = path.join(FONTE, "../../../..");
@@ -17,7 +18,14 @@ const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").r
 const lista = (xs) => `<ul>${(xs ?? []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
 const pdf = (html, saida) => { const t = saida.replace(/\.pdf$/, ".html"); fs.writeFileSync(t, html); execFileSync(CHROME, ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${saida}`, `file://${t}`], { stdio: "ignore" }); fs.rmSync(t); };
 
-const itens = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
+const itens = JSON.parse(fs.readFileSync(process.argv[2], "utf8")).filter(Boolean);
+// Nada sai com nome de pessoa, CRN, posicionamento errado ou duração da visita.
+travarCliente(itens.flatMap((it) => [
+  [it.post.title + "\n" + it.post.description + "\n" + it.post.corpo_mdx, `${it.chave}: artigo`],
+  [it.carrossel.slides.map((x) => `${x.titulo}\n${x.texto}`).join("\n"), `${it.chave}: slides`],
+  [it.carrossel.legenda, `${it.chave}: legenda`],
+  [it.carrossel.stories.join("\n"), `${it.chave}: stories`],
+]));
 for (const it of itens) {
   const { post, carrossel: c } = it;
   const pasta = path.join(INSTA, it.dir);

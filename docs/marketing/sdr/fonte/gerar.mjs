@@ -4,9 +4,17 @@ import {
   agendamento, cadencia, CNPJ, descoberta, estrategia, ofertaVisita, posAgendamento, respostas, SITE,
   WA_EXIBICAO, WA_NUMERO,
 } from "./mensagens.mjs";
-import { travar } from "./trava.mjs";
+import { travar, travarCliente } from "./trava.mjs";
 
 // Nada sai daqui com posicionamento errado, duração da visita ou fechamento antigo.
+// Tudo o que o cliente lê: sem nome de pessoa e sem CRN.
+travarCliente([
+  ...[...cadencia, ...agendamento, ...posAgendamento].map((m) => [m.texto, m.id ?? m.nome]),
+  ...descoberta.map((d) => [d.mensagem, `descoberta: ${d.situacao}`]),
+  [ofertaVisita.texto, "oferta da visita"],
+  ...respostas.filter((r) => !/quanto tempo|tempo leva|atrapalh/i.test(r.gatilho)).map((r) => [r.texto, r.gatilho]),
+]);
+
 // A única mensagem que pode falar de duração é a resposta a quem perguntou quanto tempo leva.
 const perguntaDuracao = (g) => /quanto tempo|tempo leva|atrapalh/i.test(g);
 travar([

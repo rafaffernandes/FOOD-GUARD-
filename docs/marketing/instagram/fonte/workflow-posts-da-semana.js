@@ -17,7 +17,7 @@ Ativos de captura, descritos EXATAMENTE como são (leia /home/user/FOOD-GUARD-/l
 - Visita de avaliação sem custo com nutricionista.
 
 Regras de marca e de verdade (não negociáveis):
-- Posicionamento: "consultoria nutricional para serviços de alimentação". Nunca "empresa de nutricionistas" nem "assessoria de nutricionistas".
+- Posicionamento: "consultoria nutricional para serviços de alimentação", com um time de nutricionistas. Nunca "empresa de nutricionistas" nem "assessoria de nutricionistas".\n- A marca fala por si: a Food Guard é uma empresa, sem rosto. Nunca nome de pessoa (Rafael, Renan) nem CRN de alguém no artigo, no carrossel, na legenda ou nos stories. Use "o time de nutricionistas da Food Guard" ou "um nutricionista do nosso time".
 - Legislação citada só RDC 216/2004 (Anvisa) e Portaria 2.619/2011 (SMS São Paulo, vale na capital). Nunca "CFN 600", "RT" (use "nutricionista responsável"), "carência", "dinheiro de volta". Não cite norma estadual.
 - A RDC 216/2004 exige Manual de Boas Práticas e POPs; não exige nutricionista em todo serviço de alimentação.
 - A Food Guard ainda não tem clientes: proibido caso, depoimento, "ajudamos", "avaliamos operações", número de clientes, estatística ou valor de multa sem fonte.

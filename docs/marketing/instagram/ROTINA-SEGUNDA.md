@@ -33,10 +33,11 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
 6. Pautas usadas: troque o status para `enviada para aprovação` e anote a data.
 7. Commit e push **só na branch** (`git push -u origin claude/charming-allen-Nc7aL`).
 8. E-mail: `node gerar-email-aprovacao.mjs semana-AAAA-MM-DD.json <SHA do commit> ../email-aprovacao-semana-AAAA-MM-DD.html`.
-   Confira se os links respondem (`curl -o /dev/null -w "%{http_code}"`). Envie pelo Gmail para
-   os dois destinatários, com o HTML em `htmlBody` e uma versão em texto com os links em `body`.
-   Assunto: `Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)`.
-   Se o Gmail não tiver ferramenta de envio, crie o rascunho e avise o Rafael.
+   Confira se os links respondem (`curl -o /dev/null -w "%{http_code}"`). Envie com
+   `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)"`.
+   O envio é pelo Resend, com a variável `RESEND_API_KEY` do ambiente; ele vai para o Rafael e
+   para o Renan, e as respostas voltam para o Rafael. Se o envio falhar (sem chave, rede ou
+   erro do Resend), não tente outro caminho: registre o erro no commit.
 
 ## Regras do conteúdo
 
@@ -48,5 +49,5 @@ norma; o post fica em `docs/rascunhos-blog` até ser aprovado.
 ## Envio único desta semana
 
 Se a mensagem que disparou a rotina disser "envie a semana 2026-10-19", não produza nada: o
-conteúdo já existe. Envie o HTML de `docs/marketing/instagram/email-aprovacao-semana-2026-10-19.html`
-com o assunto `Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10)`.
+conteúdo já existe. A partir de `docs/marketing/instagram/fonte/`, rode
+`node enviar-email-aprovacao.mjs ../email-aprovacao-semana-2026-10-19.html "Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10)"`.

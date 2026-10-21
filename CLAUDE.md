@@ -25,9 +25,16 @@ componentes ou tokens.
   **RDC 216/2004 + Portaria 2.619/2011** (nunca "CFN 600"); sem "carência",
   sem "dinheiro de volta". Mais detalhes em `lib/content/site.ts`.
 - **Quem somos:** a Food Guard é **consultoria nutricional para serviços de
-  alimentação (food service)**. Nunca "empresa de nutricionistas", "assessoria
-  de nutricionistas" nem "nutricionistas que cuidam de…". Nas mensagens do SDR,
-  `docs/marketing/sdr/fonte/trava.mjs` barra essas expressões.
+  alimentação (food service)**, com **um time de nutricionistas**. Nunca
+  "empresa de nutricionistas", "assessoria de nutricionistas" nem
+  "nutricionistas que cuidam de…".
+- **A marca fala por si (decisão do Rafael, 21/10/2026):** a Food Guard é uma
+  empresa e não tem rosto. Nenhuma comunicação externa (site, blog, Instagram,
+  SDR, e-mail a cliente) usa nome de pessoa (Rafael, Renan) nem CRN de alguém.
+  Escreva "o time de nutricionistas da Food Guard" ou "um nutricionista do
+  nosso time"; quem assina é "Food Guard" ou "Equipe Food Guard". Nomes só em
+  documento interno (ex.: a curadoria técnica do Renan). `docs/marketing/sdr/fonte/trava.mjs`
+  barra posicionamento errado, nome de pessoa e CRN nos textos para o cliente.
 - **Sources of truth:** `lib/content/site.ts`, `lib/content/plans.ts`,
   `lib/diagnostic/questions.ts`, `lib/diagnostic/engine.ts`.
 - **Antes de declarar pronto:** `npm run build` ✓, `npm run lint` ✓, e — se

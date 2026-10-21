@@ -34,3 +34,20 @@ export function travar(lista) {
     process.exit(1);
   }
 }
+
+// Textos que vão ao cliente: a marca fala por si, sem nome de pessoa e sem CRN
+// de alguém (decisão do Rafael, 21/10/2026). Documento interno pode citar nomes.
+const PESSOA = [
+  [/\b(Renan|Rafael|Rizzo)\b/i, "a Food Guard fala como marca: sem nome de pessoa"],
+  [/\bCRN\b/, "a Food Guard fala como marca: sem citar CRN de alguém"],
+];
+
+export function travarCliente(lista) {
+  const erros = lista.flatMap(([texto, onde]) => [...PROIBIDO, ...PESSOA]
+    .filter(([re]) => re.test(texto)).map(([, motivo]) => `${onde}: ${motivo}`));
+  if (erros.length) {
+    console.error(`Trava de marca (texto para o cliente): ${erros.length} problema(s)\n- ${erros.join("\n- ")}`);
+    process.exit(1);
+  }
+}
+
