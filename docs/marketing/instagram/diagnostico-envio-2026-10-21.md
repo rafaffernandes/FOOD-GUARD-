@@ -76,3 +76,22 @@ Linha gravada em `envios.log`:
 ```
 2026-10-21T00:31:27.064Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10) | sem conexão: curl: (56) CONNECT tunnel failed, response 403
 ```
+
+## Reenvio em 22/10/2026, depois de liberar o domínio e cadastrar o segredo de rede
+
+Passo 2a:
+
+```
+{"statusCode":401,"message":"This API key is restricted to only send emails","name":"restricted_api_key"}
+HTTP:401
+```
+
+`restricted_api_key`: a chave chegou e só tem permissão de envio (normal).
+`recentRelayFailures` com host resend: `[]`.
+
+Passo 3 (rodado uma vez):
+
+```
+Resend respondeu 200: {"id":"01a1660c-aeac-7194-ae01-f6a0c1025186"}
+exit:0
+```
