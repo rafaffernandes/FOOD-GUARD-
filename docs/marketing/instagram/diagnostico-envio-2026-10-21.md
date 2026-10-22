@@ -95,3 +95,13 @@ Passo 3 (rodado uma vez):
 Resend respondeu 200: {"id":"01a1660c-aeac-7194-ae01-f6a0c1025186"}
 exit:0
 ```
+
+Consulta 60 s depois (`GET /emails/01a1660c-aeac-7194-ae01-f6a0c1025186`):
+
+```
+{"statusCode":401,"message":"This API key is restricted to only send emails","name":"restricted_api_key"}
+HTTP:401
+```
+
+A chave só envia, então o `last_event` não é legível daqui. Confirmação de
+entrega: painel do Resend → Emails, ou a caixa de entrada dos destinatários.
