@@ -14,13 +14,23 @@ const chave = process.env.RESEND_API_KEY;
 const DESTINOS = modo === "--teste" ? ["rafael.andes2@gmail.com"] : ["rafael.andes2@gmail.com", "reeh_rizzo@hotmail.com"];
 const LOG = new URL("../envios.log", import.meta.url);
 const corpo = fs.readFileSync(html, "utf8");
-// Versão em texto: os links do HTML, para leitores sem HTML.
-const links = [...corpo.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map(([, href, txt]) => `${txt}: ${href}`);
-const texto = `Conteúdo da semana para aprovação. Responda este e-mail com "aprovado" e o número do post, ou mande o ajuste.\n\n${links.join("\n")}\n\nFood Guard`;
+// Versão em texto, para leitores sem HTML. O material todo vai anexado.
+const texto = `Conteúdo da semana para aprovação. Responda este e-mail com "aprovado" e o número do post, ou mande o ajuste.\n\nO artigo, a ficha técnica e os slides de cada post, e o pacote completo em PDF, estão anexados.\n\nFood Guard`;
 
 function registrar(resultado) {
   fs.appendFileSync(LOG, `${new Date().toISOString()} | ${DESTINOS.join(", ")} | ${assunto} | ${resultado}\n`);
 }
+
+// Anexos e imagens embutidas, se o gerador deixou a lista ao lado do HTML.
+const BASE = new URL("../", import.meta.url);
+const listaAnexos = `${html}.anexos.json`;
+const attachments = fs.existsSync(listaAnexos)
+  ? JSON.parse(fs.readFileSync(listaAnexos, "utf8")).map((a) => ({
+      filename: a.nome,
+      content: fs.readFileSync(new URL(a.arquivo, BASE)).toString("base64"),
+      ...(a.cid ? { content_id: a.cid } : {}),
+    }))
+  : [];
 
 const payload = {
   from: process.env.RESEND_FROM_APROVACAO || "Food Guard <contato@foodguardassessoria.com.br>",
@@ -29,6 +39,7 @@ const payload = {
   subject: assunto,
   html: corpo,
   text: texto,
+  ...(attachments.length ? { attachments } : {}),
 };
 const tmp = `${html}.payload.json`;
 fs.writeFileSync(tmp, JSON.stringify(payload));

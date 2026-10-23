@@ -32,8 +32,10 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    Confira o mosaico de cada carrossel (texto cortado ou encostando no rodapé).
 6. Pautas usadas: troque o status para `enviada para aprovação` e anote a data.
 7. Commit e push **só na branch** (`git push -u origin claude/charming-allen-Nc7aL`).
-8. E-mail: `node gerar-email-aprovacao.mjs semana-AAAA-MM-DD.json <SHA do commit> ../email-aprovacao-semana-AAAA-MM-DD.html`.
-   Confira se os links respondem (`curl -o /dev/null -w "%{http_code}"`). Envie com
+8. E-mail: `node gerar-email-aprovacao.mjs semana-AAAA-MM-DD.json ../email-aprovacao-semana-AAAA-MM-DD.html`.
+   O repositório é privado, então o e-mail não aponta para o GitHub: capa e mosaico vão
+   embutidos, e PDFs e slides vão anexados (lista em `email-aprovacao-semana-AAAA-MM-DD.html.anexos.json`,
+   que o envio lê sozinho; commite junto). Confira no resumo do gerador se o total fica abaixo de 20 MB. Envie com
    `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)"`.
    O envio é pelo Resend. A chave fica num segredo de rede do ambiente (host `api.resend.com`):
    o proxy coloca a chave na requisição, ela não aparece na sessão e não está em variável de
