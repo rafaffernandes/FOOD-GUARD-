@@ -6,8 +6,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { chromium } from "/opt/node22/lib/node_modules/playwright/index.mjs";
+import { CHROME, FONTES } from "./ambiente.mjs";
 
-const require = createRequire("/home/user/FOOD-GUARD-/package.json");
+const require = createRequire(new URL("../../../../package.json", import.meta.url));
 const sharp = require("sharp");
 
 const [entrada, saida] = process.argv.slice(2);
@@ -15,11 +16,11 @@ const dados = JSON.parse(fs.readFileSync(entrada, "utf8"));
 fs.mkdirSync(saida, { recursive: true });
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
-const MEDIA = "/home/user/FOOD-GUARD-/.next/static/media";
+const MEDIA = FONTES;
 const b64 = (f) => fs.readFileSync(f).toString("base64");
 const sora = b64(`${MEDIA}/f3f7e95f2dbc4fe4-s.p.woff2`);
 const inter = b64(`${MEDIA}/e4af272ccee01ff0-s.p.woff2`);
-const logo = b64("/home/user/FOOD-GUARD-/public/email/logo-food-guard.png");
+const logo = b64(new URL("../../../../public/email/logo-food-guard.png", import.meta.url).pathname);
 
 const C = { navy: "#0b1c34", navy2: "#16335c", verde: "#74b43c", verdeClaro: "#aedb66", branco: "#ffffff", suave: "#c6d7e6" };
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -68,7 +69,7 @@ function html(s, i) {
   return `<div class="slide miolo">${fundo}<div class="z barra"></div>${origem}<h2 class="z">${esc(s.titulo)}</h2>${dest}<p class="z">${esc(s.texto)}</p>${rodape}</div>`;
 }
 
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: CHROME });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 1 });
 const arquivos = [];
 for (let i = 0; i < total; i++) {

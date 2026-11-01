@@ -3,11 +3,12 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import { chromium } from "/opt/node22/lib/node_modules/playwright/index.mjs";
-const require = createRequire("/home/user/FOOD-GUARD-/package.json");
+import { CHROME, FONTES } from "./ambiente.mjs";
+const require = createRequire(new URL("../../../../package.json", import.meta.url));
 const sharp = require("sharp");
 const [json, saida, foto] = process.argv.slice(2);
 const d = JSON.parse(json);
-const MEDIA = "/home/user/FOOD-GUARD-/.next/static/media";
+const MEDIA = FONTES;
 const b64 = (f) => fs.readFileSync(f).toString("base64");
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const html = `<!doctype html><html><head><meta charset="utf-8"><style>
@@ -23,7 +24,7 @@ h1{font-size:64px;line-height:1.1;letter-spacing:-.02em;font-weight:700;margin:a
 .m{display:flex;align-items:center;gap:16px;font-size:26px;color:#c6d7e6;font-weight:600}.m i{width:56px;height:8px;border-radius:6px;background:#74b43c;display:block}
 </style></head><body><div class="c"><div class="f"></div><div class="g"></div><div class="b"></div>
 <div class="z t">${esc(d.tag ?? "Blog Food Guard")}</div><h1 class="z">${esc(d.titulo)}</h1><div class="z m"><i></i>Food Guard · Consultoria nutricional para food service</div></div></body></html>`;
-const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" });
+const browser = await chromium.launch({ executablePath: CHROME });
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
 await page.setContent(html); await page.evaluate(() => document.fonts.ready);
 const png = await page.screenshot({ type: "png" }); await browser.close();

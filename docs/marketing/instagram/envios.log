@@ -1,3 +1,6 @@
 2026-10-21T00:31:27.064Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10) | sem conexão: curl: (56) CONNECT tunnel failed, response 403
 2026-10-22T23:57:49.667Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10) | HTTP 200 {"id":"01a1660c-aeac-7194-ae01-f6a0c1025186"}
 2026-10-23T00:09:52.483Z | rafael.andes2@gmail.com | [TESTE] Food Guard · e-mail de aprovação com anexos | HTTP 200 {"id":"01a16617-b523-78db-b20c-af234566fe19"}
+2026-11-01T22:33:43.534Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Para aprovação: Controle de temperatura em restaurantes | HTTP 200 {"id":"01a1993f-4699-7dc3-a15c-0d2fba18fcad"}
+2026-11-01T22:33:46.014Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Para aprovação: Equipe nova e temporários (reenvio) | HTTP 200 {"id":"01a1993f-5023-7877-845c-1766c8eecbf2"}
+2026-11-01T22:33:48.480Z | rafael.andes2@gmail.com, reeh_rizzo@hotmail.com | Food Guard · Para aprovação: Controle de pragas (reenvio) | HTTP 200 {"id":"01a1993f-59cc-7bbc-b074-a2bfd272904c"}

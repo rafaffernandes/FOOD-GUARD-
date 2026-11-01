@@ -6,14 +6,14 @@ import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
 import { travarCliente } from "../../sdr/fonte/trava.mjs";
+import { CHROME, FONTES } from "./ambiente.mjs";
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const RAIZ = path.join(FONTE, "../../../..");
 const INSTA = path.join(FONTE, "..");
 const require = createRequire(path.join(RAIZ, "package.json"));
 const sharp = require("sharp");
-const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
-const css = fs.readFileSync(path.join(FONTE, "doc.css"), "utf8").replaceAll("url(MEDIA/", `url(file://${RAIZ}/.next/static/media/`);
+const css = fs.readFileSync(path.join(FONTE, "doc.css"), "utf8").replaceAll("url(MEDIA/", `url(file://${FONTES}/`);
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const lista = (xs) => `<ul>${(xs ?? []).map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
 const pdf = (html, saida) => { const t = saida.replace(/\.pdf$/, ".html"); fs.writeFileSync(t, html); execFileSync(CHROME, ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${saida}`, `file://${t}`], { stdio: "ignore" }); fs.rmSync(t); };

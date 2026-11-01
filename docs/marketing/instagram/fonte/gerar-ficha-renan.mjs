@@ -2,10 +2,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
+import { CHROME, FONTES } from "./ambiente.mjs";
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(FONTE, "..");
-const css = fs.readFileSync(path.join(FONTE, "doc.css"), "utf8").replaceAll("url(MEDIA/", "url(file:///home/user/FOOD-GUARD-/.next/static/media/");
+const css = fs.readFileSync(path.join(FONTE, "doc.css"), "utf8").replaceAll("url(MEDIA/", `url(file://${FONTES}/`);
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 const decisoes = [
@@ -61,5 +62,5 @@ ${linhas.map(([a, n, o, c]) => `<tr><td>${esc(a)}</td><td>${esc(n)}</td><td>${es
 <div class="alerta"><b>Prazo.</b> Para sair no sábado às 18h, a resposta precisa chegar até o meio-dia. Se não der tempo, o post vai para a semana seguinte, sem prejuízo.</div>
 </section></body></html>`;
 fs.writeFileSync(path.join(OUT, "ficha-renan-temperatura-rascunho.html"), html);
-execFileSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome", ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${path.join(OUT, "ficha-renan-temperatura-rascunho.pdf")}`, `file://${path.join(OUT, "ficha-renan-temperatura-rascunho.html")}`], { stdio: "ignore" });
+execFileSync(CHROME, ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${path.join(OUT, "ficha-renan-temperatura-rascunho.pdf")}`, `file://${path.join(OUT, "ficha-renan-temperatura-rascunho.html")}`], { stdio: "ignore" });
 console.log("ficha gerada");

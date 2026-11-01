@@ -2,7 +2,7 @@
 # Regera tudo: textos, prévias dos e-mails, documento e PDF.
 set -e
 cd "$(dirname "$0")"
-CH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome
+CH=$(ls -d /opt/pw-browsers/chromium-[0-9]*/chrome-linux*/chrome | sort -V | tail -1)
 node gerar.mjs
 for f in preview/email-*.html; do
   n=$(basename "$f" .html)

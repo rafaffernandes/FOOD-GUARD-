@@ -3,10 +3,13 @@
 // slides vão anexados. A lista de arquivos sai em <saida>.anexos.json, que o
 // enviar-email-aprovacao.mjs lê sozinho. Os caminhos são relativos a docs/marketing/instagram.
 // Uso: node gerar-email-aprovacao.mjs semana.json saida.html
+// O JSON é a lista da semana ou, para um envio avulso, { titulo, intro, rodape, itens }.
+// Cada item aceita uma "nota" opcional, mostrada em destaque acima do post.
 import fs from "node:fs";
 import path from "node:path";
 const [entrada, saida] = process.argv.slice(2);
-const itens = JSON.parse(fs.readFileSync(entrada, "utf8")).filter(Boolean);
+const dados = JSON.parse(fs.readFileSync(entrada, "utf8"));
+const itens = (Array.isArray(dados) ? dados : dados.itens).filter(Boolean);
 const BASE = new URL("../", import.meta.url);
 const anexos = [];
 function anexar(rel, nome, cid) {
@@ -33,6 +36,7 @@ const post = (it, n) => `
 <tr><td style="padding:26px 28px 6px;">
 <p style="margin:0 0 6px;${F}font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#446e22;">Post ${n} · ${esc(it.quando)}</p>
 <h2 style="margin:0 0 6px;${F}font-size:21px;line-height:1.25;color:#0b1c34;">${esc(it.post.title)}</h2>
+${it.nota ? `<div style="background:#eef4fb;border-left:4px solid #16335c;border-radius:8px;padding:10px 14px;margin:0 0 12px;${F}font-size:14px;line-height:1.55;color:#16335c;">${br(it.nota)}</div>` : ""}
 <p style="margin:0 0 16px;${F}font-size:14px;line-height:1.55;color:#5b6b7a;">${esc(it.post.description)}</p>
 <p style="margin:0 0 6px;${F}font-size:13px;font-weight:bold;color:#0b1c34;">Blog: capa do artigo</p>
 <img src="${embutir(`${it.dir}/capa-blog.jpg`, `capa-${n}`)}" width="544" alt="Capa do artigo" style="display:block;width:100%;max-width:544px;border-radius:8px;margin:0 0 16px;">
@@ -45,23 +49,26 @@ ${anexosDoPost(it)}
 </td></tr>`;
 const postsHtml = itens.map((it, i) => post(it, i + 1)).join('<tr><td style="padding:0 28px;"><hr style="border:0;border-top:1px solid #dce5ed;margin:10px 0;"></td></tr>');
 const logo = embutir("../../../public/email/logo-food-guard.png", "logo");
-const pacote = anexo(path.basename(itens[0].pacote ?? "aprovacao.pdf"));
+const pacote = itens[0].pacote ? anexo(path.basename(itens[0].pacote)) : null;
+const titulo = dados.titulo ?? "Conteúdo da semana para aprovação";
+const intro = dados.intro ?? `Rafael e Renan, seguem os ${itens.length} conteúdos desta semana. Blog e Instagram são a mesma publicação: o carrossel apresenta o essencial e leva para a matéria completa no link da bio.`;
+const rodape = dados.rodape ?? "E-mail interno de aprovação, enviado toda segunda-feira.";
 const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#eef2f6;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef2f6;"><tr><td align="center" style="padding:24px 10px;">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border-radius:14px;overflow:hidden;">
 <tr><td style="background:#0b1c34;padding:22px 28px;"><img src="${logo}" width="180" alt="Food Guard" style="display:block;"></td></tr>
 <tr><td style="height:4px;background:#74b43c;font-size:0;line-height:4px;">&nbsp;</td></tr>
 <tr><td style="padding:26px 28px 0;">
-<h1 style="margin:0 0 10px;${F}font-size:23px;color:#0b1c34;">Conteúdo da semana para aprovação</h1>
-<p style="margin:0 0 12px;${F}font-size:15px;line-height:1.6;color:#1f2e3d;">Rafael e Renan, seguem os ${itens.length} conteúdos desta semana. Blog e Instagram são a mesma publicação: o carrossel apresenta o essencial e leva para a matéria completa no link da bio.</p>
+<h1 style="margin:0 0 10px;${F}font-size:23px;color:#0b1c34;">${esc(titulo)}</h1>
+<p style="margin:0 0 12px;${F}font-size:15px;line-height:1.6;color:#1f2e3d;">${esc(intro)}</p>
 <div style="background:#fff7ed;border-left:4px solid #b85a14;border-radius:8px;padding:12px 14px;${F}font-size:14px;line-height:1.55;color:#7a3a05;">
 <b>Como aprovar:</b> responda este e-mail com <b>aprovado</b> e o número do post, ou mande o ajuste.<br>
 <b>Renan:</b> antes de aprovar, confira a ficha técnica de cada post. A primeira página é o que mais importa.<br>
 Nada vai ao ar sem as duas aprovações.</div>
 </td></tr>
 ${postsHtml}
-<tr><td style="padding:18px 28px 26px;${F}font-size:14px;line-height:1.6;color:#1f2e3d;">Pacote completo em PDF, anexado: <b>${esc(pacote)}</b></td></tr>
-<tr><td style="background:#f6f8fa;padding:16px 28px;${F}font-size:12px;line-height:1.6;color:#8794a1;">Food Guard · Consultoria nutricional para serviços de alimentação · foodguardassessoria.com.br<br>E-mail interno de aprovação, enviado toda segunda-feira.</td></tr>
+${pacote ? `<tr><td style="padding:18px 28px 26px;${F}font-size:14px;line-height:1.6;color:#1f2e3d;">Pacote completo em PDF, anexado: <b>${esc(pacote)}</b></td></tr>` : `<tr><td style="padding:0 0 18px;"></td></tr>`}
+<tr><td style="background:#f6f8fa;padding:16px 28px;${F}font-size:12px;line-height:1.6;color:#8794a1;">Food Guard · Consultoria nutricional para serviços de alimentação · foodguardassessoria.com.br<br>${esc(rodape)}</td></tr>
 </table></td></tr></table></body></html>`;
 fs.writeFileSync(saida, html);
 fs.writeFileSync(`${saida}.anexos.json`, JSON.stringify(anexos, null, 1) + "\n");

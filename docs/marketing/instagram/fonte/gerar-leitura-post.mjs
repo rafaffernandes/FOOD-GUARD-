@@ -3,7 +3,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { execFileSync } from "node:child_process";
-const require = createRequire("/home/user/FOOD-GUARD-/package.json");
+import { CHROME, FONTES } from "./ambiente.mjs";
+const require = createRequire(new URL("../../../../package.json", import.meta.url));
 const { micromark } = require("micromark");
 const { gfm, gfmHtml } = require("micromark-extension-gfm");
 const matter = require("gray-matter");
@@ -11,7 +12,7 @@ const matter = require("gray-matter");
 const [entrada, saida] = process.argv.slice(2);
 const { data, content } = matter(fs.readFileSync(entrada, "utf8"));
 const corpo = micromark(content, { extensions: [gfm()], htmlExtensions: [gfmHtml()] });
-const MEDIA = "/home/user/FOOD-GUARD-/.next/static/media";
+const MEDIA = FONTES;
 const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>${data.title}</title><style>
 @font-face{font-family:Sora;src:url(file://${MEDIA}/f3f7e95f2dbc4fe4-s.p.woff2) format('woff2');font-weight:100 900}
 @font-face{font-family:Inter;src:url(file://${MEDIA}/e4af272ccee01ff0-s.p.woff2) format('woff2');font-weight:100 900}
@@ -33,6 +34,6 @@ tr:nth-child(even) td{background:#f2f6fa} a{color:#446e22}
 <h1>${data.title}</h1><p class="desc">${data.description}</p>${corpo}</body></html>`;
 const tmp = saida.replace(/\.pdf$/, ".html");
 fs.writeFileSync(tmp, html);
-execFileSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome", ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${saida}`, `file://${tmp}`], { stdio: "ignore" });
+execFileSync(CHROME, ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=4000", `--print-to-pdf=${saida}`, `file://${tmp}`], { stdio: "ignore" });
 fs.rmSync(tmp);
 console.log("gerado", saida);

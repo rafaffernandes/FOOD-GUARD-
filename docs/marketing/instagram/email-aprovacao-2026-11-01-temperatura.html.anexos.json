@@ -1,0 +1,57 @@
+[
+ {
+  "arquivo": "temperatura-rascunho/capa-blog.jpg",
+  "nome": "capa-1.jpg",
+  "cid": "capa-1"
+ },
+ {
+  "arquivo": "temperatura-rascunho/mosaico.jpg",
+  "nome": "mosaico-1.jpg",
+  "cid": "mosaico-1"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-01.jpg",
+  "nome": "temperatura-rascunho-slide-01.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-02.jpg",
+  "nome": "temperatura-rascunho-slide-02.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-03.jpg",
+  "nome": "temperatura-rascunho-slide-03.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-04.jpg",
+  "nome": "temperatura-rascunho-slide-04.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-05.jpg",
+  "nome": "temperatura-rascunho-slide-05.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-06.jpg",
+  "nome": "temperatura-rascunho-slide-06.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-07.jpg",
+  "nome": "temperatura-rascunho-slide-07.jpg"
+ },
+ {
+  "arquivo": "temperatura-rascunho/slides/slide-08.jpg",
+  "nome": "temperatura-rascunho-slide-08.jpg"
+ },
+ {
+  "arquivo": "leitura-temperatura-rascunho.pdf",
+  "nome": "leitura-temperatura-rascunho.pdf"
+ },
+ {
+  "arquivo": "ficha-renan-temperatura-rascunho.pdf",
+  "nome": "ficha-renan-temperatura-rascunho.pdf"
+ },
+ {
+  "arquivo": "../../../public/email/logo-food-guard.png",
+  "nome": "logo.png",
+  "cid": "logo"
+ }
+]

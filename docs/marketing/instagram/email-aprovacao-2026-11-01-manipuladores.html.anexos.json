@@ -1,0 +1,57 @@
+[
+ {
+  "arquivo": "quarta-2026-10-21/capa-blog.jpg",
+  "nome": "capa-1.jpg",
+  "cid": "capa-1"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/mosaico.jpg",
+  "nome": "mosaico-1.jpg",
+  "cid": "mosaico-1"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-01.jpg",
+  "nome": "quarta-21-10-slide-01.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-02.jpg",
+  "nome": "quarta-21-10-slide-02.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-03.jpg",
+  "nome": "quarta-21-10-slide-03.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-04.jpg",
+  "nome": "quarta-21-10-slide-04.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-05.jpg",
+  "nome": "quarta-21-10-slide-05.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-06.jpg",
+  "nome": "quarta-21-10-slide-06.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-07.jpg",
+  "nome": "quarta-21-10-slide-07.jpg"
+ },
+ {
+  "arquivo": "quarta-2026-10-21/slides/slide-08.jpg",
+  "nome": "quarta-21-10-slide-08.jpg"
+ },
+ {
+  "arquivo": "leitura-quarta-21-10.pdf",
+  "nome": "leitura-quarta-21-10.pdf"
+ },
+ {
+  "arquivo": "ficha-renan-quarta-21-10.pdf",
+  "nome": "ficha-renan-quarta-21-10.pdf"
+ },
+ {
+  "arquivo": "../../../public/email/logo-food-guard.png",
+  "nome": "logo.png",
+  "cid": "logo"
+ }
+]

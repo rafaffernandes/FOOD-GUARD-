@@ -1,0 +1,57 @@
+[
+ {
+  "arquivo": "sabado-2026-10-24/capa-blog.jpg",
+  "nome": "capa-1.jpg",
+  "cid": "capa-1"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/mosaico.jpg",
+  "nome": "mosaico-1.jpg",
+  "cid": "mosaico-1"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-01.jpg",
+  "nome": "sabado-24-10-slide-01.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-02.jpg",
+  "nome": "sabado-24-10-slide-02.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-03.jpg",
+  "nome": "sabado-24-10-slide-03.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-04.jpg",
+  "nome": "sabado-24-10-slide-04.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-05.jpg",
+  "nome": "sabado-24-10-slide-05.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-06.jpg",
+  "nome": "sabado-24-10-slide-06.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-07.jpg",
+  "nome": "sabado-24-10-slide-07.jpg"
+ },
+ {
+  "arquivo": "sabado-2026-10-24/slides/slide-08.jpg",
+  "nome": "sabado-24-10-slide-08.jpg"
+ },
+ {
+  "arquivo": "leitura-sabado-24-10.pdf",
+  "nome": "leitura-sabado-24-10.pdf"
+ },
+ {
+  "arquivo": "ficha-renan-sabado-24-10.pdf",
+  "nome": "ficha-renan-sabado-24-10.pdf"
+ },
+ {
+  "arquivo": "../../../public/email/logo-food-guard.png",
+  "nome": "logo.png",
+  "cid": "logo"
+ }
+]

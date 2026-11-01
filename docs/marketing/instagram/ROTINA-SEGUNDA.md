@@ -22,6 +22,12 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    (Workflow com `scriptPath`), com `args` no formato
    `{ "posts": [{ "chave": "quarta-DD-MM", "dia": "quarta-feira, DD/MM/AAAA", "tema": ..., "angulo": ... }, { sábado igual }], "existentes": [títulos de content/blog e docs/rascunhos-blog] }`.
    Ele escreve, revisa tecnicamente e devolve o post final, o carrossel, a ficha do Renan e as decisões.
+   **Se a sessão não tiver a ferramenta Workflow** (a sessão aberta pela rotina automática não
+   tem; foi o que travou a rotina de 26/10), faça as mesmas três etapas com a ferramenta
+   **Agent**, um post de cada vez: leia o arquivo do workflow e use, na ordem, os prompts de
+   redação, revisão e final que estão nele (a constante `BASE` vai no começo de cada um), pedindo
+   ao agente a saída no formato dos esquemas `POST`, `REV` e `FINAL` do mesmo arquivo. Não pule a
+   revisão.
 5. Montagem: grave o resultado em `docs/marketing/instagram/fonte/semana-AAAA-MM-DD.json`
    (data da segunda), um item por post com `chave`, `data` (AAAA-MM-DD), `dir`
    (`quarta-AAAA-MM-DD` / `sabado-AAAA-MM-DD`), `quando` ("quarta-feira, DD/MM, às 18h") e
@@ -45,6 +51,12 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
 9. Registro: o script grava cada tentativa em `docs/marketing/instagram/envios.log`. Sempre
    faça commit e push desse arquivo na branch, com sucesso ou com erro. Se o envio falhar
    (`missing_api_key` é chave ausente; erro de conexão é rede), não tente outro caminho.
+10. Se a rotina parar antes do envio, em qualquer passo, acrescente uma linha em
+    `docs/marketing/instagram/rotina.log` com a data, o passo e o erro, e faça commit e push
+    desse arquivo. Uma rotina que termina sem commit nenhum não deixa como saber o que houve.
+
+O Chromium e as fontes das imagens não dependem mais de caminho fixo nem do `.next`:
+`fonte/ambiente.mjs` acha o Chromium da sessão e as fontes ficam em `docs/marketing/fontes`.
 
 ## Configuração (uma vez, feita pelo Rafael)
 

@@ -5,7 +5,7 @@ import { travar } from "./trava.mjs";
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(FONTE, "..");
 const PREVIEW = path.join(FONTE, "preview");
-const MEDIA = path.join(FONTE, "../../../../.next/static/media");
+const MEDIA = path.join(FONTE, "../../fontes");
 const { cadencia, descoberta, ofertaVisita, agendamento, posAgendamento, respostas, estrategia } = JSON.parse(
   fs.readFileSync(path.join(PREVIEW, "dados.json"), "utf8"),
 );

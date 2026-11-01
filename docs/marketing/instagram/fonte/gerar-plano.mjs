@@ -2,10 +2,11 @@
 // Entrada: conteudo.json (saída final do fluxo de produção). Uso: node gerar-plano.mjs
 import fs from "node:fs";
 import path from "node:path";
+import { FONTES } from "./ambiente.mjs";
 
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(FONTE, "..");
-const MEDIA = "/home/user/FOOD-GUARD-/.next/static/media";
+const MEDIA = FONTES;
 const d = JSON.parse(fs.readFileSync(path.join(FONTE, "conteudo.json"), "utf8"));
 const { plano, backlog, mudancas } = d.igFinal;
 const { post, carrossel } = d.postFinal;

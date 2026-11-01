@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createRequire } from "node:module";
 import { execFileSync } from "node:child_process";
+import { CHROME, FONTES } from "./ambiente.mjs";
 const FONTE = path.dirname(new URL(import.meta.url).pathname);
 const RAIZ = path.join(FONTE, "../../../..");
 const INSTA = path.join(FONTE, "..");
@@ -13,7 +14,7 @@ const { gfm, gfmHtml } = require("micromark-extension-gfm");
 const [entrada, saidaArg] = process.argv.slice(2);
 const saida = path.resolve(saidaArg);
 const itens = JSON.parse(fs.readFileSync(entrada, "utf8")).filter(Boolean);
-const MEDIA = `${RAIZ}/.next/static/media`;
+const MEDIA = FONTES;
 const esc = (s = "") => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const br = (s) => esc(s).replace(/\n/g, "<br>");
 const bloco = (it) => {
@@ -53,6 +54,6 @@ td{padding:2mm 2.4mm;border-bottom:.2mm solid #dce5ed;vertical-align:top}tr:nth-
 ${itens.map(bloco).join("")}</body></html>`;
 const tmp = saida.replace(/\.pdf$/, ".html");
 fs.writeFileSync(tmp, html);
-execFileSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome", ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=6000", `--print-to-pdf=${saida}`, `file://${tmp}`], { stdio: "ignore" });
+execFileSync(CHROME, ["--headless", "--no-sandbox", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=6000", `--print-to-pdf=${saida}`, `file://${tmp}`], { stdio: "ignore" });
 fs.rmSync(tmp);
 console.log("pacote", saida);
