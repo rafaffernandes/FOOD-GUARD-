@@ -14,8 +14,12 @@ const chave = process.env.RESEND_API_KEY;
 const DESTINOS = modo === "--teste" ? ["rafael.andes2@gmail.com"] : ["rafael.andes2@gmail.com", "reeh_rizzo@hotmail.com"];
 const LOG = new URL("../envios.log", import.meta.url);
 const corpo = fs.readFileSync(html, "utf8");
-// Versão em texto, para leitores sem HTML. O material todo vai anexado.
-const texto = `Conteúdo da semana para aprovação. Responda este e-mail com "aprovado" e o número do post, ou mande o ajuste.\n\nO artigo, a ficha técnica e os slides de cada post, e o pacote completo em PDF, estão anexados.\n\nFood Guard`;
+// Versão em texto, para leitores sem HTML. O material todo vai anexado. Um <html>.texto.txt
+// ao lado do HTML substitui o texto padrão (usado pelo aviso de post manual do Instagram).
+const textoProprio = `${html}.texto.txt`;
+const texto = fs.existsSync(textoProprio)
+  ? fs.readFileSync(textoProprio, "utf8")
+  : `Conteúdo da semana para aprovação. Responda este e-mail com "aprovado" e o número do post, ou mande o ajuste.\n\nO artigo, a ficha técnica e os slides de cada post, e o pacote completo em PDF, estão anexados.\n\nFood Guard`;
 
 function registrar(resultado) {
   fs.appendFileSync(LOG, `${new Date().toISOString()} | ${DESTINOS.join(", ")} | ${assunto} | ${resultado}\n`);

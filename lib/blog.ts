@@ -26,6 +26,16 @@ function readSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+/**
+ * Post agendado: entra no repositório antes e só aparece a partir do `date` do
+ * frontmatter (ex.: "2026-11-04T18:00:00-03:00"). As páginas do blog revalidam
+ * a cada poucos minutos, então o artigo entra no ar sozinho, sem novo deploy.
+ */
+export function isPublished(date: string, now = new Date()): boolean {
+  const quando = new Date(date);
+  return !Number.isNaN(quando.getTime()) && quando <= now;
+}
+
 export function getAllPosts(): PostMeta[] {
   return readSlugs()
     .map((slug) => {
@@ -34,14 +44,16 @@ export function getAllPosts(): PostMeta[] {
       );
       return { slug, ...(data as Omit<PostMeta, "slug">) };
     })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+    .filter((post) => isPublished(post.date))
+    .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 }
 
 export function getPost(slug: string): Post | null {
   const file = path.join(BLOG_DIR, `${slug}.mdx`);
   if (!fs.existsSync(file)) return null;
   const { data, content } = matter(fs.readFileSync(file, "utf-8"));
-  return { slug, content, ...(data as Omit<PostMeta, "slug">) };
+  const post = { slug, content, ...(data as Omit<PostMeta, "slug">) };
+  return isPublished(post.date) ? post : null;
 }
 
 export interface FaqItem {

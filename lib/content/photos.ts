@@ -98,5 +98,12 @@ export const photos = {
       1200,
       630,
     ),
+    // Capas próprias, na identidade da marca, as mesmas do e-mail de aprovação.
+    "manipuladores-equipe-nova-e-temporarios-rdc-216":
+      "/capas/manipuladores-equipe-nova-e-temporarios-rdc-216.jpg",
+    "controle-de-pragas-na-cozinha-rdc-216-comprovantes":
+      "/capas/controle-de-pragas-na-cozinha-rdc-216-comprovantes.jpg",
+    "controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra":
+      "/capas/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra.jpg",
   } as Record<string, string>,
 };

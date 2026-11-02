@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { site } from "@/lib/content/site";
 
+// Revalida junto com o blog, para o post agendado entrar no sitemap no dia.
+export const revalidate = 300;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",

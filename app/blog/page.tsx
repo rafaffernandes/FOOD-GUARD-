@@ -8,6 +8,9 @@ import { Section } from "@/components/ui/Section";
 import { getAllPosts } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
 
+// Regera a lista a cada 5 minutos: é assim que um post agendado aparece sozinho.
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:

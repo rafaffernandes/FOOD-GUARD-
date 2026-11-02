@@ -12,6 +12,10 @@ import { extractFaq, getAllPosts, getPost } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
 import { site } from "@/lib/content/site";
 
+// Post agendado não é gerado no build; quando a data chega, a página é gerada no
+// primeiro acesso e revalidada a cada 5 minutos (ver isPublished em lib/blog.ts).
+export const revalidate = 300;
+
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }

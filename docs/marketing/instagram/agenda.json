@@ -1,0 +1,59 @@
+{
+ "_como_usar": "Publicações aprovadas, uma por data. O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs, disparado por uma tarefa agendada às 18h05 de cada data. status: agendado, publicado ou falhou.",
+ "publicacoes": [
+  {
+   "data": "2026-11-04T18:00:00-03:00",
+   "slug": "manipuladores-equipe-nova-e-temporarios-rdc-216",
+   "titulo": "Equipe nova e temporários: o que ter pronto antes do 1º turno",
+   "blog": "https://foodguardassessoria.com.br/blog/manipuladores-equipe-nova-e-temporarios-rdc-216",
+   "slides": [
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-01.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-02.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-03.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-04.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-05.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-06.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-07.jpg",
+    "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-08.jpg"
+   ],
+   "legenda": "Vai entrar gente nova na cozinha para o fim de ano? Antes do primeiro turno, tem coisa que a norma pede e que ainda dá tempo de deixar pronta.\n\nNos slides, o essencial: temporário conta como manipulador, cabelo e adornos, sintoma e ferimento, exames de admissão na capital e treinamento com comprovante. Cada slide diz se o ponto é da norma (RDC 216/2004 ou Portaria 2.619/2011) ou sugestão da Food Guard.\n\nA matéria completa está no link da bio, com a tabela do que a norma diz e do que é sugestão, o passo a passo da semana e as perguntas frequentes.\n\nA Portaria vale na capital. Em outras cidades, confirme com a vigilância sanitária local.\n\nO último treinamento da sua equipe incluiu quem entrou depois? Conta nos comentários.\n\n#vigilanciasanitaria #boaspraticas #rdc216 #foodservice #restaurante #gestaoderestaurante #segurancadosalimentos #manipuladoresdealimentos #saopaulo #foodguard",
+   "status": "agendado"
+  },
+  {
+   "data": "2026-11-06T18:00:00-03:00",
+   "slug": "controle-de-pragas-na-cozinha-rdc-216-comprovantes",
+   "titulo": "Controle de pragas: o que a RDC 216/2004 pede e o que guardar",
+   "blog": "https://foodguardassessoria.com.br/blog/controle-de-pragas-na-cozinha-rdc-216-comprovantes",
+   "slides": [
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-01.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-02.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-03.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-04.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-05.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-06.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-07.jpg",
+    "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-08.jpg"
+   ],
+   "legenda": "Chamar a empresa de dedetização resolve o controle de pragas da cozinha?\n\nNeste carrossel está o essencial do que a RDC 216/2004 pede: prevenção na frente, controle químico só depois e feito por empresa especializada. Cada slide diz se o ponto é da norma ou sugestão da Food Guard.\n\nA matéria completa está no link da bio. Lá tem a tabela do que guardar para provar o que a cozinha faz, o passo a passo por onde começar e as perguntas frequentes. No fim, o diagnóstico gratuito de 5 perguntas e o checklist de 80 itens.\n\nCom a chegada do calor, vale olhar a cozinha antes de a praga aparecer. Salve este post para fazer a ronda.\n\nQual ponto da sua cozinha dá mais trabalho: tela, ralo, lixo ou estoque? Conta nos comentários.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP.\n\n#controledepragas #rdc216 #vigilanciasanitaria #boaspraticas #servicosdealimentacao #foodservice",
+   "status": "agendado"
+  },
+  {
+   "data": "2026-11-08T18:00:00-03:00",
+   "slug": "controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra",
+   "titulo": "Controle de temperatura em restaurantes: o que a Vigilância cobra",
+   "blog": "https://foodguardassessoria.com.br/blog/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra",
+   "slides": [
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-01.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-02.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-03.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-04.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-05.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-06.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-07.jpg",
+    "/instagram/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra/slide-08.jpg"
+   ],
+   "legenda": "Quais temperaturas a norma cobra na cozinha, e onde cada número está escrito?\n\nNeste carrossel, cada número indica a norma de origem: a RDC 216/2004 (Anvisa, vale no país todo) e, para o recebimento na capital, a Portaria SMS 2.619/2011 (Prefeitura de São Paulo). O que é sugestão de rotina vem avisado no próprio slide.\n\nDois cuidados. A Portaria recebeu alterações depois de 2011, então confira a versão consolidada no portal de legislação da Prefeitura. E a vigilância do seu município pode aplicar regra própria, inclusive na cocção e na frequência de registro.\n\nSalve este post para consultar na hora de montar a planilha.\nComente qual etapa mais dá trabalho na sua operação: recebimento, cocção, resfriamento ou balcão.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP. O checklist de 80 itens, com itens de temperatura, é liberado após cadastro no link da bio.\n\n#boaspraticas #rdc216 #vigilanciasanitaria #controledetemperatura #servicosdealimentacao",
+   "status": "agendado"
+  }
+ ]
+}
