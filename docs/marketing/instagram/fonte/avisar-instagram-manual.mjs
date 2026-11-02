@@ -32,3 +32,7 @@ fs.writeFileSync(saida, html);
 fs.writeFileSync(`${saida}.anexos.json`, JSON.stringify(pub.slides.map((s, i) => ({ arquivo: `../../../public${s}`, nome: nomes[i] })), null, 1) + "\n");
 fs.writeFileSync(`${saida}.texto.txt`, `Post do Instagram para publicar à mão: ${pub.titulo}\n\n${motivo}\n\nNo Meta Business Suite, crie um carrossel, suba os slides anexados na ordem (01 a ${String(pub.slides.length).padStart(2, "0")}) e cole a legenda:\n\n${pub.legenda}\n\nArtigo: ${pub.blog}\n\nFood Guard`);
 execFileSync("node", [new URL("./enviar-email-aprovacao.mjs", import.meta.url).pathname, saida, `Food Guard · Instagram para postar à mão: ${pub.titulo}`, "--teste"], { stdio: "inherit" });
+// Plano B enviado: o Rafael posta à mão. "manual" impede que uma execução nova publique de novo.
+const ag = JSON.parse(fs.readFileSync(AGENDA, "utf8"));
+Object.assign(ag.publicacoes.find((p) => p.slug === slug), { status: "manual", plano_b_em: new Date().toISOString() });
+fs.writeFileSync(AGENDA, JSON.stringify(ag, null, 1) + "\n");

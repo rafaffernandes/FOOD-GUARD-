@@ -41,6 +41,11 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // O sitemap revalida em produção e lê content/blog; o trace automático da função não
+  // inclui a pasta, e sem isto o sitemap regerado sairia sem nenhum post.
+  outputFileTracingIncludes: {
+    "/sitemap.xml": ["./content/blog/**/*.mdx"],
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },

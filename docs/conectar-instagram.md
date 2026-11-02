@@ -105,31 +105,29 @@ Quando terminar, me escreva **"instagram configurado"** aqui no chat.
 
 ## Parte 3. O que eu faço depois
 
-1. **Teste sem publicar:** leio o nome de usuário da conta e o limite de publicações por dia.
-   Se responder `@foodguardassessoria`, a ligação está feita. Se o segredo não chegar nesta
-   sessão, abro uma sessão nova e testo de novo.
-2. **Primeira publicação:** com a sua autorização, publico um carrossel já aprovado e confiro no
-   perfil.
-3. **Rotina de terça e sábado, 18h:** ela publica o carrossel com a legenda e coloca o artigo no
-   blog, mas só o que estiver marcado como `aprovado` em `docs/marketing/instagram/pautas.json`.
-   Quem marca é você: quando você e o Renan aprovarem o e-mail de segunda, me escreva
-   "aprovado quarta e sábado" (ou o ajuste) e eu marco. O que não estiver marcado não sai.
-   As rotinas automáticas não conseguem ler o Gmail nesta conta, por isso a aprovação passa por
-   você no chat.
+1. **Teste sem publicar:** numa sessão nova (é ela que pega o segredo recém-salvo), rodo
+   `node docs/marketing/instagram/fonte/publicar-instagram.mjs --teste`, que só lê o nome da conta
+   e a cota de publicações. Se responder `@foodguardassessoria`, a ligação está feita. Não
+   publico nada fora da agenda.
+2. **Publicação:** segue a `docs/marketing/instagram/agenda.json`. Uma tarefa agendada única às
+   18h05 de cada data publica o carrossel (`docs/marketing/instagram/ROTINA-PUBLICACAO.md`). O
+   artigo do blog sai sozinho pela data do `.mdx`. Você recebe um e-mail com o link de cada post
+   publicado, ou com os slides e a legenda se algo falhar.
+3. **Aprovação:** só entra na agenda o que o Renan validou e você aprovou. As tarefas automáticas
+   não leem o Gmail, então a aprovação chega pelo chat ("aprovado", com quais posts).
 4. **Validade do token:** ele vence 60 dias depois de gerado, e o segredo de rede não pode ser
-   editado. O e-mail de segunda avisa dez dias antes. Aí você gera um token novo na Meta (Parte
-   1, passo 4), apaga o segredo antigo na lista (ícone de lixeira) e cria outro igual (Parte 2).
+   editado. Quando você configurar, eu crio um lembrete para o dia 50. Aí você gera um token novo
+   na Meta (Parte 1, passo E), apaga o segredo antigo na lista (ícone de lixeira) e cria outro
+   igual (Parte 2).
 
 ## Como as imagens chegam à Meta
 
-A API do Instagram só aceita JPEG e busca a imagem num endereço público na hora de publicar.
-Hoje os slides ficam no repositório do GitHub, que é **público**. Funciona, mas significa que
-qualquer pessoa pode ver tudo o que está lá, inclusive documentos internos (plano do SDR,
-preços, pendências). Vale decidir se o repositório fica público. Se virar privado, as imagens
-passam a ser servidas pelo próprio site da Food Guard.
+A API do Instagram só aceita JPEG e busca a imagem num endereço público na hora de publicar. Os
+slides ficam no próprio site, em `public/instagram/<slug>/`, e entram no ar no deploy feito antes
+da data. Não dependem do GitHub.
 
 ## Enquanto a conexão não fica pronta
 
-Os slides e a legenda de cada post saem no e-mail de aprovação. Você agenda no Meta Business
-Suite (cerca de 10 minutos por post), escolhendo carrossel, subindo os 8 slides na ordem e
-colando a legenda.
+Nas datas da agenda, o artigo sai no blog do mesmo jeito, e você recebe por e-mail os slides na
+ordem e a legenda. Você posta no Meta Business Suite (cerca de 5 minutos): carrossel, os 8 slides
+na ordem do nome do arquivo e a legenda colada.

@@ -1,19 +1,19 @@
 {
- "_como_usar": "Fila de pautas da rotina de segunda-feira. A rotina pega as duas primeiras com status 'pendente', na ordem. Depois de produzir, troca o status para 'enviada para aprovação' e anota a data. 'aguarda_renan' só entra quando o Renan liberar.",
+ "_como_usar": "Fila de pautas da rotina de segunda-feira. A rotina pega as primeiras com status 'pendente', na ordem. Depois de produzir, troca o status para 'enviada para aprovação' e anota a data. 'aguarda_renan' só entra quando o Renan liberar.",
  "pautas": [
   {
    "tema": "Manipuladores de alimentos: higiene, saúde e capacitação da equipe (RDC 216/2004)",
    "angulo": "Equipe nova e temporários de fim de ano",
-   "status": "enviada para aprovação",
-   "data": "2026-10-21",
-   "reenviada_em": "2026-11-01"
+   "status": "agendada",
+   "data": "2026-11-04",
+   "aprovada_em": "2026-11-02"
   },
   {
    "tema": "Controle integrado de vetores e pragas: o que a RDC 216/2004 pede e o que guardar",
    "angulo": "Começo do verão, padarias e restaurantes",
-   "status": "enviada para aprovação",
-   "data": "2026-10-24",
-   "reenviada_em": "2026-11-01"
+   "status": "agendada",
+   "data": "2026-11-06",
+   "aprovada_em": "2026-11-02"
   },
   {
    "tema": "Transporte do alimento pronto no delivery: o que a RDC 216/2004 pede da saída da cozinha até o cliente",
@@ -58,8 +58,9 @@
   {
    "tema": "Controle de temperatura em restaurantes: o que a norma cobra",
    "angulo": "Rascunho pronto em docs/rascunhos-blog. Só entra quando o Renan confirmar os números na ficha",
-   "status": "enviada para aprovação",
-   "enviada_em": "2026-11-01"
+   "status": "agendada",
+   "data": "2026-11-08",
+   "aprovada_em": "2026-11-02"
   }
  ]
 }

@@ -69,7 +69,7 @@ const FINAL = {
           origem: { type: 'string', description: 'Norma (RDC 216) ou Sugestão da Food Guard, opcional' },
         }, required: ['titulo', 'texto'] } },
         legenda: { type: 'string', description: 'até 900 caracteres. Primeira linha segura o leitor. Diz que a matéria completa, com a tabela e as perguntas frequentes, está no link da bio. Termina com uma pergunta para comentário. Sem ponto e vírgula.' },
-        hashtags: { type: 'array', items: { type: 'string' } },
+        hashtags: { type: 'array', maxItems: 5, items: { type: 'string' }, description: 'no máximo 5: o Instagram limita a 5 hashtags por post desde dez/2025' },
         textos_alternativos: { type: 'array', items: { type: 'string' }, description: 'um por slide' },
         stories: { type: 'array', items: { type: 'string' }, description: 'três ideias de stories que levam ao artigo' },
       },

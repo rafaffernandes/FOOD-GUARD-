@@ -1,8 +1,9 @@
 # Rotina de segunda-feira: conteúdo da semana para aprovação
 
 Roda toda segunda, perto do meio-dia (horário de Brasília), numa sessão nova. Objetivo:
-mandar ao Rafael e ao Renan, por e-mail, os dois posts da semana (blog e Instagram) para
-aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.**
+mandar ao Rafael e ao Renan, por e-mail, os posts das próximas vagas da agenda (blog e
+Instagram) para aprovação. A cadência é um post a cada dois dias, às 18h
+(`ROTINA-PUBLICACAO.md`). **Esta rotina nunca publica nada e nunca envia nada para a `main`.**
 
 ## Destinatários
 
@@ -15,12 +16,14 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    `git fetch origin claude/charming-allen-Nc7aL && git checkout claude/charming-allen-Nc7aL && git pull`.
    Se o repositório não estiver na sessão, adicione `rafaffernandes/FOOD-GUARD-` e clone antes.
    Rode `npm install` se `node_modules` não existir (o gerador de imagens usa `sharp`).
-2. Datas da semana: a quarta e o sábado desta semana, às 18h.
-3. Pautas: em `docs/marketing/instagram/pautas.json`, pegue as duas primeiras com status
+2. Quantidade e datas: **3 posts por semana** (a confirmar com o Rafael: um a cada dois dias dá
+   3 ou 4 por semana). A data é só uma previsão: as próximas vagas depois da última data de
+   `agenda.json`, de dois em dois dias. A data de verdade é marcada na aprovação.
+3. Pautas: em `docs/marketing/instagram/pautas.json`, pegue as 3 primeiras com status
    `pendente`, na ordem. Não use `aguarda_renan`.
 4. Produção: rode o workflow salvo em `docs/marketing/instagram/fonte/workflow-posts-da-semana.js`
    (Workflow com `scriptPath`), com `args` no formato
-   `{ "posts": [{ "chave": "quarta-DD-MM", "dia": "quarta-feira, DD/MM/AAAA", "tema": ..., "angulo": ... }, { sábado igual }], "existentes": [títulos de content/blog e docs/rascunhos-blog] }`.
+   `{ "posts": [{ "chave": "post-DD-MM", "dia": "data definida na aprovação", "tema": ..., "angulo": ... }, ...], "existentes": [títulos de content/blog e docs/rascunhos-blog] }`.
    Ele escreve, revisa tecnicamente e devolve o post final, o carrossel, a ficha do Renan e as decisões.
    **Se a sessão não tiver a ferramenta Workflow** (a sessão aberta pela rotina automática não
    tem; foi o que travou a rotina de 26/10), faça as mesmas três etapas com a ferramenta
@@ -30,7 +33,7 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    revisão.
 5. Montagem: grave o resultado em `docs/marketing/instagram/fonte/semana-AAAA-MM-DD.json`
    (data da segunda), um item por post com `chave`, `data` (AAAA-MM-DD), `dir`
-   (`quarta-AAAA-MM-DD` / `sabado-AAAA-MM-DD`), `quando` ("quarta-feira, DD/MM, às 18h") e
+   (`post-AAAA-MM-DD`, com a data prevista), `quando` ("data definida na aprovação") e
    `pacote` (`aprovacao-semana-AAAA-MM-DD.pdf`). Depois rode, a partir de
    `docs/marketing/instagram/fonte/`:
    - `node montar-semana.mjs semana-AAAA-MM-DD.json`
@@ -42,7 +45,7 @@ aprovação. **Esta rotina nunca publica nada e nunca envia nada para a `main`.*
    O repositório é privado, então o e-mail não aponta para o GitHub: capa e mosaico vão
    embutidos, e PDFs e slides vão anexados (lista em `email-aprovacao-semana-AAAA-MM-DD.html.anexos.json`,
    que o envio lê sozinho; commite junto). Confira no resumo do gerador se o total fica abaixo de 20 MB. Envie com
-   `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo da semana para aprovação (quarta DD/MM e sábado DD/MM)"`.
+   `node enviar-email-aprovacao.mjs ../email-aprovacao-semana-AAAA-MM-DD.html "Food Guard · Conteúdo para aprovação (N posts, semana de DD/MM)"`.
    O envio é pelo Resend. A chave fica num segredo de rede do ambiente (host `api.resend.com`):
    o proxy coloca a chave na requisição, ela não aparece na sessão e não está em variável de
    ambiente. O e-mail vai para o Rafael e para o Renan, e as respostas voltam para o Rafael.
@@ -71,11 +74,11 @@ Parte 2 (é o mesmo formulário).
 As regras de marca e de verdade estão no próprio workflow e no `CLAUDE.md`. As principais:
 consultoria nutricional para serviços de alimentação; só RDC 216/2004 e Portaria 2.619/2011;
 nada de caso, depoimento ou estatística inventada; nada de número que não tenha fonte que cite a
-norma; o post fica em `docs/rascunhos-blog` até ser aprovado.
+norma; no máximo 5 hashtags por legenda (limite do Instagram desde dez/2025); o post fica em
+`docs/rascunhos-blog` até ser aprovado.
 
-## Envio único desta semana
+## Depois da aprovação
 
-Se a mensagem que disparou a rotina disser "envie a semana 2026-10-19", não produza nada: o
-conteúdo já existe. A partir de `docs/marketing/instagram/fonte/`, rode
-`node enviar-email-aprovacao.mjs ../email-aprovacao-semana-2026-10-19.html "Food Guard · Conteúdo da semana para aprovação (quarta 21/10 e sábado 24/10)"`.
-Depois, commit e push de `docs/marketing/instagram/envios.log` na branch (passo 9).
+Quando o Rafael disser no chat quais posts o Renan e ele aprovaram, a sessão que recebe a
+aprovação segue `ROTINA-PUBLICACAO.md`, seção "Para agendar um post novo aprovado": data, deploy
+e tarefa das 18h05. As tarefas automáticas não leem o Gmail.

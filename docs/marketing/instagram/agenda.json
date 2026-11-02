@@ -1,5 +1,5 @@
 {
- "_como_usar": "Publicações aprovadas, uma por data. O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs, disparado por uma tarefa agendada às 18h05 de cada data. status: agendado, publicado ou falhou.",
+ "_como_usar": "Publicações aprovadas, uma por data. O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs --slug <slug>, disparado por uma tarefa agendada única às 18h05 (horário de Brasília) de cada data, numa sessão nova. status: agendado, publicado, falhou ou manual (plano B enviado ao Rafael; não republicar). tarefa: id da tarefa agendada que publica o post.",
  "publicacoes": [
   {
    "data": "2026-11-04T18:00:00-03:00",
@@ -16,7 +16,7 @@
     "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-07.jpg",
     "/instagram/manipuladores-equipe-nova-e-temporarios-rdc-216/slide-08.jpg"
    ],
-   "legenda": "Vai entrar gente nova na cozinha para o fim de ano? Antes do primeiro turno, tem coisa que a norma pede e que ainda dá tempo de deixar pronta.\n\nNos slides, o essencial: temporário conta como manipulador, cabelo e adornos, sintoma e ferimento, exames de admissão na capital e treinamento com comprovante. Cada slide diz se o ponto é da norma (RDC 216/2004 ou Portaria 2.619/2011) ou sugestão da Food Guard.\n\nA matéria completa está no link da bio, com a tabela do que a norma diz e do que é sugestão, o passo a passo da semana e as perguntas frequentes.\n\nA Portaria vale na capital. Em outras cidades, confirme com a vigilância sanitária local.\n\nO último treinamento da sua equipe incluiu quem entrou depois? Conta nos comentários.\n\n#vigilanciasanitaria #boaspraticas #rdc216 #foodservice #restaurante #gestaoderestaurante #segurancadosalimentos #manipuladoresdealimentos #saopaulo #foodguard",
+   "legenda": "Vai entrar gente nova na cozinha para o fim de ano? Antes do primeiro turno, tem coisa que a norma pede e que ainda dá tempo de deixar pronta.\n\nNos slides, o essencial: temporário conta como manipulador, cabelo e adornos, sintoma e ferimento, exames de admissão na capital e treinamento com comprovante. Cada slide diz se o ponto é da norma (RDC 216/2004 ou Portaria 2.619/2011) ou sugestão da Food Guard.\n\nA matéria completa está no link da bio, com a tabela do que a norma diz e do que é sugestão, o passo a passo da semana e as perguntas frequentes.\n\nA Portaria vale na capital. Em outras cidades, confirme com a vigilância sanitária local.\n\nO último treinamento da sua equipe incluiu quem entrou depois? Conta nos comentários.\n\n#vigilanciasanitaria #boaspraticas #rdc216 #manipuladoresdealimentos #foodservice",
    "status": "agendado"
   },
   {
@@ -34,7 +34,7 @@
     "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-07.jpg",
     "/instagram/controle-de-pragas-na-cozinha-rdc-216-comprovantes/slide-08.jpg"
    ],
-   "legenda": "Chamar a empresa de dedetização resolve o controle de pragas da cozinha?\n\nNeste carrossel está o essencial do que a RDC 216/2004 pede: prevenção na frente, controle químico só depois e feito por empresa especializada. Cada slide diz se o ponto é da norma ou sugestão da Food Guard.\n\nA matéria completa está no link da bio. Lá tem a tabela do que guardar para provar o que a cozinha faz, o passo a passo por onde começar e as perguntas frequentes. No fim, o diagnóstico gratuito de 5 perguntas e o checklist de 80 itens.\n\nCom a chegada do calor, vale olhar a cozinha antes de a praga aparecer. Salve este post para fazer a ronda.\n\nQual ponto da sua cozinha dá mais trabalho: tela, ralo, lixo ou estoque? Conta nos comentários.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP.\n\n#controledepragas #rdc216 #vigilanciasanitaria #boaspraticas #servicosdealimentacao #foodservice",
+   "legenda": "Chamar a empresa de dedetização resolve o controle de pragas da cozinha?\n\nNeste carrossel está o essencial do que a RDC 216/2004 pede: prevenção na frente, controle químico só depois e feito por empresa especializada. Cada slide diz se o ponto é da norma ou sugestão da Food Guard.\n\nA matéria completa está no link da bio. Lá tem a tabela do que guardar para provar o que a cozinha faz, o passo a passo por onde começar e as perguntas frequentes. No fim, o diagnóstico gratuito de 5 perguntas e o checklist de 80 itens.\n\nCom a chegada do calor, vale olhar a cozinha antes de a praga aparecer. Salve este post para fazer a ronda.\n\nQual ponto da sua cozinha dá mais trabalho: tela, ralo, lixo ou estoque? Conta nos comentários.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP.\n\n#controledepragas #rdc216 #vigilanciasanitaria #boaspraticas #foodservice",
    "status": "agendado"
   },
   {

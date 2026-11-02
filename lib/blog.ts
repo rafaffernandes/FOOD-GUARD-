@@ -32,8 +32,14 @@ function readSlugs(): string[] {
  * a cada poucos minutos, então o artigo entra no ar sozinho, sem novo deploy.
  */
 export function isPublished(date: string, now = new Date()): boolean {
-  const quando = new Date(date);
-  return !Number.isNaN(quando.getTime()) && quando <= now;
+  // Só a data (AAAA-MM-DD) vale a partir da meia-noite de Brasília, não da de Greenwich.
+  const iso = /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00-03:00` : date;
+  const quando = new Date(iso);
+  if (Number.isNaN(quando.getTime())) {
+    console.warn(`[blog] date inválido no frontmatter: "${date}" (post escondido)`);
+    return false;
+  }
+  return quando <= now;
 }
 
 export function getAllPosts(): PostMeta[] {

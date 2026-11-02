@@ -17,7 +17,7 @@ Crie em `content/blog/<slug>.mdx`. Frontmatter exato (lido por `lib/blog.ts`):
 ---
 title: "Título com a palavra-chave no início"
 description: "Resumo de 140–160 caracteres, sem juridiquês, com o benefício."
-date: "2026-06-09"
+date: "2026-06-09T18:00:00-03:00"
 author: "Renan Muniz · nutricionista responsável"
 readingTime: "6 min"
 tag: "Regulação"
