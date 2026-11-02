@@ -1,7 +1,7 @@
 # Como conectar o Instagram para o Claude publicar
 
-Objetivo: o carrossel aprovado sai sozinho no `@foodguardassessoria` às terças e sábados,
-18h, sem ninguém apertar botão. Não existe conector pronto do Instagram para o Claude, então
+Objetivo: o carrossel aprovado sai sozinho no `@foodguardassessoria` nas datas da agenda
+(`docs/marketing/instagram/agenda.json`), às 18h, sem ninguém apertar botão. Não existe conector pronto do Instagram para o Claude, então
 a ligação é feita pela API oficial da Meta, com um token guardado como **segredo de rede** do
 ambiente do Claude.
 
@@ -12,18 +12,51 @@ fora da sessão.
 
 ## Parte 1. O que você faz na Meta (uma vez, cerca de 30 minutos)
 
-1. **Confirme a conta.** O `@foodguardassessoria` precisa ser conta profissional (comercial ou
-   criador de conteúdo). Você informou que é comercial e ligada ao Facebook.
-2. **Crie o app.** Entre em developers.facebook.com com o Facebook do dono da conta, vá em
-   "Meus apps" e crie um app do tipo empresa.
-3. **Adicione o Instagram.** No app, adicione o produto Instagram e escolha a opção de API com
-   login do Instagram (a que publica conteúdo). Adicione o `@foodguardassessoria` como conta de
-   teste do app e aceite o convite pelo Instagram (Configurações, Apps e sites).
-4. **Gere o token.** Na mesma tela (configuração da API com login do Instagram), gere o token de
-   acesso da conta, marcando a permissão de publicação de conteúdo
-   (`instagram_business_content_publish`). Segundo a documentação da Meta, o token gerado no
-   painel do app já vale 60 dias, então não precisa trocar por outro. Copie o token e vá direto
-   para a Parte 2, sem colar em lugar nenhum no caminho.
+Faça pelo computador. São dois logins diferentes, e é isso que costuma confundir:
+
+- **Facebook pessoal**: entra no site de desenvolvedores e é o dono do app. Pode ser o seu
+  Facebook de sempre. O e-mail `foodguardassessoria@gmail.com` não precisa ter Facebook.
+- **Instagram da Food Guard** (`@foodguardassessoria`): só aparece no passo D, quando você liga
+  a conta ao app, com o usuário e a senha do Instagram.
+
+**A. Conferir a conta do Instagram (2 minutos)**
+1. No app do Instagram, entre no `@foodguardassessoria`.
+2. Perfil → menu (☰) → **Tipo de conta e ferramentas**: precisa estar como **conta
+   profissional** (comercial ou criador). Se aparecer a opção "Mudar para conta profissional",
+   a conta ainda é pessoal: mude para **Empresa**.
+
+**B. Virar desenvolvedor (5 minutos, só na primeira vez)**
+1. Acesse **developers.facebook.com** e clique em **Entrar**, com o **seu Facebook pessoal**.
+2. Se aparecer **Começar** ou "Registrar-se como desenvolvedor", siga: aceite os termos,
+   confirme o celular por SMS e escolha a profissão que quiser. Não tem custo.
+
+**C. Criar o app (5 minutos)**
+1. Clique em **Meus apps** → **Criar app**.
+2. Nome do app: `Food Guard Publicação`. E-mail de contato: o seu.
+3. Caso de uso: escolha a opção do **Instagram** (gerenciar mensagens e conteúdo no
+   Instagram). Se ela não aparecer, escolha **Outro** e, no tipo, **Empresa**.
+4. Se pedir um portfólio empresarial, pode pular ("não quero conectar agora").
+5. Conclua com **Criar app** (pode pedir a senha do Facebook de novo).
+
+**D. Ligar o Instagram da Food Guard ao app (10 minutos)**
+1. No painel do app, no menu da esquerda, abra **Instagram** → **Configuração da API com login
+   do Instagram**. Se o Instagram não estiver no menu, procure **Adicionar produto** e clique em
+   **Configurar** no Instagram.
+2. Menu da esquerda → **Funções do app** → **Funções** → **Adicionar pessoas** → escolha
+   **Testador do Instagram** → digite `foodguardassessoria` → **Adicionar**.
+3. Aceite o convite: no navegador, entre em **instagram.com** com o `@foodguardassessoria` →
+   **Configurações** → **Apps e sites** → aba **Convites de testador** → **Aceitar**. É o passo
+   mais esquecido; sem ele o token não funciona.
+4. Volte ao painel: **Instagram** → **Configuração da API com login do Instagram** → seção
+   **Gerar tokens de acesso** → **Adicionar conta**. Abre o login do **Instagram**: entre com o
+   usuário e a senha do `@foodguardassessoria` e autorize tudo o que pedir, inclusive
+   **publicar conteúdo**.
+
+**E. Gerar o token (2 minutos)**
+1. Na mesma seção, ao lado da conta, clique em **Gerar token**.
+2. Na janela, marque **Eu entendo** e copie o token. Segundo a documentação da Meta, o token
+   gerado no painel já vale 60 dias.
+3. Vá direto para a Parte 2, sem colar o token em lugar nenhum no caminho (nem no chat).
 
 Os nomes dos menus mudam de tempos em tempos na Meta. Se algo estiver diferente, me descreva a
 tela, sem mandar o token, que eu te guio.
