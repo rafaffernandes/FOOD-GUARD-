@@ -13,6 +13,8 @@
 //   node publicar-instagram.mjs --teste         só lê a conta e a cota, não publica
 //   --sem-email   não manda e-mail (nem confirmação nem plano B)
 //   --forcar      tenta de novo um post marcado como "falhou" na agenda local
+//   --ensaio      faz tudo menos publicar (contêiner pronto, que a Meta descarta em 24h);
+//                 ignora data e status e não grava nada nem manda e-mail
 // Saída: 0 publicado (ou já estava); 1 falhou e o plano B foi enviado ao Rafael;
 //        2 falhou e o plano B também falhou; 3 a data ainda não chegou.
 import fs from "node:fs";
@@ -29,6 +31,7 @@ const LOG = new URL("../publicacoes.log", import.meta.url);
 const args = process.argv.slice(2);
 const teste = args.includes("--teste");
 const semEmail = args.includes("--sem-email");
+const ensaio = args.includes("--ensaio");
 const slugPedido = args.includes("--slug") ? args[args.indexOf("--slug") + 1] : null;
 
 const dormir = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
@@ -75,6 +78,11 @@ function conta(idConhecido) {
   try {
     const me = api("GET", "me", { fields: "user_id,username" }, HOSTS.instagram);
     if (me.user_id) { API = HOSTS.instagram; return { user_id: me.user_id, username: me.username, via: HOSTS.instagram }; }
+  } catch (e) { erros.push(e.message); }
+  try {
+    // Token de usuário do sistema (login unificado): a conta vem como ativo atribuído.
+    const ig = (api("GET", "me/assigned_instagram_accounts", { fields: "id,username" }, HOSTS.facebook).data ?? [])[0];
+    if (ig) { API = HOSTS.facebook; return { user_id: ig.id, username: ig.username, via: HOSTS.facebook }; }
   } catch (e) { erros.push(e.message); }
   try {
     const paginas = api("GET", "me/accounts", { fields: "instagram_business_account{id,username}" }, HOSTS.facebook).data ?? [];
@@ -127,11 +135,11 @@ if (!pub) {
   console.error(`Slug fora da agenda: ${slugPedido}. A cópia do repositório pode estar desatualizada.`);
   process.exit(1);
 }
-if (new Date(pub.data) > new Date()) {
+if (!ensaio && new Date(pub.data) > new Date()) {
   console.error(`Ainda não chegou a data (${pub.data}). Nada foi feito.`);
   process.exit(3);
 }
-if (pub.status === "publicado" || pub.status === "manual" || (pub.status === "falhou" && !args.includes("--forcar"))) {
+if (!ensaio && (pub.status === "publicado" || pub.status === "manual" || (pub.status === "falhou" && !args.includes("--forcar")))) {
   console.log(`${pub.slug} já está "${pub.status}" na agenda. Nada foi feito.`);
   process.exit(0);
 }
@@ -139,6 +147,10 @@ if (pub.status === "publicado" || pub.status === "manual" || (pub.status === "fa
 try {
   const me = conta(agenda.instagram_id);
   const existente = jaPublicado(me.user_id, pub.legenda);
+  if (existente && ensaio) {
+    console.log(`Ensaio: ${pub.slug} já está publicado (${existente.permalink ?? existente.id}).`);
+    process.exit(0);
+  }
   if (existente) {
     Object.assign(pub, { status: "publicado", instagram: existente.permalink ?? "", midia: existente.id });
     salvar();
@@ -156,6 +168,10 @@ try {
     if (estado !== "FINISHED") dormir(10000);
   }
   if (estado !== "FINISHED") throw new Error(`a Meta não terminou de processar o carrossel em 5 minutos (último status: ${estado})`);
+  if (ensaio) {
+    console.log(`Ensaio ok: ${pub.slug} com ${filhos.length} slides e legenda aceitos; contêiner ${carrossel} pronto e NÃO publicado.`);
+    process.exit(0);
+  }
   let midia;
   try {
     midia = api("POST", `${me.user_id}/media_publish`, { creation_id: carrossel }).id;
@@ -185,6 +201,10 @@ try {
     console.error(`O post saiu, mas o e-mail de confirmação falhou: ${e.message}`);
   }
 } catch (e) {
+  if (ensaio) {
+    console.error(`Ensaio falhou para ${pub.slug}: ${e.message}`);
+    process.exit(1);
+  }
   Object.assign(pub, { status: "falhou", falhou_em: new Date().toISOString(), motivo: e.message });
   salvar();
   registrar(`falhou | ${pub.slug} | ${e.message}`);

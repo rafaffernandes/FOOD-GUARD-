@@ -30,6 +30,9 @@ Instagram se o post já saiu. Por isso a sessão da tarefa só precisa ler o rep
    - **2**: não publicou e o plano B também falhou. Responda com o erro, que fica registrado no
      histórico da tarefa.
    - **3**: a tarefa disparou antes da hora. Reagende para 18h05 da data da agenda.
+Para conferir sem publicar: `node publicar-instagram.mjs --teste` (lê a conta e a cota) e
+   `node publicar-instagram.mjs --slug <slug> --ensaio` (monta o carrossel inteiro e para antes de
+   publicar; não grava nada e não manda e-mail).
 4. Nunca publica por outro caminho, nunca roda o comando duas vezes e nunca mexe na `main`.
 5. Se a sessão conseguir gravar no repositório, faz commit e push na branch de `agenda.json` e
    `publicacoes.log`. Se não conseguir, tudo bem: o Instagram é a fonte da verdade.

@@ -128,6 +128,12 @@ Quando terminar, me escreva **"instagram configurado"** aqui no chat.
 
 ## Parte 3. O que eu faço depois
 
+**Conectado em 03/11/2026:** `@foodguardassessoria` (id `17841435067273589`), token de usuário do
+sistema que não expira, pela API em `graph.facebook.com`. O id vem de
+`GET /me/assigned_instagram_accounts`. Teste de leitura, leitura dos posts recentes e ensaio dos 3
+carrosséis da agenda (sem publicar) passaram. O endereço `graph.instagram.com` recusa esse tipo de
+token, e isso é esperado.
+
 1. **Teste sem publicar:** numa sessão nova (é ela que pega o segredo recém-salvo), rodo
    `node docs/marketing/instagram/fonte/publicar-instagram.mjs --teste`, que só lê o nome da conta
    e a cota de publicações. Se responder `@foodguardassessoria`, a ligação está feita. Não
