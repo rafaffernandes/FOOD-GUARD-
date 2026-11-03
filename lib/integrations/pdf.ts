@@ -43,9 +43,14 @@ export async function buildReportPdf(
   y -= 26;
   text("Diagnóstico Regulatório", { size: 22, font: bold });
   y -= 18;
-  // A fonte padrão só desenha Latin-1 (fora disso o pdf-lib lança erro e o e-mail sai sem
-  // anexo), e um nome comprido estoura a linha.
-  const empresa = lead.company.replace(/[^\x20-\x7E\xA0-\xFF]/g, "").slice(0, 80);
+  // Só os caracteres que a fonte desenha (fora deles o pdf-lib lança erro e o e-mail sai sem
+  // anexo): mantém acento, apóstrofo curvo, aspas, travessão e €, tira emoji. E um nome
+  // comprido estoura a linha.
+  const suportados = new Set(font.getCharacterSet());
+  const empresa = Array.from(lead.company)
+    .filter((c) => suportados.has(c.codePointAt(0) ?? 0))
+    .join("")
+    .slice(0, 80);
   text(`${empresa} · ${new Date().toLocaleDateString("pt-BR")}`, {
     size: 10,
     color: [0.42, 0.48, 0.46],
