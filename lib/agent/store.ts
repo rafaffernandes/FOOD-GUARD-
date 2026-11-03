@@ -78,6 +78,9 @@ export async function saveOutreachDraft(
   return true;
 }
 
+/** Teto da fila do /admin por tipo: a tela não carrega a tabela inteira. */
+const FILA_MAX = 100;
+
 export type DraftTable = "outreach_drafts" | "content_drafts" | "lead_activity";
 
 /** Item normalizado da fila de aprovação (junta os 3 tipos de rascunho). */
@@ -110,7 +113,8 @@ export async function fetchPendingDrafts(): Promise<PendingDraft[]> {
       "id, channel, message, rationale, ai_generated, created_at, prospects(company_name, neighborhood)",
     )
     .eq("status", "pendente")
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .limit(FILA_MAX);
   for (const r of outreach ?? []) {
     const p = Array.isArray(r.prospects) ? r.prospects[0] : r.prospects;
     out.push({
@@ -131,7 +135,8 @@ export async function fetchPendingDrafts(): Promise<PendingDraft[]> {
     .from("content_drafts")
     .select("id, platform, topic, hook, body, cta, ai_generated, created_at")
     .eq("status", "pendente")
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .limit(FILA_MAX);
   for (const r of content ?? []) {
     out.push({
       id: r.id,
@@ -151,7 +156,8 @@ export async function fetchPendingDrafts(): Promise<PendingDraft[]> {
       "id, tier, channel, message, rationale, ai_generated, created_at, leads(name, company)",
     )
     .eq("status", "pendente")
-    .order("created_at", { ascending: true });
+    .order("created_at", { ascending: true })
+    .limit(FILA_MAX);
   for (const r of activity ?? []) {
     const l = Array.isArray(r.leads) ? r.leads[0] : r.leads;
     out.push({

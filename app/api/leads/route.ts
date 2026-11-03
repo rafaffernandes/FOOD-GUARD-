@@ -53,6 +53,10 @@ const answersSchema = z
 
 const schema = contatoSchema.extend({ answers: answersSchema });
 
+// O after() gera o PDF, manda o e-mail e chama a IA do follow-up depois da resposta:
+// 60 s dá folga para isso terminar na Vercel.
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   const { allowed } = rateLimit(getIp(request), 5, 10 * 60 * 1000);
   if (!allowed) {
