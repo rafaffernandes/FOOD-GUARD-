@@ -7,7 +7,7 @@ import { questions } from "@/lib/diagnostic/questions";
 import { notifyTeam, sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
-import { pareceBot } from "@/lib/bot-guard";
+import { esperarComoEnvioReal, pareceBot, tempoInformado } from "@/lib/bot-guard";
 import { getIp, rateLimit } from "@/lib/rate-limit";
 import { lerCorpoJson } from "@/lib/validation/corpo";
 import { contatoSchema } from "@/lib/validation/lead";
@@ -83,7 +83,8 @@ export async function POST(request: Request) {
   // Robô: responde como sucesso (não ensina o que barrou), mas não grava, não manda
   // e-mail e não chama a IA.
   if (pareceBot(leitura.body)) {
-    console.warn("[bot] submissão descartada: diagnóstico");
+    console.warn("[bot] submissão descartada: diagnóstico", { fillMs: tempoInformado(leitura.body) });
+    await esperarComoEnvioReal();
     return NextResponse.json({
       ok: true,
       devMode: false,

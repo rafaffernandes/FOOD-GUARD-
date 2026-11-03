@@ -12,7 +12,8 @@ import { z } from "zod";
 export const contatoSchema = z.object({
   name: z.string().trim().min(2).max(120),
   email: z.string().trim().toLowerCase().email().max(254),
-  phone: z.string().trim().regex(/^[0-9()+\s.-]{8,20}$/),
+  // Aceita 0xx, ramal com x e o travessão de texto colado; 25 cobre "+55 (011) 9 9999-8888".
+  phone: z.string().trim().regex(/^[0-9()+\s.xX–-]{8,25}$/),
   company: z.string().trim().min(2).max(160),
   role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"]),
   consent: z.literal(true),

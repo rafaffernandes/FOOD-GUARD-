@@ -14,7 +14,7 @@ const schema = z.object({
     .string()
     .trim()
     .min(10, "Telefone inválido")
-    .regex(/^[0-9()+\s.-]{8,20}$/, "Telefone inválido"),
+    .regex(/^[0-9()+\s.xX–-]{8,25}$/, "Telefone inválido"),
   company: z
     .string()
     .trim()
@@ -76,12 +76,6 @@ export function GatingForm({
       className="space-y-4"
       noValidate
     >
-      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label>
-          Site
-          <input type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
-        </label>
-      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nome completo" error={errors.name?.message}>
           <input className={fieldClass} placeholder="Seu nome" maxLength={120} {...register("name")} />
@@ -99,7 +93,7 @@ export function GatingForm({
           <input
             className={fieldClass}
             placeholder="(11) 99999-9999"
-            maxLength={20}
+            maxLength={30}
             {...register("phone")}
           />
         </Field>
@@ -169,6 +163,21 @@ export function GatingForm({
         {ctaLabel}
       </button>
       <p className="text-center text-xs text-ink-muted">{footnote}</p>
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Site
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            data-1p-ignore="true"
+            data-lpignore="true"
+            data-bwignore="true"
+            data-form-type="other"
+            {...register("website")}
+          />
+        </label>
+      </div>
     </form>
   );
 }

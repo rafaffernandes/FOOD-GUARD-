@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { saveChecklistLead } from "@/lib/integrations/supabase";
-import { pareceBot } from "@/lib/bot-guard";
+import { esperarComoEnvioReal, pareceBot, tempoInformado } from "@/lib/bot-guard";
 import { getIp, rateLimit } from "@/lib/rate-limit";
 import { lerCorpoJson } from "@/lib/validation/corpo";
 import { contatoSchema } from "@/lib/validation/lead";
@@ -37,7 +37,8 @@ export async function POST(request: Request) {
 
   // Robô: responde como sucesso, mas não grava nada.
   if (pareceBot(leitura.body)) {
-    console.warn("[bot] submissão descartada: checklist");
+    console.warn("[bot] submissão descartada: checklist", { fillMs: tempoInformado(leitura.body) });
+    await esperarComoEnvioReal();
     return NextResponse.json({ ok: true, devMode: false });
   }
 
@@ -54,5 +55,5 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json({ ok: true, devMode: result.devMode });
+  return NextResponse.json({ ok: true, devMode: result.devMode ?? false });
 }
