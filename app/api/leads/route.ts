@@ -7,6 +7,7 @@ import { questions } from "@/lib/diagnostic/questions";
 import { notifyTeam, sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
+import { pareceBot } from "@/lib/bot-guard";
 import { getIp, rateLimit } from "@/lib/rate-limit";
 import { lerCorpoJson } from "@/lib/validation/corpo";
 import { contatoSchema } from "@/lib/validation/lead";
@@ -74,6 +75,19 @@ export async function POST(request: Request) {
 
   // Recalcula o resultado no servidor (não confia no score do cliente).
   const result = computeDiagnostic(parsed.data.answers);
+
+  // Robô: responde como sucesso (não ensina o que barrou), mas não grava, não manda
+  // e-mail e não chama a IA.
+  if (pareceBot(leitura.body)) {
+    console.warn("[bot] submissão descartada: diagnóstico");
+    return NextResponse.json({
+      ok: true,
+      devMode: false,
+      score: result.score,
+      band: result.band,
+      recommendedPlan: result.recommendedPlan,
+    });
+  }
 
   const lead: LeadPayload = {
     name: parsed.data.name,

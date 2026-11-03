@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Lock } from "lucide-react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { cn } from "@/lib/utils";
@@ -26,9 +27,12 @@ const schema = z.object({
     errorMap: () => ({ message: "É necessário aceitar para continuar" }),
   }),
   whatsappOptin: z.boolean().optional(),
+  // Campo isca: invisível para quem preenche, mas robô costuma preencher.
+  website: z.string().optional(),
 });
 
-export type GatingValues = z.infer<typeof schema>;
+/** fillMs: tempo de preenchimento medido no navegador; o servidor descarta envio rápido demais. */
+export type GatingValues = z.infer<typeof schema> & { fillMs?: number };
 
 const roles = ["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"] as const;
 
@@ -56,16 +60,28 @@ export function GatingForm({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<GatingValues>({
+  } = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: { whatsappOptin: true },
   });
+
+  const inicio = useRef(Date.now());
 
   const fieldClass =
     "w-full rounded-xl border border-surface-sunken bg-surface-soft px-4 py-3 text-ink outline-none transition focus:border-brand-400 focus:bg-white focus:ring-2 focus:ring-brand-100";
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+    <form
+      onSubmit={handleSubmit((values) => onSubmit({ ...values, fillMs: Date.now() - inicio.current }))}
+      className="space-y-4"
+      noValidate
+    >
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label>
+          Site
+          <input type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
+        </label>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nome completo" error={errors.name?.message}>
           <input className={fieldClass} placeholder="Seu nome" maxLength={120} {...register("name")} />
