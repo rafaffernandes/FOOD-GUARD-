@@ -46,10 +46,6 @@ Instagram se o post já saiu. Por isso a sessão da tarefa só precisa ler o rep
 4. Copie os slides para `public/instagram/<slug>/` e acrescente a entrada em `agenda.json` com a
    mesma data. Legenda com no máximo 5 hashtags (limite do Instagram desde dez/2025).
 5. Na `pautas.json`, troque a pauta para `agendada`, com a data.
-**Antes do deploy:** a branch tem correções de segurança ainda não revisadas por completo
-(`docs/a-fazer.md`, item 3). Enquanto esse item estiver aberto, não publique a branch inteira na
-`main` sem o OK do Rafael: duas delas ainda descartam lead real (tempo mínimo de 3 s) e cortam
-parte do GA4 (CSP).
 6. `npm run build` e `npm run lint`, commit, push na branch e na `main` (deploy). O deploy precisa
    sair antes da data, ou o artigo não entra e a Meta não acha os slides.
 7. Crie a tarefa agendada única (create_trigger com `create_new_session_on_fire: true` e

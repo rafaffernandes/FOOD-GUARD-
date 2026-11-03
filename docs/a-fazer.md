@@ -29,22 +29,23 @@ Ordem pedida:
 Pendência relacionada: o Rafael tem um material atual que precisa melhorar.
 Pedir o arquivo antes de começar.
 
-## 3. Pendências de segurança (pedido do Rafael em 03/11: "não me deixa esquecer")
+## 3. Pendências de segurança
 
-Lembrete agendado para segunda, 09/11, às 9h03. Estado e detalhes em `check-report/RELATORIO.md`
-(fora do Git) e nos commits dff68b8 a fe84c19 da branch.
+Check de 03/11: nota 55 → 85, publicado na main em 03/11 (commit 10f0c77). Relatório em
+`check-report/RELATORIO.md` (fora do Git). Lembrete agendado para segunda, 09/11, às 9h03.
 
-- 9 correções aplicadas na branch, **ainda não publicadas na main**. A revisão adversarial
-  terminou em 03/11 (resultado completo em `check-report/revisao-correcoes-2026-11-03.json`, fora
-  do Git). Corrigir antes de publicar: (1) tempo mínimo anti-robô de 3 s descarta quem preenche
-  rápido com autopreenchimento (baixar para 1,5 s e registrar o fillMs); (2) a CSP corta parte do
-  GA4 (Google Signals): liberar os domínios que faltam; (3) menores: telefone acima de 20
-  caracteres cortado sem aviso, PDF perdendo apóstrofo e travessão, espaço extra no formulário,
-  resposta do robô diferente da real no checklist, limite de corpo contado em caracteres e não
-  em bytes, e o package-lock mudou mais pacotes do que o declarado.
-- Decisões do Rafael: limite de envios compartilhado (Upstash ou Firewall da Vercel); Turnstile;
-  apagar deployments antigos e os projetos Vercel extras; tirar do ar as rotas de teste dos
-  agentes; proteger de verdade o PDF do checklist; citar o provedor de IA na política de
-  privacidade; migrar para o zod 4.
-- Ações manuais: rodar `supabase/hardening-rls.sql` no SQL Editor; conferir na Vercel que a
-  senha do admin, o CRON_SECRET e o token do webhook do Asaas não são os valores de exemplo.
+Feito: Next 15.5.28 e zod 4 (npm audit só com 4 alertas baixos), e-mail do diagnóstico sem HTML
+injetado, validação e limite de tamanho nas rotas públicas, primeira camada contra robôs (campo
+isca e 1,5 s), ação do painel conferindo a senha e só com as 3 tabelas da fila, botão de pânico
+dos agentes valendo, segredos comparados em tempo constante, logs sem dado de lead, cabeçalhos e
+CSP num bloco só (com GA4), revisão adversarial com todos os achados corrigidos.
+
+Falta (decisão ou painel do Rafael):
+- Rodar `supabase/hardening-rls.sql` no SQL Editor de produção e conferir com as consultas do fim.
+- Na Vercel: conferir que a senha do admin, o CRON_SECRET e o token do Asaas não são os valores
+  de exemplo do guia; apagar os deployments anteriores a 05/08/2026 e os ~7 projetos extras.
+- Decidir: limite de envios compartilhado (Upstash ou Firewall da Vercel); Turnstile como segunda
+  camada; tirar do ar as rotas de teste dos agentes; proteger de verdade o PDF do checklist;
+  citar o provedor de IA na política de privacidade; ligar o Dependabot.
+- Conferir no ar (precisa de foodguardassessoria.com.br liberado na rede do ambiente): cabeçalhos,
+  redirect para HTTPS, /.env e /.git.
