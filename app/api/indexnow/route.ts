@@ -68,6 +68,6 @@ export async function GET(request: Request) {
   } catch (err) {
     const message = err instanceof Error ? err.message : "erro desconhecido";
     console.error("[indexnow] falhou:", message);
-    return NextResponse.json({ ok: false, error: message }, { status: 502 });
+    return NextResponse.json({ ok: false, error: "Falha ao avisar o IndexNow." }, { status: 502 });
   }
 }

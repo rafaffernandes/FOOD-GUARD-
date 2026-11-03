@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { maskEmail } from "@/lib/diagnostic/report";
 import type { ContactPayload, LeadPayload } from "./types";
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -83,7 +84,7 @@ export async function saveChecklistLead(
 
   if (!client) {
     console.info(
-      `[dev] Supabase não configurado — lead do checklist capturado localmente (${contato.email})`,
+      `[dev] Supabase não configurado — lead do checklist capturado localmente (${maskEmail(contato.email)})`,
     );
     return { ok: true, devMode: true };
   }

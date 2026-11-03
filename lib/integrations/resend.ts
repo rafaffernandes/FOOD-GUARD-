@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import type { DiagnosticResult } from "@/lib/diagnostic/engine";
+import { maskEmail } from "@/lib/diagnostic/report";
 import { buildReportPdf } from "./pdf";
 import { buildReportHtml, reportSubject } from "./report";
 import type { LeadPayload } from "./types";
@@ -15,7 +16,7 @@ export async function sendDiagnosticEmail(
 ): Promise<{ ok: boolean; devMode?: boolean; error?: string }> {
   if (!resendConfigured) {
     console.info(
-      `[dev] Resend não configurado — relatório seria enviado para ${lead.email}`,
+      `[dev] Resend não configurado — relatório seria enviado para ${maskEmail(lead.email)}`,
     );
     return { ok: true, devMode: true };
   }
@@ -58,7 +59,8 @@ const teamEmail =
  */
 export async function notifyTeam(subject: string, text: string): Promise<void> {
   if (!resendConfigured || !teamEmail) {
-    console.info(`[dev] notificação interna — ${subject}: ${text}`);
+    // Sem o conteúdo: a notificação traz nome e empresa do lead.
+    console.info("[dev] notificação interna não enviada (Resend ou destinatário não configurado)");
     return;
   }
   try {
