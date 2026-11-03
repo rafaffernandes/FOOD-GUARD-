@@ -21,10 +21,10 @@ const schema = z.object({
     .min(2, "Informe o nome da empresa")
     .max(160, "Use até 160 caracteres"),
   role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"], {
-    errorMap: () => ({ message: "Selecione seu cargo" }),
+    error: "Selecione seu cargo",
   }),
   consent: z.literal(true, {
-    errorMap: () => ({ message: "É necessário aceitar para continuar" }),
+    error: "É necessário aceitar para continuar",
   }),
   whatsappOptin: z.boolean().optional(),
   // Campo isca: invisível para quem preenche, mas robô costuma preencher.

@@ -22,7 +22,7 @@ import { contatoSchema } from "@/lib/validation/lead";
  */
 const idsDasPerguntas = new Set(questions.map((q) => q.id));
 const answersSchema = z
-  .record(z.string().max(40))
+  .record(z.string(), z.string().max(40))
   .superRefine((answers, ctx) => {
     for (const chave of Object.keys(answers)) {
       if (!idsDasPerguntas.has(chave)) {
