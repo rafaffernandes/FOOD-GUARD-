@@ -11,6 +11,7 @@ import { Container } from "@/components/ui/Container";
 import { extractFaq, getAllPosts, getPost } from "@/lib/blog";
 import { photos } from "@/lib/content/photos";
 import { site } from "@/lib/content/site";
+import { jsonLd } from "@/lib/utils";
 
 // Post agendado não é gerado no build; quando a data chega, a página é gerada no
 // primeiro acesso e revalidada a cada 5 minutos (ver isPublished em lib/blog.ts).
@@ -131,18 +132,18 @@ export default async function PostPage({
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(articleLd) }}
       />
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbLd) }}
       />
       {faqLd && (
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem entrada de usuário
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }}
         />
       )}
       <Container className="max-w-3xl">

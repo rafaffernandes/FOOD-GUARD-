@@ -7,13 +7,18 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 
 const schema = z.object({
-  name: z.string().min(2, "Informe seu nome"),
-  email: z.string().email("E-mail inválido"),
+  name: z.string().trim().min(2, "Informe seu nome").max(120, "Use até 120 caracteres"),
+  email: z.string().trim().email("E-mail inválido").max(254, "E-mail inválido"),
   phone: z
     .string()
+    .trim()
     .min(10, "Telefone inválido")
-    .regex(/[0-9()\s-]+/, "Telefone inválido"),
-  company: z.string().min(2, "Informe o nome da empresa"),
+    .regex(/^[0-9()+\s.-]{8,20}$/, "Telefone inválido"),
+  company: z
+    .string()
+    .trim()
+    .min(2, "Informe o nome da empresa")
+    .max(160, "Use até 160 caracteres"),
   role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"], {
     errorMap: () => ({ message: "Selecione seu cargo" }),
   }),
@@ -63,13 +68,14 @@ export function GatingForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nome completo" error={errors.name?.message}>
-          <input className={fieldClass} placeholder="Seu nome" {...register("name")} />
+          <input className={fieldClass} placeholder="Seu nome" maxLength={120} {...register("name")} />
         </Field>
         <Field label="E-mail" error={errors.email?.message}>
           <input
             type="email"
             className={fieldClass}
             placeholder="voce@empresa.com.br"
+            maxLength={254}
             {...register("email")}
           />
         </Field>
@@ -77,6 +83,7 @@ export function GatingForm({
           <input
             className={fieldClass}
             placeholder="(11) 99999-9999"
+            maxLength={20}
             {...register("phone")}
           />
         </Field>
@@ -84,6 +91,7 @@ export function GatingForm({
           <input
             className={fieldClass}
             placeholder="Nome do estabelecimento"
+            maxLength={160}
             {...register("company")}
           />
         </Field>

@@ -8,16 +8,30 @@ import { notifyTeam, sendDiagnosticEmail } from "@/lib/integrations/resend";
 import { saveLead } from "@/lib/integrations/supabase";
 import type { LeadPayload } from "@/lib/integrations/types";
 import { getIp, rateLimit } from "@/lib/rate-limit";
+import { lerCorpoJson } from "@/lib/validation/corpo";
+import { contatoSchema } from "@/lib/validation/lead";
 
 /**
  * Respostas: toda pergunta precisa vir com um id de opção que existe.
  * O motor trata resposta desconhecida como risco 0, então sem esta validação
  * um payload incompleto viraria "score 100 / risco baixo" — o falso negativo
  * mais caro possível num diagnóstico de conformidade.
+ * Chave que não é pergunta do diagnóstico é recusada: as respostas vão inteiras para
+ * o banco e para o prompt do follow-up.
  */
+const idsDasPerguntas = new Set(questions.map((q) => q.id));
 const answersSchema = z
-  .record(z.string())
+  .record(z.string().max(40))
   .superRefine((answers, ctx) => {
+    for (const chave of Object.keys(answers)) {
+      if (!idsDasPerguntas.has(chave)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Pergunta desconhecida: "${chave.slice(0, 40)}"`,
+          path: [chave],
+        });
+      }
+    }
     for (const q of questions) {
       const optionId = answers[q.id];
       if (!optionId) {
@@ -36,17 +50,7 @@ const answersSchema = z
     }
   });
 
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(8),
-  company: z.string().min(2),
-  role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"]),
-  consent: z.literal(true),
-  whatsappOptin: z.boolean().optional(),
-  answers: answersSchema,
-  utm: z.record(z.string()).optional(),
-});
+const schema = contatoSchema.extend({ answers: answersSchema });
 
 export async function POST(request: Request) {
   const { allowed } = rateLimit(getIp(request), 5, 10 * 60 * 1000);
@@ -57,14 +61,10 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
-  }
+  const leitura = await lerCorpoJson(request);
+  if (!leitura.ok) return leitura.response;
 
-  const parsed = schema.safeParse(body);
+  const parsed = schema.safeParse(leitura.body);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Dados inválidos" },

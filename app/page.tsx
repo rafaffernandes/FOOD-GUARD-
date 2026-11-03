@@ -29,6 +29,7 @@ import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { plans } from "@/lib/content/plans";
 import { site, whatsappLink } from "@/lib/content/site";
+import { jsonLd } from "@/lib/utils";
 
 const problems = [
   {
@@ -114,7 +115,7 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }}
       />
       {/* Hero — capa full com foto e overlay navy */}
       <section className="relative overflow-hidden bg-navy-900 text-white">

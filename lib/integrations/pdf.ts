@@ -43,7 +43,10 @@ export async function buildReportPdf(
   y -= 26;
   text("Diagnóstico Regulatório", { size: 22, font: bold });
   y -= 18;
-  text(`${lead.company} · ${new Date().toLocaleDateString("pt-BR")}`, {
+  // A fonte padrão só desenha Latin-1 (fora disso o pdf-lib lança erro e o e-mail sai sem
+  // anexo), e um nome comprido estoura a linha.
+  const empresa = lead.company.replace(/[^\x20-\x7E\xA0-\xFF]/g, "").slice(0, 80);
+  text(`${empresa} · ${new Date().toLocaleDateString("pt-BR")}`, {
     size: 10,
     color: [0.42, 0.48, 0.46],
   });

@@ -1,6 +1,6 @@
 import { planById } from "@/lib/content/plans";
 import type { DiagnosticResult } from "@/lib/diagnostic/engine";
-import { formatBRL } from "@/lib/utils";
+import { escapeHtml, formatBRL } from "@/lib/utils";
 import type { LeadPayload } from "./types";
 
 const BAND_COLOR: Record<string, string> = {
@@ -32,9 +32,9 @@ export function buildReportHtml(
 <body style="margin:0;background:#f6faf8;font-family:Arial,Helvetica,sans-serif;color:#0b1f1a;">
   <div style="max-width:600px;margin:0 auto;padding:32px 24px;">
     <p style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#059669;font-weight:bold;margin:0 0 8px;">Food Guard · Diagnóstico Regulatório</p>
-    <h1 style="font-size:24px;margin:0 0 16px;">Olá, ${lead.name.split(" ")[0]} 👋</h1>
+    <h1 style="font-size:24px;margin:0 0 16px;">Olá, ${escapeHtml(lead.name.split(" ")[0])} 👋</h1>
     <p style="font-size:15px;line-height:1.6;color:#33433e;margin:0 0 24px;">
-      Aqui está o resultado do diagnóstico de conformidade da <strong>${lead.company}</strong>.
+      Aqui está o resultado do diagnóstico de conformidade da <strong>${escapeHtml(lead.company)}</strong>.
     </p>
 
     <div style="background:#fff;border:1px solid #eef4f1;border-radius:16px;padding:24px;text-align:center;margin-bottom:24px;">

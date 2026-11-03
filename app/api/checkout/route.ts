@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createCheckout } from "@/lib/integrations/asaas";
 import { getIp, rateLimit } from "@/lib/rate-limit";
+import { lerCorpoJson } from "@/lib/validation/corpo";
 
 const schema = z.object({
   planId: z.enum(["basico", "essencial", "premium"]),
@@ -16,14 +17,10 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
-  }
+  const leitura = await lerCorpoJson(request, 1_024);
+  if (!leitura.ok) return leitura.response;
 
-  const parsed = schema.safeParse(body);
+  const parsed = schema.safeParse(leitura.body);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Plano inválido" },

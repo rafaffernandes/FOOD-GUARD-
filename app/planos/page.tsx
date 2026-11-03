@@ -8,7 +8,7 @@ import { PlanCard } from "@/components/ui/PlanCard";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { comparisonRows, plans } from "@/lib/content/plans";
 import { site } from "@/lib/content/site";
-import { formatBRL } from "@/lib/utils";
+import { formatBRL, jsonLd } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Planos e preços",
@@ -103,18 +103,18 @@ export default function PlanosPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(serviceLd) }}
       />
       {productsLd.map((p) => (
         <script
           key={p["@id"]}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(p) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(p) }}
         />
       ))}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqLd) }}
       />
       <section className="bg-surface-soft">
         <Container className="py-16 text-center sm:py-20">

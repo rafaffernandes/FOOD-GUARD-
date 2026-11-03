@@ -55,6 +55,7 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPost(slug: string): Post | null {
+  if (!/^[a-z0-9-]+$/.test(slug)) return null;
   const file = path.join(BLOG_DIR, `${slug}.mdx`);
   if (!fs.existsSync(file)) return null;
   const { data, content } = matter(fs.readFileSync(file, "utf-8"));

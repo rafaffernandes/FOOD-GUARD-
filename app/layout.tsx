@@ -6,6 +6,7 @@ import { Footer } from "@/components/ui/Footer";
 import { Nav } from "@/components/ui/Nav";
 import { site } from "@/lib/content/site";
 import "./globals.css";
+import { jsonLd } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const sora = Sora({ subsets: ["latin"], variable: "--font-display" });
@@ -146,15 +147,15 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(organizationLd) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(websiteLd) }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessLd) }}
         />
         <Analytics />
         <Nav />

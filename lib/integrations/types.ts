@@ -8,6 +8,11 @@ export type LeadRole =
   | "Supervisor"
   | "Outro";
 
+/** UTMs aceitas pelos formulários (as outras chaves são recusadas na validação). */
+export type Utm = Partial<
+  Record<"utm_source" | "utm_medium" | "utm_campaign" | "utm_content" | "utm_term", string>
+>;
+
 /** Dados de contato — a parte comum a qualquer origem de lead. */
 export interface ContactPayload {
   name: string;
@@ -17,7 +22,7 @@ export interface ContactPayload {
   company: string;
   consent: boolean;
   whatsappOptin: boolean;
-  utm?: Record<string, string>;
+  utm?: Utm;
 }
 
 export interface LeadPayload {
@@ -32,5 +37,5 @@ export interface LeadPayload {
   band: RiskBand;
   recommendedPlan: PlanId;
   answers: Record<string, string>;
-  utm?: Record<string, string>;
+  utm?: Utm;
 }

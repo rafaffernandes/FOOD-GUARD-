@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
 import { saveChecklistLead } from "@/lib/integrations/supabase";
 import { getIp, rateLimit } from "@/lib/rate-limit";
+import { lerCorpoJson } from "@/lib/validation/corpo";
+import { contatoSchema } from "@/lib/validation/lead";
 
 /**
  * Captura o lead que quer baixar o checklist completo de 80 itens.
@@ -11,16 +12,7 @@ import { getIp, rateLimit } from "@/lib/rate-limit";
  * um fluxo que já funciona mais frágil sem ganho nenhum.
  */
 
-const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  phone: z.string().min(8),
-  company: z.string().min(2),
-  role: z.enum(["Diretor", "Gestor", "Gerente", "Supervisor", "Outro"]),
-  consent: z.literal(true),
-  whatsappOptin: z.boolean().optional(),
-  utm: z.record(z.string()).optional(),
-});
+const schema = contatoSchema;
 
 export async function POST(request: Request) {
   const { allowed } = rateLimit(`checklist:${getIp(request)}`, 5, 60 * 1000);
@@ -31,14 +23,10 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: unknown;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 });
-  }
+  const leitura = await lerCorpoJson(request);
+  if (!leitura.ok) return leitura.response;
 
-  const parsed = schema.safeParse(body);
+  const parsed = schema.safeParse(leitura.body);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Dados incompletos" },
