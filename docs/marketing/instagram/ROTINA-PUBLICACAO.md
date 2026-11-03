@@ -39,8 +39,8 @@ Instagram se o post já saiu. Por isso a sessão da tarefa só precisa ler o rep
 
 ## Para agendar um post novo aprovado
 
-1. Data: a mais tarde entre (a) dois dias depois da última data da agenda e (b) o dia seguinte ao
-   deploy, sempre às 18h, no formato `AAAA-MM-DDT18:00:00-03:00`.
+1. Data: a próxima vaga da grade de `PLANO-DE-POSTAGEM.md` (carrossel segunda, quarta e sexta
+   às 15h), que seja depois do deploy, no formato `AAAA-MM-DDT15:00:00-03:00`.
 2. Mova o `.mdx` de `docs/rascunhos-blog/` para `content/blog/` com essa data no `date`.
 3. Copie a capa para `public/capas/<slug>.jpg` e registre em `lib/content/photos.ts`.
 4. Copie os slides para `public/instagram/<slug>/` e acrescente a entrada em `agenda.json` com a
@@ -53,3 +53,9 @@ Instagram se o post já saiu. Por isso a sessão da tarefa só precisa ler o rep
    "Siga docs/marketing/instagram/ROTINA-PUBLICACAO.md (seção 'O que a tarefa das 18h05 faz')
    para o slug <slug>". Anote o id da tarefa no campo `tarefa` da agenda. Para mudar uma data,
    apague a tarefa antiga (delete_trigger) antes de criar a nova.
+8. **Reel do post:** `node fonte/render-reel.mjs <pasta-do-post>/carrossel.json reels/<slug>.mp4`,
+   commit e push na branch, e use o endereço público do GitHub fixado no commit
+   (`https://raw.githubusercontent.com/rafaffernandes/FOOD-GUARD-/<sha>/docs/marketing/instagram/reels/<slug>.mp4`).
+   Entrada na agenda com `tipo: "reel"`, `slug: "reel-<slug>"`, `video`, `video_arquivo` e uma legenda
+   curta própria (chamada para seguir, no máximo 5 hashtags, só afirmações do carrossel), no dia
+   seguinte ao carrossel (15h; sábado 10h). Confira com `--ensaio` e crie a tarefa do mesmo jeito.

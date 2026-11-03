@@ -16,9 +16,10 @@ Instagram) para aprovação. A cadência é um post a cada dois dias, às 18h
    `git fetch origin claude/charming-allen-Nc7aL && git checkout claude/charming-allen-Nc7aL && git pull`.
    Se o repositório não estiver na sessão, adicione `rafaffernandes/FOOD-GUARD-` e clone antes.
    Rode `npm install` se `node_modules` não existir (o gerador de imagens usa `sharp`).
-2. Quantidade e datas: **3 posts por semana** (a confirmar com o Rafael: um a cada dois dias dá
-   3 ou 4 por semana). A data é só uma previsão: as próximas vagas depois da última data de
-   `agenda.json`, de dois em dois dias. A data de verdade é marcada na aprovação.
+2. Quantidade e datas: **3 posts por semana**, para segunda, quarta e sexta da semana seguinte,
+   às 15h (grade em `PLANO-DE-POSTAGEM.md`). Cada um ganha um reel no dia seguinte (terça,
+   quinta e sábado às 10h), gerado depois da aprovação. A data é uma previsão; a de verdade é
+   marcada na aprovação.
 3. Pautas: em `docs/marketing/instagram/pautas.json`, pegue as 3 primeiras com status
    `pendente`, na ordem. Não use `aguarda_renan`.
 4. Produção: rode o workflow salvo em `docs/marketing/instagram/fonte/workflow-posts-da-semana.js`

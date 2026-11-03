@@ -1,5 +1,5 @@
 {
- "_como_usar": "Publicações aprovadas, uma por data. O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs --slug <slug>, disparado por uma tarefa agendada única às 18h05 (horário de Brasília) de cada data, numa sessão nova. status: agendado, publicado, falhou ou manual (plano B enviado ao Rafael; não republicar). tarefa: id da tarefa agendada que publica o post.",
+ "_como_usar": "Publicações aprovadas, uma por data (carrossel com artigo, ou reel feito a partir de um carrossel aprovado; tipo: reel). O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs --slug <slug>, disparado por uma tarefa agendada única às 18h05 (horário de Brasília) de cada data, numa sessão nova. status: agendado, publicado, falhou ou manual (plano B enviado ao Rafael; não republicar). tarefa: id da tarefa agendada que publica o post.",
  "instagram_id": "17841435067273589",
  "_instagram_id": "id da conta @foodguardassessoria que o painel da Meta mostra ao gerar o token (não é segredo). Sem ele, o publicador tenta descobrir sozinho.",
  "publicacoes": [
@@ -61,6 +61,42 @@
    "legenda": "Quais temperaturas a norma cobra na cozinha, e onde cada número está escrito?\n\nNeste carrossel, cada número indica a norma de origem: a RDC 216/2004 (Anvisa, vale no país todo) e, para o recebimento na capital, a Portaria SMS 2.619/2011 (Prefeitura de São Paulo). O que é sugestão de rotina vem avisado no próprio slide.\n\nDois cuidados. A Portaria recebeu alterações depois de 2011, então confira a versão consolidada no portal de legislação da Prefeitura. E a vigilância do seu município pode aplicar regra própria, inclusive na cocção e na frequência de registro.\n\nSalve este post para consultar na hora de montar a planilha.\nComente qual etapa mais dá trabalho na sua operação: recebimento, cocção, resfriamento ou balcão.\n\nA Food Guard é consultoria nutricional para serviços de alimentação, em São Paulo e Grande SP. O checklist de 80 itens, com itens de temperatura, é liberado após cadastro no link da bio.\n\n#boaspraticas #rdc216 #vigilanciasanitaria #controledetemperatura #servicosdealimentacao",
    "status": "agendado",
    "tarefa": "trig_01F5GrNgAoSE7wRWmPaJ5fms"
+  },
+  {
+   "data": "2026-11-10T15:00:00-03:00",
+   "slug": "reel-manipuladores-equipe-nova-e-temporarios-rdc-216",
+   "tipo": "reel",
+   "titulo": "Reel: Equipe nova e temporários",
+   "blog": "https://foodguardassessoria.com.br/blog/manipuladores-equipe-nova-e-temporarios-rdc-216",
+   "video": "https://raw.githubusercontent.com/rafaffernandes/FOOD-GUARD-/99cbd4328386bf6cedc1383d67d6cee0ca063fb7/docs/marketing/instagram/reels/manipuladores-equipe-nova-e-temporarios-rdc-216.mp4",
+   "video_arquivo": "reels/manipuladores-equipe-nova-e-temporarios-rdc-216.mp4",
+   "legenda": "Reforço de fim de ano chegando? Para a norma, o temporário é manipulador de alimentos como qualquer funcionário. 👀\n\nEm 25 segundos: o que deixar pronto antes do primeiro turno, separando o que é da RDC 216/2004 e da Portaria 2.619/2011 do que é sugestão da Food Guard.\n\n📌 Salve e mande para quem vai receber a equipe nova.\n➕ Siga a Food Guard: toda semana, o que a vigilância sanitária cobra, explicado sem enrolação.\nMatéria completa no link da bio.\n\n#vigilanciasanitaria #boaspraticas #rdc216 #manipuladoresdealimentos #foodservice",
+   "status": "agendado",
+   "tarefa": "trig_01RYEV4tqGerkpT1SLJ39vrn"
+  },
+  {
+   "data": "2026-11-12T15:00:00-03:00",
+   "slug": "reel-controle-de-pragas-na-cozinha-rdc-216-comprovantes",
+   "tipo": "reel",
+   "titulo": "Reel: Controle de pragas",
+   "blog": "https://foodguardassessoria.com.br/blog/controle-de-pragas-na-cozinha-rdc-216-comprovantes",
+   "video": "https://raw.githubusercontent.com/rafaffernandes/FOOD-GUARD-/99cbd4328386bf6cedc1383d67d6cee0ca063fb7/docs/marketing/instagram/reels/controle-de-pragas-na-cozinha-rdc-216-comprovantes.mp4",
+   "video_arquivo": "reels/controle-de-pragas-na-cozinha-rdc-216-comprovantes.mp4",
+   "legenda": "Chamar a dedetização resolve o controle de pragas? 🤔\n\nPara a RDC 216/2004, a prevenção vem primeiro. O controle químico entra quando a prevenção não basta, e é feito por empresa especializada. No reel, o que a norma pede e o que guardar de comprovante.\n\n📌 Salve para fazer a ronda na cozinha.\n➕ Siga a Food Guard para mais conteúdo assim.\nMatéria completa no link da bio.\n\n#controledepragas #rdc216 #vigilanciasanitaria #boaspraticas #foodservice",
+   "status": "agendado",
+   "tarefa": "trig_01G151xDPYi5d7jLLXuXaCvo"
+  },
+  {
+   "data": "2026-11-14T10:00:00-03:00",
+   "slug": "reel-controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra",
+   "tipo": "reel",
+   "titulo": "Reel: Controle de temperatura",
+   "blog": "https://foodguardassessoria.com.br/blog/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra",
+   "video": "https://raw.githubusercontent.com/rafaffernandes/FOOD-GUARD-/99cbd4328386bf6cedc1383d67d6cee0ca063fb7/docs/marketing/instagram/reels/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra.mp4",
+   "video_arquivo": "reels/controle-de-temperatura-em-restaurantes-o-que-a-vigilancia-cobra.mp4",
+   "legenda": "Quais temperaturas a norma cobra na sua cozinha? 🌡️\n\nAlimento quente, resfriamento, refrigeração e recebimento: cada número com a norma de origem, a RDC 216/2004 ou a Portaria 2.619/2011, que vale na capital.\n\n📌 Salve para consultar na hora de montar a planilha.\n➕ Siga a Food Guard e mande para quem cuida do recebimento.\nMatéria completa no link da bio.\n\n#controledetemperatura #rdc216 #vigilanciasanitaria #boaspraticas #foodservice",
+   "status": "agendado",
+   "tarefa": "trig_01Lr6T3WmbpN83tcmxNR3awz"
   }
  ]
 }

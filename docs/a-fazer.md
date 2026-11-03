@@ -28,3 +28,17 @@ Ordem pedida:
 
 Pendência relacionada: o Rafael tem um material atual que precisa melhorar.
 Pedir o arquivo antes de começar.
+
+## 3. Pendências de segurança (pedido do Rafael em 03/11: "não me deixa esquecer")
+
+Lembrete agendado para segunda, 09/11, às 9h03. Estado e detalhes em `check-report/RELATORIO.md`
+(fora do Git) e nos commits dff68b8 a fe84c19 da branch.
+
+- 9 correções aplicadas na branch, **ainda não publicadas na main**. Antes de publicar, ler e
+  aplicar o resultado da revisão adversarial que estava rodando.
+- Decisões do Rafael: limite de envios compartilhado (Upstash ou Firewall da Vercel); Turnstile;
+  apagar deployments antigos e os projetos Vercel extras; tirar do ar as rotas de teste dos
+  agentes; proteger de verdade o PDF do checklist; citar o provedor de IA na política de
+  privacidade; migrar para o zod 4.
+- Ações manuais: rodar `supabase/hardening-rls.sql` no SQL Editor; conferir na Vercel que a
+  senha do admin, o CRON_SECRET e o token do webhook do Asaas não são os valores de exemplo.
