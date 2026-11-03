@@ -58,7 +58,11 @@ começo tranquilo.
    senha do banco.
 2. Vá em **SQL Editor** → cole o conteúdo de
    [`supabase/schema.sql`](../supabase/schema.sql) → **Run**. Isso cria as
-   tabelas `leads` e `consent_log` (com RLS e consent imutável).
+   tabelas `leads` e `consent_log` (com RLS e consent imutável). Faça o mesmo,
+   nesta ordem, com `payments.sql`, `fase-3-agents.sql` e `leads-origem.sql`, e por
+   último com [`supabase/hardening-rls.sql`](../supabase/hardening-rls.sql), que fecha
+   as tabelas para a chave pública. No fim do arquivo estão as consultas de
+   conferência; confira também **Advisors → Security Advisor** (sem "RLS disabled").
 3. Em **Project Settings → API**, copie:
    - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
    - **service_role** (secret) → `SUPABASE_SERVICE_ROLE_KEY`
