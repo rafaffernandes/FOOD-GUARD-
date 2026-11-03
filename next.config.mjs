@@ -48,8 +48,10 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "images.pexels.com" },
+      // Só os caminhos que lib/content/photos.ts usa: o otimizador de imagem não vira proxy
+      // aberto para qualquer arquivo desses dois hosts.
+      { protocol: "https", hostname: "images.unsplash.com", pathname: "/photo-*" },
+      { protocol: "https", hostname: "images.pexels.com", pathname: "/photos/**" },
     ],
   },
   async headers() {
