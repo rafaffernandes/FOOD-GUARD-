@@ -13,9 +13,10 @@ const csp = [
   "form-action 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://www.facebook.com https://*.google-analytics.com https://www.googletagmanager.com",
+  // Destinos do GA4 com Google Signals, pelo guia de CSP do Google (inclui o domínio regional .com.br).
+  "img-src 'self' data: blob: https://images.unsplash.com https://images.pexels.com https://www.facebook.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://*.google.com.br",
   "font-src 'self' data:",
-  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://*.google.com.br https://pagead2.googlesyndication.com https://connect.facebook.net https://www.facebook.com",
   "frame-src 'none'",
   "upgrade-insecure-requests",
 ].join("; ");
