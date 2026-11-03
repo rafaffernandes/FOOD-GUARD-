@@ -19,7 +19,11 @@ import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 
 const SITE = "https://foodguardassessoria.com.br";
-const API = `https://graph.instagram.com/${process.env.IG_API_VERSION ? process.env.IG_API_VERSION + "/" : ""}`;
+// Apps novos da Meta usam o "login unificado": token de usuário do sistema, que fala com
+// graph.facebook.com. Apps antigos com login do Instagram falam com graph.instagram.com.
+const VERSAO = process.env.IG_API_VERSION ? process.env.IG_API_VERSION + "/" : "";
+const HOSTS = { facebook: `https://graph.facebook.com/${VERSAO}`, instagram: `https://graph.instagram.com/${VERSAO}` };
+let API = HOSTS.facebook;
 const AGENDA = new URL("../agenda.json", import.meta.url);
 const LOG = new URL("../publicacoes.log", import.meta.url);
 const args = process.argv.slice(2);
@@ -31,15 +35,15 @@ const dormir = (ms) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0,
 const registrar = (txt) => fs.appendFileSync(LOG, `${new Date().toISOString()} | ${txt}\n`);
 
 // curl respeita o proxy do ambiente (é ele que injeta o token); o fetch do Node não.
-function api(metodo, caminho, campos = {}) {
+function api(metodo, caminho, campos = {}, base = API) {
   const dados = Object.entries(campos).flatMap(([k, v]) => ["--data-urlencode", `${k}=${v}`]);
   let saida;
   try {
-    saida = execFileSync("curl", ["-sS", "--max-time", "60", "-w", "\n%{http_code}", "-X", metodo, ...(metodo === "GET" ? ["-G"] : []), ...dados, API + caminho], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    saida = execFileSync("curl", ["-sS", "--max-time", "60", "-w", "\n%{http_code}", "-X", metodo, ...(metodo === "GET" ? ["-G"] : []), ...dados, base + caminho], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
   } catch (e) {
     const err = String(e.stderr || e.message).trim();
     throw new Error(/CONNECT tunnel failed.*403/.test(err)
-      ? `o ambiente não tem acesso a graph.instagram.com: falta o segredo de rede "Instagram Food Guard" (${err})`
+      ? `o ambiente não tem acesso à API da Meta: falta o segredo de rede "Instagram Food Guard" (${err})`
       : `falha de rede ou tempo esgotado falando com a Meta (${err})`);
   }
   const linhas = saida.trim().split("\n");
@@ -53,11 +57,32 @@ function api(metodo, caminho, campos = {}) {
   return corpo;
 }
 
-const conta = () => {
-  const me = api("GET", "me", { fields: "user_id,username,account_type" });
-  if (!me.user_id) throw new Error(`a conta não devolveu user_id: ${JSON.stringify(me)}`);
-  return me;
-};
+/**
+ * Acha a conta do Instagram e o endereço da API que aceita o token. O id pode vir da agenda
+ * (instagram_id, que o painel da Meta mostra ao gerar o token); sem ele, tenta descobrir.
+ */
+function conta(idConhecido) {
+  const erros = [];
+  if (idConhecido) {
+    for (const base of [HOSTS.facebook, HOSTS.instagram]) {
+      try {
+        const c = api("GET", idConhecido, { fields: "id,username" }, base);
+        API = base;
+        return { user_id: c.id, username: c.username, via: base };
+      } catch (e) { erros.push(e.message); }
+    }
+  }
+  try {
+    const me = api("GET", "me", { fields: "user_id,username" }, HOSTS.instagram);
+    if (me.user_id) { API = HOSTS.instagram; return { user_id: me.user_id, username: me.username, via: HOSTS.instagram }; }
+  } catch (e) { erros.push(e.message); }
+  try {
+    const paginas = api("GET", "me/accounts", { fields: "instagram_business_account{id,username}" }, HOSTS.facebook).data ?? [];
+    const ig = paginas.map((p) => p.instagram_business_account).find(Boolean);
+    if (ig) { API = HOSTS.facebook; return { user_id: ig.id, username: ig.username, via: HOSTS.facebook }; }
+  } catch (e) { erros.push(e.message); }
+  throw new Error(`não achei a conta do Instagram com este token. ${erros.join(" | ")}`);
+}
 
 /** Post já publicado com esta legenda (compara a primeira linha)? Devolve o post ou null. */
 function jaPublicado(igId, legenda) {
@@ -76,12 +101,15 @@ function avisarRafael(slug, assunto, linhas) {
   execFileSync("node", [new URL("./enviar-email-aprovacao.mjs", import.meta.url).pathname, html, assunto, "--teste"], { stdio: "inherit" });
 }
 
+const agenda = JSON.parse(fs.readFileSync(AGENDA, "utf8"));
+const salvar = () => fs.writeFileSync(AGENDA, JSON.stringify(agenda, null, 1) + "\n");
+
 if (teste) {
   try {
-    const me = conta();
+    const me = conta(agenda.instagram_id);
     let cota = null;
     try { cota = api("GET", `${me.user_id}/content_publishing_limit`, { fields: "quota_usage,config" }); } catch (e) { cota = { erro: e.message }; }
-    console.log(`Conectado como @${me.username} (${me.account_type}), id ${me.user_id}. Cota de publicação: ${JSON.stringify(cota)}`);
+    console.log(`Conectado como @${me.username}, id ${me.user_id}, via ${me.via}. Cota de publicação: ${JSON.stringify(cota)}`);
     process.exit(0);
   } catch (e) {
     console.error(`Instagram não conectado: ${e.message}`);
@@ -93,8 +121,6 @@ if (!slugPedido) {
   console.error("Informe o post: --slug <slug> (veja agenda.json).");
   process.exit(1);
 }
-const agenda = JSON.parse(fs.readFileSync(AGENDA, "utf8"));
-const salvar = () => fs.writeFileSync(AGENDA, JSON.stringify(agenda, null, 1) + "\n");
 const pub = agenda.publicacoes.find((p) => p.slug === slugPedido);
 if (!pub) {
   registrar(`falhou | ${slugPedido} | slug fora da agenda`);
@@ -111,7 +137,7 @@ if (pub.status === "publicado" || pub.status === "manual" || (pub.status === "fa
 }
 
 try {
-  const me = conta();
+  const me = conta(agenda.instagram_id);
   const existente = jaPublicado(me.user_id, pub.legenda);
   if (existente) {
     Object.assign(pub, { status: "publicado", instagram: existente.permalink ?? "", midia: existente.id });

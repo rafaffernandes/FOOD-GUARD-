@@ -38,25 +38,48 @@ Faça pelo computador. São dois logins diferentes, e é isso que costuma confun
 4. Se pedir um portfólio empresarial, pode pular ("não quero conectar agora").
 5. Conclua com **Criar app** (pode pedir a senha do Facebook de novo).
 
-**D. Ligar o Instagram da Food Guard ao app (10 minutos)**
-1. No painel do app, no menu da esquerda, abra **Instagram** → **Configuração da API com login
-   do Instagram**. Se o Instagram não estiver no menu, procure **Adicionar produto** e clique em
-   **Configurar** no Instagram.
-2. Menu da esquerda → **Funções do app** → **Funções** → **Adicionar pessoas** → escolha
-   **Testador do Instagram** → digite `foodguardassessoria` → **Adicionar**.
-3. Aceite o convite: no navegador, entre em **instagram.com** com o `@foodguardassessoria` →
-   **Configurações** → **Apps e sites** → aba **Convites de testador** → **Aceitar**. É o passo
-   mais esquecido; sem ele o token não funciona.
-4. Volte ao painel: **Instagram** → **Configuração da API com login do Instagram** → seção
-   **Gerar tokens de acesso** → **Adicionar conta**. Abre o login do **Instagram**: entre com o
-   usuário e a senha do `@foodguardassessoria` e autorize tudo o que pedir, inclusive
-   **publicar conteúdo**.
+Apps criados a partir de 2026 não têm mais a "Configuração da API com login do Instagram":
+o painel avisa que o app usa a **API setup with Unified login** (login unificado). É esse o
+caminho abaixo. Ele usa um portfólio empresarial e gera um token de usuário do sistema que **não
+expira**. Passos D a G conferidos com o painel em 03/11/2026 e com um guia de terceiros
+(github.com/SchulzWill/weekpost, docs/setup.md).
 
-**E. Gerar o token (2 minutos)**
-1. Na mesma seção, ao lado da conta, clique em **Gerar token**.
-2. Na janela, marque **Eu entendo** e copie o token. Segundo a documentação da Meta, o token
-   gerado no painel já vale 60 dias.
-3. Vá direto para a Parte 2, sem colar o token em lugar nenhum no caminho (nem no chat).
+**D. Portfólio empresarial com o Instagram dentro (10 minutos)**
+1. Em **business.facebook.com**, entre com o seu Facebook. Se ainda não houver portfólio da
+   Food Guard, crie um (**Criar portfólio empresarial**, nome "Food Guard").
+2. No portfólio: **Configurações** → **Contas** → **Contas do Instagram** → **Adicionar** →
+   entre com o usuário e a senha do Instagram da Food Guard.
+3. No painel do app (developers.facebook.com): **Casos de uso** → **Personalizar** no caso do
+   Instagram. Se pedir, conecte o app ao portfólio da Food Guard.
+4. No menu da esquerda do app: **Configurações do app** → **Básico** → **URL da Política de
+   Privacidade** = `https://foodguardassessoria.com.br/privacidade` → **Salvar alterações**.
+
+**E. Pôr a conta como testadora (5 minutos)**
+1. Menu da esquerda do app → **Funções do app** → **Funções** → **Adicionar pessoas** →
+   **Testador do Instagram** → `foodguardassessoria` → **Adicionar**.
+2. Aceite em **instagram.com** (logado no `@foodguardassessoria`): **Configurações** →
+   **Apps e sites** → aba **Convites de testador** → **Aceitar**. A conta precisa ser pública, e
+   o convite pode levar alguns minutos para aparecer.
+
+**F. Criar a configuração (5 minutos)**
+Em **Casos de uso** → **Personalizar** → **API setup with Unified login** → **1. Configure seu
+app** → **Criar nova configuração**:
+- **Token de acesso:** deixe "Token de acesso do usuário do sistema (SUAT)".
+- **Expiração:** deixe "Nunca".
+- **Ativos:** marque a conta do Instagram da Food Guard. Pule a conta de anúncios.
+- **Permissões:** deixe só `instagram_basic` e `instagram_content_publish`. Tire
+  `ads_management`, `ads_read` e `instagram_manage_comments`. Tire também
+  `instagram_manage_messages` se o painel deixar; se não deixar, tudo bem.
+- O campo de URL de redirecionamento, se aparecer, pode ficar em branco ou com o endereço do site.
+- **Salvar.**
+
+**G. Gerar o token (2 minutos)**
+1. Na mesma página, desça até **Gerar tokens de acesso** → **Adicionar conta** → entre com o
+   Instagram da Food Guard e autorize.
+2. Clique em **Gerar token**, escolha o portfólio e a conta, e copie o token. A Meta mostra uma
+   vez só. Vá direto para a Parte 2, sem colar o token em lugar nenhum (nem no chat).
+3. Anote o **número da conta** que aparece ao lado do `@foodguardassessoria` (o id do
+   Instagram). Esse número **não é segredo**: pode mandar no chat, que eu coloco na agenda.
 
 Os nomes dos menus mudam de tempos em tempos na Meta. Se algo estiver diferente, me descreva a
 tela, sem mandar o token, que eu te guio.
@@ -115,9 +138,9 @@ Quando terminar, me escreva **"instagram configurado"** aqui no chat.
    publicado, ou com os slides e a legenda se algo falhar.
 3. **Aprovação:** só entra na agenda o que o Renan validou e você aprovou. As tarefas automáticas
    não leem o Gmail, então a aprovação chega pelo chat ("aprovado", com quais posts).
-4. **Validade do token:** ele vence 60 dias depois de gerado, e o segredo de rede não pode ser
-   editado. Quando você configurar, eu crio um lembrete para o dia 50. Aí você gera um token novo
-   na Meta (Parte 1, passo E), apaga o segredo antigo na lista (ícone de lixeira) e cria outro
+4. **Validade do token:** com o login unificado e a expiração "Nunca", o token não vence. Se a
+   configuração mostrar outro prazo, eu crio um lembrete antes do vencimento, e aí você gera um
+   token novo (Parte 1, passo G), apaga o segredo antigo na lista (ícone de lixeira) e cria outro
    igual (Parte 2).
 
 ## Como as imagens chegam à Meta

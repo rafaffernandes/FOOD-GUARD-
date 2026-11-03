@@ -1,5 +1,7 @@
 {
  "_como_usar": "Publicações aprovadas, uma por data. O blog libera o artigo sozinho na data (lib/blog.ts). O Instagram sai pelo fonte/publicar-instagram.mjs --slug <slug>, disparado por uma tarefa agendada única às 18h05 (horário de Brasília) de cada data, numa sessão nova. status: agendado, publicado, falhou ou manual (plano B enviado ao Rafael; não republicar). tarefa: id da tarefa agendada que publica o post.",
+ "instagram_id": null,
+ "_instagram_id": "id da conta @foodguardassessoria que o painel da Meta mostra ao gerar o token (não é segredo). Sem ele, o publicador tenta descobrir sozinho.",
  "publicacoes": [
   {
    "data": "2026-11-04T18:00:00-03:00",
