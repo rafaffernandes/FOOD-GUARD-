@@ -158,18 +158,35 @@ try {
     console.log(`Já estava publicado: ${existente.permalink ?? existente.id}`);
     process.exit(0);
   }
-  const filhos = pub.slides.map((s) => api("POST", `${me.user_id}/media`, { image_url: SITE + s, is_carousel_item: "true" }).id);
-  const carrossel = api("POST", `${me.user_id}/media`, { media_type: "CAROUSEL", children: filhos.join(","), caption: pub.legenda }).id;
-  // A Meta processa o contêiner antes de aceitar a publicação: até 5 minutos.
+  // Reel: um vídeo só (pub.video, endereço público). Carrossel: os slides do site.
+  const reel = pub.tipo === "reel";
+  const nome = reel ? "o reel" : "o carrossel";
+  let carrossel;
+  let pecas;
+  if (reel) {
+    carrossel = api("POST", `${me.user_id}/media`, { media_type: "REELS", video_url: pub.video, caption: pub.legenda, share_to_feed: "true" }).id;
+    pecas = "vídeo";
+  } else {
+    const filhos = pub.slides.map((s) => api("POST", `${me.user_id}/media`, { image_url: SITE + s, is_carousel_item: "true" }).id);
+    carrossel = api("POST", `${me.user_id}/media`, { media_type: "CAROUSEL", children: filhos.join(","), caption: pub.legenda }).id;
+    pecas = `${filhos.length} slides`;
+  }
+  // A Meta processa o contêiner antes de aceitar a publicação: até 5 minutos no
+  // carrossel e até 8 no reel, que precisa baixar e converter o vídeo.
   let estado = "";
-  for (let i = 0; i < 30 && estado !== "FINISHED"; i++) {
+  const voltas = reel ? 48 : 30;
+  for (let i = 0; i < voltas && estado !== "FINISHED"; i++) {
     estado = api("GET", carrossel, { fields: "status_code" }).status_code;
-    if (estado === "ERROR" || estado === "EXPIRED") throw new Error(`a Meta recusou o carrossel (status ${estado})`);
+    if (estado === "ERROR" || estado === "EXPIRED") {
+      let motivo = "";
+      try { motivo = api("GET", carrossel, { fields: "status" }).status ?? ""; } catch { /* só detalhe */ }
+      throw new Error(`a Meta recusou ${nome} (status ${estado}${motivo ? ": " + motivo : ""})`);
+    }
     if (estado !== "FINISHED") dormir(10000);
   }
-  if (estado !== "FINISHED") throw new Error(`a Meta não terminou de processar o carrossel em 5 minutos (último status: ${estado})`);
+  if (estado !== "FINISHED") throw new Error(`a Meta não terminou de processar ${nome} a tempo (último status: ${estado})`);
   if (ensaio) {
-    console.log(`Ensaio ok: ${pub.slug} com ${filhos.length} slides e legenda aceitos; contêiner ${carrossel} pronto e NÃO publicado.`);
+    console.log(`Ensaio ok: ${pub.slug} com ${pecas} e legenda aceitos; contêiner ${carrossel} pronto e NÃO publicado.`);
     process.exit(0);
   }
   let midia;
