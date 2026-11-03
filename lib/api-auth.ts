@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from "node:crypto";
 import { NextResponse } from "next/server";
 
 /**
@@ -10,6 +11,11 @@ import { NextResponse } from "next/server";
  *
  * É a mesma postura do middleware que protege /admin.
  */
+
+/** Compara em tempo constante (via hash, para os tamanhos baterem). */
+function safeEqual(a: string, b: string): boolean {
+  return timingSafeEqual(createHash("sha256").update(a).digest(), createHash("sha256").update(b).digest());
+}
 
 function naoConfigurado(qual: string): NextResponse {
   console.error(`[auth] ${qual} ausente — rota bloqueada por segurança.`);
@@ -32,7 +38,7 @@ export function requireCronSecret(request: Request): NextResponse | null {
   if (!secret) return naoConfigurado("CRON_SECRET");
 
   const auth = request.headers.get("authorization");
-  if (auth !== `Bearer ${secret}`) return naoAutorizado();
+  if (!safeEqual(auth ?? "", `Bearer ${secret}`)) return naoAutorizado();
 
   return null;
 }
@@ -45,7 +51,7 @@ export function requireAsaasToken(request: Request): NextResponse | null {
   const token = process.env.ASAAS_WEBHOOK_TOKEN?.trim();
   if (!token) return naoConfigurado("ASAAS_WEBHOOK_TOKEN");
 
-  if (request.headers.get("asaas-access-token") !== token) return naoAutorizado();
+  if (!safeEqual(request.headers.get("asaas-access-token") ?? "", token)) return naoAutorizado();
 
   return null;
 }

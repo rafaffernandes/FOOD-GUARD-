@@ -15,6 +15,12 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const bloqueio = requireCronSecret(request);
   if (bloqueio) return bloqueio;
+  if (process.env.AGENTS_KILL_SWITCH === "on") {
+    return NextResponse.json(
+      { ok: false, error: "Agentes desligados (AGENTS_KILL_SWITCH=on)." },
+      { status: 503 },
+    );
+  }
 
   const prospects = await fetchNewProspects(20);
   let drafted = 0;

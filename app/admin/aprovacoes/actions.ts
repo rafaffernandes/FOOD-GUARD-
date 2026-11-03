@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { requireAdmin } from "@/lib/admin-auth";
 import { setDraftStatus } from "@/lib/agent/store";
 
 /**
@@ -19,6 +20,7 @@ const alvoSchema = z.object({
 });
 
 async function update(formData: FormData, status: "aprovado" | "rejeitado") {
+  await requireAdmin();
   const alvo = alvoSchema.safeParse({ table: formData.get("table"), id: formData.get("id") });
   if (!alvo.success) return;
   await setDraftStatus(alvo.data.table, alvo.data.id, status);

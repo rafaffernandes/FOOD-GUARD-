@@ -34,6 +34,9 @@ let client: Anthropic | null = null;
 /** Cliente singleton. null em modo dev (sem chave). Use só no servidor. */
 export function getAnthropic(): Anthropic | null {
   if (!anthropicConfigured) return null;
+  // Botão de pânico: com AGENTS_KILL_SWITCH=on, todos os agentes (inclusive o follow-up
+  // do /api/leads) caem no texto de reserva, sem chamar a IA e sem custo.
+  if (process.env.AGENTS_KILL_SWITCH === "on") return null;
   if (!client) client = new Anthropic();
   return client;
 }

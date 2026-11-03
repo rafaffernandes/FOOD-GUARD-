@@ -54,6 +54,12 @@ const LEAD_MOCK: LeadPayload = {
 export async function GET(request: Request) {
   const bloqueio = requireCronSecret(request);
   if (bloqueio) return bloqueio;
+  if (process.env.AGENTS_KILL_SWITCH === "on") {
+    return NextResponse.json(
+      { ok: false, error: "Agentes desligados (AGENTS_KILL_SWITCH=on)." },
+      { status: 503 },
+    );
+  }
 
   try {
     const [prospeccao, qualificacao, conteudo] = await Promise.all([
